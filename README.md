@@ -1,2 +1,3 @@
-# Understanding-Quantitative-Finance-with-Python
-Collection of Jupyter notebooks to explore Quantitative Finance concepts with Python
+# Understanding Quantitative Finance
+
+This is a collection of Jupyter notebooks to explore Quantitative Finance concepts with Python
