@@ -1,3 +1,5 @@
 jupyter-book
 matplotlib
 numpy
+scipy
+aleatory
