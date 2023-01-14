@@ -3,7 +3,7 @@
 
 title: Understanding Quantitative Finance 
 author: Dialid Santiago
-logo: puzzle.jpg
+logo: puzzle.jpeg
 
 # Force re-execution of notebooks on each build.
 # See https://jupyterbook.org/content/execute.html
@@ -13,7 +13,7 @@ execute:
 # Define the name of the latex output file for PDF builds
 latex:
   latex_documents:
-    targetname: book.tex
+    targetname: UQF.tex
 
 # Add a bibtex file so that we can create citations
 bibtex_bibfiles:
