@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Brownian Motion &#8212; Understanding Quantitative Finance</title>
+    <title>1. Brownian Motion &#8212; Understanding Quantitative Finance</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -95,7 +95,7 @@ const thebe_selector_output = ".output, .cell_output"
         
       
       
-      <img src="_static/puzzle.jpg" class="logo" alt="logo">
+      <img src="_static/puzzle.jpeg" class="logo" alt="logo">
       
       
       <h1 class="site-logo" id="site-title">Understanding Quantitative Finance</h1>
@@ -117,7 +117,7 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="current nav bd-sidenav">
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   Brownian Motion
+   1. Brownian Motion
   </a>
  </li>
 </ul>
@@ -328,64 +328,71 @@ title="Print to PDF"
         <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#definition">
-   Definition
+   1.1. Definition
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#marginal-distributions">
-   Marginal Distributions
+   1.2. Marginal Distributions
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#expectation-variance-and-covariance">
-     Expectation,  Variance, and Covariance
+     1.2.1. Expectation,  Variance, and Covariance
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#finite-dimensional-distributions">
-     Finite Dimensional Distributions
+     1.2.2. Finite Dimensional Distributions
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#marginal-distributions-in-python">
-     Marginal Distributions in Python
+     1.2.3. Marginal Distributions in Python
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#sampling">
-     Sampling
+     1.2.4. Sampling
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#probability-density-functions">
-     Probability Density Functions
+     1.2.5. Probability Density Functions
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#simulation">
-   Simulation
+   1.3. Simulation
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#visualising-paths">
+     1.3.1. Visualising Paths
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#long-time-behaviour">
-   Long Time Behaviour
+   1.4. Long Time Behaviour
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#reflection-principle">
-   Reflection Principle
+   1.5. Reflection Principle
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#visualisation">
-   Visualisation
+   1.6. Visualisation
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#references-and-further-reading">
-   References and Further Reading
+   1.7. References and Further Reading
   </a>
  </li>
 </ul>
@@ -409,64 +416,71 @@ title="Print to PDF"
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#definition">
-   Definition
+   1.1. Definition
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#marginal-distributions">
-   Marginal Distributions
+   1.2. Marginal Distributions
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#expectation-variance-and-covariance">
-     Expectation,  Variance, and Covariance
+     1.2.1. Expectation,  Variance, and Covariance
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#finite-dimensional-distributions">
-     Finite Dimensional Distributions
+     1.2.2. Finite Dimensional Distributions
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#marginal-distributions-in-python">
-     Marginal Distributions in Python
+     1.2.3. Marginal Distributions in Python
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#sampling">
-     Sampling
+     1.2.4. Sampling
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#probability-density-functions">
-     Probability Density Functions
+     1.2.5. Probability Density Functions
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#simulation">
-   Simulation
+   1.3. Simulation
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#visualising-paths">
+     1.3.1. Visualising Paths
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#long-time-behaviour">
-   Long Time Behaviour
+   1.4. Long Time Behaviour
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#reflection-principle">
-   Reflection Principle
+   1.5. Reflection Principle
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#visualisation">
-   Visualisation
+   1.6. Visualisation
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#references-and-further-reading">
-   References and Further Reading
+   1.7. References and Further Reading
   </a>
  </li>
 </ul>
@@ -480,10 +494,10 @@ title="Print to PDF"
               <div>
                 
   <section class="tex2jax_ignore mathjax_ignore" id="brownian-motion">
-<h1>Brownian Motion<a class="headerlink" href="#brownian-motion" title="Permalink to this headline">#</a></h1>
+<h1><span class="section-number">1. </span>Brownian Motion<a class="headerlink" href="#brownian-motion" title="Permalink to this headline">#</a></h1>
 <p>The purpose of this notebook is to review and illustrate the <a class="reference external" href="https://en.wikipedia.org/wiki/Brownian_motion">Brownian motion</a> and some of its main properties.</p>
 <section id="definition">
-<h2>Definition<a class="headerlink" href="#definition" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">1.1. </span>Definition<a class="headerlink" href="#definition" title="Permalink to this headline">#</a></h2>
 <p><strong>Definition</strong> A standard Brownian motion or Wiener process is a stochastic process <span class="math notranslate nohighlight">\(W =\{W_t, t\geq 0\}\)</span> characterised by the following properties:</p>
 <ol class="simple">
 <li><p><span class="math notranslate nohighlight">\(W_0 = 0\)</span></p></li>
@@ -493,14 +507,14 @@ title="Print to PDF"
 </ol>
 </section>
 <section id="marginal-distributions">
-<h2>Marginal Distributions<a class="headerlink" href="#marginal-distributions" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">1.2. </span>Marginal Distributions<a class="headerlink" href="#marginal-distributions" title="Permalink to this headline">#</a></h2>
 <p>Point (2) in the Brownian motion definition implies that for each <span class="math notranslate nohighlight">\(t&gt;0\)</span>, the one dimensional marginal distribution <span class="math notranslate nohighlight">\(W_t\)</span> is normally distributed with expectation zero, and variance equals <span class="math notranslate nohighlight">\(t\)</span>, i.e.:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-1446813c-e56a-4692-83c5-6f728ca751f2">
-<span class="eqno">(1)<a class="headerlink" href="#equation-1446813c-e56a-4692-83c5-6f728ca751f2" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-710dc1cc-571b-4fc1-9254-d3144fb4f318">
+<span class="eqno">(1.1)<a class="headerlink" href="#equation-710dc1cc-571b-4fc1-9254-d3144fb4f318" title="Permalink to this equation">#</a></span>\[\begin{equation}
 W_t \sim \mathcal{N}(0,t), \qquad \forall t&gt;0.
 \end{equation}\]</div>
 <section id="expectation-variance-and-covariance">
-<h3>Expectation,  Variance, and Covariance<a class="headerlink" href="#expectation-variance-and-covariance" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">1.2.1. </span>Expectation,  Variance, and Covariance<a class="headerlink" href="#expectation-variance-and-covariance" title="Permalink to this headline">#</a></h3>
 <p>So, by definition we have</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{equation*}
@@ -526,7 +540,7 @@ W_t \sim \mathcal{N}(0,t), \qquad \forall t&gt;0.
 \end{equation*}\]</div>
 </section>
 <section id="finite-dimensional-distributions">
-<h3>Finite Dimensional Distributions<a class="headerlink" href="#finite-dimensional-distributions" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">1.2.2. </span>Finite Dimensional Distributions<a class="headerlink" href="#finite-dimensional-distributions" title="Permalink to this headline">#</a></h3>
 <p>Moreover, for any finite set <span class="math notranslate nohighlight">\(t_1 &lt; t_2 &lt; \cdots &lt; t_m\)</span>, the vector <span class="math notranslate nohighlight">\((W_{t_1}, W_{t_2}, \cdots, W_{t_m}),\)</span> follows a Mutivariate normal distribution with zero (zero-vector in <span class="math notranslate nohighlight">\(\mathbb{R}^m\)</span>) and covariance matrix</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\Sigma = \begin{pmatrix}
@@ -538,9 +552,10 @@ t_1 &amp; t_2 &amp; t_3 &amp; \cdots &amp; 1
 <p>Hereafter, we will focus on the one dimensional marginal distributions <span class="math notranslate nohighlight">\(W_t, t&gt;0\)</span> and will refer to them simply as marginal distributions.</p>
 </section>
 <section id="marginal-distributions-in-python">
-<h3>Marginal Distributions in Python<a class="headerlink" href="#marginal-distributions-in-python" title="Permalink to this headline">#</a></h3>
-<p>Knowing the distribution –with its corresponding parameters– of the marginal distributions allows us to reproduce them with <code class="docutils literal notranslate"><span class="pre">Python</span></code>.</p>
-<p>One way to do this is by using the object  <code class="docutils literal notranslate"><span class="pre">norm</span></code>  from the library <code class="docutils literal notranslate"><span class="pre">scipy.stats</span></code>.  The next cell shows how to create <span class="math notranslate nohighlight">\(W_1\)</span> using this method.</p>
+<h3><span class="section-number">1.2.3. </span>Marginal Distributions in Python<a class="headerlink" href="#marginal-distributions-in-python" title="Permalink to this headline">#</a></h3>
+<p>Knowing the distribution –with its corresponding parameters– of the marginal variables allows us to reproduce them with <code class="docutils literal notranslate"><span class="pre">Python</span></code>.</p>
+<p>One way to do this is by using the object  <code class="docutils literal notranslate"><span class="pre">norm</span></code>  from the library <code class="docutils literal notranslate"><span class="pre">scipy.stats</span></code>.</p>
+<p>The next cell shows how to create <span class="math notranslate nohighlight">\(W_1\)</span> using this method.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -550,7 +565,8 @@ t_1 &amp; t_2 &amp; t_3 &amp; \cdots &amp; 1
 </div>
 </div>
 </div>
-<p>Another way is by creating an object  <code class="docutils literal notranslate"><span class="pre">BrownianMotion</span></code> from <code class="docutils literal notranslate"><span class="pre">aleatory.processes</span></code> and calling the method <code class="docutils literal notranslate"><span class="pre">get_marginal</span></code> on it. The next cell shows how to create the marginal <span class="math notranslate nohighlight">\(W_1\)</span> using this method.</p>
+<p>Another way to do this  is by creating an object  <code class="docutils literal notranslate"><span class="pre">BrownianMotion</span></code> from <code class="docutils literal notranslate"><span class="pre">aleatory.processes</span></code> and calling the method <code class="docutils literal notranslate"><span class="pre">get_marginal</span></code> on it.</p>
+<p>The next cell shows how to create the marginal <span class="math notranslate nohighlight">\(W_1\)</span> using this method.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">aleatory.processes</span> <span class="kn">import</span> <span class="n">BrownianMotion</span>
@@ -560,10 +576,10 @@ t_1 &amp; t_2 &amp; t_3 &amp; \cdots &amp; 1
 </div>
 </div>
 </div>
-<p>Hereafter, we will use this method to create marginal distributions from Brownian motion.</p>
+<p>Hereafter, we will use the latter method to create marginal distributions from Brownian Motion.</p>
 </section>
 <section id="sampling">
-<h3>Sampling<a class="headerlink" href="#sampling" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">1.2.4. </span>Sampling<a class="headerlink" href="#sampling" title="Permalink to this headline">#</a></h3>
 <p>Now, let’s get a random sample from <span class="math notranslate nohighlight">\(W_t\)</span> for any  <span class="math notranslate nohighlight">\(t&gt;0\)</span>.</p>
 <p>The next cell shows how to get a sample of size 5 from <span class="math notranslate nohighlight">\(W_1 \sim\mathcal{N}(0,1)\)</span>.</p>
 <div class="cell docutils container">
@@ -576,12 +592,12 @@ t_1 &amp; t_2 &amp; t_3 &amp; \cdots &amp; 1
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 0.28980198, -1.68301223,  0.16424298, -1.15091095,  0.42638137])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-0.92095338, -1.02606272, -0.26521905,  0.77054922,  1.21722158])
 </pre></div>
 </div>
 </div>
 </div>
-<p>Similarly, we can get a sample from <span class="math notranslate nohighlight">\(W_{10} \sim \mathcal{N}(0, \sqrt{10})\)</span></p>
+<p>Similarly, we can get a sample from <span class="math notranslate nohighlight">\(W_{10} \sim \mathcal{N}(0, \sqrt{10})\)</span>, as follows</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">W_t</span> <span class="o">=</span> <span class="n">process</span><span class="o">.</span><span class="n">get_marginal</span><span class="p">(</span><span class="n">t</span><span class="o">=</span><span class="mf">10.0</span><span class="p">)</span>
@@ -590,31 +606,37 @@ t_1 &amp; t_2 &amp; t_3 &amp; \cdots &amp; 1
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 2.92478478, -9.5122104 ,  1.84686684,  0.21418735,  2.27296641])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 2.05193651, -0.65957635,  3.51414838,  1.12071584,  3.97353361])
 </pre></div>
 </div>
 </div>
 </div>
 </section>
 <section id="probability-density-functions">
-<h3>Probability Density Functions<a class="headerlink" href="#probability-density-functions" title="Permalink to this headline">#</a></h3>
-<p>The probability density function of the marginal distribution <span class="math notranslate nohighlight">\(W_t\)</span> is given by the following expression</p>
+<h3><span class="section-number">1.2.5. </span>Probability Density Functions<a class="headerlink" href="#probability-density-functions" title="Permalink to this headline">#</a></h3>
+<p>The probability density function (pdf) of the marginal distribution <span class="math notranslate nohighlight">\(W_t\)</span> is given by the following expression</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{equation*}
 f(x, t) = \dfrac{1}{\sqrt{2 \pi t}}\exp\left\{ -\dfrac{x^2}{2t}\right\}, \qquad \forall x\in\mathbb{R}, t&gt;0.
 \end{equation*}\]</div>
 <p>In order to visualise these functions, we are going to load the library <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code> and set some formatting options.</p>
-<div class="cell tag_hide-input tag_hide-code docutils container">
+<div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s2">&quot;seaborn-v0_8-whitegrid&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide-input tag_hide-code docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s2">&quot;seaborn-v0_8-whitegrid&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s2">&quot;figure.figsize&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
 <span class="o">%</span><span class="k">config</span> InlineBackend.figure_format =&#39;retina&#39;
 </pre></div>
 </div>
 </div>
 </div>
-<p>Now We can plot the probability density function (pdf) of <span class="math notranslate nohighlight">\(W_1\)</span> as follows.</p>
+<p>We can plot the pdf of <span class="math notranslate nohighlight">\(W_1\)</span> as follows.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">process</span> <span class="o">=</span> <span class="n">BrownianMotion</span><span class="p">()</span>
@@ -627,10 +649,10 @@ f(x, t) = \dfrac{1}{\sqrt{2 \pi t}}\exp\left\{ -\dfrac{x^2}{2t}\right\}, \qquad 
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/brownian_motion_18_0.png" src="_images/brownian_motion_18_0.png" />
+<img alt="_images/brownian_motion_19_0.png" src="_images/brownian_motion_19_0.png" />
 </div>
 </div>
-<p>Let’s take a look at the probability density functions for different marginal distributions <span class="math notranslate nohighlight">\(W_t\)</span>.</p>
+<p>Now, ;et’s take a look at the pdfs for different marginal distributions <span class="math notranslate nohighlight">\(W_t\)</span>.</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax1</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
@@ -646,7 +668,7 @@ f(x, t) = \dfrac{1}{\sqrt{2 \pi t}}\exp\left\{ -\dfrac{x^2}{2t}\right\}, \qquad 
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/brownian_motion_20_0.png" src="_images/brownian_motion_20_0.png" />
+<img alt="_images/brownian_motion_21_0.png" src="_images/brownian_motion_21_0.png" />
 </div>
 </div>
 <p>In this chart, we clearly see the characteristic symmetric bell-shaped curves of the normal/Gaussian distribution.
@@ -659,7 +681,7 @@ Moreover, we can make the following observations:</p>
 </section>
 </section>
 <section id="simulation">
-<h2>Simulation<a class="headerlink" href="#simulation" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">1.3. </span>Simulation<a class="headerlink" href="#simulation" title="Permalink to this headline">#</a></h2>
 <p>In order to simulate paths from a stochastic process, we need to set a discrete partition over an interval for the simulation to take place.</p>
 <p>For simplicity, we are going to consider an equidistant partition of size <span class="math notranslate nohighlight">\(n\)</span> over <span class="math notranslate nohighlight">\([0,T]\)</span>, i.e.:</p>
 <div class="amsmath math notranslate nohighlight">
@@ -696,7 +718,7 @@ W_{t_3} = (W_{t_3} - W_{t_2}) + W_{t_2}  &amp; \sim N\left(0,\frac{T}{n-1}\right
 </div>
 </div>
 </div>
-<p>Now we general a sample of size <span class="math notranslate nohighlight">\(n-1\)</span> from the random variable <span class="math notranslate nohighlight">\(\mathcal{N}(0, \frac{T}{n-1})\)</span>, and calculate the cumulative sum. Note that we have to add the initial point of the Brownian motion.</p>
+<p>Next, we generate a sample of size <span class="math notranslate nohighlight">\(n-1\)</span> from the random variable <span class="math notranslate nohighlight">\(\mathcal{N}(0, \frac{T}{n-1})\)</span>, and calculate the cumulative sum.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">normal_increments</span> <span class="o">=</span> <span class="n">norm</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="n">sigma</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># Sample of size n-1</span>
@@ -705,6 +727,10 @@ W_{t_3} = (W_{t_3} - W_{t_2}) + W_{t_2}  &amp; \sim N\left(0,\frac{T}{n-1}\right
 </pre></div>
 </div>
 </div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Note that we had to add the initial point of the Brownian motion.</p>
 </div>
 <p>Let’s plot our simulated path!</p>
 <div class="cell docutils container">
@@ -716,13 +742,21 @@ W_{t_3} = (W_{t_3} - W_{t_2}) + W_{t_2}  &amp; \sim N\left(0,\frac{T}{n-1}\right
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/brownian_motion_28_0.png" src="_images/brownian_motion_28_0.png" />
+<img alt="_images/brownian_motion_30_0.png" src="_images/brownian_motion_30_0.png" />
 </div>
 </div>
-<p>Note that in this plot, we are implicitely doing a linear interpolation between the simulated points.</p>
-<p>To simulate several paths from a Brownian Motion and visualise them we can simply use the method <code class="docutils literal notranslate"><span class="pre">plot</span></code> from the <code class="docutils literal notranslate"><span class="pre">aleatory</span></code> library.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In this plot, we are using a linear interpolation to draw the lines between the simulated points.</p>
+</div>
+<section id="visualising-paths">
+<h3><span class="section-number">1.3.1. </span>Visualising Paths<a class="headerlink" href="#visualising-paths" title="Permalink to this headline">#</a></h3>
+<p>To simulate several paths from a Brownian Motion and visualise them we can use the method <code class="docutils literal notranslate"><span class="pre">plot</span></code> from the <code class="docutils literal notranslate"><span class="pre">aleatory</span></code> library.</p>
 <p>Let’s simulate 10 paths over the interval <span class="math notranslate nohighlight">\([0,1]\)</span> using a partition of 100 points.</p>
-<p>Note that the number of points in the partition is defined by the parameter <span class="math notranslate nohighlight">\(n\)</span>, while  the number of paths is determined by <span class="math notranslate nohighlight">\(N\)</span>.</p>
+<div class="tip admonition">
+<p class="admonition-title">Tip</p>
+<p>Remember that  the number of points in the partition is defined by the parameter <span class="math notranslate nohighlight">\(n\)</span>, while  the number of paths is determined by <span class="math notranslate nohighlight">\(N\)</span>.</p>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">process</span> <span class="o">=</span> <span class="n">BrownianMotion</span><span class="p">()</span>
@@ -732,10 +766,10 @@ W_{t_3} = (W_{t_3} - W_{t_2}) + W_{t_2}  &amp; \sim N\left(0,\frac{T}{n-1}\right
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/brownian_motion_31_0.png" src="_images/brownian_motion_31_0.png" />
+<img alt="_images/brownian_motion_33_0.png" src="_images/brownian_motion_33_0.png" />
 </div>
 </div>
-<p>Next, we define the Brownian Motion over the interval <span class="math notranslate nohighlight">\([0, 10]\)</span> and simulate 50 paths with a partition of size 100.</p>
+<p>Similarly, we can define the Brownian Motion over the interval <span class="math notranslate nohighlight">\([0, 10]\)</span> and simulate 50 paths with a partition of size 100.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">process</span> <span class="o">=</span> <span class="n">BrownianMotion</span><span class="p">(</span><span class="n">T</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
@@ -745,15 +779,16 @@ W_{t_3} = (W_{t_3} - W_{t_2}) + W_{t_2}  &amp; \sim N\left(0,\frac{T}{n-1}\right
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/brownian_motion_33_0.png" src="_images/brownian_motion_33_0.png" />
+<img alt="_images/brownian_motion_35_0.png" src="_images/brownian_motion_35_0.png" />
 </div>
 </div>
 </section>
+</section>
 <section id="long-time-behaviour">
-<h2>Long Time Behaviour<a class="headerlink" href="#long-time-behaviour" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">1.4. </span>Long Time Behaviour<a class="headerlink" href="#long-time-behaviour" title="Permalink to this headline">#</a></h2>
 <p>Almost surely</p>
-<div class="amsmath math notranslate nohighlight" id="equation-50b9f40a-2d4b-4ca2-80e6-328cd45c4e52">
-<span class="eqno">(2)<a class="headerlink" href="#equation-50b9f40a-2d4b-4ca2-80e6-328cd45c4e52" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-e3e1fd56-f83c-4bf1-8892-55d304bc0c18">
+<span class="eqno">(1.2)<a class="headerlink" href="#equation-e3e1fd56-f83c-4bf1-8892-55d304bc0c18" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \lim_{t \rightarrow \infty} \frac{W_t}{t}  = 0.
 \end{equation}\]</div>
 <p>This property is the analogous of the Law of Large Numbers and sometimes is referred as such.</p>
@@ -775,11 +810,11 @@ W_{t_3} = (W_{t_3} - W_{t_2}) + W_{t_2}  &amp; \sim N\left(0,\frac{T}{n-1}\right
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/brownian_motion_35_0.png" src="_images/brownian_motion_35_0.png" />
+<img alt="_images/brownian_motion_37_0.png" src="_images/brownian_motion_37_0.png" />
 </div>
 </div>
 <p>We can zoom-in to see the what was happening when <span class="math notranslate nohighlight">\(t\)</span> was not that big e.g. over the interval <span class="math notranslate nohighlight">\([0,5]\)</span></p>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">paths</span><span class="p">:</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">51</span><span class="p">],</span> <span class="n">w</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">51</span><span class="p">]</span><span class="o">/</span><span class="n">t</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">51</span><span class="p">],</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
@@ -792,7 +827,7 @@ W_{t_3} = (W_{t_3} - W_{t_2}) + W_{t_2}  &amp; \sim N\left(0,\frac{T}{n-1}\right
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/brownian_motion_37_0.png" src="_images/brownian_motion_37_0.png" />
+<img alt="_images/brownian_motion_39_0.png" src="_images/brownian_motion_39_0.png" />
 </div>
 </div>
 <p>We can see that the ratio <span class="math notranslate nohighlight">\(\frac{W_t}{t}\)</span> is definitely going towards zero but not quite there yet at <span class="math notranslate nohighlight">\(t=5\)</span>.</p>
@@ -810,22 +845,22 @@ W_{t_3} = (W_{t_3} - W_{t_2}) + W_{t_2}  &amp; \sim N\left(0,\frac{T}{n-1}\right
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/brownian_motion_39_0.png" src="_images/brownian_motion_39_0.png" />
+<img alt="_images/brownian_motion_41_0.png" src="_images/brownian_motion_41_0.png" />
 </div>
 </div>
 <p>Here we can see that the ratio is much closer to zero (around <span class="math notranslate nohighlight">\(\pm 0.1\)</span>) than before!
 Of course, we are still not quite there yet, but convergence is definitely happening.</p>
 </section>
 <section id="reflection-principle">
-<h2>Reflection Principle<a class="headerlink" href="#reflection-principle" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">1.5. </span>Reflection Principle<a class="headerlink" href="#reflection-principle" title="Permalink to this headline">#</a></h2>
 <p>Let us introduce</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{equation*}
 M(t) = \sup_{0\leq s\leq t} W_s.
 \end{equation*}\]</div>
 <p>If <span class="math notranslate nohighlight">\(a&gt;0\)</span>, then</p>
-<div class="amsmath math notranslate nohighlight" id="equation-50478ee5-c2a1-4192-82fc-b633a18947f3">
-<span class="eqno">(3)<a class="headerlink" href="#equation-50478ee5-c2a1-4192-82fc-b633a18947f3" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-a706c136-1829-4a88-96a9-3fd76668a50b">
+<span class="eqno">(1.3)<a class="headerlink" href="#equation-a706c136-1829-4a88-96a9-3fd76668a50b" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \mathbf{P}\left( M(t) \geq a \right) = 2P(W_t\geq a) = P(|W_t|\geq a)
 \end{equation}\]</div>
 <p>You can find the proof here: <a class="reference external" href="https://en.wikipedia.org/wiki/Reflection_principle_(Wiener_process)">Reflection Principle (Wiener process)- Wiki</a>.</p>
@@ -848,28 +883,28 @@ M(t) = \sup_{0\leq s\leq t} W_s.
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/brownian_motion_42_0.png" src="_images/brownian_motion_42_0.png" />
+<img alt="_images/brownian_motion_44_0.png" src="_images/brownian_motion_44_0.png" />
 </div>
 </div>
 </section>
 <section id="visualisation">
-<h2>Visualisation<a class="headerlink" href="#visualisation" title="Permalink to this headline">#</a></h2>
-<p>To finish this notebook, let’s take a look at the following chart showing 200 simulated paths over the interval <span class="math notranslate nohighlight">\([0,10]\)</span>.</p>
+<h2><span class="section-number">1.6. </span>Visualisation<a class="headerlink" href="#visualisation" title="Permalink to this headline">#</a></h2>
+<p>To finish this note, let’s take a look at a simulation from the Brownian Motion.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">process</span> <span class="o">=</span> <span class="n">BrownianMotion</span><span class="p">(</span><span class="n">T</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
-<span class="n">process</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">process</span> <span class="o">=</span> <span class="n">BrownianMotion</span><span class="p">(</span><span class="n">T</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">process</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/brownian_motion_44_0.png" src="_images/brownian_motion_44_0.png" />
+<img alt="_images/brownian_motion_46_0.png" src="_images/brownian_motion_46_0.png" />
 </div>
 </div>
 </section>
 <section id="references-and-further-reading">
-<h2>References and Further Reading<a class="headerlink" href="#references-and-further-reading" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">1.7. </span>References and Further Reading<a class="headerlink" href="#references-and-further-reading" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><p><a class="reference external" href="https://feynmanlectures.caltech.edu/I_41.html">The Brownian Movement</a> by Feynman, R. (1964) in “The Feynman Lectures of Physics”, Volume I. pp. 41–1.</p></li>
 <li><p><a class="reference external" href="https://link.springer.com/book/10.1007/978-1-4612-0949-2">Brownian Motion and Stochastic Calculus</a> by Ioannis Karatzas, and Steven E. Shreve (1998), Springer.</p></li>
