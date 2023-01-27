@@ -7,3 +7,4 @@ options:  # The options key will be applied to all chapters, but not sub-section
   numbered: True
 chapters:
 - file: brownian_motion
+- file: geometric_brownian_motion
