@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Geometric Brownian Motion &#8212; Understanding Quantitative Finance</title>
+    <title>2. Geometric Brownian Motion &#8212; Understanding Quantitative Finance</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -54,6 +54,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="1. Brownian Motion" href="brownian_motion.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -94,7 +95,7 @@ const thebe_selector_output = ".output, .cell_output"
         
       
       
-      <img src="_static/puzzle.jpg" class="logo" alt="logo">
+      <img src="_static/puzzle.jpeg" class="logo" alt="logo">
       
       
       <h1 class="site-logo" id="site-title">Understanding Quantitative Finance</h1>
@@ -109,14 +110,19 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="intro.html">
-                    Welcome
+                    Welcome 👋🏽
                 </a>
             </li>
         </ul>
-        <ul class="nav bd-sidenav">
+        <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="brownian_motion.html">
-   Brownian Motion
+   1. Brownian Motion
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   2. Geometric Brownian Motion
   </a>
  </li>
 </ul>
@@ -178,7 +184,7 @@ title="Toggle navigation"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/docs/geometric_brownian_motion.ipynb"
+        <a href="https://mybinder.org/v2/gh/quantgirluk/Understanding-Quantitative-Finance/master?urlpath=tree/UQF/geometric_brownian_motion.ipynb"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -221,7 +227,7 @@ title="Fullscreen mode"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="https://github.com/executablebooks/jupyter-book"
+        <a href="https://github.com/quantgirluk/Understanding-Quantitative-Finance"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -238,7 +244,7 @@ title="Source repository"
       </li>
       
       <li>
-        <a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fgeometric_brownian_motion.html&body=Your%20issue%20content%20here."
+        <a href="https://github.com/quantgirluk/Understanding-Quantitative-Finance/issues/new?title=Issue%20on%20page%20%2Fgeometric_brownian_motion.html&body=Your%20issue%20content%20here."
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -327,56 +333,68 @@ title="Print to PDF"
         <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#definition">
-   Definition
+   2.1. Definition
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#marginal-distributions">
-   Marginal Distributions
+   2.2. Marginal Distributions
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#expectation-and-variance">
+     2.2.1. Expectation and Variance
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#marginal-distributions-in-python">
-     Marginal Distributions in Python
+     2.2.2. Marginal Distributions in Python
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#sampling">
-     Sampling
+     2.2.3. Sampling
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#probability-density-functions">
-   Probability Density Functions
+   2.3. Probability Density Functions
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#expectation-and-variance">
-   Expectation and Variance
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#long-time-behaviour">
-   Long Time Behaviour
+  <a class="reference internal nav-link" href="#simulation">
+   2.4. Simulation
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id1">
-     Expectation and Variance
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#marginal">
-     Marginal
+    <a class="reference internal nav-link" href="#simulating-and-visualising-paths">
+     2.4.1. Simulating and Visualising Paths
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#simulation">
-   Simulation
+  <a class="reference internal nav-link" href="#long-time-behaviour">
+   2.5. Long Time Behaviour
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     2.5.1. Expectation and Variance
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#marginal">
+     2.5.2. Marginal
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#references-and-further-reading">
+   2.6. References and Further Reading
   </a>
  </li>
 </ul>
@@ -400,56 +418,68 @@ title="Print to PDF"
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#definition">
-   Definition
+   2.1. Definition
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#marginal-distributions">
-   Marginal Distributions
+   2.2. Marginal Distributions
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#expectation-and-variance">
+     2.2.1. Expectation and Variance
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#marginal-distributions-in-python">
-     Marginal Distributions in Python
+     2.2.2. Marginal Distributions in Python
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#sampling">
-     Sampling
+     2.2.3. Sampling
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#probability-density-functions">
-   Probability Density Functions
+   2.3. Probability Density Functions
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#expectation-and-variance">
-   Expectation and Variance
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#long-time-behaviour">
-   Long Time Behaviour
+  <a class="reference internal nav-link" href="#simulation">
+   2.4. Simulation
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id1">
-     Expectation and Variance
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#marginal">
-     Marginal
+    <a class="reference internal nav-link" href="#simulating-and-visualising-paths">
+     2.4.1. Simulating and Visualising Paths
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#simulation">
-   Simulation
+  <a class="reference internal nav-link" href="#long-time-behaviour">
+   2.5. Long Time Behaviour
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     2.5.1. Expectation and Variance
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#marginal">
+     2.5.2. Marginal
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#references-and-further-reading">
+   2.6. References and Further Reading
   </a>
  </li>
 </ul>
@@ -463,13 +493,13 @@ title="Print to PDF"
               <div>
                 
   <section class="tex2jax_ignore mathjax_ignore" id="geometric-brownian-motion">
-<h1>Geometric Brownian Motion<a class="headerlink" href="#geometric-brownian-motion" title="Permalink to this headline">#</a></h1>
+<h1><span class="section-number">2. </span>Geometric Brownian Motion<a class="headerlink" href="#geometric-brownian-motion" title="Permalink to this headline">#</a></h1>
 <p>The purpose of this notebook is to review and illustrate the  <a class="reference external" href="https://en.wikipedia.org/wiki/Geometric_Brownian_motion">Geometric Brownian motion</a> and some of its main properties.</p>
 <section id="definition">
-<h2>Definition<a class="headerlink" href="#definition" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">2.1. </span>Definition<a class="headerlink" href="#definition" title="Permalink to this headline">#</a></h2>
 <p>The Geometric Brownian motion can be defined by the following Stochastic Differential Equation (SDE)</p>
-<div class="amsmath math notranslate nohighlight" id="equation-d850e2bd-b6de-4d81-8240-8630944531f4">
-<span class="eqno">()<a class="headerlink" href="#equation-d850e2bd-b6de-4d81-8240-8630944531f4" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-fca10021-10fc-4526-a2d2-963831b9d78c">
+<span class="eqno">(2.1)<a class="headerlink" href="#equation-fca10021-10fc-4526-a2d2-963831b9d78c" title="Permalink to this equation">#</a></span>\[\begin{align}
 dX_t &amp;= \mu X_t dt + \sigma X_t W_t, \quad t &gt;0,\\
 \end{align}\]</div>
 <p>with initial condition <span class="math notranslate nohighlight">\(X_0 =x_0&gt;0\)</span>, constant parameters <span class="math notranslate nohighlight">\(\mu\in \mathbb{R}\)</span>, and  <span class="math notranslate nohighlight">\(\sigma&gt;0\)</span>; and where <span class="math notranslate nohighlight">\(W_t\)</span> denotes a standard Brownian motion.</p>
@@ -477,23 +507,26 @@ dX_t &amp;= \mu X_t dt + \sigma X_t W_t, \quad t &gt;0,\\
 <div class="math notranslate nohighlight">
 \[Y_t = Y_0 +  \left( \mu-\frac{1}{2}\sigma^2 \right)t  + \sigma W_t,\]</div>
 <p>or equivalently</p>
-<div class="amsmath math notranslate nohighlight" id="equation-68c9dfee-307b-4b35-b55c-f6370ed74b10">
-<span class="eqno">()<a class="headerlink" href="#equation-68c9dfee-307b-4b35-b55c-f6370ed74b10" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-454a23d5-1e1b-438d-8d0a-844ae8ccb5e1">
+<span class="eqno">(2.2)<a class="headerlink" href="#equation-454a23d5-1e1b-438d-8d0a-844ae8ccb5e1" title="Permalink to this equation">#</a></span>\[\begin{equation}
 log(X_t) = log(x_0) +  \left( \mu-\frac{1}{2}\sigma^2 \right)t  + \sigma W_t.
 \tag{2}
 \end{equation}\]</div>
 <p>From this expression, we obtain</p>
-<div class="amsmath math notranslate nohighlight" id="equation-a7e8ca5a-f831-4c75-8d9f-0a3af55207df">
-<span class="eqno">()<a class="headerlink" href="#equation-a7e8ca5a-f831-4c75-8d9f-0a3af55207df" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-2dcce03f-8e74-4bf5-a849-3f64c4f488c4">
+<span class="eqno">(2.3)<a class="headerlink" href="#equation-2dcce03f-8e74-4bf5-a849-3f64c4f488c4" title="Permalink to this equation">#</a></span>\[\begin{equation}
 X_t = x_0 \exp \left\{  \left( \mu-\frac{1}{2}\sigma^2 \right)t  + \sigma W_t \right\}.
 \tag{3}
 \end{equation}\]</div>
-<p>Note that this last expression implies that the process takes only positive values.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>📝 The last expression implies that the process takes only positive values.</p>
+</div>
 </section>
 <section id="marginal-distributions">
-<h2>Marginal Distributions<a class="headerlink" href="#marginal-distributions" title="Permalink to this headline">#</a></h2>
-<p>Note that equation (2) implies that for each <span class="math notranslate nohighlight">\(t&gt;0\)</span>, the variable <span class="math notranslate nohighlight">\(\log (X_t)\)</span> follows a normal distribution –since it can be expressed as a scaled marginal of the Brownian motion plus a deterministic part.</p>
-<p>Moreover, we can calculate</p>
+<h2><span class="section-number">2.2. </span>Marginal Distributions<a class="headerlink" href="#marginal-distributions" title="Permalink to this headline">#</a></h2>
+<p>Equation (2) implies that for each <span class="math notranslate nohighlight">\(t&gt;0\)</span>, the variable <span class="math notranslate nohighlight">\(\log (X_t)\)</span> follows a normal distribution –since it can be expressed as a scaled marginal of the Brownian motion plus a deterministic part.</p>
+<p>Moreover, using the properties of the Brownian Motion we can calculate its expectation and variance, namely</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{equation*}
 \mathbf{E} [\log(X_t) ] = \log(x_0) +  \left( \mu-\frac{1}{2}\sigma^2 \right)t,
@@ -509,8 +542,64 @@ X_t = x_0 \exp \left\{  \left( \mu-\frac{1}{2}\sigma^2 \right)t  + \sigma W_t \r
 \log(X_t) \sim \mathcal{N}\left(\log(x_0) +  \left( \mu-\frac{1}{2}\sigma^2 \right)t, \sigma^2 t\right ),
 \end{equation*}\]</div>
 <p>and consequently <span class="math notranslate nohighlight">\(X_t\)</span> follows a <a class="reference external" href="https://en.wikipedia.org/wiki/Log-normal_distribution">log-normal distribution</a>.</p>
+<section id="expectation-and-variance">
+<h3><span class="section-number">2.2.1. </span>Expectation and Variance<a class="headerlink" href="#expectation-and-variance" title="Permalink to this headline">#</a></h3>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\mathbf{E} [X_t] = \exp \left\{ \log(x_0) +  \left( \mu-\frac{1}{2}\sigma^2 \right)t  + \frac{\sigma^2 t}{2}  \right\},
+\end{equation*}\]</div>
+<p>and</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\mathbf{Var} [\log(X_t) ] =  \left[ \exp \left\{ \sigma^2 t  \right\} - 1  \right]\exp \left\{  2\left(\log(x_0) +  \left( \mu-\frac{1}{2}\sigma^2 \right)t \right) + \sigma^2 t \right\}.
+\end{equation*}\]</div>
+<p>To calculate the expectation of <span class="math notranslate nohighlight">\(X_t\)</span>, we are going to use the fact that the process <span class="math notranslate nohighlight">\(M_t = \exp \{ \sigma W_t - \dfrac{1}{2}\sigma^2 t\}\)</span> is an exponential martingale. Then</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+E\left[X_t \right] &amp;= E\left[s_0\exp \left\{ (\mu  - \dfrac{1}{2}\sigma^2) t +   \sigma W_t \right\} \right]\\
+&amp;= x_0\exp \left\{ \mu t   \right\}  E\left[\exp \left\{  - \dfrac{1}{2}\sigma^2 t +  \sigma W_t \right\} \right]\\
+&amp;= x_0\exp \left\{ \mu t   \right\}.
+\end{align*}\]</div>
+<p>Similarly, for the variance we will use the fact that the process <span class="math notranslate nohighlight">\(M_t = \exp \left\{ 2\sigma W_t - 2\sigma^2 t \right\}\)</span> is an exponential martingale. Then</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+E\left[X_t^2 \right]
+&amp;=E\left[x_0^2\exp \left\{  2\mu t- \sigma^2 t  +2\sigma W_t  \right\} \right] \\
+&amp; = x_0^2\exp \left\{2\mu t + \sigma^2 t  \right\}  E\left[s_0^2\exp \left\{ 2\sigma W_t - 2\sigma^2 t \right\} \right] \\
+&amp; = x_0^2 \exp \left\{(2\mu + \sigma^2 ) t \right\}.
+\end{align*}\]</div>
+<p>Hence</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+Var[ X_t] &amp;= E\left[X_t^2 \right] - E\left[X_t \right]^2\\
+&amp; = x_0^2\exp \left\{(2\mu + \sigma^2 ) t \right\} - s_0^2\exp \left\{2\mu t \right\}\\
+&amp; = x_0^2\exp \left\{2\mu t \right\} \left(\exp \left\{\sigma^2 t \right\} - 1\right).
+\end{align*}\]</div>
+<p>So, for given <span class="math notranslate nohighlight">\(x_0, \mu, \sigma,\)</span> and <span class="math notranslate nohighlight">\(t\)</span>, we can calculate both the expectation and the variance of <span class="math notranslate nohighlight">\(X_t\)</span> using these formulas.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">x0</span> <span class="o">=</span> <span class="mf">1.0</span>
+<span class="n">mu</span> <span class="o">=</span> <span class="mf">0.1</span>
+<span class="n">sigma</span> <span class="o">=</span> <span class="mf">0.2</span>
+<span class="n">t</span><span class="o">=</span> <span class="mi">10</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;For x_0=</span><span class="si">{</span><span class="n">x0</span><span class="si">}</span><span class="s1">&#39;</span> <span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;mu=</span><span class="si">{</span><span class="n">mu</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;sigma=.</span><span class="si">{</span><span class="n">sigma</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;t=</span><span class="si">{</span><span class="n">t</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;, &quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;E[X_t]=</span><span class="si">{</span><span class="p">(</span><span class="n">x0</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">mu</span><span class="o">*</span><span class="n">t</span><span class="p">))</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;Var[S_t]=</span><span class="si">{</span><span class="p">(</span><span class="n">x0</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">mu</span><span class="o">*</span><span class="n">t</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">t</span><span class="o">*</span><span class="n">sigma</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>For x_0=1.0, mu=0.1, sigma=.0.2, t=10
+E[X_t]=2.72
+Var[S_t]=3.63
+</pre></div>
+</div>
+</div>
+</div>
+</section>
 <section id="marginal-distributions-in-python">
-<h3>Marginal Distributions in Python<a class="headerlink" href="#marginal-distributions-in-python" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">2.2.2. </span>Marginal Distributions in Python<a class="headerlink" href="#marginal-distributions-in-python" title="Permalink to this headline">#</a></h3>
 <p>Knowing the distribution –with its corresponding parameters– of the marginal distributions allows us to reproduce them with <code class="docutils literal notranslate"><span class="pre">Python</span></code>.</p>
 <p>One way to do this is by using the object  <code class="docutils literal notranslate"><span class="pre">lognorm</span></code>  from the library <code class="docutils literal notranslate"><span class="pre">scipy.stats</span></code>.  The next cell shows how to create <span class="math notranslate nohighlight">\(X_1\)</span> using this method.</p>
 <div class="cell docutils container">
@@ -537,6 +626,7 @@ X_t = x_0 \exp \left\{  \left( \mu-\frac{1}{2}\sigma^2 \right)t  + \sigma W_t \r
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">aleatory.processes</span> <span class="kn">import</span> <span class="n">GBM</span>
+
 <span class="n">mu</span> <span class="o">=</span> <span class="mf">1.0</span>
 <span class="n">sigma</span> <span class="o">=</span> <span class="mf">0.5</span>
 <span class="n">t</span> <span class="o">=</span> <span class="mf">1.0</span>
@@ -553,26 +643,22 @@ X_t = x_0 \exp \left\{  \left( \mu-\frac{1}{2}\sigma^2 \right)t  + \sigma W_t \r
 </div>
 </div>
 </div>
+<p>Hereafter, we will use the latter method to create marginal distributions from the Geometric Brownian Motion.</p>
 </section>
 <section id="sampling">
-<h3>Sampling<a class="headerlink" href="#sampling" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">2.2.3. </span>Sampling<a class="headerlink" href="#sampling" title="Permalink to this headline">#</a></h3>
 <p>Now, let’s see how to get a random sample from <span class="math notranslate nohighlight">\(X_t\)</span> for any  <span class="math notranslate nohighlight">\(t&gt;0\)</span>.</p>
 <p>The next cell shows how to get a sample of size 5 from <span class="math notranslate nohighlight">\(X_1\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">aleatory.processes</span> <span class="kn">import</span> <span class="n">GBM</span>
-<span class="n">mu</span> <span class="o">=</span> <span class="mf">1.0</span>
-<span class="n">sigma</span> <span class="o">=</span> <span class="mf">0.5</span>
-<span class="n">t</span> <span class="o">=</span> <span class="mf">1.0</span>
-<span class="n">x0</span> <span class="o">=</span> <span class="mf">1.0</span>
-<span class="n">process</span> <span class="o">=</span> <span class="n">GBM</span><span class="p">(</span><span class="n">drift</span><span class="o">=</span><span class="n">mu</span><span class="p">,</span> <span class="n">volatility</span><span class="o">=</span><span class="n">sigma</span><span class="p">,</span> <span class="n">initial</span><span class="o">=</span><span class="n">x0</span><span class="p">)</span>
-<span class="n">X_1</span><span class="o">=</span> <span class="n">process</span><span class="o">.</span><span class="n">get_marginal</span><span class="p">(</span><span class="n">t</span><span class="o">=</span><span class="n">t</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">process</span> <span class="o">=</span> <span class="n">GBM</span><span class="p">(</span><span class="n">drift</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">volatility</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">initial</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
+<span class="n">X_1</span><span class="o">=</span> <span class="n">process</span><span class="o">.</span><span class="n">get_marginal</span><span class="p">(</span><span class="n">t</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
 <span class="n">X_1</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([1.98766363, 2.5762322 , 3.42045013, 1.96739221, 1.74508577])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([2.32775088, 3.1436891 , 1.74092529, 2.00615052, 2.81518047])
 </pre></div>
 </div>
 </div>
@@ -586,8 +672,8 @@ X_t = x_0 \exp \left\{  \left( \mu-\frac{1}{2}\sigma^2 \right)t  + \sigma W_t \r
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 4359.08502125, 34233.09419215,  8486.2833225 , 30320.80379889,
-       35854.14806433])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([  217.6608197 ,  4434.85437995,   504.63412161, 18414.74698089,
+       19155.44742586])
 </pre></div>
 </div>
 </div>
@@ -595,7 +681,7 @@ X_t = x_0 \exp \left\{  \left( \mu-\frac{1}{2}\sigma^2 \right)t  + \sigma W_t \r
 </section>
 </section>
 <section id="probability-density-functions">
-<h2>Probability Density Functions<a class="headerlink" href="#probability-density-functions" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">2.3. </span>Probability Density Functions<a class="headerlink" href="#probability-density-functions" title="Permalink to this headline">#</a></h2>
 <p>The probability density function of the marginal distribution <span class="math notranslate nohighlight">\(X_t\)</span> is given by the following expression</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{equation*}
@@ -605,7 +691,13 @@ f(x, t) = {\displaystyle {\frac {1}{x\sigma  {\sqrt {2\pi t}}}}\ \exp \left\{-{\
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s2">&quot;seaborn-v0_8-whitegrid&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s2">&quot;seaborn-v0_8-whitegrid&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s2">&quot;figure.figsize&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
 <span class="o">%</span><span class="k">config</span> InlineBackend.figure_format =&#39;retina&#39;
 </pre></div>
@@ -624,12 +716,12 @@ f(x, t) = {\displaystyle {\frac {1}{x\sigma  {\sqrt {2\pi t}}}}\ \exp \left\{-{\
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/geometric_brownian_motion_14_0.png" src="_images/geometric_brownian_motion_14_0.png" />
+<img alt="_images/geometric_brownian_motion_20_0.png" src="_images/geometric_brownian_motion_20_0.png" />
 </div>
 </div>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
 <span class="n">mu_values</span> <span class="o">=</span> <span class="p">([</span><span class="o">-</span><span class="mf">0.1</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.2</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.3</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
 <span class="k">for</span> <span class="p">(</span><span class="n">mus</span><span class="p">,</span> <span class="n">ax</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">mu_values</span><span class="p">,</span> <span class="n">axs</span><span class="p">):</span>
     <span class="k">for</span> <span class="n">mu</span> <span class="ow">in</span> <span class="n">mus</span><span class="p">:</span>
@@ -645,12 +737,12 @@ f(x, t) = {\displaystyle {\frac {1}{x\sigma  {\sqrt {2\pi t}}}}\ \exp \left\{-{\
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/geometric_brownian_motion_15_0.png" src="_images/geometric_brownian_motion_15_0.png" />
+<img alt="_images/geometric_brownian_motion_21_0.png" src="_images/geometric_brownian_motion_21_0.png" />
 </div>
 </div>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
 <span class="n">sigma_values</span> <span class="o">=</span> <span class="p">([</span><span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.02</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span>  <span class="mf">0.5</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
 <span class="k">for</span> <span class="p">(</span><span class="n">sigmas</span><span class="p">,</span> <span class="n">ax</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">sigma_values</span><span class="p">,</span> <span class="n">axs</span><span class="p">):</span>
     <span class="k">for</span> <span class="n">sigma</span> <span class="ow">in</span> <span class="n">sigmas</span><span class="p">:</span>
@@ -666,12 +758,12 @@ f(x, t) = {\displaystyle {\frac {1}{x\sigma  {\sqrt {2\pi t}}}}\ \exp \left\{-{\
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/geometric_brownian_motion_16_0.png" src="_images/geometric_brownian_motion_16_0.png" />
+<img alt="_images/geometric_brownian_motion_22_0.png" src="_images/geometric_brownian_motion_22_0.png" />
 </div>
 </div>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
 <span class="n">sigma_values</span> <span class="o">=</span> <span class="p">([</span><span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.02</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span>  <span class="mf">0.5</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
 <span class="k">for</span> <span class="p">(</span><span class="n">sigmas</span><span class="p">,</span> <span class="n">ax</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">sigma_values</span><span class="p">,</span> <span class="n">axs</span><span class="p">):</span>
     <span class="k">for</span> <span class="n">sigma</span> <span class="ow">in</span> <span class="n">sigmas</span><span class="p">:</span>
@@ -687,13 +779,13 @@ f(x, t) = {\displaystyle {\frac {1}{x\sigma  {\sqrt {2\pi t}}}}\ \exp \left\{-{\
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/geometric_brownian_motion_17_0.png" src="_images/geometric_brownian_motion_17_0.png" />
+<img alt="_images/geometric_brownian_motion_23_0.png" src="_images/geometric_brownian_motion_23_0.png" />
 </div>
 </div>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">process</span> <span class="o">=</span> <span class="n">GBM</span><span class="p">(</span><span class="n">drift</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">volatility</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">initial</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
-<span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
 <span class="n">t_values</span> <span class="o">=</span> <span class="p">([</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span>  <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">10</span><span class="p">,])</span>
 <span class="k">for</span> <span class="p">(</span><span class="n">ts</span><span class="p">,</span> <span class="n">ax</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">t_values</span><span class="p">,</span> <span class="n">axs</span><span class="p">):</span>
     <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">ts</span><span class="p">:</span>
@@ -708,102 +800,98 @@ f(x, t) = {\displaystyle {\frac {1}{x\sigma  {\sqrt {2\pi t}}}}\ \exp \left\{-{\
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/geometric_brownian_motion_18_0.png" src="_images/geometric_brownian_motion_18_0.png" />
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">process</span> <span class="o">=</span> <span class="n">GBM</span><span class="p">(</span><span class="n">drift</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">volatility</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">initial</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
-<span class="n">process</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="_images/geometric_brownian_motion_19_0.png" src="_images/geometric_brownian_motion_19_0.png" />
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">process</span> <span class="o">=</span> <span class="n">GBM</span><span class="p">(</span><span class="n">drift</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">volatility</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">initial</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="mf">2.0</span><span class="p">)</span>
-<span class="n">process</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="_images/geometric_brownian_motion_20_0.png" src="_images/geometric_brownian_motion_20_0.png" />
+<img alt="_images/geometric_brownian_motion_24_0.png" src="_images/geometric_brownian_motion_24_0.png" />
 </div>
 </div>
 </section>
-<section id="expectation-and-variance">
-<h2>Expectation and Variance<a class="headerlink" href="#expectation-and-variance" title="Permalink to this headline">#</a></h2>
-<p>To calculate the expectation of <span class="math notranslate nohighlight">\(S_t\)</span>, we are going to use the fact that the process <span class="math notranslate nohighlight">\(M_t = \exp \{ \sigma W_t - \dfrac{1}{2}\sigma^2 t\}\)</span> is an exponential martingale. Then</p>
+<section id="simulation">
+<h2><span class="section-number">2.4. </span>Simulation<a class="headerlink" href="#simulation" title="Permalink to this headline">#</a></h2>
+<p>In order to simulate paths from a stochastic process, we need to set a discrete partition over an interval for the simulation to take place.</p>
+<p>For simplicity, we are going to consider an equidistant partition of size <span class="math notranslate nohighlight">\(n\)</span> over <span class="math notranslate nohighlight">\([0,T]\)</span>, i.e.:</p>
 <div class="amsmath math notranslate nohighlight">
-\[\begin{align*}
-E\left[S_t \right] &amp;= E\left[s_0\exp \left\{ (\mu  - \dfrac{1}{2}\sigma^2) t +   \sigma W_t \right\} \right]\\
-&amp;= s_0\exp \left\{ \mu t   \right\}  E\left[\exp \left\{  - \dfrac{1}{2}\sigma^2 t +  \sigma W_t \right\} \right]\\
-&amp;=s_0\exp \left\{ \mu t   \right\}.
-\end{align*}\]</div>
-<p>Similarly, for the variance we will use the fact that the process <span class="math notranslate nohighlight">\(M_t = \exp \left\{ 2\sigma W_t - 2\sigma^2 t \right\}\)</span> is an exponential martingale. Then</p>
+\[\begin{equation*}
+t_i = \frac{i}{n-1} T \qquad  \hbox{for } i = 0, \cdots, n-1.
+\end{equation*}\]</div>
+<p>Then, the goal is to simulate a path of the form <span class="math notranslate nohighlight">\(\{ X_{t_i} , i=0,\cdots, n-1\}\)</span>. There are a number of ways to do this. Here, we are going to use equation (3), i.e.</p>
 <div class="amsmath math notranslate nohighlight">
-\[\begin{align*}
-E\left[S_t^2 \right]
-&amp;=E\left[s_0^2\exp \left\{  2\mu t- \sigma^2 t  +2\sigma W_t  \right\} \right] \\
-&amp;=s_0^2\exp \left\{2\mu t + \sigma^2 t  \right\}  E\left[s_0^2\exp \left\{ 2\sigma W_t - 2\sigma^2 t \right\} \right] \\
-&amp; =s_0^2 \exp \left\{(2\mu + \sigma^2 ) t \right\}.
-\end{align*}\]</div>
-<p>Hence</p>
-<div class="amsmath math notranslate nohighlight">
-\[\begin{align*}
-Var[ S_t] &amp;= E\left[S_t^2 \right] - E\left[S_t \right]^2\\
-&amp; =s_0^2\exp \left\{(2\mu + \sigma^2 ) t \right\} - s_0^2\exp \left\{2\mu t \right\}\\
-&amp; = s_0^2\exp \left\{2\mu t \right\} \left(\exp \left\{\sigma^2 t \right\} - 1\right).
-\end{align*}\]</div>
-<p>So, for given <span class="math notranslate nohighlight">\(s_0, \mu, \sigma,\)</span> and <span class="math notranslate nohighlight">\(t\)</span>, we can calculate both the expectation and the variance of <span class="math notranslate nohighlight">\(S_t\)</span> using these formulas.</p>
+\[\begin{equation*}
+X_t = x_0 \exp \left\{  \left( \mu-\frac{1}{2}\sigma^2 \right)t  + \sigma W_t \right\}, 
+\end{equation*}\]</div>
+<p>and the fact that we know how to simulate a Brownian Motion (see <a class="reference external" href="https://quantgirluk.github.io/Understanding-Quantitative-Finance/brownian_motion.html">Brownian Motion</a> for details).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">s0</span> <span class="o">=</span> <span class="mf">1.0</span>
-<span class="n">mu</span> <span class="o">=</span> <span class="mf">0.1</span>
-<span class="n">sigma</span> <span class="o">=</span> <span class="mf">0.2</span>
-<span class="n">t</span><span class="o">=</span> <span class="mi">10</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;For s_0=</span><span class="si">{</span><span class="n">s0</span><span class="si">}</span><span class="s1">&#39;</span> <span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;mu=</span><span class="si">{</span><span class="n">mu</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;sigma=.</span><span class="si">{</span><span class="n">sigma</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;t=</span><span class="si">{</span><span class="n">t</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;, &quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;E[S_t]=</span><span class="si">{</span><span class="p">(</span><span class="n">s0</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">mu</span><span class="o">*</span><span class="n">t</span><span class="p">))</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;Var[S_t]=</span><span class="si">{</span><span class="p">(</span><span class="n">s0</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">mu</span><span class="o">*</span><span class="n">t</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">t</span><span class="o">*</span><span class="n">sigma</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">aleatory.processes</span> <span class="kn">import</span> <span class="n">BrownianMotion</span>
+
+<span class="n">T</span> <span class="o">=</span> <span class="mf">1.0</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">x0</span> <span class="o">=</span> <span class="mf">1.0</span> 
+<span class="n">mu</span> <span class="o">=</span> <span class="mf">1.0</span>
+<span class="n">sigma</span> <span class="o">=</span> <span class="mf">0.25</span>
+<span class="n">t</span> <span class="o">=</span> <span class="mf">1.0</span>
+<span class="n">times</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>  <span class="c1"># Partition</span>
+<span class="n">BM</span> <span class="o">=</span> <span class="n">BrownianMotion</span><span class="p">(</span><span class="n">T</span><span class="o">=</span><span class="n">T</span><span class="p">)</span>
+<span class="n">bm_path</span> <span class="o">=</span> <span class="n">BM</span><span class="o">.</span><span class="n">sample_at</span><span class="p">(</span><span class="n">times</span><span class="p">)</span>
+<span class="n">gbm_path</span> <span class="o">=</span> <span class="n">x0</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">((</span><span class="n">mu</span> <span class="o">-</span> <span class="mf">0.5</span><span class="o">*</span><span class="n">sigma</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">t</span> <span class="o">+</span> <span class="n">sigma</span><span class="o">*</span><span class="n">bm_path</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s plot our simulated path!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">times</span><span class="p">,</span> <span class="n">gbm_path</span><span class="p">,</span> <span class="s1">&#39;o-&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Geometric Brownian Motion Path&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>For s_0=1.0, mu=0.1, sigma=.0.2, t=10
-E[S_t]=2.72
-Var[S_t]=3.63
-</pre></div>
+<img alt="_images/geometric_brownian_motion_28_0.png" src="_images/geometric_brownian_motion_28_0.png" />
 </div>
 </div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In this plot, we are using a linear interpolation to draw the lines between the simulated points.</p>
 </div>
-<p>We also can calculate the mean and the variance by using the .mean and .var functions on the appropriate log normal random variable.</p>
+<section id="simulating-and-visualising-paths">
+<h3><span class="section-number">2.4.1. </span>Simulating and Visualising Paths<a class="headerlink" href="#simulating-and-visualising-paths" title="Permalink to this headline">#</a></h3>
+<p>To simulate several paths from a GBM and visualise them we can use the method <code class="docutils literal notranslate"><span class="pre">plot</span></code> from the <code class="docutils literal notranslate"><span class="pre">aleatory</span></code> library.</p>
+<p>Let’s simulate 10 paths over the interval <span class="math notranslate nohighlight">\([0,1]\)</span> using a partition of 100 points.</p>
+<div class="tip admonition">
+<p class="admonition-title">Tip</p>
+<p>Remember that  the number of points in the partition is defined by the parameter <span class="math notranslate nohighlight">\(n\)</span>, while  the number of paths is determined by <span class="math notranslate nohighlight">\(N\)</span>.</p>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mu_x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">s0</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">mu</span> <span class="o">-</span> <span class="mf">0.5</span><span class="o">*</span><span class="n">sigma</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">t</span>
-<span class="n">sigma_x</span> <span class="o">=</span> <span class="n">sigma</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
-<span class="n">St_variable</span> <span class="o">=</span> <span class="n">lognorm</span><span class="p">(</span><span class="n">s</span><span class="o">=</span><span class="n">sigma_x</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">mu_x</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span>
-      <span class="sa">f</span><span class="s1">&#39;E[S_t]=</span><span class="si">{</span><span class="n">St_variable</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span>
-      <span class="sa">f</span><span class="s1">&#39;Var[S_t]=</span><span class="si">{</span><span class="n">St_variable</span><span class="o">.</span><span class="n">var</span><span class="p">()</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">process</span> <span class="o">=</span> <span class="n">GBM</span><span class="p">(</span><span class="n">drift</span><span class="o">=</span><span class="n">mu</span><span class="p">,</span> <span class="n">volatility</span><span class="o">=</span><span class="n">sigma</span><span class="p">,</span> <span class="n">initial</span><span class="o">=</span><span class="n">x0</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
+<span class="n">process</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>E[S_t]=2.72
-Var[S_t]=3.63
+<img alt="_images/geometric_brownian_motion_31_0.png" src="_images/geometric_brownian_motion_31_0.png" />
+</div>
+</div>
+<p>Similarly, we can define the GBM over the interval <span class="math notranslate nohighlight">\([0, 5]\)</span> and simulate 50 paths with a partition of size 100.</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">process</span> <span class="o">=</span> <span class="n">GBM</span><span class="p">(</span><span class="n">drift</span><span class="o">=</span><span class="n">mu</span><span class="p">,</span> <span class="n">volatility</span><span class="o">=</span><span class="n">sigma</span><span class="p">,</span> <span class="n">initial</span><span class="o">=</span><span class="n">x0</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="mf">5.0</span><span class="p">)</span>
+<span class="n">process</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="_images/geometric_brownian_motion_33_0.png" src="_images/geometric_brownian_motion_33_0.png" />
 </div>
+</div>
+</section>
 </section>
 <section id="long-time-behaviour">
-<h2>Long Time Behaviour<a class="headerlink" href="#long-time-behaviour" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">2.5. </span>Long Time Behaviour<a class="headerlink" href="#long-time-behaviour" title="Permalink to this headline">#</a></h2>
 <section id="id1">
-<h3>Expectation and Variance<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">2.5.1. </span>Expectation and Variance<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h3>
 <p>Note that when <span class="math notranslate nohighlight">\(t\)</span> goes to infinity, we have</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{equation*}
@@ -824,47 +912,82 @@ s_0^2, \hbox{  if  }  2\mu+\sigma^2=0.\\
 0, \hbox{  if  }  2\mu+\sigma^2&lt;0.\\
 \end{cases}
 \end{equation*}\]</div>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">draw_mean_variance</span><span class="p">(</span><span class="n">x0</span><span class="p">,</span> <span class="n">mu</span><span class="p">,</span> <span class="n">sigma</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="mi">100</span><span class="p">):</span>
+
+    <span class="n">process</span> <span class="o">=</span> <span class="n">GBM</span><span class="p">(</span><span class="n">drift</span><span class="o">=</span><span class="n">mu</span><span class="p">,</span> <span class="n">volatility</span><span class="o">=</span><span class="n">sigma</span><span class="p">,</span> <span class="n">initial</span><span class="o">=</span><span class="n">x0</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="n">T</span><span class="p">)</span>
+    <span class="n">ts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">T</span><span class="p">)</span>
+    <span class="n">means</span> <span class="o">=</span> <span class="n">process</span><span class="o">.</span><span class="n">marginal_expectation</span><span class="p">(</span><span class="n">ts</span><span class="p">)</span>
+    <span class="n">variances</span> <span class="o">=</span> <span class="n">process</span><span class="o">.</span><span class="n">marginal_variance</span><span class="p">(</span><span class="n">ts</span><span class="p">)</span>
+    <span class="n">fig</span><span class="p">,</span> <span class="p">(</span><span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span><span class="p">,)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+    
+    <span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ts</span><span class="p">,</span> <span class="n">means</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;$E[X_t]$&#39;</span><span class="p">)</span>
+    <span class="n">ax1</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;t&#39;</span><span class="p">)</span>
+    <span class="n">ax1</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+    <span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ts</span><span class="p">,</span>  <span class="n">variances</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;$Var[X_t]$&#39;</span><span class="p">)</span>
+    <span class="n">ax2</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;t&#39;</span><span class="p">)</span>
+    <span class="n">ax2</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+    <span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span>
+        <span class="s1">&#39;Expectation and Variance of $X_t$ with &#39;</span> <span class="sa">f</span><span class="s1">&#39;$x0$=</span><span class="si">{</span><span class="n">x0</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">, $\mu$=</span><span class="si">{</span><span class="n">mu</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">, $\sigma$=</span><span class="si">{</span><span class="n">sigma</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">draw_gbm_mean_variance</span><span class="p">(</span><span class="n">s0</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">draw_mean_variance</span><span class="p">(</span><span class="n">x0</span><span class="o">=</span> <span class="mf">1.0</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">15</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">draw_gbm_mean_variance</span><span class="p">(</span><span class="n">s0</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
-
-<span class="ne">NameError</span>: name &#39;draw_gbm_mean_variance&#39; is not defined
-</pre></div>
-</div>
+<img alt="_images/geometric_brownian_motion_36_0.png" src="_images/geometric_brownian_motion_36_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">draw_gbm_mean_variance</span><span class="p">(</span><span class="n">s0</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">draw_mean_variance</span><span class="p">(</span><span class="n">x0</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">mu</span><span class="o">=-</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/geometric_brownian_motion_37_0.png" src="_images/geometric_brownian_motion_37_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">draw_gbm_mean_variance</span><span class="p">(</span><span class="n">s0</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">mu</span><span class="o">=-</span><span class="p">(</span><span class="mf">0.2</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">draw_mean_variance</span><span class="p">(</span><span class="n">x0</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/geometric_brownian_motion_38_0.png" src="_images/geometric_brownian_motion_38_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">draw_gbm_mean_variance</span><span class="p">(</span><span class="n">s0</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">mu</span><span class="o">=-</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">draw_mean_variance</span><span class="p">(</span><span class="n">x0</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">mu</span><span class="o">=-</span><span class="p">(</span><span class="mf">0.2</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/geometric_brownian_motion_39_0.png" src="_images/geometric_brownian_motion_39_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">draw_mean_variance</span><span class="p">(</span><span class="n">x0</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">mu</span><span class="o">=-</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/geometric_brownian_motion_40_0.png" src="_images/geometric_brownian_motion_40_0.png" />
 </div>
 </div>
 </section>
 <section id="marginal">
-<h3>Marginal<a class="headerlink" href="#marginal" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">2.5.2. </span>Marginal<a class="headerlink" href="#marginal" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p>If <span class="math notranslate nohighlight">\( \mu&gt;\frac{1}{2}\sigma^2\)</span>, then <span class="math notranslate nohighlight">\(S_t\rightarrow\infty\)</span> in probability as <span class="math notranslate nohighlight">\(t\rightarrow\infty\)</span>.</p></li>
 <li><p>If <span class="math notranslate nohighlight">\( \mu&lt;\frac{1}{2}\sigma^2\)</span>, then <span class="math notranslate nohighlight">\(S_t\rightarrow 0\)</span> in probability as <span class="math notranslate nohighlight">\(t\rightarrow\infty\)</span>.</p></li>
@@ -872,55 +995,47 @@ s_0^2, \hbox{  if  }  2\mu+\sigma^2=0.\\
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">draw_gbm</span><span class="p">(</span><span class="n">s0</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">t0</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">steps</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">num_sim</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span> <span class="c1">#mu &gt;(1/2)sigma**2</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">draw_gbm</span><span class="p">(</span><span class="n">s0</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">mu</span><span class="o">=-</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">t0</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="mf">10.0</span><span class="p">,</span> <span class="n">steps</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">num_sim</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span> <span class="c1">#mu &lt;(1/2)sigma**2</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">draw_gbm</span><span class="p">(</span><span class="n">s0</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="mf">.5</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">t0</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">steps</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">num_sim</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span> <span class="c1">#mu =(1/2)sigma**2</span>
-</pre></div>
-</div>
-</div>
-</div>
-</section>
-</section>
-<section id="simulation">
-<h2>Simulation<a class="headerlink" href="#simulation" title="Permalink to this headline">#</a></h2>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ts</span> <span class="o">=</span> <span class="n">get_times</span><span class="p">(</span><span class="n">t0</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">steps</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
-<span class="n">ws</span> <span class="o">=</span> <span class="n">brownian_path</span><span class="p">(</span><span class="n">ts</span><span class="p">)</span>
-
-<span class="n">s0</span> <span class="o">=</span> <span class="mi">1</span>
-<span class="n">mu</span> <span class="o">=</span> <span class="mf">0.2</span>
-<span class="n">sigma</span> <span class="o">=</span> <span class="mf">0.25</span>
-
-<span class="n">gbs</span> <span class="o">=</span> <span class="n">s0</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">((</span><span class="n">mu</span><span class="o">-</span><span class="mf">0.5</span><span class="o">*</span><span class="n">sigma</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">ts</span> <span class="o">+</span> <span class="n">sigma</span><span class="o">*</span><span class="n">ws</span><span class="p">)</span>
-
-
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ts</span><span class="p">,</span> <span class="n">gbs</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;GBM&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Geometric Brownian Motion Path&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">process</span> <span class="o">=</span> <span class="n">GBM</span><span class="p">(</span><span class="n">drift</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">volatility</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">initial</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="mf">10.0</span><span class="p">)</span>
+<span class="n">process</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="_images/geometric_brownian_motion_42_0.png" src="_images/geometric_brownian_motion_42_0.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">draw_gbm</span><span class="p">(</span><span class="n">s0</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">t0</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">steps</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">num_sim</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span> <span class="c1">#mu &gt;(1/2)sigma**2</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">process</span> <span class="o">=</span> <span class="n">GBM</span><span class="p">(</span><span class="n">drift</span><span class="o">=-</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">volatility</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">initial</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="mf">10.0</span><span class="p">)</span>   <span class="c1"># mu &lt;(1/2)sigma**2</span>
+<span class="n">process</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="_images/geometric_brownian_motion_43_0.png" src="_images/geometric_brownian_motion_43_0.png" />
 </div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">process</span> <span class="o">=</span> <span class="n">GBM</span><span class="p">(</span><span class="n">drift</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">volatility</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">initial</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="mf">10.0</span><span class="p">)</span>  <span class="c1"># mu =(1/2)sigma**2</span>
+<span class="n">process</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/geometric_brownian_motion_44_0.png" src="_images/geometric_brownian_motion_44_0.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="references-and-further-reading">
+<h2><span class="section-number">2.6. </span>References and Further Reading<a class="headerlink" href="#references-and-further-reading" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.cs.princeton.edu/courses/archive/fall09/cos323/papers/black_scholes73.pdf">The Pricing of Options and Corporate Liabilities (1973)</a> by Fischer Black and Myron Scholes.</p></li>
+</ul>
 </section>
 </section>
 
@@ -951,6 +1066,13 @@ s_0^2, \hbox{  if  }  2\mu+\sigma^2=0.\\
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="brownian_motion.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title"><span class="section-number">1. </span>Brownian Motion</p>
+        </div>
+    </a>
 </div>
             </footer>
         </div>

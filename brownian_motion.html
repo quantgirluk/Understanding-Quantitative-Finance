@@ -54,7 +54,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="prev" title="Welcome" href="intro.html" />
+    <link rel="next" title="2. Geometric Brownian Motion" href="geometric_brownian_motion.html" />
+    <link rel="prev" title="Welcome 👋🏽" href="intro.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -110,7 +111,7 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="intro.html">
-                    Welcome
+                    Welcome 👋🏽
                 </a>
             </li>
         </ul>
@@ -118,6 +119,11 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
    1. Brownian Motion
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="geometric_brownian_motion.html">
+   2. Geometric Brownian Motion
   </a>
  </li>
 </ul>
@@ -369,8 +375,8 @@ title="Print to PDF"
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#visualising-paths">
-     1.3.1. Visualising Paths
+    <a class="reference internal nav-link" href="#simulating-and-visualising-paths">
+     1.3.1. Simulating and Visualising Paths
     </a>
    </li>
   </ul>
@@ -457,8 +463,8 @@ title="Print to PDF"
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#visualising-paths">
-     1.3.1. Visualising Paths
+    <a class="reference internal nav-link" href="#simulating-and-visualising-paths">
+     1.3.1. Simulating and Visualising Paths
     </a>
    </li>
   </ul>
@@ -509,8 +515,8 @@ title="Print to PDF"
 <section id="marginal-distributions">
 <h2><span class="section-number">1.2. </span>Marginal Distributions<a class="headerlink" href="#marginal-distributions" title="Permalink to this headline">#</a></h2>
 <p>Point (2) in the Brownian motion definition implies that for each <span class="math notranslate nohighlight">\(t&gt;0\)</span>, the one dimensional marginal distribution <span class="math notranslate nohighlight">\(W_t\)</span> is normally distributed with expectation zero, and variance equals <span class="math notranslate nohighlight">\(t\)</span>, i.e.:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-710dc1cc-571b-4fc1-9254-d3144fb4f318">
-<span class="eqno">(1.1)<a class="headerlink" href="#equation-710dc1cc-571b-4fc1-9254-d3144fb4f318" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-872af176-3d45-4be5-9981-542a35cceaad">
+<span class="eqno">(1.1)<a class="headerlink" href="#equation-872af176-3d45-4be5-9981-542a35cceaad" title="Permalink to this equation">#</a></span>\[\begin{equation}
 W_t \sim \mathcal{N}(0,t), \qquad \forall t&gt;0.
 \end{equation}\]</div>
 <section id="expectation-variance-and-covariance">
@@ -592,7 +598,7 @@ t_1 &amp; t_2 &amp; t_3 &amp; \cdots &amp; 1
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-0.92095338, -1.02606272, -0.26521905,  0.77054922,  1.21722158])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-0.20204948, -0.80168306, -0.58556596, -0.2081797 ,  0.27327923])
 </pre></div>
 </div>
 </div>
@@ -606,7 +612,7 @@ t_1 &amp; t_2 &amp; t_3 &amp; \cdots &amp; 1
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 2.05193651, -0.65957635,  3.51414838,  1.12071584,  3.97353361])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 0.36105243, -2.18643471,  1.07056216, -0.05200415, -2.7434796 ])
 </pre></div>
 </div>
 </div>
@@ -749,8 +755,8 @@ W_{t_3} = (W_{t_3} - W_{t_2}) + W_{t_2}  &amp; \sim N\left(0,\frac{T}{n-1}\right
 <p class="admonition-title">Note</p>
 <p>In this plot, we are using a linear interpolation to draw the lines between the simulated points.</p>
 </div>
-<section id="visualising-paths">
-<h3><span class="section-number">1.3.1. </span>Visualising Paths<a class="headerlink" href="#visualising-paths" title="Permalink to this headline">#</a></h3>
+<section id="simulating-and-visualising-paths">
+<h3><span class="section-number">1.3.1. </span>Simulating and Visualising Paths<a class="headerlink" href="#simulating-and-visualising-paths" title="Permalink to this headline">#</a></h3>
 <p>To simulate several paths from a Brownian Motion and visualise them we can use the method <code class="docutils literal notranslate"><span class="pre">plot</span></code> from the <code class="docutils literal notranslate"><span class="pre">aleatory</span></code> library.</p>
 <p>Let’s simulate 10 paths over the interval <span class="math notranslate nohighlight">\([0,1]\)</span> using a partition of 100 points.</p>
 <div class="tip admonition">
@@ -787,8 +793,8 @@ W_{t_3} = (W_{t_3} - W_{t_2}) + W_{t_2}  &amp; \sim N\left(0,\frac{T}{n-1}\right
 <section id="long-time-behaviour">
 <h2><span class="section-number">1.4. </span>Long Time Behaviour<a class="headerlink" href="#long-time-behaviour" title="Permalink to this headline">#</a></h2>
 <p>Almost surely</p>
-<div class="amsmath math notranslate nohighlight" id="equation-e3e1fd56-f83c-4bf1-8892-55d304bc0c18">
-<span class="eqno">(1.2)<a class="headerlink" href="#equation-e3e1fd56-f83c-4bf1-8892-55d304bc0c18" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-f36f77bb-8708-48fe-8581-8145bf736ab4">
+<span class="eqno">(1.2)<a class="headerlink" href="#equation-f36f77bb-8708-48fe-8581-8145bf736ab4" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \lim_{t \rightarrow \infty} \frac{W_t}{t}  = 0.
 \end{equation}\]</div>
 <p>This property is the analogous of the Law of Large Numbers and sometimes is referred as such.</p>
@@ -859,8 +865,8 @@ Of course, we are still not quite there yet, but convergence is definitely happe
 M(t) = \sup_{0\leq s\leq t} W_s.
 \end{equation*}\]</div>
 <p>If <span class="math notranslate nohighlight">\(a&gt;0\)</span>, then</p>
-<div class="amsmath math notranslate nohighlight" id="equation-a706c136-1829-4a88-96a9-3fd76668a50b">
-<span class="eqno">(1.3)<a class="headerlink" href="#equation-a706c136-1829-4a88-96a9-3fd76668a50b" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-921c7cfd-e683-491a-a350-a1928c31c561">
+<span class="eqno">(1.3)<a class="headerlink" href="#equation-921c7cfd-e683-491a-a350-a1928c31c561" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \mathbf{P}\left( M(t) \geq a \right) = 2P(W_t\geq a) = P(|W_t|\geq a)
 \end{equation}\]</div>
 <p>You can find the proof here: <a class="reference external" href="https://en.wikipedia.org/wiki/Reflection_principle_(Wiener_process)">Reflection Principle (Wiener process)- Wiki</a>.</p>
@@ -945,8 +951,15 @@ M(t) = \sup_{0\leq s\leq t} W_s.
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Welcome</p>
+            <p class="prev-next-title">Welcome 👋🏽</p>
         </div>
+    </a>
+    <a class='right-next' id="next-link" href="geometric_brownian_motion.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">2. </span>Geometric Brownian Motion</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
     </a>
 </div>
             </footer>
