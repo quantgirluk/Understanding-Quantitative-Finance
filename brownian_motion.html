@@ -358,13 +358,25 @@ title="Print to PDF"
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#sampling">
-     1.2.4. Sampling
+    <a class="reference internal nav-link" href="#probability-density-functions">
+     1.2.4. Probability Density Functions
     </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#fokker-planck-equation">
+       1.2.4.1. Fokker-Planck Equation
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#visualisation">
+       1.2.4.2. Visualisation
+      </a>
+     </li>
+    </ul>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#probability-density-functions">
-     1.2.5. Probability Density Functions
+    <a class="reference internal nav-link" href="#sampling">
+     1.2.5. Sampling
     </a>
    </li>
   </ul>
@@ -392,7 +404,7 @@ title="Print to PDF"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#visualisation">
+  <a class="reference internal nav-link" href="#id1">
    1.6. Visualisation
   </a>
  </li>
@@ -446,13 +458,25 @@ title="Print to PDF"
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#sampling">
-     1.2.4. Sampling
+    <a class="reference internal nav-link" href="#probability-density-functions">
+     1.2.4. Probability Density Functions
     </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#fokker-planck-equation">
+       1.2.4.1. Fokker-Planck Equation
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#visualisation">
+       1.2.4.2. Visualisation
+      </a>
+     </li>
+    </ul>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#probability-density-functions">
-     1.2.5. Probability Density Functions
+    <a class="reference internal nav-link" href="#sampling">
+     1.2.5. Sampling
     </a>
    </li>
   </ul>
@@ -480,7 +504,7 @@ title="Print to PDF"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#visualisation">
+  <a class="reference internal nav-link" href="#id1">
    1.6. Visualisation
   </a>
  </li>
@@ -502,21 +526,22 @@ title="Print to PDF"
   <section class="tex2jax_ignore mathjax_ignore" id="brownian-motion">
 <h1><span class="section-number">1. </span>Brownian Motion<a class="headerlink" href="#brownian-motion" title="Permalink to this headline">#</a></h1>
 <p>The purpose of this notebook is to review and illustrate the <a class="reference external" href="https://en.wikipedia.org/wiki/Brownian_motion">Brownian motion</a> and some of its main properties.</p>
+<p><img alt="image" src="_images/brownian_motion.png" /></p>
 <section id="definition">
 <h2><span class="section-number">1.1. </span>Definition<a class="headerlink" href="#definition" title="Permalink to this headline">#</a></h2>
 <p><strong>Definition</strong> A standard Brownian motion or Wiener process is a stochastic process <span class="math notranslate nohighlight">\(W =\{W_t, t\geq 0\}\)</span> characterised by the following properties:</p>
 <ol class="simple">
 <li><p><span class="math notranslate nohighlight">\(W_0 = 0\)</span></p></li>
 <li><p><span class="math notranslate nohighlight">\(W_t-W_s \sim N(0, t-s),\)</span> for any <span class="math notranslate nohighlight">\(0\leq s \leq t\)</span></p></li>
-<li><p><span class="math notranslate nohighlight">\(W_t\)</span> has independent increments</p></li>
-<li><p><span class="math notranslate nohighlight">\(W_t\)</span> is almost surely continuous.</p></li>
+<li><p><span class="math notranslate nohighlight">\(W\)</span> has independent increments</p></li>
+<li><p><span class="math notranslate nohighlight">\(W\)</span> is almost surely continuous.</p></li>
 </ol>
 </section>
 <section id="marginal-distributions">
 <h2><span class="section-number">1.2. </span>Marginal Distributions<a class="headerlink" href="#marginal-distributions" title="Permalink to this headline">#</a></h2>
 <p>Point (2) in the Brownian motion definition implies that for each <span class="math notranslate nohighlight">\(t&gt;0\)</span>, the one dimensional marginal distribution <span class="math notranslate nohighlight">\(W_t\)</span> is normally distributed with expectation zero, and variance equals <span class="math notranslate nohighlight">\(t\)</span>, i.e.:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-872af176-3d45-4be5-9981-542a35cceaad">
-<span class="eqno">(1.1)<a class="headerlink" href="#equation-872af176-3d45-4be5-9981-542a35cceaad" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-54335a4e-e540-4739-90a1-45f5f5f1fccd">
+<span class="eqno">(1.1)<a class="headerlink" href="#equation-54335a4e-e540-4739-90a1-45f5f5f1fccd" title="Permalink to this equation">#</a></span>\[\begin{equation}
 W_t \sim \mathcal{N}(0,t), \qquad \forall t&gt;0.
 \end{equation}\]</div>
 <section id="expectation-variance-and-covariance">
@@ -584,47 +609,23 @@ t_1 &amp; t_2 &amp; t_3 &amp; \cdots &amp; 1
 </div>
 <p>Hereafter, we will use the latter method to create marginal distributions from Brownian Motion.</p>
 </section>
-<section id="sampling">
-<h3><span class="section-number">1.2.4. </span>Sampling<a class="headerlink" href="#sampling" title="Permalink to this headline">#</a></h3>
-<p>Now, let’s get a random sample from <span class="math notranslate nohighlight">\(W_t\)</span> for any  <span class="math notranslate nohighlight">\(t&gt;0\)</span>.</p>
-<p>The next cell shows how to get a sample of size 5 from <span class="math notranslate nohighlight">\(W_1 \sim\mathcal{N}(0,1)\)</span>.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">aleatory.processes</span> <span class="kn">import</span> <span class="n">BrownianMotion</span>
-<span class="n">process</span> <span class="o">=</span> <span class="n">BrownianMotion</span><span class="p">()</span>
-<span class="n">W_t</span> <span class="o">=</span> <span class="n">process</span><span class="o">.</span><span class="n">get_marginal</span><span class="p">(</span><span class="n">t</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span> 
-<span class="n">W_t</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-0.20204948, -0.80168306, -0.58556596, -0.2081797 ,  0.27327923])
-</pre></div>
-</div>
-</div>
-</div>
-<p>Similarly, we can get a sample from <span class="math notranslate nohighlight">\(W_{10} \sim \mathcal{N}(0, \sqrt{10})\)</span>, as follows</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">W_t</span> <span class="o">=</span> <span class="n">process</span><span class="o">.</span><span class="n">get_marginal</span><span class="p">(</span><span class="n">t</span><span class="o">=</span><span class="mf">10.0</span><span class="p">)</span>
-<span class="n">W_t</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 0.36105243, -2.18643471,  1.07056216, -0.05200415, -2.7434796 ])
-</pre></div>
-</div>
-</div>
-</div>
-</section>
 <section id="probability-density-functions">
-<h3><span class="section-number">1.2.5. </span>Probability Density Functions<a class="headerlink" href="#probability-density-functions" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">1.2.4. </span>Probability Density Functions<a class="headerlink" href="#probability-density-functions" title="Permalink to this headline">#</a></h3>
 <p>The probability density function (pdf) of the marginal distribution <span class="math notranslate nohighlight">\(W_t\)</span> is given by the following expression</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{equation*}
 f(x, t) = \dfrac{1}{\sqrt{2 \pi t}}\exp\left\{ -\dfrac{x^2}{2t}\right\}, \qquad \forall x\in\mathbb{R}, t&gt;0.
 \end{equation*}\]</div>
+<section id="fokker-planck-equation">
+<h4><span class="section-number">1.2.4.1. </span>Fokker-Planck Equation<a class="headerlink" href="#fokker-planck-equation" title="Permalink to this headline">#</a></h4>
+<p>The pdf satisfies the Fokker-Planck equation</p>
+<div class="amsmath math notranslate nohighlight" id="equation-76498917-2484-4a9f-97b6-163e790e03c0">
+<span class="eqno">(1.2)<a class="headerlink" href="#equation-76498917-2484-4a9f-97b6-163e790e03c0" title="Permalink to this equation">#</a></span>\[\begin{equation}
+\dfrac{\partial}{\partial t}f(x,t)= \dfrac{1}{2}\dfrac{\partial}{\partial x^2}f(x,t).
+\end{equation}\]</div>
+</section>
+<section id="visualisation">
+<h4><span class="section-number">1.2.4.2. </span>Visualisation<a class="headerlink" href="#visualisation" title="Permalink to this headline">#</a></h4>
 <p>In order to visualise these functions, we are going to load the library <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code> and set some formatting options.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -655,10 +656,10 @@ f(x, t) = \dfrac{1}{\sqrt{2 \pi t}}\exp\left\{ -\dfrac{x^2}{2t}\right\}, \qquad 
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/brownian_motion_19_0.png" src="_images/brownian_motion_19_0.png" />
+<img alt="_images/brownian_motion_15_0.png" src="_images/brownian_motion_15_0.png" />
 </div>
 </div>
-<p>Now, ;et’s take a look at the pdfs for different marginal distributions <span class="math notranslate nohighlight">\(W_t\)</span>.</p>
+<p>Next, let’s take a look at the pdfs for different marginal distributions <span class="math notranslate nohighlight">\(W_t\)</span>.</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax1</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
@@ -674,7 +675,7 @@ f(x, t) = \dfrac{1}{\sqrt{2 \pi t}}\exp\left\{ -\dfrac{x^2}{2t}\right\}, \qquad 
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/brownian_motion_21_0.png" src="_images/brownian_motion_21_0.png" />
+<img alt="_images/brownian_motion_17_0.png" src="_images/brownian_motion_17_0.png" />
 </div>
 </div>
 <p>In this chart, we clearly see the characteristic symmetric bell-shaped curves of the normal/Gaussian distribution.
@@ -684,6 +685,41 @@ Moreover, we can make the following observations:</p>
 <li><p>The Brownian motion would take bigger (in magnitude) values as <span class="math notranslate nohighlight">\(t\)</span> increases</p></li>
 <li><p>The marginal distributions of the Brownian Motion flatten/spread as <span class="math notranslate nohighlight">\(t\)</span> increases.</p></li>
 </ul>
+</section>
+</section>
+<section id="sampling">
+<h3><span class="section-number">1.2.5. </span>Sampling<a class="headerlink" href="#sampling" title="Permalink to this headline">#</a></h3>
+<p>Now, let’s see how to obtain a random sample from the marginal <span class="math notranslate nohighlight">\(W_t\)</span> for <span class="math notranslate nohighlight">\(t&gt;0\)</span>.</p>
+<p>The next cell shows how to get a sample of size 5 from <span class="math notranslate nohighlight">\(W_1 \sim\mathcal{N}(0,1)\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">aleatory.processes</span> <span class="kn">import</span> <span class="n">BrownianMotion</span>
+<span class="n">process</span> <span class="o">=</span> <span class="n">BrownianMotion</span><span class="p">()</span>
+<span class="n">W_t</span> <span class="o">=</span> <span class="n">process</span><span class="o">.</span><span class="n">get_marginal</span><span class="p">(</span><span class="n">t</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span> 
+<span class="n">W_t</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 0.32101513,  1.05794877,  0.22970154,  0.31995101, -0.06209806])
+</pre></div>
+</div>
+</div>
+</div>
+<p>Similarly, we can get a sample from <span class="math notranslate nohighlight">\(W_{10} \sim \mathcal{N}(0, \sqrt{10})\)</span>, as follows</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">W_t</span> <span class="o">=</span> <span class="n">process</span><span class="o">.</span><span class="n">get_marginal</span><span class="p">(</span><span class="n">t</span><span class="o">=</span><span class="mf">10.0</span><span class="p">)</span>
+<span class="n">W_t</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([1.98478713, 0.89726924, 5.07990196, 3.66101967, 4.36171972])
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 </section>
 <section id="simulation">
@@ -793,8 +829,8 @@ W_{t_3} = (W_{t_3} - W_{t_2}) + W_{t_2}  &amp; \sim N\left(0,\frac{T}{n-1}\right
 <section id="long-time-behaviour">
 <h2><span class="section-number">1.4. </span>Long Time Behaviour<a class="headerlink" href="#long-time-behaviour" title="Permalink to this headline">#</a></h2>
 <p>Almost surely</p>
-<div class="amsmath math notranslate nohighlight" id="equation-f36f77bb-8708-48fe-8581-8145bf736ab4">
-<span class="eqno">(1.2)<a class="headerlink" href="#equation-f36f77bb-8708-48fe-8581-8145bf736ab4" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-9d4014c3-96ad-4034-981b-2cbf0512cb40">
+<span class="eqno">(1.3)<a class="headerlink" href="#equation-9d4014c3-96ad-4034-981b-2cbf0512cb40" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \lim_{t \rightarrow \infty} \frac{W_t}{t}  = 0.
 \end{equation}\]</div>
 <p>This property is the analogous of the Law of Large Numbers and sometimes is referred as such.</p>
@@ -859,17 +895,13 @@ Of course, we are still not quite there yet, but convergence is definitely happe
 </section>
 <section id="reflection-principle">
 <h2><span class="section-number">1.5. </span>Reflection Principle<a class="headerlink" href="#reflection-principle" title="Permalink to this headline">#</a></h2>
-<p>Let us introduce</p>
-<div class="amsmath math notranslate nohighlight">
-\[\begin{equation*}
-M(t) = \sup_{0\leq s\leq t} W_s.
-\end{equation*}\]</div>
-<p>If <span class="math notranslate nohighlight">\(a&gt;0\)</span>, then</p>
-<div class="amsmath math notranslate nohighlight" id="equation-921c7cfd-e683-491a-a350-a1928c31c561">
-<span class="eqno">(1.3)<a class="headerlink" href="#equation-921c7cfd-e683-491a-a350-a1928c31c561" title="Permalink to this equation">#</a></span>\[\begin{equation}
-\mathbf{P}\left( M(t) \geq a \right) = 2P(W_t\geq a) = P(|W_t|\geq a)
+<p>For any point <span class="math notranslate nohighlight">\(a&gt;0\)</span>, we have</p>
+<div class="amsmath math notranslate nohighlight" id="equation-652c061a-ea54-4233-9ec7-1ef0714ec34d">
+<span class="eqno">(1.4)<a class="headerlink" href="#equation-652c061a-ea54-4233-9ec7-1ef0714ec34d" title="Permalink to this equation">#</a></span>\[\begin{equation}
+\mathbf{P}\left(\sup_{0\leq s\leq t} W_s \geq a \right) = 2P(W_t\geq a) = P(|W_t|\geq a)
 \end{equation}\]</div>
-<p>You can find the proof here: <a class="reference external" href="https://en.wikipedia.org/wiki/Reflection_principle_(Wiener_process)">Reflection Principle (Wiener process)- Wiki</a>.</p>
+<p>This states that if the path of a Brownian Motion reaches a value  <span class="math notranslate nohighlight">\(a&gt;0\)</span> at some time <span class="math notranslate nohighlight">\(s\)</span>, then the subsequent path has the same distribution as its reflection about the level of <span class="math notranslate nohighlight">\(a\)</span>.</p>
+<p>The following picture illustrates this behaviour with <span class="math notranslate nohighlight">\(a=1\)</span>. The reflected path <span class="math notranslate nohighlight">\(W^{\ast}\)</span> is shown in yellow. Refection principle states that after the crossing point, both paths have the same distribution.</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">process</span> <span class="o">=</span> <span class="n">BrownianMotion</span><span class="p">(</span><span class="n">T</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">rng</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="n">seed</span><span class="o">=</span><span class="mi">123</span><span class="p">))</span>
@@ -892,20 +924,21 @@ M(t) = \sup_{0\leq s\leq t} W_s.
 <img alt="_images/brownian_motion_44_0.png" src="_images/brownian_motion_44_0.png" />
 </div>
 </div>
+<p>You can find the proof here: <a class="reference external" href="https://en.wikipedia.org/wiki/Reflection_principle_(Wiener_process)">Reflection Principle (Wiener process)- Wiki</a>.</p>
 </section>
-<section id="visualisation">
-<h2><span class="section-number">1.6. </span>Visualisation<a class="headerlink" href="#visualisation" title="Permalink to this headline">#</a></h2>
-<p>To finish this note, let’s take a look at a simulation from the Brownian Motion.</p>
+<section id="id1">
+<h2><span class="section-number">1.6. </span>Visualisation<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h2>
+<p>To finish this note, let’s take a final look at a simulation from the Brownian Motion.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">process</span> <span class="o">=</span> <span class="n">BrownianMotion</span><span class="p">(</span><span class="n">T</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
-<span class="n">process</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+<span class="n">process</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">envelope</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/brownian_motion_46_0.png" src="_images/brownian_motion_46_0.png" />
+<img alt="_images/brownian_motion_47_0.png" src="_images/brownian_motion_47_0.png" />
 </div>
 </div>
 </section>
