@@ -509,8 +509,8 @@ title="Print to PDF"
 <section id="definition">
 <h2><span class="section-number">2.1. </span>Definition<a class="headerlink" href="#definition" title="Permalink to this headline">#</a></h2>
 <p>The Geometric Brownian motion can be defined by the following Stochastic Differential Equation (SDE)</p>
-<div class="amsmath math notranslate nohighlight" id="equation-2b23dc0b-f0b5-4877-9fba-54fe329846c2">
-<span class="eqno">(2.1)<a class="headerlink" href="#equation-2b23dc0b-f0b5-4877-9fba-54fe329846c2" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-ad401937-8ce4-4e99-8a11-0309d7fe7f5b">
+<span class="eqno">(2.1)<a class="headerlink" href="#equation-ad401937-8ce4-4e99-8a11-0309d7fe7f5b" title="Permalink to this equation">#</a></span>\[\begin{equation}
 dX_t = \mu X_t dt + \sigma X_t W_t, \quad t &gt;0,
 \tag{1}
 \end{equation}\]</div>
@@ -519,14 +519,14 @@ dX_t = \mu X_t dt + \sigma X_t W_t, \quad t &gt;0,
 <div class="math notranslate nohighlight">
 \[Y_t = Y_0 +  \left( \mu-\frac{1}{2}\sigma^2 \right)t  + \sigma W_t,\]</div>
 <p>or equivalently</p>
-<div class="amsmath math notranslate nohighlight" id="equation-e22b620f-cc2a-46dc-94ed-c36ebccde430">
-<span class="eqno">(2.2)<a class="headerlink" href="#equation-e22b620f-cc2a-46dc-94ed-c36ebccde430" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-bbc6392a-bb29-4aae-be19-410a7b89a08b">
+<span class="eqno">(2.2)<a class="headerlink" href="#equation-bbc6392a-bb29-4aae-be19-410a7b89a08b" title="Permalink to this equation">#</a></span>\[\begin{equation}
 log(X_t) = log(x_0) +  \left( \mu-\frac{1}{2}\sigma^2 \right)t  + \sigma W_t.
 \tag{2}
 \end{equation}\]</div>
 <p>From this expression, we obtain</p>
-<div class="amsmath math notranslate nohighlight" id="equation-0f24eddf-f6b8-4d34-b0d1-bc3cc4d117bf">
-<span class="eqno">(2.3)<a class="headerlink" href="#equation-0f24eddf-f6b8-4d34-b0d1-bc3cc4d117bf" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-3655da80-97fd-4274-9ed8-f4c7305275b7">
+<span class="eqno">(2.3)<a class="headerlink" href="#equation-3655da80-97fd-4274-9ed8-f4c7305275b7" title="Permalink to this equation">#</a></span>\[\begin{equation}
 X_t = x_0 \exp \left\{  \left( \mu-\frac{1}{2}\sigma^2 \right)t  + \sigma W_t \right\}.
 \tag{3}
 \end{equation}\]</div>
@@ -787,14 +787,16 @@ f(x, t) = {\displaystyle {\frac {1}{x\sigma  {\sqrt {2\pi t}}}}\ \exp \left\{-{\
 <p>The next cell shows how to get a sample of size 5 from <span class="math notranslate nohighlight">\(X_1\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">process</span> <span class="o">=</span> <span class="n">GBM</span><span class="p">(</span><span class="n">drift</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">volatility</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">initial</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">aleatory.processes</span> <span class="kn">import</span> <span class="n">GBM</span>
+
+<span class="n">process</span> <span class="o">=</span> <span class="n">GBM</span><span class="p">(</span><span class="n">drift</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">volatility</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">initial</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
 <span class="n">X_1</span><span class="o">=</span> <span class="n">process</span><span class="o">.</span><span class="n">get_marginal</span><span class="p">(</span><span class="n">t</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
 <span class="n">X_1</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([5.79935374, 1.68430433, 1.58038552, 1.35291156, 2.19027642])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([4.01052989, 3.78208419, 3.12592426, 2.58965477, 2.20825543])
 </pre></div>
 </div>
 </div>
@@ -808,8 +810,8 @@ f(x, t) = {\displaystyle {\frac {1}{x\sigma  {\sqrt {2\pi t}}}}\ \exp \left\{-{\
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 9175.38093462,   218.35311304, 75410.44966746,  6062.08833247,
-        7471.49981207])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 5955.03172016, 35330.78162206, 19822.14500369,  4088.99036454,
+        7353.5159132 ])
 </pre></div>
 </div>
 </div>
@@ -875,7 +877,9 @@ X_t = x_0 \exp \left\{  \left( \mu-\frac{1}{2}\sigma^2 \right)t  + \sigma W_t \r
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">process</span> <span class="o">=</span> <span class="n">GBM</span><span class="p">(</span><span class="n">drift</span><span class="o">=</span><span class="n">mu</span><span class="p">,</span> <span class="n">volatility</span><span class="o">=</span><span class="n">sigma</span><span class="p">,</span> <span class="n">initial</span><span class="o">=</span><span class="n">x0</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">aleatory.processes</span> <span class="kn">import</span> <span class="n">GBM</span>
+
+<span class="n">process</span> <span class="o">=</span> <span class="n">GBM</span><span class="p">(</span><span class="n">drift</span><span class="o">=</span><span class="n">mu</span><span class="p">,</span> <span class="n">volatility</span><span class="o">=</span><span class="n">sigma</span><span class="p">,</span> <span class="n">initial</span><span class="o">=</span><span class="n">x0</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
 <span class="n">process</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
@@ -1056,7 +1060,9 @@ s_0^2, \hbox{  if  }  2\mu+\sigma^2=0.\\
 <p>To finish this note, let’s take a final look at a simulation from the Geometric Brownian Motion.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">process</span> <span class="o">=</span> <span class="n">GBM</span><span class="p">(</span><span class="n">drift</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">volatility</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">initial</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="mf">5.0</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">aleatory.processes</span> <span class="kn">import</span> <span class="n">GBM</span>
+
+<span class="n">process</span> <span class="o">=</span> <span class="n">GBM</span><span class="p">(</span><span class="n">drift</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">volatility</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">initial</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="mf">5.0</span><span class="p">)</span>
 <span class="n">process</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">envelope</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
