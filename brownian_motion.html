@@ -540,8 +540,8 @@ title="Print to PDF"
 <section id="marginal-distributions">
 <h2><span class="section-number">1.2. </span>Marginal Distributions<a class="headerlink" href="#marginal-distributions" title="Permalink to this headline">#</a></h2>
 <p>Point (2) in the Brownian motion definition implies that for each <span class="math notranslate nohighlight">\(t&gt;0\)</span>, the one dimensional marginal distribution <span class="math notranslate nohighlight">\(W_t\)</span> is normally distributed with expectation zero, and variance equals <span class="math notranslate nohighlight">\(t\)</span>, i.e.:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-54335a4e-e540-4739-90a1-45f5f5f1fccd">
-<span class="eqno">(1.1)<a class="headerlink" href="#equation-54335a4e-e540-4739-90a1-45f5f5f1fccd" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-7d93036a-7ad0-43ce-bb33-af91f21e3d94">
+<span class="eqno">(1.1)<a class="headerlink" href="#equation-7d93036a-7ad0-43ce-bb33-af91f21e3d94" title="Permalink to this equation">#</a></span>\[\begin{equation}
 W_t \sim \mathcal{N}(0,t), \qquad \forall t&gt;0.
 \end{equation}\]</div>
 <section id="expectation-variance-and-covariance">
@@ -619,8 +619,8 @@ f(x, t) = \dfrac{1}{\sqrt{2 \pi t}}\exp\left\{ -\dfrac{x^2}{2t}\right\}, \qquad 
 <section id="fokker-planck-equation">
 <h4><span class="section-number">1.2.4.1. </span>Fokker-Planck Equation<a class="headerlink" href="#fokker-planck-equation" title="Permalink to this headline">#</a></h4>
 <p>The pdf satisfies the Fokker-Planck equation</p>
-<div class="amsmath math notranslate nohighlight" id="equation-76498917-2484-4a9f-97b6-163e790e03c0">
-<span class="eqno">(1.2)<a class="headerlink" href="#equation-76498917-2484-4a9f-97b6-163e790e03c0" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-fc485de9-5648-46af-ab69-4141c0603a72">
+<span class="eqno">(1.2)<a class="headerlink" href="#equation-fc485de9-5648-46af-ab69-4141c0603a72" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \dfrac{\partial}{\partial t}f(x,t)= \dfrac{1}{2}\dfrac{\partial}{\partial x^2}f(x,t).
 \end{equation}\]</div>
 </section>
@@ -701,7 +701,7 @@ Moreover, we can make the following observations:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 0.32101513,  1.05794877,  0.22970154,  0.31995101, -0.06209806])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 0.4436958 ,  0.13409689, -2.05459569,  0.35848487, -1.13818419])
 </pre></div>
 </div>
 </div>
@@ -715,7 +715,7 @@ Moreover, we can make the following observations:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([1.98478713, 0.89726924, 5.07990196, 3.66101967, 4.36171972])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 2.51313713, -0.34216702, -1.43353571,  1.16274557, -5.50935147])
 </pre></div>
 </div>
 </div>
@@ -829,8 +829,8 @@ W_{t_3} = (W_{t_3} - W_{t_2}) + W_{t_2}  &amp; \sim N\left(0,\frac{T}{n-1}\right
 <section id="long-time-behaviour">
 <h2><span class="section-number">1.4. </span>Long Time Behaviour<a class="headerlink" href="#long-time-behaviour" title="Permalink to this headline">#</a></h2>
 <p>Almost surely</p>
-<div class="amsmath math notranslate nohighlight" id="equation-9d4014c3-96ad-4034-981b-2cbf0512cb40">
-<span class="eqno">(1.3)<a class="headerlink" href="#equation-9d4014c3-96ad-4034-981b-2cbf0512cb40" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-f2c195cc-7a16-45f1-a19f-1ba65c255003">
+<span class="eqno">(1.3)<a class="headerlink" href="#equation-f2c195cc-7a16-45f1-a19f-1ba65c255003" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \lim_{t \rightarrow \infty} \frac{W_t}{t}  = 0.
 \end{equation}\]</div>
 <p>This property is the analogous of the Law of Large Numbers and sometimes is referred as such.</p>
@@ -896,8 +896,8 @@ Of course, we are still not quite there yet, but convergence is definitely happe
 <section id="reflection-principle">
 <h2><span class="section-number">1.5. </span>Reflection Principle<a class="headerlink" href="#reflection-principle" title="Permalink to this headline">#</a></h2>
 <p>For any point <span class="math notranslate nohighlight">\(a&gt;0\)</span>, we have</p>
-<div class="amsmath math notranslate nohighlight" id="equation-652c061a-ea54-4233-9ec7-1ef0714ec34d">
-<span class="eqno">(1.4)<a class="headerlink" href="#equation-652c061a-ea54-4233-9ec7-1ef0714ec34d" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-c7e286ea-b5de-46d3-b684-69db46885aa6">
+<span class="eqno">(1.4)<a class="headerlink" href="#equation-c7e286ea-b5de-46d3-b684-69db46885aa6" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \mathbf{P}\left(\sup_{0\leq s\leq t} W_s \geq a \right) = 2P(W_t\geq a) = P(|W_t|\geq a)
 \end{equation}\]</div>
 <p>This states that if the path of a Brownian Motion reaches a value  <span class="math notranslate nohighlight">\(a&gt;0\)</span> at some time <span class="math notranslate nohighlight">\(s\)</span>, then the subsequent path has the same distribution as its reflection about the level of <span class="math notranslate nohighlight">\(a\)</span>.</p>

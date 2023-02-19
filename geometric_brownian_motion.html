@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>2. Geometric Brownian Motion &#8212; Understanding Quantitative Finance</title>
+    <title>3. Geometric Brownian Motion &#8212; Understanding Quantitative Finance</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -54,7 +54,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="prev" title="1. Brownian Motion" href="brownian_motion.html" />
+    <link rel="prev" title="2. Brownian Motion with Drift" href="brownian_motion_arithmetic.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -120,9 +120,14 @@ const thebe_selector_output = ".output, .cell_output"
    1. Brownian Motion
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="brownian_motion_arithmetic.html">
+   2. Brownian Motion with Drift
+  </a>
+ </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   2. Geometric Brownian Motion
+   3. Geometric Brownian Motion
   </a>
  </li>
 </ul>
@@ -333,73 +338,73 @@ title="Print to PDF"
         <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#definition">
-   2.1. Definition
+   3.1. Definition
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#marginal-distributions">
-   2.2. Marginal Distributions
+   3.2. Marginal Distributions
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#expectation-and-variance">
-     2.2.1. Expectation and Variance
+     3.2.1. Expectation and Variance
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#marginal-distributions-in-python">
-     2.2.2. Marginal Distributions in Python
+     3.2.2. Marginal Distributions in Python
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#probability-density-functions">
-     2.2.3. Probability Density Functions
+     3.2.3. Probability Density Functions
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#sampling">
-     2.2.4. Sampling
+     3.2.4. Sampling
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#simulation">
-   2.3. Simulation
+   3.3. Simulation
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#simulating-and-visualising-paths">
-     2.3.1. Simulating and Visualising Paths
+     3.3.1. Simulating and Visualising Paths
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#long-time-behaviour">
-   2.4. Long Time Behaviour
+   3.4. Long Time Behaviour
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id1">
-     2.4.1. Expectation and Variance
+     3.4.1. Expectation and Variance
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#marginal">
-     2.4.2. Marginal
+     3.4.2. Marginal
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#visualisation">
-   2.5. Visualisation
+   3.5. Visualisation
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#references-and-further-reading">
-   2.6. References and Further Reading
+   3.6. References and Further Reading
   </a>
  </li>
 </ul>
@@ -423,73 +428,73 @@ title="Print to PDF"
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#definition">
-   2.1. Definition
+   3.1. Definition
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#marginal-distributions">
-   2.2. Marginal Distributions
+   3.2. Marginal Distributions
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#expectation-and-variance">
-     2.2.1. Expectation and Variance
+     3.2.1. Expectation and Variance
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#marginal-distributions-in-python">
-     2.2.2. Marginal Distributions in Python
+     3.2.2. Marginal Distributions in Python
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#probability-density-functions">
-     2.2.3. Probability Density Functions
+     3.2.3. Probability Density Functions
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#sampling">
-     2.2.4. Sampling
+     3.2.4. Sampling
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#simulation">
-   2.3. Simulation
+   3.3. Simulation
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#simulating-and-visualising-paths">
-     2.3.1. Simulating and Visualising Paths
+     3.3.1. Simulating and Visualising Paths
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#long-time-behaviour">
-   2.4. Long Time Behaviour
+   3.4. Long Time Behaviour
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id1">
-     2.4.1. Expectation and Variance
+     3.4.1. Expectation and Variance
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#marginal">
-     2.4.2. Marginal
+     3.4.2. Marginal
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#visualisation">
-   2.5. Visualisation
+   3.5. Visualisation
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#references-and-further-reading">
-   2.6. References and Further Reading
+   3.6. References and Further Reading
   </a>
  </li>
 </ul>
@@ -503,14 +508,14 @@ title="Print to PDF"
               <div>
                 
   <section class="tex2jax_ignore mathjax_ignore" id="geometric-brownian-motion">
-<h1><span class="section-number">2. </span>Geometric Brownian Motion<a class="headerlink" href="#geometric-brownian-motion" title="Permalink to this headline">#</a></h1>
+<h1><span class="section-number">3. </span>Geometric Brownian Motion<a class="headerlink" href="#geometric-brownian-motion" title="Permalink to this headline">#</a></h1>
 <p>The purpose of this notebook is to review and illustrate the  <a class="reference external" href="https://en.wikipedia.org/wiki/Geometric_Brownian_motion">Geometric Brownian motion</a> and some of its main properties.</p>
 <p><img alt="image" src="_images/geometric_brownian_motion.png" /></p>
 <section id="definition">
-<h2><span class="section-number">2.1. </span>Definition<a class="headerlink" href="#definition" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">3.1. </span>Definition<a class="headerlink" href="#definition" title="Permalink to this headline">#</a></h2>
 <p>The Geometric Brownian motion can be defined by the following Stochastic Differential Equation (SDE)</p>
-<div class="amsmath math notranslate nohighlight" id="equation-ad401937-8ce4-4e99-8a11-0309d7fe7f5b">
-<span class="eqno">(2.1)<a class="headerlink" href="#equation-ad401937-8ce4-4e99-8a11-0309d7fe7f5b" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-bc68e42e-863a-46b3-8d18-8a1bf421b13c">
+<span class="eqno">(3.1)<a class="headerlink" href="#equation-bc68e42e-863a-46b3-8d18-8a1bf421b13c" title="Permalink to this equation">#</a></span>\[\begin{equation}
 dX_t = \mu X_t dt + \sigma X_t W_t, \quad t &gt;0,
 \tag{1}
 \end{equation}\]</div>
@@ -519,14 +524,14 @@ dX_t = \mu X_t dt + \sigma X_t W_t, \quad t &gt;0,
 <div class="math notranslate nohighlight">
 \[Y_t = Y_0 +  \left( \mu-\frac{1}{2}\sigma^2 \right)t  + \sigma W_t,\]</div>
 <p>or equivalently</p>
-<div class="amsmath math notranslate nohighlight" id="equation-bbc6392a-bb29-4aae-be19-410a7b89a08b">
-<span class="eqno">(2.2)<a class="headerlink" href="#equation-bbc6392a-bb29-4aae-be19-410a7b89a08b" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-092c7009-a0f8-473d-be46-707eb662e85d">
+<span class="eqno">(3.2)<a class="headerlink" href="#equation-092c7009-a0f8-473d-be46-707eb662e85d" title="Permalink to this equation">#</a></span>\[\begin{equation}
 log(X_t) = log(x_0) +  \left( \mu-\frac{1}{2}\sigma^2 \right)t  + \sigma W_t.
 \tag{2}
 \end{equation}\]</div>
 <p>From this expression, we obtain</p>
-<div class="amsmath math notranslate nohighlight" id="equation-3655da80-97fd-4274-9ed8-f4c7305275b7">
-<span class="eqno">(2.3)<a class="headerlink" href="#equation-3655da80-97fd-4274-9ed8-f4c7305275b7" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-f1fb2406-dde9-4c29-a041-8ba0304b16d8">
+<span class="eqno">(3.3)<a class="headerlink" href="#equation-f1fb2406-dde9-4c29-a041-8ba0304b16d8" title="Permalink to this equation">#</a></span>\[\begin{equation}
 X_t = x_0 \exp \left\{  \left( \mu-\frac{1}{2}\sigma^2 \right)t  + \sigma W_t \right\}.
 \tag{3}
 \end{equation}\]</div>
@@ -536,7 +541,7 @@ X_t = x_0 \exp \left\{  \left( \mu-\frac{1}{2}\sigma^2 \right)t  + \sigma W_t \r
 </div>
 </section>
 <section id="marginal-distributions">
-<h2><span class="section-number">2.2. </span>Marginal Distributions<a class="headerlink" href="#marginal-distributions" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">3.2. </span>Marginal Distributions<a class="headerlink" href="#marginal-distributions" title="Permalink to this headline">#</a></h2>
 <p>Equation (2) implies that for each <span class="math notranslate nohighlight">\(t&gt;0\)</span>, the variable <span class="math notranslate nohighlight">\(\log (X_t)\)</span> follows a normal distribution –since it can be expressed as a scaled marginal of the Brownian motion plus a deterministic part.</p>
 <p>Moreover, using the properties of the Brownian Motion we can calculate its expectation and variance, namely</p>
 <div class="amsmath math notranslate nohighlight">
@@ -555,7 +560,7 @@ X_t = x_0 \exp \left\{  \left( \mu-\frac{1}{2}\sigma^2 \right)t  + \sigma W_t \r
 \end{equation*}\]</div>
 <p>and consequently <span class="math notranslate nohighlight">\(X_t\)</span> follows a <a class="reference external" href="https://en.wikipedia.org/wiki/Log-normal_distribution">log-normal distribution</a>.</p>
 <section id="expectation-and-variance">
-<h3><span class="section-number">2.2.1. </span>Expectation and Variance<a class="headerlink" href="#expectation-and-variance" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">3.2.1. </span>Expectation and Variance<a class="headerlink" href="#expectation-and-variance" title="Permalink to this headline">#</a></h3>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{equation*}
 \mathbf{E} [X_t] = \exp \left\{ \log(x_0) +  \left( \mu-\frac{1}{2}\sigma^2 \right)t  + \frac{\sigma^2 t}{2}  \right\},
@@ -611,7 +616,7 @@ Var[S_t]=3.63
 </div>
 </section>
 <section id="marginal-distributions-in-python">
-<h3><span class="section-number">2.2.2. </span>Marginal Distributions in Python<a class="headerlink" href="#marginal-distributions-in-python" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">3.2.2. </span>Marginal Distributions in Python<a class="headerlink" href="#marginal-distributions-in-python" title="Permalink to this headline">#</a></h3>
 <p>Knowing the distribution –with its corresponding parameters– of the marginal distributions allows us to reproduce them with <code class="docutils literal notranslate"><span class="pre">Python</span></code>.</p>
 <p>One way to do this is by using the object  <code class="docutils literal notranslate"><span class="pre">lognorm</span></code>  from the library <code class="docutils literal notranslate"><span class="pre">scipy.stats</span></code>.  The next cell shows how to create <span class="math notranslate nohighlight">\(X_1\)</span> using this method.</p>
 <div class="cell docutils container">
@@ -658,7 +663,7 @@ Var[S_t]=3.63
 <p>Hereafter, we will use the latter method to create marginal distributions from the Geometric Brownian Motion.</p>
 </section>
 <section id="probability-density-functions">
-<h3><span class="section-number">2.2.3. </span>Probability Density Functions<a class="headerlink" href="#probability-density-functions" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">3.2.3. </span>Probability Density Functions<a class="headerlink" href="#probability-density-functions" title="Permalink to this headline">#</a></h3>
 <p>The probability density function of the marginal distribution <span class="math notranslate nohighlight">\(X_t\)</span> is given by the following expression</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{equation*}
@@ -782,7 +787,7 @@ f(x, t) = {\displaystyle {\frac {1}{x\sigma  {\sqrt {2\pi t}}}}\ \exp \left\{-{\
 </div>
 </section>
 <section id="sampling">
-<h3><span class="section-number">2.2.4. </span>Sampling<a class="headerlink" href="#sampling" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">3.2.4. </span>Sampling<a class="headerlink" href="#sampling" title="Permalink to this headline">#</a></h3>
 <p>Now, let’s see how to get a random sample from <span class="math notranslate nohighlight">\(X_t\)</span> for any  <span class="math notranslate nohighlight">\(t&gt;0\)</span>.</p>
 <p>The next cell shows how to get a sample of size 5 from <span class="math notranslate nohighlight">\(X_1\)</span>.</p>
 <div class="cell docutils container">
@@ -796,7 +801,7 @@ f(x, t) = {\displaystyle {\frac {1}{x\sigma  {\sqrt {2\pi t}}}}\ \exp \left\{-{\
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([4.01052989, 3.78208419, 3.12592426, 2.58965477, 2.20825543])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([4.63237048, 8.72372246, 2.00239519, 2.33093889, 1.82983292])
 </pre></div>
 </div>
 </div>
@@ -810,8 +815,8 @@ f(x, t) = {\displaystyle {\frac {1}{x\sigma  {\sqrt {2\pi t}}}}\ \exp \left\{-{\
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 5955.03172016, 35330.78162206, 19822.14500369,  4088.99036454,
-        7353.5159132 ])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 3159.74950949,  9805.35149135,  6818.36718602, 25788.22528683,
+        4972.30903487])
 </pre></div>
 </div>
 </div>
@@ -819,7 +824,7 @@ f(x, t) = {\displaystyle {\frac {1}{x\sigma  {\sqrt {2\pi t}}}}\ \exp \left\{-{\
 </section>
 </section>
 <section id="simulation">
-<h2><span class="section-number">2.3. </span>Simulation<a class="headerlink" href="#simulation" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">3.3. </span>Simulation<a class="headerlink" href="#simulation" title="Permalink to this headline">#</a></h2>
 <p>In order to simulate paths from a stochastic process, we need to set a discrete partition over an interval for the simulation to take place.</p>
 <p>For simplicity, we are going to consider an equidistant partition of size <span class="math notranslate nohighlight">\(n\)</span> over <span class="math notranslate nohighlight">\([0,T]\)</span>, i.e.:</p>
 <div class="amsmath math notranslate nohighlight">
@@ -868,7 +873,7 @@ X_t = x_0 \exp \left\{  \left( \mu-\frac{1}{2}\sigma^2 \right)t  + \sigma W_t \r
 <p>In this plot, we are using a linear interpolation to draw the lines between the simulated points.</p>
 </div>
 <section id="simulating-and-visualising-paths">
-<h3><span class="section-number">2.3.1. </span>Simulating and Visualising Paths<a class="headerlink" href="#simulating-and-visualising-paths" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">3.3.1. </span>Simulating and Visualising Paths<a class="headerlink" href="#simulating-and-visualising-paths" title="Permalink to this headline">#</a></h3>
 <p>To simulate several paths from a GBM and visualise them we can use the method <code class="docutils literal notranslate"><span class="pre">plot</span></code> from the <code class="docutils literal notranslate"><span class="pre">aleatory</span></code> library.</p>
 <p>Let’s simulate 10 paths over the interval <span class="math notranslate nohighlight">\([0,1]\)</span> using a partition of 100 points.</p>
 <div class="tip admonition">
@@ -905,13 +910,13 @@ X_t = x_0 \exp \left\{  \left( \mu-\frac{1}{2}\sigma^2 \right)t  + \sigma W_t \r
 </section>
 </section>
 <section id="long-time-behaviour">
-<h2><span class="section-number">2.4. </span>Long Time Behaviour<a class="headerlink" href="#long-time-behaviour" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">3.4. </span>Long Time Behaviour<a class="headerlink" href="#long-time-behaviour" title="Permalink to this headline">#</a></h2>
 <section id="id1">
-<h3><span class="section-number">2.4.1. </span>Expectation and Variance<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">3.4.1. </span>Expectation and Variance<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h3>
 <p>Note that when <span class="math notranslate nohighlight">\(t\)</span> goes to infinity, we have</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{equation*}
-\lim_{t\rightarrow\infty} E\left[S_t \right] = \lim_{t\rightarrow\infty} s_0\exp \left\{ \mu t   \right\} = 
+\lim_{t\rightarrow\infty} E\left[X_t \right] = \lim_{t\rightarrow\infty} s_0\exp \left\{ \mu t   \right\} = 
 \begin{cases}
 \infty, \hbox{  if  } \mu&gt;0\\
 s_0, \hbox{  if  }  \mu=0\\
@@ -921,7 +926,7 @@ s_0, \hbox{  if  }  \mu=0\\
 <p>and</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{equation*}
-\lim_{t\rightarrow\infty}Var[ S_t] = \lim_{t\rightarrow\infty} s_0^2\exp \left\{2\mu t \right\} \left(\exp \left\{\sigma^2 t \right\} - 1\right) = 
+\lim_{t\rightarrow\infty}Var[ X_t] = \lim_{t\rightarrow\infty} s_0^2\exp \left\{2\mu t \right\} \left(\exp \left\{\sigma^2 t \right\} - 1\right) = 
 \begin{cases}
 \infty, \hbox{  if  } 2\mu+\sigma^2 &gt;0\\
 s_0^2, \hbox{  if  }  2\mu+\sigma^2=0.\\
@@ -1008,7 +1013,7 @@ s_0^2, \hbox{  if  }  2\mu+\sigma^2=0.\\
 </div>
 </section>
 <section id="marginal">
-<h3><span class="section-number">2.4.2. </span>Marginal<a class="headerlink" href="#marginal" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">3.4.2. </span>Marginal<a class="headerlink" href="#marginal" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p>If <span class="math notranslate nohighlight">\( \mu&gt;\frac{1}{2}\sigma^2\)</span>, then <span class="math notranslate nohighlight">\(S_t\rightarrow\infty\)</span> in probability as <span class="math notranslate nohighlight">\(t\rightarrow\infty\)</span>.</p></li>
 <li><p>If <span class="math notranslate nohighlight">\( \mu&lt;\frac{1}{2}\sigma^2\)</span>, then <span class="math notranslate nohighlight">\(S_t\rightarrow 0\)</span> in probability as <span class="math notranslate nohighlight">\(t\rightarrow\infty\)</span>.</p></li>
@@ -1056,7 +1061,7 @@ s_0^2, \hbox{  if  }  2\mu+\sigma^2=0.\\
 </section>
 </section>
 <section id="visualisation">
-<h2><span class="section-number">2.5. </span>Visualisation<a class="headerlink" href="#visualisation" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">3.5. </span>Visualisation<a class="headerlink" href="#visualisation" title="Permalink to this headline">#</a></h2>
 <p>To finish this note, let’s take a final look at a simulation from the Geometric Brownian Motion.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1074,7 +1079,7 @@ s_0^2, \hbox{  if  }  2\mu+\sigma^2=0.\\
 </div>
 </section>
 <section id="references-and-further-reading">
-<h2><span class="section-number">2.6. </span>References and Further Reading<a class="headerlink" href="#references-and-further-reading" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">3.6. </span>References and Further Reading<a class="headerlink" href="#references-and-further-reading" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Log-normal_distribution">Wiki - Lognormal distribution</a></p></li>
 <li><p><a class="reference external" href="https://www.cs.princeton.edu/courses/archive/fall09/cos323/papers/black_scholes73.pdf">The Pricing of Options and Corporate Liabilities (1973)</a> by Fischer Black and Myron Scholes.</p></li>
@@ -1109,11 +1114,11 @@ s_0^2, \hbox{  if  }  2\mu+\sigma^2=0.\\
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="brownian_motion.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="brownian_motion_arithmetic.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title"><span class="section-number">1. </span>Brownian Motion</p>
+            <p class="prev-next-title"><span class="section-number">2. </span>Brownian Motion with Drift</p>
         </div>
     </a>
 </div>
