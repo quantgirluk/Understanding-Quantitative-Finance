@@ -54,7 +54,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="2. Geometric Brownian Motion" href="geometric_brownian_motion.html" />
+    <link rel="next" title="2. Brownian Motion with Drift" href="brownian_motion_arithmetic.html" />
     <link rel="prev" title="Welcome 👋🏽" href="intro.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
@@ -122,8 +122,13 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="brownian_motion_arithmetic.html">
+   2. Brownian Motion with Drift
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="geometric_brownian_motion.html">
-   2. Geometric Brownian Motion
+   3. Geometric Brownian Motion
   </a>
  </li>
 </ul>
@@ -387,8 +392,8 @@ title="Print to PDF"
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#simulating-and-visualising-paths">
-     1.3.1. Simulating and Visualising Paths
+    <a class="reference internal nav-link" href="#simulate-and-visualise-paths">
+     1.3.1. Simulate and Visualise Paths
     </a>
    </li>
   </ul>
@@ -487,8 +492,8 @@ title="Print to PDF"
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#simulating-and-visualising-paths">
-     1.3.1. Simulating and Visualising Paths
+    <a class="reference internal nav-link" href="#simulate-and-visualise-paths">
+     1.3.1. Simulate and Visualise Paths
     </a>
    </li>
   </ul>
@@ -540,8 +545,8 @@ title="Print to PDF"
 <section id="marginal-distributions">
 <h2><span class="section-number">1.2. </span>Marginal Distributions<a class="headerlink" href="#marginal-distributions" title="Permalink to this headline">#</a></h2>
 <p>Point (2) in the Brownian motion definition implies that for each <span class="math notranslate nohighlight">\(t&gt;0\)</span>, the one dimensional marginal distribution <span class="math notranslate nohighlight">\(W_t\)</span> is normally distributed with expectation zero, and variance equals <span class="math notranslate nohighlight">\(t\)</span>, i.e.:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-7d93036a-7ad0-43ce-bb33-af91f21e3d94">
-<span class="eqno">(1.1)<a class="headerlink" href="#equation-7d93036a-7ad0-43ce-bb33-af91f21e3d94" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-f167ef95-5e7d-4ac8-aa78-16a13703957c">
+<span class="eqno">(1.1)<a class="headerlink" href="#equation-f167ef95-5e7d-4ac8-aa78-16a13703957c" title="Permalink to this equation">#</a></span>\[\begin{equation}
 W_t \sim \mathcal{N}(0,t), \qquad \forall t&gt;0.
 \end{equation}\]</div>
 <section id="expectation-variance-and-covariance">
@@ -619,8 +624,8 @@ f(x, t) = \dfrac{1}{\sqrt{2 \pi t}}\exp\left\{ -\dfrac{x^2}{2t}\right\}, \qquad 
 <section id="fokker-planck-equation">
 <h4><span class="section-number">1.2.4.1. </span>Fokker-Planck Equation<a class="headerlink" href="#fokker-planck-equation" title="Permalink to this headline">#</a></h4>
 <p>The pdf satisfies the Fokker-Planck equation</p>
-<div class="amsmath math notranslate nohighlight" id="equation-fc485de9-5648-46af-ab69-4141c0603a72">
-<span class="eqno">(1.2)<a class="headerlink" href="#equation-fc485de9-5648-46af-ab69-4141c0603a72" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-39d275fb-a0d7-4612-b36c-1f0f4ace37d4">
+<span class="eqno">(1.2)<a class="headerlink" href="#equation-39d275fb-a0d7-4612-b36c-1f0f4ace37d4" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \dfrac{\partial}{\partial t}f(x,t)= \dfrac{1}{2}\dfrac{\partial}{\partial x^2}f(x,t).
 \end{equation}\]</div>
 </section>
@@ -636,7 +641,7 @@ f(x, t) = \dfrac{1}{\sqrt{2 \pi t}}\exp\left\{ -\dfrac{x^2}{2t}\right\}, \qquad 
 </div>
 <div class="cell tag_hide-input tag_hide-code docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s2">&quot;seaborn-v0_8-whitegrid&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s2">&quot;seaborn-v0_8-whitegrid&quot;</span><span class="p">)</span> <span class="c1"># These are optional configurations</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s2">&quot;figure.figsize&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
 <span class="o">%</span><span class="k">config</span> InlineBackend.figure_format =&#39;retina&#39;
 </pre></div>
@@ -646,7 +651,9 @@ f(x, t) = \dfrac{1}{\sqrt{2 \pi t}}\exp\left\{ -\dfrac{x^2}{2t}\right\}, \qquad 
 <p>We can plot the pdf of <span class="math notranslate nohighlight">\(W_1\)</span> as follows.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">process</span> <span class="o">=</span> <span class="n">BrownianMotion</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">aleatory.processes</span> <span class="kn">import</span> <span class="n">BrownianMotion</span>
+
+<span class="n">process</span> <span class="o">=</span> <span class="n">BrownianMotion</span><span class="p">()</span>
 <span class="n">W_1</span> <span class="o">=</span> <span class="n">process</span><span class="o">.</span><span class="n">get_marginal</span><span class="p">(</span><span class="n">t</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">W_1</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.75</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;$t$=</span><span class="si">{</span><span class="mi">1</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
@@ -701,7 +708,7 @@ Moreover, we can make the following observations:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 0.4436958 ,  0.13409689, -2.05459569,  0.35848487, -1.13818419])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-0.89652179,  0.53655597,  0.04194233, -0.73103559,  0.29937553])
 </pre></div>
 </div>
 </div>
@@ -715,7 +722,7 @@ Moreover, we can make the following observations:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 2.51313713, -0.34216702, -1.43353571,  1.16274557, -5.50935147])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 0.82130413, -2.18285812, -1.67327516, -2.65083725,  0.73110766])
 </pre></div>
 </div>
 </div>
@@ -791,8 +798,8 @@ W_{t_3} = (W_{t_3} - W_{t_2}) + W_{t_2}  &amp; \sim N\left(0,\frac{T}{n-1}\right
 <p class="admonition-title">Note</p>
 <p>In this plot, we are using a linear interpolation to draw the lines between the simulated points.</p>
 </div>
-<section id="simulating-and-visualising-paths">
-<h3><span class="section-number">1.3.1. </span>Simulating and Visualising Paths<a class="headerlink" href="#simulating-and-visualising-paths" title="Permalink to this headline">#</a></h3>
+<section id="simulate-and-visualise-paths">
+<h3><span class="section-number">1.3.1. </span>Simulate and Visualise Paths<a class="headerlink" href="#simulate-and-visualise-paths" title="Permalink to this headline">#</a></h3>
 <p>To simulate several paths from a Brownian Motion and visualise them we can use the method <code class="docutils literal notranslate"><span class="pre">plot</span></code> from the <code class="docutils literal notranslate"><span class="pre">aleatory</span></code> library.</p>
 <p>Let’s simulate 10 paths over the interval <span class="math notranslate nohighlight">\([0,1]\)</span> using a partition of 100 points.</p>
 <div class="tip admonition">
@@ -801,7 +808,9 @@ W_{t_3} = (W_{t_3} - W_{t_2}) + W_{t_2}  &amp; \sim N\left(0,\frac{T}{n-1}\right
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">process</span> <span class="o">=</span> <span class="n">BrownianMotion</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">aleatory.processes</span> <span class="kn">import</span> <span class="n">BrownianMotion</span>
+
+<span class="n">process</span> <span class="o">=</span> <span class="n">BrownianMotion</span><span class="p">()</span>
 <span class="n">process</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
@@ -829,8 +838,8 @@ W_{t_3} = (W_{t_3} - W_{t_2}) + W_{t_2}  &amp; \sim N\left(0,\frac{T}{n-1}\right
 <section id="long-time-behaviour">
 <h2><span class="section-number">1.4. </span>Long Time Behaviour<a class="headerlink" href="#long-time-behaviour" title="Permalink to this headline">#</a></h2>
 <p>Almost surely</p>
-<div class="amsmath math notranslate nohighlight" id="equation-f2c195cc-7a16-45f1-a19f-1ba65c255003">
-<span class="eqno">(1.3)<a class="headerlink" href="#equation-f2c195cc-7a16-45f1-a19f-1ba65c255003" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-27d9d5a4-2d61-4e6c-965c-00813ce51064">
+<span class="eqno">(1.3)<a class="headerlink" href="#equation-27d9d5a4-2d61-4e6c-965c-00813ce51064" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \lim_{t \rightarrow \infty} \frac{W_t}{t}  = 0.
 \end{equation}\]</div>
 <p>This property is the analogous of the Law of Large Numbers and sometimes is referred as such.</p>
@@ -896,8 +905,8 @@ Of course, we are still not quite there yet, but convergence is definitely happe
 <section id="reflection-principle">
 <h2><span class="section-number">1.5. </span>Reflection Principle<a class="headerlink" href="#reflection-principle" title="Permalink to this headline">#</a></h2>
 <p>For any point <span class="math notranslate nohighlight">\(a&gt;0\)</span>, we have</p>
-<div class="amsmath math notranslate nohighlight" id="equation-c7e286ea-b5de-46d3-b684-69db46885aa6">
-<span class="eqno">(1.4)<a class="headerlink" href="#equation-c7e286ea-b5de-46d3-b684-69db46885aa6" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-74b4385c-0521-4c94-8ecb-c5aa09ace34f">
+<span class="eqno">(1.4)<a class="headerlink" href="#equation-74b4385c-0521-4c94-8ecb-c5aa09ace34f" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \mathbf{P}\left(\sup_{0\leq s\leq t} W_s \geq a \right) = 2P(W_t\geq a) = P(|W_t|\geq a)
 \end{equation}\]</div>
 <p>This states that if the path of a Brownian Motion reaches a value  <span class="math notranslate nohighlight">\(a&gt;0\)</span> at some time <span class="math notranslate nohighlight">\(s\)</span>, then the subsequent path has the same distribution as its reflection about the level of <span class="math notranslate nohighlight">\(a\)</span>.</p>
@@ -931,7 +940,9 @@ Of course, we are still not quite there yet, but convergence is definitely happe
 <p>To finish this note, let’s take a final look at a simulation from the Brownian Motion.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">process</span> <span class="o">=</span> <span class="n">BrownianMotion</span><span class="p">(</span><span class="n">T</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">aleatory.processes</span> <span class="kn">import</span> <span class="n">BrownianMotion</span>
+
+<span class="n">process</span> <span class="o">=</span> <span class="n">BrownianMotion</span><span class="p">(</span><span class="n">T</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
 <span class="n">process</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">envelope</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
@@ -987,10 +998,10 @@ Of course, we are still not quite there yet, but convergence is definitely happe
             <p class="prev-next-title">Welcome 👋🏽</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="geometric_brownian_motion.html" title="next page">
+    <a class='right-next' id="next-link" href="brownian_motion_arithmetic.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">2. </span>Geometric Brownian Motion</p>
+        <p class="prev-next-title"><span class="section-number">2. </span>Brownian Motion with Drift</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
