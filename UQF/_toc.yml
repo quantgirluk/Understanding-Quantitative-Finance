@@ -9,3 +9,4 @@ chapters:
 - file: brownian_motion
 - file: brownian_motion_arithmetic
 - file: geometric_brownian_motion
+- file: vasicek
