@@ -54,6 +54,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="4. Vasicek Model/Process" href="vasicek.html" />
     <link rel="prev" title="2. Brownian Motion with Drift" href="brownian_motion_arithmetic.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
@@ -128,6 +129,11 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
    3. Geometric Brownian Motion
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="vasicek.html">
+   4. Vasicek Model/Process
   </a>
  </li>
 </ul>
@@ -744,8 +750,8 @@ title="Print to PDF"
 <section id="definition">
 <h2><span class="section-number">3.1. </span>Definition<a class="headerlink" href="#definition" title="Permalink to this headline">#</a></h2>
 <p>The Geometric Brownian motion can be defined by the following Stochastic Differential Equation (SDE)</p>
-<div class="amsmath math notranslate nohighlight" id="equation-d80e8306-3e50-4e7a-a108-b91ae925aa27">
-<span class="eqno">(3.1)<a class="headerlink" href="#equation-d80e8306-3e50-4e7a-a108-b91ae925aa27" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-5428e091-ac59-4c85-b6ef-2fe9a55e1bf9">
+<span class="eqno">(3.1)<a class="headerlink" href="#equation-5428e091-ac59-4c85-b6ef-2fe9a55e1bf9" title="Permalink to this equation">#</a></span>\[\begin{equation}
 dX_t = \mu X_t dt + \sigma X_t dW_t, \quad t &gt;0,
 \tag{1}
 \end{equation}\]</div>
@@ -754,14 +760,14 @@ dX_t = \mu X_t dt + \sigma X_t dW_t, \quad t &gt;0,
 <div class="math notranslate nohighlight">
 \[Y_t = Y_0 +  \left( \mu-\frac{1}{2}\sigma^2 \right)t  + \sigma W_t,\]</div>
 <p>or equivalently</p>
-<div class="amsmath math notranslate nohighlight" id="equation-807dec18-e822-44f4-873a-0ecedabdd815">
-<span class="eqno">(3.2)<a class="headerlink" href="#equation-807dec18-e822-44f4-873a-0ecedabdd815" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-575240a1-3045-41c9-b6c5-22efb3847007">
+<span class="eqno">(3.2)<a class="headerlink" href="#equation-575240a1-3045-41c9-b6c5-22efb3847007" title="Permalink to this equation">#</a></span>\[\begin{equation}
 log(X_t) = log(x_0) +  \left( \mu-\frac{1}{2}\sigma^2 \right)t  + \sigma W_t.
 \tag{2}
 \end{equation}\]</div>
 <p>From this expression, we obtain</p>
-<div class="amsmath math notranslate nohighlight" id="equation-45f18612-4697-4030-935e-a1f6f140fb23">
-<span class="eqno">(3.3)<a class="headerlink" href="#equation-45f18612-4697-4030-935e-a1f6f140fb23" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-752449c7-1d47-4a2d-b460-d2a6729ff81f">
+<span class="eqno">(3.3)<a class="headerlink" href="#equation-752449c7-1d47-4a2d-b460-d2a6729ff81f" title="Permalink to this equation">#</a></span>\[\begin{equation}
 X_t = x_0 \exp \left\{  \left( \mu-\frac{1}{2}\sigma^2 \right)t  + \sigma W_t \right\}.
 \tag{3}
 \end{equation}\]</div>
@@ -1035,7 +1041,7 @@ f(x, t) = {\displaystyle {\frac {1}{x\sigma  {\sqrt {2\pi t}}}}\ \exp \left\{-{\
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([3.24142096, 2.19967361, 2.41004564, 2.84536172, 1.95867459])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([3.08079904, 1.63054823, 1.31196651, 1.75734881, 1.77013444])
 </pre></div>
 </div>
 </div>
@@ -1049,8 +1055,8 @@ f(x, t) = {\displaystyle {\frac {1}{x\sigma  {\sqrt {2\pi t}}}}\ \exp \left\{-{\
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 8073.74932726, 61430.85976596, 36650.38260694,  6423.26300828,
-       34996.64023133])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 4300.24338771,   970.74109282, 17040.38185689,  1247.81748659,
+       10422.86056102])
 </pre></div>
 </div>
 </div>
@@ -1370,6 +1376,13 @@ x_0^2, \hbox{  if  }  2\mu+\sigma^2=0.\\
             <p class="prev-next-subtitle">previous</p>
             <p class="prev-next-title"><span class="section-number">2. </span>Brownian Motion with Drift</p>
         </div>
+    </a>
+    <a class='right-next' id="next-link" href="vasicek.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">4. </span>Vasicek Model/Process</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
     </a>
 </div>
             </footer>
