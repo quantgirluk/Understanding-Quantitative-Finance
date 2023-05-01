@@ -15,7 +15,7 @@ This project is under construction 🚧 and notes will be released on an ongoing
 
 ```
 
-[![Visitors](https://api.visitorbadge.io/api/visitors?path=https%3A%2F%2Fquantgirluk.github.io%2FUnderstanding-Quantitative-Finance%2Fintro.html&label=Thanks%20for%20visiting!&countColor=%23ba68c8&style=plastic&labelStyle=none)](https://visitorbadge.io/status?path=https%3A%2F%2Fquantgirluk.github.io%2FUnderstanding-Quantitative-Finance%2Fintro.html) ✨ 
+[![Visitors](https://api.visitorbadge.io/api/visitors?path=https%3A%2F%2Fquantgirluk.github.io%2FUnderstanding-Quantitative-Finance%2Fintro.html&label=Thanks%20for%20visiting!&countColor=%23ba68c8&style=plastic&labelStyle=none)](https://visitorbadge.io/status?path=https%3A%2F%2Fquantgirluk.github.io%2FUnderstanding-Quantitative-Finance%2Fintro.html) ✨
 
 Connect with me via:
 
