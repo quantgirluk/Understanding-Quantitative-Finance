@@ -362,18 +362,23 @@ title="Print to PDF"
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#python-implementation">
+     4.2.3. Python Implementation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#marginal-distributions-in-python">
-     4.2.3. Marginal Distributions in Python
+     4.2.4. Marginal Distributions in Python
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#probability-density-functions">
-     4.2.4. Probability Density Functions
+     4.2.5. Probability Density Functions
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#sampling">
-     4.2.5. Sampling
+     4.2.6. Sampling
     </a>
    </li>
   </ul>
@@ -477,18 +482,23 @@ title="Print to PDF"
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#python-implementation">
+     4.2.3. Python Implementation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#marginal-distributions-in-python">
-     4.2.3. Marginal Distributions in Python
+     4.2.4. Marginal Distributions in Python
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#probability-density-functions">
-     4.2.4. Probability Density Functions
+     4.2.5. Probability Density Functions
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#sampling">
-     4.2.5. Sampling
+     4.2.6. Sampling
     </a>
    </li>
   </ul>
@@ -569,10 +579,9 @@ title="Print to PDF"
 <section id="definition">
 <h2><span class="section-number">4.1. </span>Definition<a class="headerlink" href="#definition" title="Permalink to this headline">#</a></h2>
 <p>The Vasicek model specifies that the instantaneous interest rate is defined by a stochastic process which can be defined by the following Stochastic Differential Equation (SDE)</p>
-<div class="amsmath math notranslate nohighlight" id="equation-92c156bf-c43f-4b52-8ded-c6df522d6844">
-<span class="eqno">(4.1)<a class="headerlink" href="#equation-92c156bf-c43f-4b52-8ded-c6df522d6844" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-43013750-382d-4e78-b8e1-9369a89e745a">
+<span class="eqno">(4.1)<a class="headerlink" href="#equation-43013750-382d-4e78-b8e1-9369a89e745a" title="Permalink to this equation">#</a></span>\[\begin{equation}
 dX_t = \theta (\mu - X_t) dt + \sigma dW_t, \quad t &gt;0,
-\tag{1}
 \end{equation}\]</div>
 <p>with initial condition  <span class="math notranslate nohighlight">\(X_0 =x_0\in\mathbb{R}\)</span>, and where <span class="math notranslate nohighlight">\(W_t\)</span> is a standard Brownian motion, and the three parameters are constants:</p>
 <ul class="simple">
@@ -589,10 +598,9 @@ X_te^{\theta t} &amp;= x_0 +\int_0^t X_s \theta e^{\theta s}ds + \int_0^t e^{\th
 &amp; = x_0 + \mu(e^{\theta t} - 1) + \int_0^t e^{\theta s}\sigma dW_s.
 \end{align*}\]</div>
 <p>Thus</p>
-<div class="amsmath math notranslate nohighlight" id="equation-17b7217b-884c-45db-8070-4461668b21f6">
-<span class="eqno">(4.2)<a class="headerlink" href="#equation-17b7217b-884c-45db-8070-4461668b21f6" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-43e0ba02-6137-43cf-8f35-84e69eec5d89">
+<span class="eqno">(4.2)<a class="headerlink" href="#equation-43e0ba02-6137-43cf-8f35-84e69eec5d89" title="Permalink to this equation">#</a></span>\[\begin{equation}
 X_t = x_0e^{-\theta t} +  \mu(1- e^{-\theta t})  + \sigma \int_0^t e^{-\theta (t-s)}dW_s.
-\tag{2}
 \end{equation}\]</div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -601,41 +609,36 @@ X_t = x_0e^{-\theta t} +  \mu(1- e^{-\theta t})  + \sigma \int_0^t e^{-\theta (t
 </section>
 <section id="marginal-distributions">
 <h2><span class="section-number">4.2. </span>Marginal Distributions<a class="headerlink" href="#marginal-distributions" title="Permalink to this headline">#</a></h2>
-<p>Equation (2) implies that for each <span class="math notranslate nohighlight">\(t&gt;0\)</span>, the variable <span class="math notranslate nohighlight">\(X_t\)</span> follows a normal distribution –since it can be expressed as the sum of a deterministic part and the integral of a deterministic function with respect to the Brownian motion.</p>
-<p>Moreover, using the properties of the Brownian Motion we can obtain the following expressions for its expectation and variance</p>
-<div class="amsmath math notranslate nohighlight">
-\[\begin{equation*}
-\mathbf{E} [X_t ] = x_0e^{-\theta t} +  \mu(1- e^{-\theta t}),,
-\end{equation*}\]</div>
-<p>and</p>
-<div class="amsmath math notranslate nohighlight">
-\[\begin{equation*}
-\mathbf{Var} [X_t ] = \frac{\sigma^2}{ 2\theta} (1- e^{-2\theta t}).
-\end{equation*}\]</div>
-<p>That is,</p>
-<div class="amsmath math notranslate nohighlight">
-\[\begin{equation*}
-X_t \sim \mathcal{N}\left(x_0e^{-\theta t} +  \mu(1- e^{-\theta t}),  \frac{\sigma}{ \sqrt{2\theta}}  \sqrt{ (1- e^{-2\theta t})} \right).
-\end{equation*}\]</div>
+<p>Equation (4.2) implies that for each <span class="math notranslate nohighlight">\(t&gt;0\)</span>, the variable <span class="math notranslate nohighlight">\(X_t\)</span> follows a <strong>normal distribution</strong> –since it can be expressed as the sum of a deterministic part and the integral of a deterministic function with respect to the Brownian motion.</p>
+<p>Moreover, using the properties of the Brownian Motion we can obtain the following expressions for its expectation and variance.</p>
 <section id="expectation-and-variance">
 <h3><span class="section-number">4.2.1. </span>Expectation and Variance<a class="headerlink" href="#expectation-and-variance" title="Permalink to this headline">#</a></h3>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{equation*}
-\mathbf{E} [X_t ] = x_0e^{-\theta t} +  \mu(1- e^{-\theta t}),,
+\mathbf{E} [X_t ] = x_0e^{-\theta t} +  \mu(1- e^{-\theta t}),
 \end{equation*}\]</div>
 <p>and</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{equation*}
 \mathbf{Var} [X_t ] = \frac{\sigma^2}{ 2\theta} (1- e^{-2\theta t}).
 \end{equation*}\]</div>
-<p>To calculate the expectation of <span class="math notranslate nohighlight">\(X_t\)</span> wi simply use the linearity of the expectation and the fact that the Ito integral in expression (2) is a martingale. Similarly, for the variance we only use properties of the variance and the isometry property of the Ito integral.</p>
+<p>To calculate the expectation of <span class="math notranslate nohighlight">\(X_t\)</span> we simply use the linearity of the expectation and the fact that the Ito integral in expression (2) is a martingale. Similarly, for the variance we only use properties of the variance and the isometry property of the Ito integral.</p>
+<p>Hence, for each <span class="math notranslate nohighlight">\(t&gt;0\)</span>, we have</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+X_t \sim \mathcal{N}\left(x_0e^{-\theta t} +  \mu(1- e^{-\theta t}),  \frac{\sigma}{ \sqrt{2\theta}}  \sqrt{ (1- e^{-2\theta t})} \right).
+\end{equation*}\]</div>
 </section>
 <section id="covariance">
 <h3><span class="section-number">4.2.2. </span>Covariance<a class="headerlink" href="#covariance" title="Permalink to this headline">#</a></h3>
 <p>In addition, we can verify that</p>
 <div class="math notranslate nohighlight">
-\[Cov(X_t, X_s ) = \frac{\sigma^2 }{ 2\theta}e^{-\theta (t+s)} (e^{2\theta \min\{t,s\}}-1).\]</div>
-<p>So, for given <span class="math notranslate nohighlight">\(x_0, \theta&gt;0, \mu, \sigma&gt;0\)</span> and <span class="math notranslate nohighlight">\(t,s&gt;0\)</span> we can implement the above formulas in <code class="docutils literal notranslate"><span class="pre">Python</span></code>.</p>
+\[Cov(X_t, X_s ) = \frac{\sigma^2 }{ 2\theta}e^{-\theta (t+s)} (e^{2\theta \min\{t,s\}}-1),\]</div>
+<p>for any give <span class="math notranslate nohighlight">\(t,s &gt;0.\)</span></p>
+</section>
+<section id="python-implementation">
+<h3><span class="section-number">4.2.3. </span>Python Implementation<a class="headerlink" href="#python-implementation" title="Permalink to this headline">#</a></h3>
+<p>So, for given <span class="math notranslate nohighlight">\(x_0, \theta&gt;0, \mu, \sigma&gt;0\)</span> and <span class="math notranslate nohighlight">\(t,s&gt;0\)</span> we can implement the above formulas for the expectation, variance, and covariance as follows.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -646,7 +649,6 @@ X_t \sim \mathcal{N}\left(x_0e^{-\theta t} +  \mu(1- e^{-\theta t}),  \frac{\sig
 <span class="n">sigma</span> <span class="o">=</span> <span class="mf">0.5</span>
 <span class="n">t</span><span class="o">=</span> <span class="mi">10</span>
 <span class="n">s</span> <span class="o">=</span> <span class="mi">5</span>
-
 
 <span class="n">exp</span> <span class="o">=</span> <span class="n">x0</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mf">1.0</span><span class="o">*</span><span class="n">theta</span><span class="o">*</span><span class="n">t</span><span class="p">)</span> <span class="o">+</span>  <span class="n">mu</span><span class="o">*</span><span class="p">(</span><span class="mf">1.0</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mf">1.0</span><span class="o">*</span><span class="n">theta</span><span class="o">*</span><span class="n">t</span><span class="p">))</span>
 <span class="n">var</span> <span class="o">=</span> <span class="n">sigma</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="p">(</span><span class="mf">2.0</span><span class="o">*</span><span class="n">theta</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mf">2.0</span><span class="o">*</span><span class="n">theta</span><span class="o">*</span><span class="n">t</span><span class="p">))</span> 
@@ -670,7 +672,7 @@ Cov[X_t, X_s]=0.000842
 </div>
 </section>
 <section id="marginal-distributions-in-python">
-<h3><span class="section-number">4.2.3. </span>Marginal Distributions in Python<a class="headerlink" href="#marginal-distributions-in-python" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">4.2.4. </span>Marginal Distributions in Python<a class="headerlink" href="#marginal-distributions-in-python" title="Permalink to this headline">#</a></h3>
 <p>Knowing the distribution –with its corresponding parameters– of the marginal distributions allows us to reproduce them with <code class="docutils literal notranslate"><span class="pre">Python</span></code>.</p>
 <p>One way to do this is by using the object  <code class="docutils literal notranslate"><span class="pre">norm</span></code>  from the library <code class="docutils literal notranslate"><span class="pre">scipy.stats</span></code>.  The next cell shows how to create <span class="math notranslate nohighlight">\(X_1\)</span> using this method.</p>
 <div class="cell docutils container">
@@ -714,6 +716,8 @@ Cov[X_t, X_s]=0.000842
 
 <span class="n">process</span> <span class="o">=</span> <span class="n">Vasicek</span><span class="p">(</span><span class="n">theta</span><span class="o">=</span><span class="n">theta</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="n">mu</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="n">sigma</span><span class="p">,</span> <span class="n">initial</span><span class="o">=</span><span class="n">x0</span><span class="p">)</span>
 <span class="n">X_1</span> <span class="o">=</span> <span class="n">process</span><span class="o">.</span><span class="n">get_marginal</span><span class="p">(</span><span class="n">t</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Now we can calculate the mean and the variance of X_1</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">X_1</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">X_1</span><span class="o">.</span><span class="n">var</span><span class="p">())</span>
 </pre></div>
@@ -729,7 +733,7 @@ Cov[X_t, X_s]=0.000842
 <p>Hereafter, we will use the latter method to create marginal distributions from the Vacisek process.</p>
 </section>
 <section id="probability-density-functions">
-<h3><span class="section-number">4.2.4. </span>Probability Density Functions<a class="headerlink" href="#probability-density-functions" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">4.2.5. </span>Probability Density Functions<a class="headerlink" href="#probability-density-functions" title="Permalink to this headline">#</a></h3>
 <p>The probability density function (pdf) of the marginal distribution <span class="math notranslate nohighlight">\(X_t\)</span> is given by the following expression</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{equation*}
@@ -752,11 +756,13 @@ f(x, t; \theta,  \mu, \sigma) = \dfrac{1}{ \frac{\sigma}{ \sqrt{2\theta}}  \sqrt
 </div>
 </div>
 </div>
+<p>First we consider the process
+<code class="docutils literal notranslate"><span class="pre">Vasicek(theta=1.0,</span> <span class="pre">mu=10.0,</span> <span class="pre">sigma=0.5,</span> <span class="pre">initial=1.0)</span></code> and plot the marginal density of <span class="math notranslate nohighlight">\(X_1\)</span>. Note how the mean is still far from the long term mean <span class="math notranslate nohighlight">\(\mu\)</span>.</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">process</span> <span class="o">=</span> <span class="n">Vasicek</span><span class="p">(</span><span class="n">theta</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">initial</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">process</span> <span class="o">=</span> <span class="n">Vasicek</span><span class="p">(</span><span class="n">theta</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="mf">10.0</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">initial</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
 <span class="n">X_1</span> <span class="o">=</span> <span class="n">process</span><span class="o">.</span><span class="n">get_marginal</span><span class="p">(</span><span class="n">t</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">X_1</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mf">0.999</span><span class="p">),</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">X_1</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mf">0.001</span><span class="p">),</span> <span class="n">X_1</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mf">0.999</span><span class="p">),</span> <span class="mi">100</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">X_1</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.75</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;$t$=</span><span class="si">{</span><span class="mi">1</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;$X_1$ pdf&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -764,9 +770,15 @@ f(x, t; \theta,  \mu, \sigma) = \dfrac{1}{ \frac{\sigma}{ \sqrt{2\theta}}  \sqrt
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/vasicek_18_0.png" src="_images/vasicek_18_0.png" />
+<img alt="_images/vasicek_19_0.png" src="_images/vasicek_19_0.png" />
 </div>
 </div>
+<p>Next we vary the value of the parameter <span class="math notranslate nohighlight">\(\theta\)</span> (the speed of reversion)  <code class="docutils literal notranslate"><span class="pre">Vasicek(theta=theta,</span> <span class="pre">mu=10.0,</span> <span class="pre">sigma=0.5,</span> <span class="pre">initial=1.0)</span></code> and again plot the densities of <span class="math notranslate nohighlight">\(X_1\)</span>. Note how the value of <span class="math notranslate nohighlight">\(\theta\)</span> impacts both the mean and the variance of the density.</p>
+<p>As <span class="math notranslate nohighlight">\(\theta\)</span> increases:</p>
+<ul class="simple">
+<li><p>The expectation goes from being close to the initial point <span class="math notranslate nohighlight">\(x_0 = 1.0\)</span> to being close to the long term mean <span class="math notranslate nohighlight">\(\mu=10.0\)</span>.</p></li>
+<li><p>The variance decreases and the distribution becomes more concentrated around the mean.</p></li>
+</ul>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
@@ -785,9 +797,10 @@ f(x, t; \theta,  \mu, \sigma) = \dfrac{1}{ \frac{\sigma}{ \sqrt{2\theta}}  \sqrt
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/vasicek_19_0.png" src="_images/vasicek_19_0.png" />
+<img alt="_images/vasicek_21_0.png" src="_images/vasicek_21_0.png" />
 </div>
 </div>
+<p>Next we vary the value of the parameter <span class="math notranslate nohighlight">\(\mu\)</span> (the long term mean) in  <code class="docutils literal notranslate"><span class="pre">Vasicek(theta=1.0,</span> <span class="pre">mu=mu,</span> <span class="pre">sigma=0.5,</span> <span class="pre">initial=1.0)</span></code> and again plot the densities corresponding to <span class="math notranslate nohighlight">\(X_1\)</span>. Note how the value of <span class="math notranslate nohighlight">\(\mu\)</span> impacts only the mean of the density. We can see that the mean of the density follows the direction of the parameter <span class="math notranslate nohighlight">\(\mu\)</span> which is expected since it will converge to it when <span class="math notranslate nohighlight">\(t\)</span> goe to infinity.</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
@@ -806,9 +819,10 @@ f(x, t; \theta,  \mu, \sigma) = \dfrac{1}{ \frac{\sigma}{ \sqrt{2\theta}}  \sqrt
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/vasicek_20_0.png" src="_images/vasicek_20_0.png" />
+<img alt="_images/vasicek_23_0.png" src="_images/vasicek_23_0.png" />
 </div>
 </div>
+<p>Next we vary the value of the parameter <span class="math notranslate nohighlight">\(\sigma\)</span> (the volatility) in  <code class="docutils literal notranslate"><span class="pre">Vasicek(theta=1.0,</span> <span class="pre">mu=10.0,</span> <span class="pre">sigma=sigma,</span> <span class="pre">initial=1.0)</span></code> and again plot the densities of <span class="math notranslate nohighlight">\(X_1\)</span>. Note that the value of <span class="math notranslate nohighlight">\(\sigma\)</span> impacts only the variance of the density while the mean remains constant. As <span class="math notranslate nohighlight">\(\sigma\)</span> increases the variance of <span class="math notranslate nohighlight">\(X_1\)</span> increases and the distribution becomes wider. We can see this by looking at the range in the x-axis of the plots.</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
@@ -827,14 +841,20 @@ f(x, t; \theta,  \mu, \sigma) = \dfrac{1}{ \frac{\sigma}{ \sqrt{2\theta}}  \sqrt
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/vasicek_21_0.png" src="_images/vasicek_21_0.png" />
+<img alt="_images/vasicek_25_0.png" src="_images/vasicek_25_0.png" />
 </div>
 </div>
+<p>Finally, we will keep all parameters fixed in <code class="docutils literal notranslate"><span class="pre">Vasicek(theta=1.0,</span> <span class="pre">mu=10.0,</span> <span class="pre">sigma=0.5,</span> <span class="pre">initial=1.0)</span></code> and now plot the densities of <span class="math notranslate nohighlight">\(X_t\)</span> for several values of <span class="math notranslate nohighlight">\(t\)</span>. Note how varying <span class="math notranslate nohighlight">\(t\)</span> would impact both the mean and the variance of the density.</p>
+<p>As <span class="math notranslate nohighlight">\(t\)</span> increases:</p>
+<ul class="simple">
+<li><p>The expectation goes from being close to the initial point <span class="math notranslate nohighlight">\(x_0 = 1.0\)</span> to being close to the long term mean <span class="math notranslate nohighlight">\(\mu=10.0\)</span>.</p></li>
+<li><p>The variance also increases but note that it seems to stabilise. We can see this especially in the third graph.</p></li>
+</ul>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">process</span> <span class="o">=</span> <span class="n">Vasicek</span><span class="p">(</span><span class="n">theta</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="mf">10.0</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">initial</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
 <span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
-<span class="n">t_values</span> <span class="o">=</span> <span class="p">([</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span>  <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">10</span><span class="p">,])</span>
+<span class="n">t_values</span> <span class="o">=</span> <span class="p">([</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span>  <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">])</span>
 <span class="k">for</span> <span class="p">(</span><span class="n">ts</span><span class="p">,</span> <span class="n">ax</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">t_values</span><span class="p">,</span> <span class="n">axs</span><span class="p">):</span>
     <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">ts</span><span class="p">:</span>
         <span class="n">X_t</span> <span class="o">=</span> <span class="n">process</span><span class="o">.</span><span class="n">get_marginal</span><span class="p">(</span><span class="n">t</span><span class="o">=</span><span class="n">t</span><span class="p">)</span>
@@ -848,12 +868,12 @@ f(x, t; \theta,  \mu, \sigma) = \dfrac{1}{ \frac{\sigma}{ \sqrt{2\theta}}  \sqrt
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/vasicek_22_0.png" src="_images/vasicek_22_0.png" />
+<img alt="_images/vasicek_27_0.png" src="_images/vasicek_27_0.png" />
 </div>
 </div>
 </section>
 <section id="sampling">
-<h3><span class="section-number">4.2.5. </span>Sampling<a class="headerlink" href="#sampling" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">4.2.6. </span>Sampling<a class="headerlink" href="#sampling" title="Permalink to this headline">#</a></h3>
 <p>Now, let’s see how to get a random sample from <span class="math notranslate nohighlight">\(X_t\)</span> for any  <span class="math notranslate nohighlight">\(t&gt;0\)</span>.</p>
 <p>The next cell shows how to get a sample of size 5 from <span class="math notranslate nohighlight">\(X_1\)</span>.</p>
 <div class="cell docutils container">
@@ -867,7 +887,7 @@ f(x, t; \theta,  \mu, \sigma) = \dfrac{1}{ \frac{\sigma}{ \sqrt{2\theta}}  \sqrt
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([6.43656724, 6.92793816, 7.13477328, 6.25194147, 7.13121126])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([6.44026384, 6.43072594, 6.5181801 , 6.62296318, 6.62898782])
 </pre></div>
 </div>
 </div>
@@ -881,7 +901,7 @@ f(x, t; \theta,  \mu, \sigma) = \dfrac{1}{ \frac{\sigma}{ \sqrt{2\theta}}  \sqrt
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([10.28569304, 10.2596705 ,  9.8032207 ,  9.45563005,  9.6640274 ])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 9.93734992,  9.00117922,  9.39360832, 10.49159404,  9.23152586])
 </pre></div>
 </div>
 </div>
@@ -916,7 +936,7 @@ t_i = \frac{i}{n-1} T \qquad  \hbox{for } i = 0, \cdots, n-1.
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/vasicek_29_0.png" src="_images/vasicek_29_0.png" />
+<img alt="_images/vasicek_34_0.png" src="_images/vasicek_34_0.png" />
 </div>
 </div>
 <div class="admonition note">
@@ -933,7 +953,7 @@ t_i = \frac{i}{n-1} T \qquad  \hbox{for } i = 0, \cdots, n-1.
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/vasicek_32_0.png" src="_images/vasicek_32_0.png" />
+<img alt="_images/vasicek_37_0.png" src="_images/vasicek_37_0.png" />
 </div>
 </div>
 </section>
@@ -952,12 +972,7 @@ t_i = \frac{i}{n-1} T \qquad  \hbox{for } i = 0, \cdots, n-1.
 \[\begin{equation*}
 \lim_{t\rightarrow\infty}\mathbf{Var} [X_t ]  = \lim_{t\rightarrow\infty}  \frac{\sigma^2}{ 2\theta} (1- e^{-2\theta t}) =  \frac{\sigma^2}{ 2\theta}.
 \end{equation*}\]</div>
-<p>So, the marginal distribution <span class="math notranslate nohighlight">\(X_t\)</span> given an initial point <span class="math notranslate nohighlight">\(x_0\)</span> converges to</p>
-<div class="amsmath math notranslate nohighlight">
-\[\begin{equation*}
-\mathcal{N} \left(\mu  ,  \frac{\sigma}{ \sqrt{2\theta} }\right),
-\end{equation*}\]</div>
-<p>as <span class="math notranslate nohighlight">\(t\)</span> goes to infinity.</p>
+<p>Next, we illustrate the convergence of both the mean and the variance of <span class="math notranslate nohighlight">\(X_t\)</span> as <span class="math notranslate nohighlight">\(t\)</span> grows. Note that the speed of convergence is determined by <span class="math notranslate nohighlight">\(\theta\)</span>.</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">draw_mean_variance</span><span class="p">(</span><span class="n">x0</span><span class="p">,</span> <span class="n">theta</span><span class="p">,</span> <span class="n">mu</span><span class="p">,</span> <span class="n">sigma</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="mi">100</span><span class="p">):</span>
@@ -988,7 +1003,7 @@ t_i = \frac{i}{n-1} T \qquad  \hbox{for } i = 0, \cdots, n-1.
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/vasicek_35_0.png" src="_images/vasicek_35_0.png" />
+<img alt="_images/vasicek_41_0.png" src="_images/vasicek_41_0.png" />
 </div>
 </div>
 <div class="cell tag_hide-input docutils container">
@@ -998,18 +1013,19 @@ t_i = \frac{i}{n-1} T \qquad  \hbox{for } i = 0, \cdots, n-1.
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/vasicek_36_0.png" src="_images/vasicek_36_0.png" />
+<img alt="_images/vasicek_42_0.png" src="_images/vasicek_42_0.png" />
 </div>
 </div>
 </section>
 <section id="marginal">
 <h3><span class="section-number">4.4.2. </span>Marginal<a class="headerlink" href="#marginal" title="Permalink to this headline">#</a></h3>
-<p>The marginal distribution <span class="math notranslate nohighlight">\(X_t\)</span> given an initial point <span class="math notranslate nohighlight">\(x_0\)</span> converges to</p>
+<p>The marginal distribution <span class="math notranslate nohighlight">\(X_t\)</span> given an initial point <span class="math notranslate nohighlight">\(x_0\)</span>, converges to</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{equation*}
-\mathcal{N} \left(\mu  ,  \frac{\sigma}{ \sqrt{2\theta} }\right),
+X_{\infty} \sim  \mathcal{N} \left(\mu  ,  \frac{\sigma}{ \sqrt{2\theta} }\right),
 \end{equation*}\]</div>
-<p>as <span class="math notranslate nohighlight">\(t\)</span> goes to infinity.</p>
+<p>as <span class="math notranslate nohighlight">\(t\)</span> goes to infinity. Let’s make some simulations to illustrate this convergence.</p>
+<p>First, we simulate 1000 paths from <code class="docutils literal notranslate"><span class="pre">Vasicek(theta=1.0,</span> <span class="pre">mu=10.0,</span> <span class="pre">sigma=2.0,</span> <span class="pre">initial=1.0,</span> <span class="pre">T=1.0)</span></code> over the interval <span class="math notranslate nohighlight">\([0,1]\)</span>. Here, we can see the the distribution of <span class="math notranslate nohighlight">\(X_1\)</span> has mean around 6.0. This means that the process has not reached convergence, since we have not arrived to the long term mean <span class="math notranslate nohighlight">\(\mu=10.0\)</span>.</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">process</span> <span class="o">=</span> <span class="n">Vasicek</span><span class="p">(</span><span class="n">theta</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="mf">10.0</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">initial</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
@@ -1019,19 +1035,20 @@ t_i = \frac{i}{n-1} T \qquad  \hbox{for } i = 0, \cdots, n-1.
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/vasicek_38_0.png" src="_images/vasicek_38_0.png" />
+<img alt="_images/vasicek_45_0.png" src="_images/vasicek_45_0.png" />
 </div>
 </div>
+<p>Now, we simulate 1000 paths from the same process <code class="docutils literal notranslate"><span class="pre">Vasicek(theta=1.0,</span> <span class="pre">mu=10.0,</span> <span class="pre">sigma=2.0,</span> <span class="pre">initial=1.0,</span> <span class="pre">T=15)</span></code> but this time over the interval <span class="math notranslate nohighlight">\([0,15]\)</span>. In the picture, we can see the the distribution of <span class="math notranslate nohighlight">\(X_{15}\)</span> has mean equal to the long term mean <span class="math notranslate nohighlight">\(\mu=10\)</span>. The process has reached convergence!</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">process</span> <span class="o">=</span> <span class="n">Vasicek</span><span class="p">(</span><span class="n">theta</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="mf">10.0</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">initial</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="mf">10.0</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">process</span> <span class="o">=</span> <span class="n">Vasicek</span><span class="p">(</span><span class="n">theta</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="mf">10.0</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">initial</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="mf">15.0</span><span class="p">)</span>
 <span class="n">process</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Vasicek Process reaching convergence to the asymptotic distribution&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/vasicek_39_0.png" src="_images/vasicek_39_0.png" />
+<img alt="_images/vasicek_47_0.png" src="_images/vasicek_47_0.png" />
 </div>
 </div>
 <section id="the-parameter-theta-determines-the-speed-of-convergence">
@@ -1045,7 +1062,7 @@ t_i = \frac{i}{n-1} T \qquad  \hbox{for } i = 0, \cdots, n-1.
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/vasicek_41_0.png" src="_images/vasicek_41_0.png" />
+<img alt="_images/vasicek_49_0.png" src="_images/vasicek_49_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1057,7 +1074,7 @@ t_i = \frac{i}{n-1} T \qquad  \hbox{for } i = 0, \cdots, n-1.
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/vasicek_42_0.png" src="_images/vasicek_42_0.png" />
+<img alt="_images/vasicek_50_0.png" src="_images/vasicek_50_0.png" />
 </div>
 </div>
 </section>
@@ -1072,7 +1089,7 @@ t_i = \frac{i}{n-1} T \qquad  \hbox{for } i = 0, \cdots, n-1.
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/vasicek_44_0.png" src="_images/vasicek_44_0.png" />
+<img alt="_images/vasicek_52_0.png" src="_images/vasicek_52_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1084,7 +1101,7 @@ t_i = \frac{i}{n-1} T \qquad  \hbox{for } i = 0, \cdots, n-1.
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/vasicek_45_0.png" src="_images/vasicek_45_0.png" />
+<img alt="_images/vasicek_53_0.png" src="_images/vasicek_53_0.png" />
 </div>
 </div>
 </section>
@@ -1103,7 +1120,7 @@ t_i = \frac{i}{n-1} T \qquad  \hbox{for } i = 0, \cdots, n-1.
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/vasicek_47_0.png" src="_images/vasicek_47_0.png" />
+<img alt="_images/vasicek_55_0.png" src="_images/vasicek_55_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1116,7 +1133,7 @@ t_i = \frac{i}{n-1} T \qquad  \hbox{for } i = 0, \cdots, n-1.
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/vasicek_48_0.png" src="_images/vasicek_48_0.png" />
+<img alt="_images/vasicek_56_0.png" src="_images/vasicek_56_0.png" />
 </div>
 </div>
 <div class="cell tag_hide-input docutils container">
@@ -1146,7 +1163,7 @@ t_i = \frac{i}{n-1} T \qquad  \hbox{for } i = 0, \cdots, n-1.
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/vasicek_49_0.png" src="_images/vasicek_49_0.png" />
+<img alt="_images/vasicek_57_0.png" src="_images/vasicek_57_0.png" />
 </div>
 </div>
 </section>
