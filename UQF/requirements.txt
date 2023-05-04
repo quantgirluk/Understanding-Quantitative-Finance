@@ -2,4 +2,4 @@ jupyter-book
 matplotlib
 numpy
 scipy
-aleatory
+aleatory >= 0.1.1
