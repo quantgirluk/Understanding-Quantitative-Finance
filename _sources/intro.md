@@ -11,11 +11,11 @@ The idea is to use [Python](https://www.python.org) &#x1F40D;to illustrate the t
 
 ```{note}
 
-This project is under construction 🚧 and notes will be released on an ongoing basis 🌱
+This project is under construction 🦺 and notes will be released on an ongoing basis 🌱
 
 ```
 
-[![Visitors](https://api.visitorbadge.io/api/visitors?path=https%3A%2F%2Fquantgirluk.github.io%2FUnderstanding-Quantitative-Finance%2Fintro.html&label=Thanks%20for%20visiting!&countColor=%23ba68c8&style=plastic&labelStyle=none)](https://visitorbadge.io/status?path=https%3A%2F%2Fquantgirluk.github.io%2FUnderstanding-Quantitative-Finance%2Fintro.html) ✨
+Thanks for visiting ✨
 
 Connect with me via:
 
@@ -24,6 +24,8 @@ Connect with me via:
 - 📸 [Instagram](https://www.instagram.com/quant_girl/)
 - 👾[Personal Website](https://quantgirl.blog)
 
-```{Tip}
+```{}
 ⭐️ If you like this projet, please give it a star in [GitHub](https://github.com/quantgirluk/Understanding-Quantitative-Finance) ⭐️
 ```
+
+[![Visitors](https://api.visitorbadge.io/api/visitors?path=https%3A%2F%2Fquantgirluk.github.io%2FUnderstanding-Quantitative-Finance%2Fintro.html&label=Visitors&labelColor=%23d9e3f0&countColor=%23555555&style=plastic&labelStyle=none)](https://visitorbadge.io/status?path=https%3A%2F%2Fquantgirluk.github.io%2FUnderstanding-Quantitative-Finance%2Fintro.html)

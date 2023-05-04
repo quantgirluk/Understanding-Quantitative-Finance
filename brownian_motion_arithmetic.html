@@ -537,14 +537,14 @@ title="Print to PDF"
 <section id="id1">
 <h2><span class="section-number">2.2. </span>Definition<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h2>
 <p>The Arithmetic Brownian motion can be defined by the following Stochastic Differential Equation (SDE)</p>
-<div class="amsmath math notranslate nohighlight" id="equation-b98ffaf1-bb06-46a1-9815-dacbec9bc2a8">
-<span class="eqno">(2.1)<a class="headerlink" href="#equation-b98ffaf1-bb06-46a1-9815-dacbec9bc2a8" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-1f54a887-31a9-4c3d-a48a-37df60cb60cb">
+<span class="eqno">(2.1)<a class="headerlink" href="#equation-1f54a887-31a9-4c3d-a48a-37df60cb60cb" title="Permalink to this equation">#</a></span>\[\begin{equation}
 dX_t = \mu dt + \sigma W_t, \quad t &gt;0,
 \end{equation}\]</div>
 <p>with initial condition <span class="math notranslate nohighlight">\(X_0 =x_0\)</span>, and constant parameters <span class="math notranslate nohighlight">\(\mu\in \mathbb{R}\)</span>, <span class="math notranslate nohighlight">\(\sigma&gt;0\)</span>. Without loss of generality we are going to assume that <span class="math notranslate nohighlight">\(x_0=0\)</span>. Here, <span class="math notranslate nohighlight">\(W_t\)</span> denotes a standard Brownian motion.</p>
 <p>Equation (2.1) equivales to</p>
-<div class="amsmath math notranslate nohighlight" id="equation-cb94eb60-d52e-4fb4-933e-cdc8cfe099a1">
-<span class="eqno">(2.2)<a class="headerlink" href="#equation-cb94eb60-d52e-4fb4-933e-cdc8cfe099a1" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-16a6eb57-dec7-4fd9-8ae9-0b14f20fb3b4">
+<span class="eqno">(2.2)<a class="headerlink" href="#equation-16a6eb57-dec7-4fd9-8ae9-0b14f20fb3b4" title="Permalink to this equation">#</a></span>\[\begin{align}
 X_t &amp;= \int_0^t \mu ds + \int_0^t \sigma dW_t =  \mu t +  \sigma W_t,
 \end{align}\]</div>
 <p>which gives us the solution.</p>
@@ -568,8 +568,8 @@ X_t &amp;= \int_0^t \mu ds + \int_0^t \sigma dW_t =  \mu t +  \sigma W_t,
 \mathbf{Var} [X_t] = \sigma^2 t \qquad \forall t&gt; 0.
 \end{equation*}\]</div>
 <p>So we have</p>
-<div class="amsmath math notranslate nohighlight" id="equation-a2fd173c-dd28-4eae-9283-1c37176329ea">
-<span class="eqno">(2.3)<a class="headerlink" href="#equation-a2fd173c-dd28-4eae-9283-1c37176329ea" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-937cc874-9cf9-4b66-8919-72c465d7094f">
+<span class="eqno">(2.3)<a class="headerlink" href="#equation-937cc874-9cf9-4b66-8919-72c465d7094f" title="Permalink to this equation">#</a></span>\[\begin{equation}
 X_t \sim \mathcal{N}(\mu t, \sigma^2 t),  \qquad \forall t&gt;0.
 \end{equation}\]</div>
 <p>Besides, for any <span class="math notranslate nohighlight">\( t &gt; s &gt;0\)</span>, we have</p>
@@ -745,7 +745,7 @@ Moreover, we can make the following observations:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.67435463, 0.45103835, 0.65350234, 0.94309073, 0.91268189])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.84045904, 0.98350106, 1.15544534, 0.95173808, 0.90374967])
 </pre></div>
 </div>
 </div>
@@ -759,7 +759,7 @@ Moreover, we can make the following observations:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([10.57045042, 10.11838209,  9.79786485, 10.0367133 , 11.25754937])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 9.77199949,  9.80086274,  9.25898234, 11.3112022 , 10.33791409])
 </pre></div>
 </div>
 </div>

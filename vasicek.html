@@ -569,8 +569,8 @@ title="Print to PDF"
 <section id="definition">
 <h2><span class="section-number">4.1. </span>Definition<a class="headerlink" href="#definition" title="Permalink to this headline">#</a></h2>
 <p>The Vasicek model specifies that the instantaneous interest rate is defined by a stochastic process which can be defined by the following Stochastic Differential Equation (SDE)</p>
-<div class="amsmath math notranslate nohighlight" id="equation-c92604e9-e39a-4df9-be60-25a88ecdd855">
-<span class="eqno">(4.1)<a class="headerlink" href="#equation-c92604e9-e39a-4df9-be60-25a88ecdd855" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-92c156bf-c43f-4b52-8ded-c6df522d6844">
+<span class="eqno">(4.1)<a class="headerlink" href="#equation-92c156bf-c43f-4b52-8ded-c6df522d6844" title="Permalink to this equation">#</a></span>\[\begin{equation}
 dX_t = \theta (\mu - X_t) dt + \sigma dW_t, \quad t &gt;0,
 \tag{1}
 \end{equation}\]</div>
@@ -589,8 +589,8 @@ X_te^{\theta t} &amp;= x_0 +\int_0^t X_s \theta e^{\theta s}ds + \int_0^t e^{\th
 &amp; = x_0 + \mu(e^{\theta t} - 1) + \int_0^t e^{\theta s}\sigma dW_s.
 \end{align*}\]</div>
 <p>Thus</p>
-<div class="amsmath math notranslate nohighlight" id="equation-6c069137-d395-40b9-8ba3-b59c982433c5">
-<span class="eqno">(4.2)<a class="headerlink" href="#equation-6c069137-d395-40b9-8ba3-b59c982433c5" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-17b7217b-884c-45db-8070-4461668b21f6">
+<span class="eqno">(4.2)<a class="headerlink" href="#equation-17b7217b-884c-45db-8070-4461668b21f6" title="Permalink to this equation">#</a></span>\[\begin{equation}
 X_t = x_0e^{-\theta t} +  \mu(1- e^{-\theta t})  + \sigma \int_0^t e^{-\theta (t-s)}dW_s.
 \tag{2}
 \end{equation}\]</div>
@@ -867,7 +867,7 @@ f(x, t; \theta,  \mu, \sigma) = \dfrac{1}{ \frac{\sigma}{ \sqrt{2\theta}}  \sqrt
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([6.58041946, 6.73164346, 6.58260414, 6.84347332, 6.23945602])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([6.43656724, 6.92793816, 7.13477328, 6.25194147, 7.13121126])
 </pre></div>
 </div>
 </div>
@@ -881,7 +881,7 @@ f(x, t; \theta,  \mu, \sigma) = \dfrac{1}{ \frac{\sigma}{ \sqrt{2\theta}}  \sqrt
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 9.43233924,  9.79065843,  9.84617737, 10.67410312, 10.22500075])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([10.28569304, 10.2596705 ,  9.8032207 ,  9.45563005,  9.6640274 ])
 </pre></div>
 </div>
 </div>
