@@ -7,15 +7,9 @@ This is a collection of notes exploring a number of topics in Quantitative Finan
 ```{tableofcontents}
 ```
 
-```{note}
-
-This project is under construction 🦺 and notes will be released on an ongoing basis 🌱
-
-```
-
 ## Author
 
-I am Dialid Santiago. I have seven years of experience working as a Quant in differents organisations. Currently, I am working as a quantitative analyst in the front office at Bank of America. My previous experience includes the development and implementation of mathematical models for Counterparty Credit Risk, Market Risk, and Wholesale Credit Risk, as well as validation in Retail Credit Risk. I hold a PhD in Mathematics/Statistics from the University of Warwick. Before coming to the UK, I obtained an MSc in Probability and Statistics, and a BSc in Applied Mathematics in Mexico. I regularly [blog](https://quantgirl.blog) about diverse topics.
+I am Dialid Santiago. I have 7 years of experience working as a Quant in differents organisations. Currently, I am working in the Cross-Asset front office quant team at Bank of America. My previous experience includes the development and implementation of mathematical models for Counterparty Credit Risk, Market Risk, and Wholesale Credit Risk, as well as validation in Retail Credit Risk. I hold a PhD in Mathematics/Statistics from the University of Warwick where I spent 4 amazing year focusing on non-linear stochastic processes. Before coming to the UK, I obtained an MSc in Probability and Statistics, and a BSc in Applied Mathematics in Mexico. I regularly [blog](https://quantgirl.blog) about diverse topics.
 
 Connect with me via:
 
@@ -24,10 +18,10 @@ Connect with me via:
 - 📸 [Instagram](https://www.instagram.com/quant_girl/)
 - 👾 [Personal Website](https://quantgirl.blog)
 
-
 ```{note}
 
-⭐️ If you like this projet, please give it a star in [GitHub](https://github.com/quantgirluk/Understanding-Quantitative-Finance) ⭐️
+ - This project is under construction 🦺 and notes will be released on an ongoing basis 🌱
+ - If you like this projet, please give it a star in [GitHub](https://github.com/quantgirluk/Understanding-Quantitative-Finance) ⭐️ 
 
 ```
 
