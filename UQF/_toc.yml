@@ -5,9 +5,12 @@ format: jb-book
 root: intro
 options:  # The options key will be applied to all chapters, but not sub-sections
   numbered: True
-chapters:
-- file: brownian_motion
-- file: brownian_motion_arithmetic
-- file: geometric_brownian_motion
-- file: vasicek
-- file: cir_process
+parts:
+- caption: Stochastic Processes
+  numbered: True
+  chapters:
+  - file: brownian_motion
+  - file: brownian_motion_arithmetic
+  - file: geometric_brownian_motion
+  - file: vasicek
+  - file: cir_process
