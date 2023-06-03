@@ -1,48 +1,59 @@
 
+
 <!DOCTYPE html>
 
-<html>
+
+<html lang="en" >
+
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>3. Geometric Brownian Motion &#8212; Understanding Quantitative Finance</title>
-    
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
 
-    
-  <link rel="stylesheet"
-    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
-    
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
 
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="_static/togglebutton.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
@@ -52,724 +63,367 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'geometric_brownian_motion';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="4. Vasicek Model/Process" href="vasicek.html" />
     <link rel="prev" title="2. Brownian Motion with Drift" href="brownian_motion_arithmetic.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="None">
-    
-
-    <!-- Google Analytics -->
-    
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
-<!-- Checkboxes to toggle the left sidebar -->
-<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
-<label class="overlay overlay-navbar" for="__navigation">
-    <div class="visually-hidden">Toggle navigation sidebar</div>
-</label>
-<!-- Checkboxes to toggle the in-page toc -->
-<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
-<label class="overlay overlay-pagetoc" for="__page-toc">
-    <div class="visually-hidden">Toggle in-page Table of Contents</div>
-</label>
-<!-- Headers at the top -->
-<div class="announcement header-item noprint"></div>
-<div class="header header-item noprint"></div>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
-    
-    <div class="container-fluid" id="banner"></div>
-
-    
-
-    <div class="container-xl">
-      <div class="row">
-          
-<!-- Sidebar -->
-<div class="bd-sidebar noprint" id="site-navigation">
-    <div class="bd-sidebar__content">
-        <div class="bd-sidebar__top"><div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="index.html">
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
       
-        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+      <div class="bd-sidebar-primary bd-sidebar">
         
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+    
+    
       
-      
-      <img src="_static/puzzle.jpeg" class="logo" alt="logo">
-      
-      
-      <h1 class="site-logo" id="site-title">Understanding Quantitative Finance</h1>
-      
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item active">
+    
+    
+    <img src="_static/puzzle.jpeg" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/puzzle.jpeg" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="intro.html">
-                    Welcome 👋🏽
+                    Welcome
                 </a>
             </li>
         </ul>
-        <ul class="current nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="brownian_motion.html">
-   1. Brownian Motion
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="brownian_motion_arithmetic.html">
-   2. Brownian Motion with Drift
-  </a>
- </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   3. Geometric Brownian Motion
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="vasicek.html">
-   4. Vasicek Model/Process
-  </a>
- </li>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Stochastic Processes</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="brownian_motion.html">1. Brownian Motion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="brownian_motion_arithmetic.html">2. Brownian Motion with Drift</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">3. Geometric Brownian Motion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vasicek.html">4. Vasicek Model/Process</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cir_process.html">5. Cox–Ingersoll–Ross process</a></li>
 </ul>
 
     </div>
 </nav></div>
-        <div class="bd-sidebar__bottom">
-             <!-- To handle the deprecated key -->
-            
-            <div class="navbar_extra_footer">
-            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-            </div>
-            
-        </div>
     </div>
-    <div id="rtd-footer-container"></div>
-</div>
-
-
-          
-
-
-          
-<!-- A tiny helper pixel to detect if we've scrolled -->
-<div class="sbt-scroll-pixel-helper"></div>
-<!-- Main content -->
-<div class="col py-0 content-container">
-    
-    <div class="header-article row sticky-top noprint">
-        
-
-
-
-<div class="col py-1 d-flex header-article-main">
-    <div class="header-article__left">
-        
-        <label for="__navigation"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="right"
-title="Toggle navigation"
->
   
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-bars"></i>
-  </span>
-
-</label>
-
-        
-    </div>
-    <div class="header-article__right">
-<div class="menu-dropdown menu-dropdown-launch-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Launch interactive content">
-      <i class="fas fa-rocket"></i>
-  </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://mybinder.org/v2/gh/quantgirluk/Understanding-Quantitative-Finance/master?urlpath=tree/UQF/geometric_brownian_motion.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Launch on Binder"
->
   
-
-<span class="headerbtn__icon-container">
-  
-    <img src="_static/images/logo_binder.svg">
-  </span>
-<span class="headerbtn__text-container">Binder</span>
-</a>
-
-      </li>
-      
-    </ul>
+  <div class="sidebar-primary-items__end sidebar-primary__section">
   </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/quantgirluk/Understanding-Quantitative-Finance" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/quantgirluk/Understanding-Quantitative-Finance/issues/new?title=Issue%20on%20page%20%2Fgeometric_brownian_motion.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
 </div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/geometric_brownian_motion.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
 
 <button onclick="toggleFullScreen()"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="bottom"
-title="Fullscreen mode"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   <i class="fas fa-expand"></i>
   </span>
 
 </button>
 
-<div class="menu-dropdown menu-dropdown-repository-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Source repositories">
-      <i class="fab fa-github"></i>
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://github.com/quantgirluk/Understanding-Quantitative-Finance"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Source repository"
->
-  
+`);
+</script>
 
-<span class="headerbtn__icon-container">
-  <i class="fab fa-github"></i>
-  </span>
-<span class="headerbtn__text-container">repository</span>
-</a>
-
-      </li>
-      
-      <li>
-        <a href="https://github.com/quantgirluk/Understanding-Quantitative-Finance/issues/new?title=Issue%20on%20page%20%2Fgeometric_brownian_motion.html&body=Your%20issue%20content%20here."
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Open an issue"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-lightbulb"></i>
-  </span>
-<span class="headerbtn__text-container">open issue</span>
-</a>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-
-<div class="menu-dropdown menu-dropdown-download-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Download this page">
-      <i class="fas fa-download"></i>
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="_sources/geometric_brownian_motion.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Download source file"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file"></i>
-  </span>
-<span class="headerbtn__text-container">.ipynb</span>
-</a>
-
-      </li>
-      
-      <li>
-        
-<button onclick="printPdf(this)"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="left"
-title="Print to PDF"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file-pdf"></i>
-  </span>
-<span class="headerbtn__text-container">.pdf</span>
-</button>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-<label for="__page-toc"
-  class="headerbtn headerbtn-page-toc"
-  
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-list"></i>
-  </span>
-
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
 </label>
-
+</div></div>
+      
     </div>
+  
 </div>
-
-<!-- Table of contents -->
-<div class="col-md-3 bd-toc show noprint">
-    <div class="tocsection onthispage pt-5 pb-3">
-        <i class="fas fa-list"></i> Contents
-    </div>
-    <nav id="bd-toc-nav" aria-label="Page">
-        <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#definition">
-   3.1. Definition
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#marginal-distributions">
-   3.2. Marginal Distributions
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#expectation-and-variance">
-     3.2.1. Expectation and Variance
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#marginal-distributions-in-python">
-     3.2.2. Marginal Distributions in Python
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#probability-density-functions">
-     3.2.3. Probability Density Functions
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#sampling">
-     3.2.4. Sampling
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#simulation">
-   3.3. Simulation
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#simulating-and-visualising-paths">
-     3.3.1. Simulating and Visualising Paths
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#long-time-behaviour">
-   3.4. Long Time Behaviour
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id1">
-     3.4.1. Expectation and Variance
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#case-1-a-gbm-with-mu-0-and-2-mu-sigma-2-0">
-       3.4.1.1. Case 1. A GBM with
-       <span class="math notranslate nohighlight">
-        \(\mu&gt;0\)
-       </span>
-       and
-       <span class="math notranslate nohighlight">
-        \(2\mu + \sigma^2&gt;0\)
-       </span>
-       .
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#case-2-a-gbm-with-mu-0-and-2-mu-sigma-2-0">
-       3.4.1.2. Case 2. A GBM with
-       <span class="math notranslate nohighlight">
-        \(\mu&lt;0\)
-       </span>
-       and
-       <span class="math notranslate nohighlight">
-        \(2\mu + \sigma^2&gt;0\)
-       </span>
-       .
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#case-3-a-gbm-with-mu-0-and-2-mu-sigma-2-0">
-       3.4.1.3. Case 3. A GBM with
-       <span class="math notranslate nohighlight">
-        \(\mu&lt;0\)
-       </span>
-       and
-       <span class="math notranslate nohighlight">
-        \(2\mu + \sigma^2=0\)
-       </span>
-       .
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#case-4-a-gbm-with-mu-0-and-2-mu-sigma-2-0">
-       3.4.1.4. Case 4. A GBM with
-       <span class="math notranslate nohighlight">
-        \(\mu&lt;0\)
-       </span>
-       and
-       <span class="math notranslate nohighlight">
-        \(2\mu + \sigma^2 &lt; 0\)
-       </span>
-       .
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#case-5-a-gbm-with-mu-0">
-       3.4.1.5. Case 5. A GBM with
-       <span class="math notranslate nohighlight">
-        \(\mu =0 \)
-       </span>
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#marginal">
-     3.4.2. Marginal
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#case-1-if-mu-frac-1-2-sigma-2-then-x-t-rightarrow-infty-in-probability-as-t-rightarrow-infty">
-       3.4.2.1. Case 1. If
-       <span class="math notranslate nohighlight">
-        \(\mu &gt; \frac{1}{2}\sigma^2\)
-       </span>
-       , then
-       <span class="math notranslate nohighlight">
-        \(X_t\rightarrow\infty\)
-       </span>
-       in probability as
-       <span class="math notranslate nohighlight">
-        \(t\rightarrow\infty\)
-       </span>
-       .
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#case-2-if-mu-frac-1-2-sigma-2-then-x-t-rightarrow-0-in-probability-as-t-rightarrow-infty">
-       3.4.2.2. Case 2. If
-       <span class="math notranslate nohighlight">
-        \( \mu&lt;\frac{1}{2}\sigma^2\)
-       </span>
-       , then
-       <span class="math notranslate nohighlight">
-        \(X_t\rightarrow 0\)
-       </span>
-       in probability as
-       <span class="math notranslate nohighlight">
-        \(t\rightarrow\infty\)
-       </span>
-       .
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#case-3-if-mu-frac-1-2-sigma-2-then-x-t-has-no-limit-in-probability-as-t-rightarrow-infty">
-       3.4.2.3. Case 3. If
-       <span class="math notranslate nohighlight">
-        \( \mu = \frac{1}{2}\sigma^2\)
-       </span>
-       , then
-       <span class="math notranslate nohighlight">
-        \(X_t\)
-       </span>
-       has no limit in probability as
-       <span class="math notranslate nohighlight">
-        \(t\rightarrow\infty\)
-       </span>
-       .
-      </a>
-     </li>
-    </ul>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#visualisation">
-   3.5. Visualisation
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#references-and-further-reading">
-   3.6. References and Further Reading
-  </a>
- </li>
-</ul>
-
-    </nav>
 </div>
-    </div>
-    <div class="article row">
-        <div class="col pl-md-3 pl-lg-5 content-container">
-            <!-- Table of contents that is only displayed when printing the page -->
-            <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Geometric Brownian Motion</h1>
-                <!-- Table of contents -->
-                <div id="print-main-content">
-                    <div id="jb-print-toc">
-                        
-                        <div>
-                            <h2> Contents </h2>
-                        </div>
-                        <nav aria-label="Page">
-                            <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#definition">
-   3.1. Definition
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#marginal-distributions">
-   3.2. Marginal Distributions
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#expectation-and-variance">
-     3.2.1. Expectation and Variance
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#marginal-distributions-in-python">
-     3.2.2. Marginal Distributions in Python
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#probability-density-functions">
-     3.2.3. Probability Density Functions
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#sampling">
-     3.2.4. Sampling
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#simulation">
-   3.3. Simulation
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#simulating-and-visualising-paths">
-     3.3.1. Simulating and Visualising Paths
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#long-time-behaviour">
-   3.4. Long Time Behaviour
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id1">
-     3.4.1. Expectation and Variance
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#case-1-a-gbm-with-mu-0-and-2-mu-sigma-2-0">
-       3.4.1.1. Case 1. A GBM with
-       <span class="math notranslate nohighlight">
-        \(\mu&gt;0\)
-       </span>
-       and
-       <span class="math notranslate nohighlight">
-        \(2\mu + \sigma^2&gt;0\)
-       </span>
-       .
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#case-2-a-gbm-with-mu-0-and-2-mu-sigma-2-0">
-       3.4.1.2. Case 2. A GBM with
-       <span class="math notranslate nohighlight">
-        \(\mu&lt;0\)
-       </span>
-       and
-       <span class="math notranslate nohighlight">
-        \(2\mu + \sigma^2&gt;0\)
-       </span>
-       .
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#case-3-a-gbm-with-mu-0-and-2-mu-sigma-2-0">
-       3.4.1.3. Case 3. A GBM with
-       <span class="math notranslate nohighlight">
-        \(\mu&lt;0\)
-       </span>
-       and
-       <span class="math notranslate nohighlight">
-        \(2\mu + \sigma^2=0\)
-       </span>
-       .
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#case-4-a-gbm-with-mu-0-and-2-mu-sigma-2-0">
-       3.4.1.4. Case 4. A GBM with
-       <span class="math notranslate nohighlight">
-        \(\mu&lt;0\)
-       </span>
-       and
-       <span class="math notranslate nohighlight">
-        \(2\mu + \sigma^2 &lt; 0\)
-       </span>
-       .
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#case-5-a-gbm-with-mu-0">
-       3.4.1.5. Case 5. A GBM with
-       <span class="math notranslate nohighlight">
-        \(\mu =0 \)
-       </span>
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#marginal">
-     3.4.2. Marginal
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#case-1-if-mu-frac-1-2-sigma-2-then-x-t-rightarrow-infty-in-probability-as-t-rightarrow-infty">
-       3.4.2.1. Case 1. If
-       <span class="math notranslate nohighlight">
-        \(\mu &gt; \frac{1}{2}\sigma^2\)
-       </span>
-       , then
-       <span class="math notranslate nohighlight">
-        \(X_t\rightarrow\infty\)
-       </span>
-       in probability as
-       <span class="math notranslate nohighlight">
-        \(t\rightarrow\infty\)
-       </span>
-       .
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#case-2-if-mu-frac-1-2-sigma-2-then-x-t-rightarrow-0-in-probability-as-t-rightarrow-infty">
-       3.4.2.2. Case 2. If
-       <span class="math notranslate nohighlight">
-        \( \mu&lt;\frac{1}{2}\sigma^2\)
-       </span>
-       , then
-       <span class="math notranslate nohighlight">
-        \(X_t\rightarrow 0\)
-       </span>
-       in probability as
-       <span class="math notranslate nohighlight">
-        \(t\rightarrow\infty\)
-       </span>
-       .
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#case-3-if-mu-frac-1-2-sigma-2-then-x-t-has-no-limit-in-probability-as-t-rightarrow-infty">
-       3.4.2.3. Case 3. If
-       <span class="math notranslate nohighlight">
-        \( \mu = \frac{1}{2}\sigma^2\)
-       </span>
-       , then
-       <span class="math notranslate nohighlight">
-        \(X_t\)
-       </span>
-       has no limit in probability as
-       <span class="math notranslate nohighlight">
-        \(t\rightarrow\infty\)
-       </span>
-       .
-      </a>
-     </li>
-    </ul>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#visualisation">
-   3.5. Visualisation
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#references-and-further-reading">
-   3.6. References and Further Reading
-  </a>
- </li>
-</ul>
+              
+              
 
-                        </nav>
-                    </div>
-                </div>
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Geometric Brownian Motion</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
             </div>
-            <main id="main-content" role="main">
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#definition">3.1. Definition</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#marginal-distributions">3.2. Marginal Distributions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#expectation-and-variance">3.2.1. Expectation and Variance</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#marginal-distributions-in-python">3.2.2. Marginal Distributions in Python</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#probability-density-functions">3.2.3. Probability Density Functions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sampling">3.2.4. Sampling</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simulation">3.3. Simulation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simulating-and-visualising-paths">3.3.1. Simulating and Visualising Paths</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#long-time-behaviour">3.4. Long Time Behaviour</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">3.4.1. Expectation and Variance</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#case-1-gbm-with-mu-0-and-2-mu-sigma-2-0">3.4.1.1. Case 1. GBM with <span class="math notranslate nohighlight">\(\mu&gt;0\)</span> and <span class="math notranslate nohighlight">\(2\mu + \sigma^2&gt;0\)</span>.</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#case-2-gbm-with-mu-0-and-2-mu-sigma-2-0">3.4.1.2. Case 2. GBM with <span class="math notranslate nohighlight">\(\mu&lt;0\)</span> and <span class="math notranslate nohighlight">\(2\mu + \sigma^2&gt;0\)</span>.</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#case-3-gbm-with-mu-0-and-2-mu-sigma-2-0">3.4.1.3. Case 3. GBM with <span class="math notranslate nohighlight">\(\mu&lt;0\)</span> and <span class="math notranslate nohighlight">\(2\mu + \sigma^2=0\)</span>.</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#case-4-gbm-with-mu-0-and-2-mu-sigma-2-0">3.4.1.4. Case 4. GBM with <span class="math notranslate nohighlight">\(\mu&lt;0\)</span> and <span class="math notranslate nohighlight">\(2\mu + \sigma^2 &lt; 0\)</span>.</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#case-5-gbm-with-mu-0">3.4.1.5. Case 5. GBM with <span class="math notranslate nohighlight">\(\mu =0 \)</span></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#marginal">3.4.2. Marginal</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#case-1">3.4.2.1. Case 1</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#case-2">3.4.2.2. Case 2</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#case-3">3.4.2.3. Case 3</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualisation">3.5. Visualisation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references-and-further-reading">3.6. References and Further Reading</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
                 
-              <div>
-                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
   <section class="tex2jax_ignore mathjax_ignore" id="geometric-brownian-motion">
-<h1><span class="section-number">3. </span>Geometric Brownian Motion<a class="headerlink" href="#geometric-brownian-motion" title="Permalink to this headline">#</a></h1>
+<h1><span class="section-number">3. </span>Geometric Brownian Motion<a class="headerlink" href="#geometric-brownian-motion" title="Permalink to this heading">#</a></h1>
 <p>The purpose of this notebook is to review and illustrate the  <a class="reference external" href="https://en.wikipedia.org/wiki/Geometric_Brownian_motion">Geometric Brownian motion</a> and some of its main properties.</p>
 <p><img alt="image" src="_images/geometric_brownian_motion.png" /></p>
 <section id="definition">
-<h2><span class="section-number">3.1. </span>Definition<a class="headerlink" href="#definition" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">3.1. </span>Definition<a class="headerlink" href="#definition" title="Permalink to this heading">#</a></h2>
 <p>The Geometric Brownian motion can be defined by the following Stochastic Differential Equation (SDE)</p>
-<div class="amsmath math notranslate nohighlight" id="equation-cb53db5e-857c-49b4-9c82-6c52f1a68b9d">
-<span class="eqno">(3.1)<a class="headerlink" href="#equation-cb53db5e-857c-49b4-9c82-6c52f1a68b9d" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-cb5418c6-6bf6-4afe-98ff-57627ae3098b">
+<span class="eqno">(3.1)<a class="headerlink" href="#equation-cb5418c6-6bf6-4afe-98ff-57627ae3098b" title="Permalink to this equation">#</a></span>\[\begin{equation}
 dX_t = \mu X_t dt + \sigma X_t dW_t, \quad t &gt;0,
-\tag{1}
 \end{equation}\]</div>
 <p>with initial condition <span class="math notranslate nohighlight">\(X_0 =x_0&gt;0\)</span>, and constant parameters <span class="math notranslate nohighlight">\(\mu\in \mathbb{R}\)</span>, <span class="math notranslate nohighlight">\(\sigma&gt;0\)</span>. Here, <span class="math notranslate nohighlight">\(W_t\)</span> denotes a standard Brownian motion.</p>
-<p>In order to find its solution, let us set <span class="math notranslate nohighlight">\(Y_t = log(X_t)\)</span>. Then, Ito’s formula implies</p>
+<p>In order to find its solution, let us set <span class="math notranslate nohighlight">\(Y_t = \ln(X_t)\)</span>. Then, Ito’s formula implies</p>
 <div class="math notranslate nohighlight">
 \[Y_t = Y_0 +  \left( \mu-\frac{1}{2}\sigma^2 \right)t  + \sigma W_t,\]</div>
 <p>or equivalently</p>
-<div class="amsmath math notranslate nohighlight" id="equation-150424e8-a319-455c-ba05-6c148f6ef4b6">
-<span class="eqno">(3.2)<a class="headerlink" href="#equation-150424e8-a319-455c-ba05-6c148f6ef4b6" title="Permalink to this equation">#</a></span>\[\begin{equation}
-log(X_t) = log(x_0) +  \left( \mu-\frac{1}{2}\sigma^2 \right)t  + \sigma W_t.
-\tag{2}
+<div class="amsmath math notranslate nohighlight" id="equation-88e9346d-1048-4d29-a4ba-d1736d6e131f">
+<span class="eqno">(3.2)<a class="headerlink" href="#equation-88e9346d-1048-4d29-a4ba-d1736d6e131f" title="Permalink to this equation">#</a></span>\[\begin{equation}
+\ln(X_t) = \ln(x_0) +  \left( \mu-\frac{1}{2}\sigma^2 \right)t  + \sigma W_t.
 \end{equation}\]</div>
 <p>From this expression, we obtain</p>
-<div class="amsmath math notranslate nohighlight" id="equation-4e7a4b43-d265-4b7c-abbb-f37151aaf93a">
-<span class="eqno">(3.3)<a class="headerlink" href="#equation-4e7a4b43-d265-4b7c-abbb-f37151aaf93a" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-f1899b4f-2a15-4a1f-9de8-a7e8e4231704">
+<span class="eqno">(3.3)<a class="headerlink" href="#equation-f1899b4f-2a15-4a1f-9de8-a7e8e4231704" title="Permalink to this equation">#</a></span>\[\begin{equation}
 X_t = x_0 \exp \left\{  \left( \mu-\frac{1}{2}\sigma^2 \right)t  + \sigma W_t \right\}.
-\tag{3}
 \end{equation}\]</div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -777,58 +431,58 @@ X_t = x_0 \exp \left\{  \left( \mu-\frac{1}{2}\sigma^2 \right)t  + \sigma W_t \r
 </div>
 </section>
 <section id="marginal-distributions">
-<h2><span class="section-number">3.2. </span>Marginal Distributions<a class="headerlink" href="#marginal-distributions" title="Permalink to this headline">#</a></h2>
-<p>Equation (2) implies that for each <span class="math notranslate nohighlight">\(t&gt;0\)</span>, the variable <span class="math notranslate nohighlight">\(\log (X_t)\)</span> follows a normal distribution –since it can be expressed as a scaled marginal of the Brownian motion plus a deterministic part.</p>
+<h2><span class="section-number">3.2. </span>Marginal Distributions<a class="headerlink" href="#marginal-distributions" title="Permalink to this heading">#</a></h2>
+<p>Equation (3.2) implies that for each <span class="math notranslate nohighlight">\(t&gt;0\)</span>, the variable <span class="math notranslate nohighlight">\(\ln (X_t)|X_0\)</span> follows a normal distribution –since it can be expressed as a scaled marginal of the Brownian motion plus a deterministic part.</p>
 <p>Moreover, using the properties of the Brownian Motion we can calculate its expectation and variance, namely</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{equation*}
-\mathbf{E} [\log(X_t) ] = \log(x_0) +  \left( \mu-\frac{1}{2}\sigma^2 \right)t,
+E[\ln(X_t) | X_0]  = \mathbf{E} [\ln(X_t) ] = \log(x_0) +  \left( \mu-\frac{1}{2}\sigma^2 \right)t,
 \end{equation*}\]</div>
 <p>and</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{equation*}
-\mathbf{Var} [\log(X_t) ] = \sigma^2 t.
+Var [\ln(X_t) | X_0] = \mathbf{Var} [\ln(X_t) ] = \sigma^2 t.
 \end{equation*}\]</div>
 <p>That is,</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{equation*}
-\log(X_t) \sim \mathcal{N}\left(\log(x_0) +  \left( \mu-\frac{1}{2}\sigma^2 \right)t, \sigma^2 t\right ),
+\ln(X_t) \sim \mathcal{N}\left(\ln(x_0) +  \left( \mu-\frac{1}{2}\sigma^2 \right)t, \sigma^2 t\right ),
 \end{equation*}\]</div>
 <p>and consequently <span class="math notranslate nohighlight">\(X_t\)</span> follows a <a class="reference external" href="https://en.wikipedia.org/wiki/Log-normal_distribution">log-normal distribution</a>.</p>
 <section id="expectation-and-variance">
-<h3><span class="section-number">3.2.1. </span>Expectation and Variance<a class="headerlink" href="#expectation-and-variance" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">3.2.1. </span>Expectation and Variance<a class="headerlink" href="#expectation-and-variance" title="Permalink to this heading">#</a></h3>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{equation*}
-\mathbf{E} [X_t] = \exp \left\{ \log(x_0) +  \left( \mu-\frac{1}{2}\sigma^2 \right)t  + \frac{\sigma^2 t}{2}  \right\},
+\mathbf{E} [X_t] = \exp \left\{ \ln(x_0) +  \left( \mu-\frac{1}{2}\sigma^2 \right)t  + \frac{\sigma^2 t}{2}  \right\},
 \end{equation*}\]</div>
 <p>and</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{equation*}
-\mathbf{Var} [\log(X_t) ] =  \left[ \exp \left\{ \sigma^2 t  \right\} - 1  \right]\exp \left\{  2\left(\log(x_0) +  \left( \mu-\frac{1}{2}\sigma^2 \right)t \right) + \sigma^2 t \right\}.
+\mathbf{Var} [X_t] =  \left[ \exp \left\{ \sigma^2 t  \right\} - 1  \right]\exp \left\{  2\left(\ln(x_0) +  \left( \mu-\frac{1}{2}\sigma^2 \right)t \right) + \sigma^2 t \right\}.
 \end{equation*}\]</div>
 <p>To calculate the expectation of <span class="math notranslate nohighlight">\(X_t\)</span>, we are going to use the fact that the process <span class="math notranslate nohighlight">\(M_t = \exp \{ \sigma W_t - \dfrac{1}{2}\sigma^2 t\}\)</span> is an exponential martingale. Then</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{align*}
-E\left[X_t \right] &amp;= E\left[s_0\exp \left\{ (\mu  - \dfrac{1}{2}\sigma^2) t +   \sigma W_t \right\} \right]\\
+\mathbf{E} \left[X_t \right] &amp;= \mathbf{E} \left[s_0\exp \left\{ (\mu  - \dfrac{1}{2}\sigma^2) t +   \sigma W_t \right\} \right]\\
 &amp;= x_0\exp \left\{ \mu t   \right\}  E\left[\exp \left\{  - \dfrac{1}{2}\sigma^2 t +  \sigma W_t \right\} \right]\\
 &amp;= x_0\exp \left\{ \mu t   \right\}.
 \end{align*}\]</div>
 <p>Similarly, for the variance we will use the fact that the process <span class="math notranslate nohighlight">\(M_t = \exp \left\{ 2\sigma W_t - 2\sigma^2 t \right\}\)</span> is an exponential martingale. Then</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{align*}
-E\left[X_t^2 \right]
-&amp;=E\left[x_0^2\exp \left\{  2\mu t- \sigma^2 t  +2\sigma W_t  \right\} \right] \\
-&amp; = x_0^2\exp \left\{2\mu t + \sigma^2 t  \right\}  E\left[s_0^2\exp \left\{ 2\sigma W_t - 2\sigma^2 t \right\} \right] \\
+\mathbf{E}\left[X_t^2 \right]
+&amp;=\mathbf{E}\left[x_0^2\exp \left\{  2\mu t- \sigma^2 t  +2\sigma W_t  \right\} \right] \\
+&amp; = x_0^2\exp \left\{2\mu t + \sigma^2 t  \right\}  \mathbf{E}\left[s_0^2\exp \left\{ 2\sigma W_t - 2\sigma^2 t \right\} \right] \\
 &amp; = x_0^2 \exp \left\{(2\mu + \sigma^2 ) t \right\}.
 \end{align*}\]</div>
 <p>Hence</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{align*}
-Var[ X_t] &amp;= E\left[X_t^2 \right] - E\left[X_t \right]^2\\
+\mathbf{Var} [ X_t] &amp;= \mathbf{E}\left[X_t^2 \right] - \mathbf{E}\left[X_t \right]^2\\
 &amp; = x_0^2\exp \left\{(2\mu + \sigma^2 ) t \right\} - s_0^2\exp \left\{2\mu t \right\}\\
 &amp; = x_0^2\exp \left\{2\mu t \right\} \left(\exp \left\{\sigma^2 t \right\} - 1\right).
 \end{align*}\]</div>
-<p>So, for given <span class="math notranslate nohighlight">\(x_0, \mu, \sigma,\)</span> and <span class="math notranslate nohighlight">\(t\)</span>, we can calculate both the expectation and the variance of <span class="math notranslate nohighlight">\(X_t\)</span> using these formulas.</p>
+<p>So, for given <span class="math notranslate nohighlight">\(x_0, \mu, \sigma,\)</span> and <span class="math notranslate nohighlight">\(t\)</span>, we can calculate both the expectation and the variance of <span class="math notranslate nohighlight">\(X_t|X_0\)</span> using these formulas.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -838,7 +492,7 @@ Var[ X_t] &amp;= E\left[X_t^2 \right] - E\left[X_t \right]^2\\
 <span class="n">sigma</span> <span class="o">=</span> <span class="mf">0.2</span>
 <span class="n">t</span><span class="o">=</span> <span class="mi">10</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;For x_0=</span><span class="si">{</span><span class="n">x0</span><span class="si">}</span><span class="s1">&#39;</span> <span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;mu=</span><span class="si">{</span><span class="n">mu</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;sigma=.</span><span class="si">{</span><span class="n">sigma</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;t=</span><span class="si">{</span><span class="n">t</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;, &quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;E[X_t]=</span><span class="si">{</span><span class="p">(</span><span class="n">x0</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">mu</span><span class="o">*</span><span class="n">t</span><span class="p">))</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;Var[S_t]=</span><span class="si">{</span><span class="p">(</span><span class="n">x0</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">mu</span><span class="o">*</span><span class="n">t</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">t</span><span class="o">*</span><span class="n">sigma</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;E[X_t]=</span><span class="si">{</span><span class="p">(</span><span class="n">x0</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">mu</span><span class="o">*</span><span class="n">t</span><span class="p">))</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;Var[S_t]=</span><span class="si">{</span><span class="p">(</span><span class="n">x0</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">mu</span><span class="o">*</span><span class="n">t</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">t</span><span class="o">*</span><span class="n">sigma</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -852,7 +506,7 @@ Var[S_t]=3.63
 </div>
 </section>
 <section id="marginal-distributions-in-python">
-<h3><span class="section-number">3.2.2. </span>Marginal Distributions in Python<a class="headerlink" href="#marginal-distributions-in-python" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">3.2.2. </span>Marginal Distributions in Python<a class="headerlink" href="#marginal-distributions-in-python" title="Permalink to this heading">#</a></h3>
 <p>Knowing the distribution –with its corresponding parameters– of the marginal distributions allows us to reproduce them with <code class="docutils literal notranslate"><span class="pre">Python</span></code>.</p>
 <p>One way to do this is by using the object  <code class="docutils literal notranslate"><span class="pre">lognorm</span></code>  from the library <code class="docutils literal notranslate"><span class="pre">scipy.stats</span></code>.  The next cell shows how to create <span class="math notranslate nohighlight">\(X_1\)</span> using this method.</p>
 <div class="cell docutils container">
@@ -903,7 +557,7 @@ Var[S_t]=3.63
 <p>Hereafter, we will use the latter method to create marginal distributions from the Geometric Brownian Motion.</p>
 </section>
 <section id="probability-density-functions">
-<h3><span class="section-number">3.2.3. </span>Probability Density Functions<a class="headerlink" href="#probability-density-functions" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">3.2.3. </span>Probability Density Functions<a class="headerlink" href="#probability-density-functions" title="Permalink to this heading">#</a></h3>
 <p>The probability density function of the marginal distribution <span class="math notranslate nohighlight">\(X_t\)</span> is given by the following expression</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{equation*}
@@ -918,6 +572,11 @@ f(x, t) = {\displaystyle {\frac {1}{x\sigma  {\sqrt {2\pi t}}}}\ \exp \left\{-{\
 </div>
 </div>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s2">&quot;seaborn-v0_8-whitegrid&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s2">&quot;figure.figsize&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
@@ -925,6 +584,7 @@ f(x, t) = {\displaystyle {\frac {1}{x\sigma  {\sqrt {2\pi t}}}}\ \exp \left\{-{\
 </pre></div>
 </div>
 </div>
+</details>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -938,13 +598,18 @@ f(x, t) = {\displaystyle {\frac {1}{x\sigma  {\sqrt {2\pi t}}}}\ \exp \left\{-{\
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/geometric_brownian_motion_16_0.png" src="_images/geometric_brownian_motion_16_0.png" />
+<img alt="_images/50d2ce25e4f1379c9857ef275882409dc192f7dea9e5e7ebe132a9ab6d3c001e.png" src="_images/50d2ce25e4f1379c9857ef275882409dc192f7dea9e5e7ebe132a9ab6d3c001e.png" />
 </div>
 </div>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
-<span class="n">mu_values</span> <span class="o">=</span> <span class="p">([</span><span class="o">-</span><span class="mf">0.1</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.2</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.3</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">mu_values</span> <span class="o">=</span> <span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
 <span class="k">for</span> <span class="p">(</span><span class="n">mus</span><span class="p">,</span> <span class="n">ax</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">mu_values</span><span class="p">,</span> <span class="n">axs</span><span class="p">):</span>
     <span class="k">for</span> <span class="n">mu</span> <span class="ow">in</span> <span class="n">mus</span><span class="p">:</span>
         <span class="n">process</span> <span class="o">=</span> <span class="n">GBM</span><span class="p">(</span><span class="n">drift</span><span class="o">=</span><span class="n">mu</span><span class="p">,</span> <span class="n">volatility</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">initial</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
@@ -958,19 +623,25 @@ f(x, t) = {\displaystyle {\frac {1}{x\sigma  {\sqrt {2\pi t}}}}\ \exp \left\{-{\
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/geometric_brownian_motion_17_0.png" src="_images/geometric_brownian_motion_17_0.png" />
+<img alt="_images/190c80986081bcbeec631d17ee299f6b232490cc8d51d90ecfcf708cb50aa718.png" src="_images/190c80986081bcbeec631d17ee299f6b232490cc8d51d90ecfcf708cb50aa718.png" />
 </div>
 </div>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
-<span class="n">sigma_values</span> <span class="o">=</span> <span class="p">([</span><span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.02</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span>  <span class="mf">0.5</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">sigma_values</span> <span class="o">=</span> <span class="p">(</span> <span class="p">[</span><span class="mf">0.1</span><span class="p">,</span>  <span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.75</span><span class="p">])</span>
 <span class="k">for</span> <span class="p">(</span><span class="n">sigmas</span><span class="p">,</span> <span class="n">ax</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">sigma_values</span><span class="p">,</span> <span class="n">axs</span><span class="p">):</span>
     <span class="k">for</span> <span class="n">sigma</span> <span class="ow">in</span> <span class="n">sigmas</span><span class="p">:</span>
         <span class="n">process</span> <span class="o">=</span> <span class="n">GBM</span><span class="p">(</span><span class="n">drift</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">volatility</span><span class="o">=</span><span class="n">sigma</span><span class="p">,</span> <span class="n">initial</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
         <span class="n">X_t</span> <span class="o">=</span> <span class="n">process</span><span class="o">.</span><span class="n">get_marginal</span><span class="p">(</span><span class="n">t</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
-        <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">X_t</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mf">0.999</span><span class="p">),</span> <span class="mi">100</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">X_t</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mf">0.001</span><span class="p">),</span> <span class="n">X_t</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mf">0.999</span><span class="p">),</span> <span class="mi">100</span><span class="p">)</span>
         <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">X_t</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span>
                 <span class="n">alpha</span><span class="o">=</span><span class="mf">0.75</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;$\sigma$=</span><span class="si">{</span><span class="n">sigma</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
         <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
@@ -979,36 +650,21 @@ f(x, t) = {\displaystyle {\frac {1}{x\sigma  {\sqrt {2\pi t}}}}\ \exp \left\{-{\
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/geometric_brownian_motion_18_0.png" src="_images/geometric_brownian_motion_18_0.png" />
+<img alt="_images/7f6b66dafb39854d8689006afe17192a83c51a78a6006b057174b1436be16df3.png" src="_images/7f6b66dafb39854d8689006afe17192a83c51a78a6006b057174b1436be16df3.png" />
 </div>
 </div>
 <div class="cell tag_hide-input docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
-<span class="n">sigma_values</span> <span class="o">=</span> <span class="p">([</span><span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.02</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span>  <span class="mf">0.5</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
-<span class="k">for</span> <span class="p">(</span><span class="n">sigmas</span><span class="p">,</span> <span class="n">ax</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">sigma_values</span><span class="p">,</span> <span class="n">axs</span><span class="p">):</span>
-    <span class="k">for</span> <span class="n">sigma</span> <span class="ow">in</span> <span class="n">sigmas</span><span class="p">:</span>
-        <span class="n">process</span> <span class="o">=</span> <span class="n">GBM</span><span class="p">(</span><span class="n">drift</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">volatility</span><span class="o">=</span><span class="n">sigma</span><span class="p">,</span> <span class="n">initial</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
-        <span class="n">X_t</span> <span class="o">=</span> <span class="n">process</span><span class="o">.</span><span class="n">get_marginal</span><span class="p">(</span><span class="n">t</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
-        <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">X_t</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mf">0.999</span><span class="p">),</span> <span class="mi">100</span><span class="p">)</span>
-        <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">X_t</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span>
-                <span class="n">alpha</span><span class="o">=</span><span class="mf">0.75</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;$\sigma$=</span><span class="si">{</span><span class="n">sigma</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-        <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
-<span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;$X_1$ pdf from a GBM process with $\mu=0.0$ and $x_0$=1.0&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="_images/geometric_brownian_motion_19_0.png" src="_images/geometric_brownian_motion_19_0.png" />
-</div>
-</div>
-<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">process</span> <span class="o">=</span> <span class="n">GBM</span><span class="p">(</span><span class="n">drift</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">volatility</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">initial</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
-<span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
-<span class="n">t_values</span> <span class="o">=</span> <span class="p">([</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span>  <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">10</span><span class="p">,])</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">t_values</span> <span class="o">=</span> <span class="p">([</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
 <span class="k">for</span> <span class="p">(</span><span class="n">ts</span><span class="p">,</span> <span class="n">ax</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">t_values</span><span class="p">,</span> <span class="n">axs</span><span class="p">):</span>
     <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">ts</span><span class="p">:</span>
         <span class="n">X_t</span> <span class="o">=</span> <span class="n">process</span><span class="o">.</span><span class="n">get_marginal</span><span class="p">(</span><span class="n">t</span><span class="o">=</span><span class="n">t</span><span class="p">)</span>
@@ -1021,13 +677,14 @@ f(x, t) = {\displaystyle {\frac {1}{x\sigma  {\sqrt {2\pi t}}}}\ \exp \left\{-{\
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/geometric_brownian_motion_20_0.png" src="_images/geometric_brownian_motion_20_0.png" />
+<img alt="_images/1cb7ddf8a1ba7299552c7634bebe5b5e2a7b8ca3e83215fd14b0c53e5a6c5f22.png" src="_images/1cb7ddf8a1ba7299552c7634bebe5b5e2a7b8ca3e83215fd14b0c53e5a6c5f22.png" />
 </div>
 </div>
 </section>
 <section id="sampling">
-<h3><span class="section-number">3.2.4. </span>Sampling<a class="headerlink" href="#sampling" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">3.2.4. </span>Sampling<a class="headerlink" href="#sampling" title="Permalink to this heading">#</a></h3>
 <p>Now, let’s see how to get a random sample from <span class="math notranslate nohighlight">\(X_t\)</span> for any  <span class="math notranslate nohighlight">\(t&gt;0\)</span>.</p>
 <p>The next cell shows how to get a sample of size 5 from <span class="math notranslate nohighlight">\(X_1\)</span>.</p>
 <div class="cell docutils container">
@@ -1041,7 +698,7 @@ f(x, t) = {\displaystyle {\frac {1}{x\sigma  {\sqrt {2\pi t}}}}\ \exp \left\{-{\
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([6.38438447, 2.42752149, 1.89677637, 1.8218774 , 1.32691124])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([3.30675209, 2.37918699, 7.54629263, 3.43067774, 0.90263465])
 </pre></div>
 </div>
 </div>
@@ -1055,8 +712,8 @@ f(x, t) = {\displaystyle {\frac {1}{x\sigma  {\sqrt {2\pi t}}}}\ \exp \left\{-{\
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([33823.12761477, 35310.37591116, 15611.0551021 ,  1817.36182202,
-       29848.74918033])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([30146.5459467 ,  2945.43554673,  5812.58032152,  5630.99579933,
+        7364.53891238])
 </pre></div>
 </div>
 </div>
@@ -1064,14 +721,15 @@ f(x, t) = {\displaystyle {\frac {1}{x\sigma  {\sqrt {2\pi t}}}}\ \exp \left\{-{\
 </section>
 </section>
 <section id="simulation">
-<h2><span class="section-number">3.3. </span>Simulation<a class="headerlink" href="#simulation" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">3.3. </span>Simulation<a class="headerlink" href="#simulation" title="Permalink to this heading">#</a></h2>
 <p>In order to simulate paths from a stochastic process, we need to set a discrete partition over an interval for the simulation to take place.</p>
 <p>For simplicity, we are going to consider an equidistant partition of size <span class="math notranslate nohighlight">\(n\)</span> over <span class="math notranslate nohighlight">\([0,T]\)</span>, i.e.:</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{equation*}
 t_i = \frac{i}{n-1} T \qquad  \hbox{for } i = 0, \cdots, n-1.
 \end{equation*}\]</div>
-<p>Then, the goal is to simulate a path of the form <span class="math notranslate nohighlight">\(\{ X_{t_i} , i=0,\cdots, n-1\}\)</span>. There are a number of ways to do this. Here, we are going to use equation (3), i.e.</p>
+<p>Then, the goal is to simulate a path of the form <span class="math notranslate nohighlight">\(\{ X_{t_i} , i=0,\cdots, n-1\}\)</span>.</p>
+<p>There are a number of ways to do this. Here, we are going to use equation (3.3), i.e.</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{equation*}
 X_t = x_0 \exp \left\{  \left( \mu-\frac{1}{2}\sigma^2 \right)t  + \sigma W_t \right\}, 
@@ -1080,7 +738,6 @@ X_t = x_0 \exp \left\{  \left( \mu-\frac{1}{2}\sigma^2 \right)t  + \sigma W_t \r
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">aleatory.processes</span> <span class="kn">import</span> <span class="n">BrownianMotion</span>
-
 <span class="n">T</span> <span class="o">=</span> <span class="mf">1.0</span>
 <span class="n">n</span> <span class="o">=</span> <span class="mi">100</span>
 <span class="n">x0</span> <span class="o">=</span> <span class="mf">1.0</span> 
@@ -1088,9 +745,9 @@ X_t = x_0 \exp \left\{  \left( \mu-\frac{1}{2}\sigma^2 \right)t  + \sigma W_t \r
 <span class="n">sigma</span> <span class="o">=</span> <span class="mf">0.25</span>
 <span class="n">t</span> <span class="o">=</span> <span class="mf">1.0</span>
 <span class="n">times</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>  <span class="c1"># Partition</span>
-<span class="n">BM</span> <span class="o">=</span> <span class="n">BrownianMotion</span><span class="p">(</span><span class="n">T</span><span class="o">=</span><span class="n">T</span><span class="p">)</span>
-<span class="n">bm_path</span> <span class="o">=</span> <span class="n">BM</span><span class="o">.</span><span class="n">sample_at</span><span class="p">(</span><span class="n">times</span><span class="p">)</span>
-<span class="n">gbm_path</span> <span class="o">=</span> <span class="n">x0</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">((</span><span class="n">mu</span> <span class="o">-</span> <span class="mf">0.5</span><span class="o">*</span><span class="n">sigma</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">t</span> <span class="o">+</span> <span class="n">sigma</span><span class="o">*</span><span class="n">bm_path</span><span class="p">)</span>
+<span class="n">BM</span> <span class="o">=</span> <span class="n">BrownianMotion</span><span class="p">(</span><span class="n">T</span><span class="o">=</span><span class="n">T</span><span class="p">)</span> <span class="c1"># Brownian Motion</span>
+<span class="n">bm_path</span> <span class="o">=</span> <span class="n">BM</span><span class="o">.</span><span class="n">sample_at</span><span class="p">(</span><span class="n">times</span><span class="p">)</span> <span class="c1"># Simulation from BM</span>
+<span class="n">gbm_path</span> <span class="o">=</span> <span class="n">x0</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">((</span><span class="n">mu</span> <span class="o">-</span> <span class="mf">0.5</span><span class="o">*</span><span class="n">sigma</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">t</span> <span class="o">+</span> <span class="n">sigma</span><span class="o">*</span><span class="n">bm_path</span><span class="p">)</span> <span class="c1"># Equation (3.3)</span>
 </pre></div>
 </div>
 </div>
@@ -1105,7 +762,7 @@ X_t = x_0 \exp \left\{  \left( \mu-\frac{1}{2}\sigma^2 \right)t  + \sigma W_t \r
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/geometric_brownian_motion_28_0.png" src="_images/geometric_brownian_motion_28_0.png" />
+<img alt="_images/1b091ae342e7b394427f90ee39b0532f252271499b29e38a5c31a6051f374086.png" src="_images/1b091ae342e7b394427f90ee39b0532f252271499b29e38a5c31a6051f374086.png" />
 </div>
 </div>
 <div class="admonition note">
@@ -1113,7 +770,7 @@ X_t = x_0 \exp \left\{  \left( \mu-\frac{1}{2}\sigma^2 \right)t  + \sigma W_t \r
 <p>In this plot, we are using a linear interpolation to draw the lines between the simulated points.</p>
 </div>
 <section id="simulating-and-visualising-paths">
-<h3><span class="section-number">3.3.1. </span>Simulating and Visualising Paths<a class="headerlink" href="#simulating-and-visualising-paths" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">3.3.1. </span>Simulating and Visualising Paths<a class="headerlink" href="#simulating-and-visualising-paths" title="Permalink to this heading">#</a></h3>
 <p>To simulate several paths from a GBM and visualise them we can use the method <code class="docutils literal notranslate"><span class="pre">plot</span></code> from the <code class="docutils literal notranslate"><span class="pre">aleatory</span></code> library.</p>
 <p>Let’s simulate 10 paths over the interval <span class="math notranslate nohighlight">\([0,1]\)</span> using a partition of 100 points.</p>
 <div class="tip admonition">
@@ -1131,11 +788,16 @@ X_t = x_0 \exp \left\{  \left( \mu-\frac{1}{2}\sigma^2 \right)t  + \sigma W_t \r
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/geometric_brownian_motion_31_0.png" src="_images/geometric_brownian_motion_31_0.png" />
+<img alt="_images/641c87119db045ac4484c02fb19ea56d5a35255aa2457a4dc604be428203f316.png" src="_images/641c87119db045ac4484c02fb19ea56d5a35255aa2457a4dc604be428203f316.png" />
 </div>
 </div>
 <p>Similarly, we can define the GBM over the interval <span class="math notranslate nohighlight">\([0, 5]\)</span> and simulate 50 paths with a partition of size 100.</p>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">process</span> <span class="o">=</span> <span class="n">GBM</span><span class="p">(</span><span class="n">drift</span><span class="o">=</span><span class="n">mu</span><span class="p">,</span> <span class="n">volatility</span><span class="o">=</span><span class="n">sigma</span><span class="p">,</span> <span class="n">initial</span><span class="o">=</span><span class="n">x0</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="mf">5.0</span><span class="p">)</span>
 <span class="n">process</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
@@ -1143,20 +805,21 @@ X_t = x_0 \exp \left\{  \left( \mu-\frac{1}{2}\sigma^2 \right)t  + \sigma W_t \r
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/geometric_brownian_motion_33_0.png" src="_images/geometric_brownian_motion_33_0.png" />
+<img alt="_images/6f038e5f8fafdb59a0d235cbdb2291cff270b11889242260fef9955c984926e8.png" src="_images/6f038e5f8fafdb59a0d235cbdb2291cff270b11889242260fef9955c984926e8.png" />
 </div>
 </div>
 </section>
 </section>
 <section id="long-time-behaviour">
-<h2><span class="section-number">3.4. </span>Long Time Behaviour<a class="headerlink" href="#long-time-behaviour" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">3.4. </span>Long Time Behaviour<a class="headerlink" href="#long-time-behaviour" title="Permalink to this heading">#</a></h2>
 <section id="id1">
-<h3><span class="section-number">3.4.1. </span>Expectation and Variance<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">3.4.1. </span>Expectation and Variance<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h3>
 <p>Note that when <span class="math notranslate nohighlight">\(t\)</span> goes to infinity, we have</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{equation*}
-\lim_{t\rightarrow\infty} E\left[X_t \right] = \lim_{t\rightarrow\infty} x_0\exp \left\{ \mu t   \right\} = 
+\lim_{t\rightarrow\infty} \mathbf{E}\left[X_t \right] = \lim_{t\rightarrow\infty} x_0\exp \left\{ \mu t   \right\} = 
 \begin{cases}
 \infty, \hbox{  if  } \mu&gt;0\\
 x_0, \hbox{  if  }  \mu=0\\
@@ -1166,7 +829,7 @@ x_0, \hbox{  if  }  \mu=0\\
 <p>and</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{equation*}
-\lim_{t\rightarrow\infty}Var[ X_t] = \lim_{t\rightarrow\infty} x_0^2\exp \left\{2\mu t \right\} \left(\exp \left\{\sigma^2 t \right\} - 1\right) = 
+\lim_{t\rightarrow\infty}\mathbf{Var}[ X_t] = \lim_{t\rightarrow\infty} x_0^2\exp \left\{2\mu t \right\} \left(\exp \left\{\sigma^2 t \right\} - 1\right) = 
 \begin{cases}
 \infty, \hbox{  if  } 2\mu+\sigma^2 &gt;0\\
 x_0^2, \hbox{  if  }  2\mu+\sigma^2=0.\\
@@ -1174,6 +837,11 @@ x_0^2, \hbox{  if  }  2\mu+\sigma^2=0.\\
 \end{cases}
 \end{equation*}\]</div>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">draw_mean_variance</span><span class="p">(</span><span class="n">x0</span><span class="p">,</span> <span class="n">mu</span><span class="p">,</span> <span class="n">sigma</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="mi">100</span><span class="p">):</span>
 
@@ -1195,9 +863,10 @@ x_0^2, \hbox{  if  }  2\mu+\sigma^2=0.\\
 </pre></div>
 </div>
 </div>
+</details>
 </div>
-<section id="case-1-a-gbm-with-mu-0-and-2-mu-sigma-2-0">
-<h4><span class="section-number">3.4.1.1. </span>Case 1. A GBM with <span class="math notranslate nohighlight">\(\mu&gt;0\)</span> and <span class="math notranslate nohighlight">\(2\mu + \sigma^2&gt;0\)</span>.<a class="headerlink" href="#case-1-a-gbm-with-mu-0-and-2-mu-sigma-2-0" title="Permalink to this headline">#</a></h4>
+<section id="case-1-gbm-with-mu-0-and-2-mu-sigma-2-0">
+<h4><span class="section-number">3.4.1.1. </span>Case 1. GBM with <span class="math notranslate nohighlight">\(\mu&gt;0\)</span> and <span class="math notranslate nohighlight">\(2\mu + \sigma^2&gt;0\)</span>.<a class="headerlink" href="#case-1-gbm-with-mu-0-and-2-mu-sigma-2-0" title="Permalink to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">draw_mean_variance</span><span class="p">(</span><span class="n">x0</span><span class="o">=</span> <span class="mf">1.0</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
@@ -1205,12 +874,12 @@ x_0^2, \hbox{  if  }  2\mu+\sigma^2=0.\\
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/geometric_brownian_motion_37_0.png" src="_images/geometric_brownian_motion_37_0.png" />
+<img alt="_images/8d954d5297e4c42a52a25b381fbcf63b575ae4be35cec8667cf7384a6c40bee8.png" src="_images/8d954d5297e4c42a52a25b381fbcf63b575ae4be35cec8667cf7384a6c40bee8.png" />
 </div>
 </div>
 </section>
-<section id="case-2-a-gbm-with-mu-0-and-2-mu-sigma-2-0">
-<h4><span class="section-number">3.4.1.2. </span>Case 2. A GBM with <span class="math notranslate nohighlight">\(\mu&lt;0\)</span> and <span class="math notranslate nohighlight">\(2\mu + \sigma^2&gt;0\)</span>.<a class="headerlink" href="#case-2-a-gbm-with-mu-0-and-2-mu-sigma-2-0" title="Permalink to this headline">#</a></h4>
+<section id="case-2-gbm-with-mu-0-and-2-mu-sigma-2-0">
+<h4><span class="section-number">3.4.1.2. </span>Case 2. GBM with <span class="math notranslate nohighlight">\(\mu&lt;0\)</span> and <span class="math notranslate nohighlight">\(2\mu + \sigma^2&gt;0\)</span>.<a class="headerlink" href="#case-2-gbm-with-mu-0-and-2-mu-sigma-2-0" title="Permalink to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">draw_mean_variance</span><span class="p">(</span><span class="n">x0</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">mu</span><span class="o">=-</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
@@ -1218,12 +887,12 @@ x_0^2, \hbox{  if  }  2\mu+\sigma^2=0.\\
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/geometric_brownian_motion_39_0.png" src="_images/geometric_brownian_motion_39_0.png" />
+<img alt="_images/7592590be6adc37d11fc84b7547ed56b261a4fc62c9c73bde953e704e597952c.png" src="_images/7592590be6adc37d11fc84b7547ed56b261a4fc62c9c73bde953e704e597952c.png" />
 </div>
 </div>
 </section>
-<section id="case-3-a-gbm-with-mu-0-and-2-mu-sigma-2-0">
-<h4><span class="section-number">3.4.1.3. </span>Case 3. A GBM with <span class="math notranslate nohighlight">\(\mu&lt;0\)</span> and <span class="math notranslate nohighlight">\(2\mu + \sigma^2=0\)</span>.<a class="headerlink" href="#case-3-a-gbm-with-mu-0-and-2-mu-sigma-2-0" title="Permalink to this headline">#</a></h4>
+<section id="case-3-gbm-with-mu-0-and-2-mu-sigma-2-0">
+<h4><span class="section-number">3.4.1.3. </span>Case 3. GBM with <span class="math notranslate nohighlight">\(\mu&lt;0\)</span> and <span class="math notranslate nohighlight">\(2\mu + \sigma^2=0\)</span>.<a class="headerlink" href="#case-3-gbm-with-mu-0-and-2-mu-sigma-2-0" title="Permalink to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">draw_mean_variance</span><span class="p">(</span><span class="n">x0</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">mu</span><span class="o">=-</span><span class="p">(</span><span class="mf">0.2</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
@@ -1231,12 +900,12 @@ x_0^2, \hbox{  if  }  2\mu+\sigma^2=0.\\
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/geometric_brownian_motion_41_0.png" src="_images/geometric_brownian_motion_41_0.png" />
+<img alt="_images/9fe6f39d270266db3fffc4af1f7685e90d2e879652c97bc2707c900d0ed1b5ff.png" src="_images/9fe6f39d270266db3fffc4af1f7685e90d2e879652c97bc2707c900d0ed1b5ff.png" />
 </div>
 </div>
 </section>
-<section id="case-4-a-gbm-with-mu-0-and-2-mu-sigma-2-0">
-<h4><span class="section-number">3.4.1.4. </span>Case 4. A GBM with <span class="math notranslate nohighlight">\(\mu&lt;0\)</span> and <span class="math notranslate nohighlight">\(2\mu + \sigma^2 &lt; 0\)</span>.<a class="headerlink" href="#case-4-a-gbm-with-mu-0-and-2-mu-sigma-2-0" title="Permalink to this headline">#</a></h4>
+<section id="case-4-gbm-with-mu-0-and-2-mu-sigma-2-0">
+<h4><span class="section-number">3.4.1.4. </span>Case 4. GBM with <span class="math notranslate nohighlight">\(\mu&lt;0\)</span> and <span class="math notranslate nohighlight">\(2\mu + \sigma^2 &lt; 0\)</span>.<a class="headerlink" href="#case-4-gbm-with-mu-0-and-2-mu-sigma-2-0" title="Permalink to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">draw_mean_variance</span><span class="p">(</span><span class="n">x0</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">mu</span><span class="o">=-</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
@@ -1244,12 +913,12 @@ x_0^2, \hbox{  if  }  2\mu+\sigma^2=0.\\
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/geometric_brownian_motion_43_0.png" src="_images/geometric_brownian_motion_43_0.png" />
+<img alt="_images/a73050a81e8c23c273a935bed36dbc4e15bc091e9316516d5a356d512f51bf62.png" src="_images/a73050a81e8c23c273a935bed36dbc4e15bc091e9316516d5a356d512f51bf62.png" />
 </div>
 </div>
 </section>
-<section id="case-5-a-gbm-with-mu-0">
-<h4><span class="section-number">3.4.1.5. </span>Case 5. A GBM with <span class="math notranslate nohighlight">\(\mu =0 \)</span><a class="headerlink" href="#case-5-a-gbm-with-mu-0" title="Permalink to this headline">#</a></h4>
+<section id="case-5-gbm-with-mu-0">
+<h4><span class="section-number">3.4.1.5. </span>Case 5. GBM with <span class="math notranslate nohighlight">\(\mu =0 \)</span><a class="headerlink" href="#case-5-gbm-with-mu-0" title="Permalink to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">draw_mean_variance</span><span class="p">(</span><span class="n">x0</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
@@ -1257,20 +926,21 @@ x_0^2, \hbox{  if  }  2\mu+\sigma^2=0.\\
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/geometric_brownian_motion_45_0.png" src="_images/geometric_brownian_motion_45_0.png" />
+<img alt="_images/bd87950396f2de511e430f0353d5b9459efa45b7a05f06a7377efeac083517ea.png" src="_images/bd87950396f2de511e430f0353d5b9459efa45b7a05f06a7377efeac083517ea.png" />
 </div>
 </div>
 </section>
 </section>
 <section id="marginal">
-<h3><span class="section-number">3.4.2. </span>Marginal<a class="headerlink" href="#marginal" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">3.4.2. </span>Marginal<a class="headerlink" href="#marginal" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>If <span class="math notranslate nohighlight">\( \mu&gt;\frac{1}{2}\sigma^2\)</span>, then <span class="math notranslate nohighlight">\(X_t\rightarrow\infty\)</span> in probability as <span class="math notranslate nohighlight">\(t\rightarrow\infty\)</span>.</p></li>
 <li><p>If <span class="math notranslate nohighlight">\( \mu&lt;\frac{1}{2}\sigma^2\)</span>, then <span class="math notranslate nohighlight">\(X_t\rightarrow 0\)</span> in probability as <span class="math notranslate nohighlight">\(t\rightarrow\infty\)</span>.</p></li>
 <li><p>If <span class="math notranslate nohighlight">\( \mu = \frac{1}{2}\sigma^2\)</span>, then <span class="math notranslate nohighlight">\(X_t\)</span> has no limit in probability as <span class="math notranslate nohighlight">\(t\rightarrow\infty\)</span>.</p></li>
 </ul>
-<section id="case-1-if-mu-frac-1-2-sigma-2-then-x-t-rightarrow-infty-in-probability-as-t-rightarrow-infty">
-<h4><span class="section-number">3.4.2.1. </span>Case 1. If <span class="math notranslate nohighlight">\(\mu &gt; \frac{1}{2}\sigma^2\)</span>, then <span class="math notranslate nohighlight">\(X_t\rightarrow\infty\)</span> in probability as <span class="math notranslate nohighlight">\(t\rightarrow\infty\)</span>.<a class="headerlink" href="#case-1-if-mu-frac-1-2-sigma-2-then-x-t-rightarrow-infty-in-probability-as-t-rightarrow-infty" title="Permalink to this headline">#</a></h4>
+<section id="case-1">
+<h4><span class="section-number">3.4.2.1. </span>Case 1<a class="headerlink" href="#case-1" title="Permalink to this heading">#</a></h4>
+<p>If <span class="math notranslate nohighlight">\(\mu &gt; \frac{1}{2}\sigma^2\)</span>, then <span class="math notranslate nohighlight">\(X_t\rightarrow\infty\)</span> in probability as <span class="math notranslate nohighlight">\(t\rightarrow\infty\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">process</span> <span class="o">=</span> <span class="n">GBM</span><span class="p">(</span><span class="n">drift</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">volatility</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">initial</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="mf">10.0</span><span class="p">)</span>
@@ -1280,12 +950,13 @@ x_0^2, \hbox{  if  }  2\mu+\sigma^2=0.\\
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/geometric_brownian_motion_48_0.png" src="_images/geometric_brownian_motion_48_0.png" />
+<img alt="_images/94065a707e37e55e9297fe88d46256583e57a5758a7e91663848b451263329a3.png" src="_images/94065a707e37e55e9297fe88d46256583e57a5758a7e91663848b451263329a3.png" />
 </div>
 </div>
 </section>
-<section id="case-2-if-mu-frac-1-2-sigma-2-then-x-t-rightarrow-0-in-probability-as-t-rightarrow-infty">
-<h4><span class="section-number">3.4.2.2. </span>Case 2. If <span class="math notranslate nohighlight">\( \mu&lt;\frac{1}{2}\sigma^2\)</span>, then <span class="math notranslate nohighlight">\(X_t\rightarrow 0\)</span> in probability as <span class="math notranslate nohighlight">\(t\rightarrow\infty\)</span>.<a class="headerlink" href="#case-2-if-mu-frac-1-2-sigma-2-then-x-t-rightarrow-0-in-probability-as-t-rightarrow-infty" title="Permalink to this headline">#</a></h4>
+<section id="case-2">
+<h4><span class="section-number">3.4.2.2. </span>Case 2<a class="headerlink" href="#case-2" title="Permalink to this heading">#</a></h4>
+<p>If <span class="math notranslate nohighlight">\( \mu&lt;\frac{1}{2}\sigma^2\)</span>, then <span class="math notranslate nohighlight">\(X_t\rightarrow 0\)</span> in probability as <span class="math notranslate nohighlight">\(t\rightarrow\infty\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">process</span> <span class="o">=</span> <span class="n">GBM</span><span class="p">(</span><span class="n">drift</span><span class="o">=</span><span class="mf">0.02</span><span class="p">,</span> <span class="n">volatility</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">initial</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="mf">20.0</span><span class="p">)</span>  <span class="c1"># mu =(1/2)sigma**2</span>
@@ -1295,29 +966,30 @@ x_0^2, \hbox{  if  }  2\mu+\sigma^2=0.\\
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/geometric_brownian_motion_50_0.png" src="_images/geometric_brownian_motion_50_0.png" />
+<img alt="_images/ec73d37599abe5fa9fc03271ca7002cf36b6cb8fb1c411fcb32d2c16d04cf519.png" src="_images/ec73d37599abe5fa9fc03271ca7002cf36b6cb8fb1c411fcb32d2c16d04cf519.png" />
 </div>
 </div>
 </section>
-<section id="case-3-if-mu-frac-1-2-sigma-2-then-x-t-has-no-limit-in-probability-as-t-rightarrow-infty">
-<h4><span class="section-number">3.4.2.3. </span>Case 3. If <span class="math notranslate nohighlight">\( \mu = \frac{1}{2}\sigma^2\)</span>, then <span class="math notranslate nohighlight">\(X_t\)</span> has no limit in probability as <span class="math notranslate nohighlight">\(t\rightarrow\infty\)</span>.<a class="headerlink" href="#case-3-if-mu-frac-1-2-sigma-2-then-x-t-has-no-limit-in-probability-as-t-rightarrow-infty" title="Permalink to this headline">#</a></h4>
+<section id="case-3">
+<h4><span class="section-number">3.4.2.3. </span>Case 3<a class="headerlink" href="#case-3" title="Permalink to this heading">#</a></h4>
+<p>If <span class="math notranslate nohighlight">\( \mu = \frac{1}{2}\sigma^2\)</span>, then <span class="math notranslate nohighlight">\(X_t\)</span> has no limit in probability as <span class="math notranslate nohighlight">\(t\rightarrow\infty\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">process</span> <span class="o">=</span> <span class="n">GBM</span><span class="p">(</span><span class="n">drift</span><span class="o">=</span> <span class="mf">0.5</span><span class="o">*</span><span class="mf">0.25</span><span class="o">**</span><span class="mi">2</span> <span class="p">,</span> <span class="n">volatility</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">initial</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="mf">10.0</span><span class="p">)</span>   <span class="c1"># mu = (1/2)sigma**2</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">process</span> <span class="o">=</span> <span class="n">GBM</span><span class="p">(</span><span class="n">drift</span><span class="o">=</span> <span class="mf">0.5</span><span class="o">*</span><span class="mf">0.25</span><span class="o">**</span><span class="mi">2</span> <span class="p">,</span> <span class="n">volatility</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">initial</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="mf">20.0</span><span class="p">)</span>   <span class="c1"># mu = (1/2)sigma**2</span>
 <span class="n">process</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/geometric_brownian_motion_52_0.png" src="_images/geometric_brownian_motion_52_0.png" />
+<img alt="_images/c98423a5c04abb5e248ebbac51917fa5f261c2a8d19c5be7fbe41ef5eb31e12f.png" src="_images/c98423a5c04abb5e248ebbac51917fa5f261c2a8d19c5be7fbe41ef5eb31e12f.png" />
 </div>
 </div>
 </section>
 </section>
 </section>
 <section id="visualisation">
-<h2><span class="section-number">3.5. </span>Visualisation<a class="headerlink" href="#visualisation" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">3.5. </span>Visualisation<a class="headerlink" href="#visualisation" title="Permalink to this heading">#</a></h2>
 <p>To finish this note, let’s take a final look at a simulation from the Geometric Brownian Motion.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1330,12 +1002,12 @@ x_0^2, \hbox{  if  }  2\mu+\sigma^2=0.\\
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/geometric_brownian_motion_54_0.png" src="_images/geometric_brownian_motion_54_0.png" />
+<img alt="_images/cc1cafca4ee204d981859f704aa593e2924064a55211ea92d6befd6a3790acba.png" src="_images/cc1cafca4ee204d981859f704aa593e2924064a55211ea92d6befd6a3790acba.png" />
 </div>
 </div>
 </section>
 <section id="references-and-further-reading">
-<h2><span class="section-number">3.6. </span>References and Further Reading<a class="headerlink" href="#references-and-further-reading" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">3.6. </span>References and Further Reading<a class="headerlink" href="#references-and-further-reading" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
 <li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Log-normal_distribution">Wiki - Lognormal distribution</a></p></li>
 <li><p><a class="reference external" href="https://www.cs.princeton.edu/courses/archive/fall09/cos323/papers/black_scholes73.pdf">The Pricing of Options and Corporate Liabilities (1973)</a> by Fischer Black and Myron Scholes.</p></li>
@@ -1352,61 +1024,146 @@ x_0^2, \hbox{  if  }  2\mu+\sigma^2=0.\\
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "local-venv"
+            mode: "python"
         },
         kernelOptions: {
-            kernelName: "local-venv",
+            name: "python3",
             path: "./."
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'local-venv'</script>
+    <script>kernelName = 'python3'</script>
 
-              </div>
+                </article>
               
-            </main>
-            <footer class="footer-article noprint">
-                
-    <!-- Previous / next buttons -->
-<div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="brownian_motion_arithmetic.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title"><span class="section-number">2. </span>Brownian Motion with Drift</p>
-        </div>
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="brownian_motion_arithmetic.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">2. </span>Brownian Motion with Drift</p>
+      </div>
     </a>
-    <a class='right-next' id="next-link" href="vasicek.html" title="next page">
-    <div class="prev-next-info">
+    <a class="right-next"
+       href="vasicek.html"
+       title="next page">
+      <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
         <p class="prev-next-title"><span class="section-number">4. </span>Vasicek Model/Process</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
-    </a>
-</div>
-            </footer>
-        </div>
-    </div>
-    <div class="footer-content row">
-        <footer class="col footer"><p>
-  
-    By Dialid Santiago<br/>
-  
-      &copy; Copyright 2022.<br/>
-</p>
-        </footer>
-    </div>
-    
-</div>
-
-
       </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#definition">3.1. Definition</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#marginal-distributions">3.2. Marginal Distributions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#expectation-and-variance">3.2.1. Expectation and Variance</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#marginal-distributions-in-python">3.2.2. Marginal Distributions in Python</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#probability-density-functions">3.2.3. Probability Density Functions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sampling">3.2.4. Sampling</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simulation">3.3. Simulation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simulating-and-visualising-paths">3.3.1. Simulating and Visualising Paths</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#long-time-behaviour">3.4. Long Time Behaviour</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">3.4.1. Expectation and Variance</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#case-1-gbm-with-mu-0-and-2-mu-sigma-2-0">3.4.1.1. Case 1. GBM with <span class="math notranslate nohighlight">\(\mu&gt;0\)</span> and <span class="math notranslate nohighlight">\(2\mu + \sigma^2&gt;0\)</span>.</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#case-2-gbm-with-mu-0-and-2-mu-sigma-2-0">3.4.1.2. Case 2. GBM with <span class="math notranslate nohighlight">\(\mu&lt;0\)</span> and <span class="math notranslate nohighlight">\(2\mu + \sigma^2&gt;0\)</span>.</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#case-3-gbm-with-mu-0-and-2-mu-sigma-2-0">3.4.1.3. Case 3. GBM with <span class="math notranslate nohighlight">\(\mu&lt;0\)</span> and <span class="math notranslate nohighlight">\(2\mu + \sigma^2=0\)</span>.</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#case-4-gbm-with-mu-0-and-2-mu-sigma-2-0">3.4.1.4. Case 4. GBM with <span class="math notranslate nohighlight">\(\mu&lt;0\)</span> and <span class="math notranslate nohighlight">\(2\mu + \sigma^2 &lt; 0\)</span>.</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#case-5-gbm-with-mu-0">3.4.1.5. Case 5. GBM with <span class="math notranslate nohighlight">\(\mu =0 \)</span></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#marginal">3.4.2. Marginal</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#case-1">3.4.2.1. Case 1</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#case-2">3.4.2.2. Case 2</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#case-3">3.4.2.3. Case 3</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualisation">3.5. Visualisation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references-and-further-reading">3.6. References and Further Reading</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Dialid Santiago
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022-2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
     </div>
+  </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
 
-
+  <footer class="bd-footer">
+  </footer>
   </body>
 </html>
