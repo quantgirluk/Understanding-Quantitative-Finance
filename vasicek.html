@@ -401,8 +401,8 @@ document.write(`
 <section id="definition">
 <h2><span class="section-number">4.1. </span>Definition<a class="headerlink" href="#definition" title="Permalink to this heading">#</a></h2>
 <p>The Vasicek model specifies that the instantaneous interest rate is defined by a stochastic process which can be defined by the following Stochastic Differential Equation (SDE)</p>
-<div class="amsmath math notranslate nohighlight" id="equation-99226975-dda3-474b-ba78-8b1b897e9acd">
-<span class="eqno">(4.1)<a class="headerlink" href="#equation-99226975-dda3-474b-ba78-8b1b897e9acd" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-065efbb5-c5f2-4821-aeb0-3e73b60c9e0c">
+<span class="eqno">(4.1)<a class="headerlink" href="#equation-065efbb5-c5f2-4821-aeb0-3e73b60c9e0c" title="Permalink to this equation">#</a></span>\[\begin{equation}
 dX_t = \theta (\mu - X_t) dt + \sigma dW_t, \quad t &gt;0,
 \end{equation}\]</div>
 <p>with initial condition  <span class="math notranslate nohighlight">\(X_0 =x_0\in\mathbb{R}\)</span>, and where <span class="math notranslate nohighlight">\(W_t\)</span> is a standard Brownian motion, and the three parameters are constants:</p>
@@ -420,8 +420,8 @@ X_te^{\theta t} &amp;= x_0 +\int_0^t X_s \theta e^{\theta s}ds + \int_0^t e^{\th
 &amp; = x_0 + \mu(e^{\theta t} - 1) + \int_0^t e^{\theta s}\sigma dW_s.
 \end{align*}\]</div>
 <p>Thus</p>
-<div class="amsmath math notranslate nohighlight" id="equation-6f329fbf-25b1-4b64-bd08-46d489a27779">
-<span class="eqno">(4.2)<a class="headerlink" href="#equation-6f329fbf-25b1-4b64-bd08-46d489a27779" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-fb4b2701-065c-4ab7-895d-fea4db93005d">
+<span class="eqno">(4.2)<a class="headerlink" href="#equation-fb4b2701-065c-4ab7-895d-fea4db93005d" title="Permalink to this equation">#</a></span>\[\begin{equation}
 X_t = x_0e^{-\theta t} +  \mu(1- e^{-\theta t})  + \sigma \int_0^t e^{-\theta (t-s)}dW_s.
 \end{equation}\]</div>
 <div class="admonition note">
@@ -751,7 +751,7 @@ f(x, t; \theta,  \mu, \sigma, x_0) = \dfrac{1}{ \frac{\sigma}{ \sqrt{2\theta}}  
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([6.29823697, 6.41469381, 6.78356194, 6.52772636, 6.65629992])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([6.72912091, 6.60756112, 7.12027521, 6.37357549, 6.53548595])
 </pre></div>
 </div>
 </div>
@@ -765,7 +765,7 @@ f(x, t; \theta,  \mu, \sigma, x_0) = \dfrac{1}{ \frac{\sigma}{ \sqrt{2\theta}}  
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 9.76718465,  9.83734173,  9.95180622, 10.38523792,  9.69422797])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([10.25648168,  9.93307424,  9.29361121, 10.02456474,  9.57150493])
 </pre></div>
 </div>
 </div>
@@ -800,7 +800,7 @@ t_i = \frac{i}{n-1} T \qquad  \hbox{for } i = 0, \cdots, n-1.
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/06716b32d061db116030372ff48d708d4f7e452890fc95be81485bbdc9e00a9a.png" src="_images/06716b32d061db116030372ff48d708d4f7e452890fc95be81485bbdc9e00a9a.png" />
+<img alt="_images/2a6525f1bc9ba12d895f95e4886066e01cac7165dcd68271019a973e6a605712.png" src="_images/2a6525f1bc9ba12d895f95e4886066e01cac7165dcd68271019a973e6a605712.png" />
 </div>
 </div>
 <div class="admonition note">
@@ -823,7 +823,7 @@ t_i = \frac{i}{n-1} T \qquad  \hbox{for } i = 0, \cdots, n-1.
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/e50d16fe25607b38185997ad6e77b9c1c681560c9a9419ad2b9c0dd2abba4856.png" src="_images/e50d16fe25607b38185997ad6e77b9c1c681560c9a9419ad2b9c0dd2abba4856.png" />
+<img alt="_images/05c3adb4ce1c6f654119d955263eb82b5d610295a98a2aa11165f85b6b1a2db9.png" src="_images/05c3adb4ce1c6f654119d955263eb82b5d610295a98a2aa11165f85b6b1a2db9.png" />
 </div>
 </div>
 </section>
@@ -929,7 +929,7 @@ X_{\infty} \sim  \mathcal{N} \left(\mu  ,  \frac{\sigma}{ \sqrt{2\theta} }\right
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/04a75df3d383323f259dccd6fa468c7a746836e68253631ea3365d6149f7c1e1.png" src="_images/04a75df3d383323f259dccd6fa468c7a746836e68253631ea3365d6149f7c1e1.png" />
+<img alt="_images/82282fa7d37d7dc9ed0a5f7b29d6e9b59f14a906968b96c6b8343c5a4371c02a.png" src="_images/82282fa7d37d7dc9ed0a5f7b29d6e9b59f14a906968b96c6b8343c5a4371c02a.png" />
 </div>
 </div>
 <p>Now, we simulate 1000 paths from the same process <code class="docutils literal notranslate"><span class="pre">Vasicek(theta=1.0,</span> <span class="pre">mu=10.0,</span> <span class="pre">sigma=2.0,</span> <span class="pre">initial=1.0,</span> <span class="pre">T=15)</span></code> but this time over the interval <span class="math notranslate nohighlight">\([0,15]\)</span>. In the picture, we can see the the distribution of <span class="math notranslate nohighlight">\(X_{15}\)</span> has mean equal to the long term mean <span class="math notranslate nohighlight">\(\mu=10\)</span>. The process has reached convergence!</p>
@@ -948,7 +948,7 @@ X_{\infty} \sim  \mathcal{N} \left(\mu  ,  \frac{\sigma}{ \sqrt{2\theta} }\right
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/f809235aaaf08f75870b0d2ebdb217f4d5272d1f13f4e4ee8734eaa036b76ccf.png" src="_images/f809235aaaf08f75870b0d2ebdb217f4d5272d1f13f4e4ee8734eaa036b76ccf.png" />
+<img alt="_images/8b022bd5544153bd1d54cacbb58683f37222e252b6196bad43dbcc119175a81c.png" src="_images/8b022bd5544153bd1d54cacbb58683f37222e252b6196bad43dbcc119175a81c.png" />
 </div>
 </div>
 <section id="the-parameter-theta-determines-the-speed-of-convergence">
@@ -962,7 +962,7 @@ X_{\infty} \sim  \mathcal{N} \left(\mu  ,  \frac{\sigma}{ \sqrt{2\theta} }\right
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/6163b99cb294adf9b06938faa7772a4f31d58f0d162e53dd8bbf3f3a95153f28.png" src="_images/6163b99cb294adf9b06938faa7772a4f31d58f0d162e53dd8bbf3f3a95153f28.png" />
+<img alt="_images/91db409821a1845ed9d0d01cff23215e6a5281d84872bfb5b0bbbea87d6ad699.png" src="_images/91db409821a1845ed9d0d01cff23215e6a5281d84872bfb5b0bbbea87d6ad699.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -974,7 +974,7 @@ X_{\infty} \sim  \mathcal{N} \left(\mu  ,  \frac{\sigma}{ \sqrt{2\theta} }\right
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/81a2a5d098cf7b1a31a4427d9bbb1c6f7bca46cbeff80aaacf5fc48135916ba9.png" src="_images/81a2a5d098cf7b1a31a4427d9bbb1c6f7bca46cbeff80aaacf5fc48135916ba9.png" />
+<img alt="_images/8fe9b8b24abe0530bb9d7db71b1475dde2c8bcffbcde78f1b6835eba2ca113b2.png" src="_images/8fe9b8b24abe0530bb9d7db71b1475dde2c8bcffbcde78f1b6835eba2ca113b2.png" />
 </div>
 </div>
 </section>
@@ -989,7 +989,7 @@ X_{\infty} \sim  \mathcal{N} \left(\mu  ,  \frac{\sigma}{ \sqrt{2\theta} }\right
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/522e2d4b6ddd3bc8c9e5d2b25faa19c8be7055653a69d691af05ad8ef31b2b9e.png" src="_images/522e2d4b6ddd3bc8c9e5d2b25faa19c8be7055653a69d691af05ad8ef31b2b9e.png" />
+<img alt="_images/2eb65f2b4637d1000a3af0afe49507a57d3f237e8cc5b5533c2db3f868f4bc61.png" src="_images/2eb65f2b4637d1000a3af0afe49507a57d3f237e8cc5b5533c2db3f868f4bc61.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1001,7 +1001,7 @@ X_{\infty} \sim  \mathcal{N} \left(\mu  ,  \frac{\sigma}{ \sqrt{2\theta} }\right
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/806ca1cda4b215b328625db55a3d97a758460e0cf3753381e2af8344f564ef1b.png" src="_images/806ca1cda4b215b328625db55a3d97a758460e0cf3753381e2af8344f564ef1b.png" />
+<img alt="_images/16e404d983d5e673ff391cd2822adf1ae35bc445d664058e0455216c956ffc0b.png" src="_images/16e404d983d5e673ff391cd2822adf1ae35bc445d664058e0455216c956ffc0b.png" />
 </div>
 </div>
 </section>
@@ -1020,7 +1020,7 @@ X_{\infty} \sim  \mathcal{N} \left(\mu  ,  \frac{\sigma}{ \sqrt{2\theta} }\right
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/dc3f00a46841286e9b8979179228d2c2c1c4b8662cfb4b05a00f7f278656f496.png" src="_images/dc3f00a46841286e9b8979179228d2c2c1c4b8662cfb4b05a00f7f278656f496.png" />
+<img alt="_images/80a083413c5c804ef2f22c12e4bebddcc86b550caa3f47022e865054e91e6c36.png" src="_images/80a083413c5c804ef2f22c12e4bebddcc86b550caa3f47022e865054e91e6c36.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1033,7 +1033,7 @@ X_{\infty} \sim  \mathcal{N} \left(\mu  ,  \frac{\sigma}{ \sqrt{2\theta} }\right
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/d1c33e909465deed0694d335bed7d0960de894e41db8fc428659ae3c8a15b2c6.png" src="_images/d1c33e909465deed0694d335bed7d0960de894e41db8fc428659ae3c8a15b2c6.png" />
+<img alt="_images/b5666a9d40e18f3caaf9fc02e4cf6830963064711d43adf06adc09365bc6c9bb.png" src="_images/b5666a9d40e18f3caaf9fc02e4cf6830963064711d43adf06adc09365bc6c9bb.png" />
 </div>
 </div>
 <div class="cell tag_hide-input docutils container">
@@ -1069,7 +1069,7 @@ X_{\infty} \sim  \mathcal{N} \left(\mu  ,  \frac{\sigma}{ \sqrt{2\theta} }\right
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/704b87d83ffef78bfc7f4cf5ed5f390325b62b9e5c9475e3547c7c09f269c851.png" src="_images/704b87d83ffef78bfc7f4cf5ed5f390325b62b9e5c9475e3547c7c09f269c851.png" />
+<img alt="_images/fec20bf940cd8c52b7aebdfead7c1568202c29892b2734dad29ee5556b714ceb.png" src="_images/fec20bf940cd8c52b7aebdfead7c1568202c29892b2734dad29ee5556b714ceb.png" />
 </div>
 </div>
 </section>
