@@ -5,10 +5,13 @@ My aim is to create an open-source repository where people interested in a caree
 
 ### Content
 
+Part I. Stochastic Processes
+
 1. [Brownian Motion](https://quantgirluk.github.io/Understanding-Quantitative-Finance/brownian_motion.html)
 2. [Brownian Motion with Drift](https://quantgirluk.github.io/Understanding-Quantitative-Finance/brownian_motion_arithmetic.html)
 3. [Geometric Brownian Motion](https://quantgirluk.github.io/Understanding-Quantitative-Finance/geometric_brownian_motion.html)
 4. [Vasicek Model/Process](https://quantgirluk.github.io/Understanding-Quantitative-Finance/vasicek.html)
+5. [Cox–Ingersoll–Ross process](https://quantgirluk.github.io/Understanding-Quantitative-Finance/cir_process.html)
 
 
 ```{note}
