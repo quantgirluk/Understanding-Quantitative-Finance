@@ -407,8 +407,8 @@ document.write(`
 <section id="marginal-distributions">
 <h2><span class="section-number">1.2. </span>Marginal Distributions<a class="headerlink" href="#marginal-distributions" title="Permalink to this heading">#</a></h2>
 <p>Point (2) in the Brownian motion definition implies that for each <span class="math notranslate nohighlight">\(t&gt;0\)</span>, the one dimensional marginal distribution <span class="math notranslate nohighlight">\(W_t\)</span> is normally distributed with expectation zero, and variance equals <span class="math notranslate nohighlight">\(t\)</span>, i.e.:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-75fee334-70d2-4b7b-a889-5e1dd4a4489f">
-<span class="eqno">(1.1)<a class="headerlink" href="#equation-75fee334-70d2-4b7b-a889-5e1dd4a4489f" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-237428b4-a38d-4df5-9fea-ae5c556c900e">
+<span class="eqno">(1.1)<a class="headerlink" href="#equation-237428b4-a38d-4df5-9fea-ae5c556c900e" title="Permalink to this equation">#</a></span>\[\begin{equation}
 W_t \sim \mathcal{N}(0,t), \qquad \forall t&gt;0.
 \end{equation}\]</div>
 <section id="expectation-variance-and-covariance">
@@ -486,8 +486,8 @@ f(x, t) = \dfrac{1}{\sqrt{2 \pi t}}\exp\left\{ -\dfrac{x^2}{2t}\right\}, \qquad 
 <section id="fokker-planck-equation">
 <h4><span class="section-number">1.2.4.1. </span>Fokker-Planck Equation<a class="headerlink" href="#fokker-planck-equation" title="Permalink to this heading">#</a></h4>
 <p>The pdf satisfies the Fokker-Planck equation</p>
-<div class="amsmath math notranslate nohighlight" id="equation-a39e83ae-953f-4347-abf6-fcb6227ad6ec">
-<span class="eqno">(1.2)<a class="headerlink" href="#equation-a39e83ae-953f-4347-abf6-fcb6227ad6ec" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-f8920390-58c5-4b24-8949-a9a4b5c47074">
+<span class="eqno">(1.2)<a class="headerlink" href="#equation-f8920390-58c5-4b24-8949-a9a4b5c47074" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \dfrac{\partial}{\partial t}f(x,t)= \dfrac{1}{2}\dfrac{\partial}{\partial x^2}f(x,t).
 \end{equation}\]</div>
 </section>
@@ -582,7 +582,7 @@ Moreover, we can make the following observations:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 0.31814905,  0.35570004, -0.88842768,  0.80316395, -1.79788523])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-0.94478101,  2.42502844, -0.01524207, -1.14986751, -0.57094196])
 </pre></div>
 </div>
 </div>
@@ -596,7 +596,7 @@ Moreover, we can make the following observations:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-3.5349128 ,  0.65434674, -3.37515295, -3.74901463,  1.1508342 ])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 1.10215653,  2.73592916,  2.8470798 , -1.11176555, -1.32062526])
 </pre></div>
 </div>
 </div>
@@ -665,7 +665,7 @@ W_{t_3} = (W_{t_3} - W_{t_2}) + W_{t_2}  &amp; \sim N\left(0,\frac{T}{n-1}\right
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/8ed212ba428797bd52a16fc57c302b063129d6ec7cabda3956de510dc4c1a7d2.png" src="_images/8ed212ba428797bd52a16fc57c302b063129d6ec7cabda3956de510dc4c1a7d2.png" />
+<img alt="_images/8e5b3431c853e44cd95f54c92cc9d2767fdfe9f6ad6b7751a05343ea4bc8a9a9.png" src="_images/8e5b3431c853e44cd95f54c92cc9d2767fdfe9f6ad6b7751a05343ea4bc8a9a9.png" />
 </div>
 </div>
 <div class="admonition note">
@@ -691,7 +691,7 @@ W_{t_3} = (W_{t_3} - W_{t_2}) + W_{t_2}  &amp; \sim N\left(0,\frac{T}{n-1}\right
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/fb8d1b669a636c68a7b92640d273278e999308476bb025494753c8b89d7b527c.png" src="_images/fb8d1b669a636c68a7b92640d273278e999308476bb025494753c8b89d7b527c.png" />
+<img alt="_images/a82b72c8660a3900f74eecef7836ce6e3fdbaf39f45ba1e0dd7c42cd96b90f74.png" src="_images/a82b72c8660a3900f74eecef7836ce6e3fdbaf39f45ba1e0dd7c42cd96b90f74.png" />
 </div>
 </div>
 <p>Similarly, we can define the Brownian Motion over the interval <span class="math notranslate nohighlight">\([0, 10]\)</span> and simulate 50 paths with a partition of size 100.</p>
@@ -704,7 +704,7 @@ W_{t_3} = (W_{t_3} - W_{t_2}) + W_{t_2}  &amp; \sim N\left(0,\frac{T}{n-1}\right
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/9e7c43cc7ccf89c58c535b98f58914e3052ebd9d0fe0ecd0ce89d1f892a1a638.png" src="_images/9e7c43cc7ccf89c58c535b98f58914e3052ebd9d0fe0ecd0ce89d1f892a1a638.png" />
+<img alt="_images/e65ea8afd1eff6f021bb0ce14d3945382edb79f36d8c7a08b590a5a7634e6d12.png" src="_images/e65ea8afd1eff6f021bb0ce14d3945382edb79f36d8c7a08b590a5a7634e6d12.png" />
 </div>
 </div>
 </section>
@@ -741,7 +741,7 @@ W_{t_3} = (W_{t_3} - W_{t_2}) + W_{t_2}  &amp; \sim N\left(0,\frac{T}{n-1}\right
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/c503a439025527705e77e9a4a40687e410f617ac4988d57c58e5e78821ff8f5c.png" src="_images/c503a439025527705e77e9a4a40687e410f617ac4988d57c58e5e78821ff8f5c.png" />
+<img alt="_images/64d18919528644498e04ea10a11e656f1831a659ab8f425fd9a77f0596b7e0f7.png" src="_images/64d18919528644498e04ea10a11e656f1831a659ab8f425fd9a77f0596b7e0f7.png" />
 </div>
 </div>
 <p>We can zoom-in to see the what was happening when <span class="math notranslate nohighlight">\(t\)</span> was not that big e.g. over the interval <span class="math notranslate nohighlight">\([0,5]\)</span></p>
@@ -764,7 +764,7 @@ W_{t_3} = (W_{t_3} - W_{t_2}) + W_{t_2}  &amp; \sim N\left(0,\frac{T}{n-1}\right
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/35a904aae0e8cbd6fbd2e1c08182c532aa8ccaaf59c2d64fc3debf49a409637a.png" src="_images/35a904aae0e8cbd6fbd2e1c08182c532aa8ccaaf59c2d64fc3debf49a409637a.png" />
+<img alt="_images/ad739716eeb8775ce8d4a2901fd88a384f19ef20f8ee8700ed0d4634e80e9f00.png" src="_images/ad739716eeb8775ce8d4a2901fd88a384f19ef20f8ee8700ed0d4634e80e9f00.png" />
 </div>
 </div>
 <p>We can see that the ratio <span class="math notranslate nohighlight">\(\frac{W_t}{t}\)</span> is definitely going towards zero but not quite there yet at <span class="math notranslate nohighlight">\(t=5\)</span>.</p>
@@ -788,7 +788,7 @@ W_{t_3} = (W_{t_3} - W_{t_2}) + W_{t_2}  &amp; \sim N\left(0,\frac{T}{n-1}\right
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/b5ffa30c12fe8b211c58e71778538f6fee22bb0d0c00e2a556d563136e6c0987.png" src="_images/b5ffa30c12fe8b211c58e71778538f6fee22bb0d0c00e2a556d563136e6c0987.png" />
+<img alt="_images/a88320fb4f61fbddd7df0025a49e72cf32d5141df934c73f24cb526fb324a645.png" src="_images/a88320fb4f61fbddd7df0025a49e72cf32d5141df934c73f24cb526fb324a645.png" />
 </div>
 </div>
 <p>Here we can see that the ratio is much closer to zero (around <span class="math notranslate nohighlight">\(\pm 0.1\)</span>) than before!
@@ -847,7 +847,7 @@ Of course, we are still not quite there yet, but convergence is definitely happe
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/ae6532851eee4f85420ac108c182c48d76e99b7b2174035b9e0aeb0d61a44cda.png" src="_images/ae6532851eee4f85420ac108c182c48d76e99b7b2174035b9e0aeb0d61a44cda.png" />
+<img alt="_images/4db92cee00d48ccded15c2a36a4b57bf198cce7ad1d8e9c8dbf69a0320031f03.png" src="_images/4db92cee00d48ccded15c2a36a4b57bf198cce7ad1d8e9c8dbf69a0320031f03.png" />
 </div>
 </div>
 </section>

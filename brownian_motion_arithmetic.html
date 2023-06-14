@@ -401,14 +401,14 @@ document.write(`
 <section id="id1">
 <h2><span class="section-number">2.2. </span>Definition<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h2>
 <p>The Arithmetic Brownian motion can be defined by the following Stochastic Differential Equation (SDE)</p>
-<div class="amsmath math notranslate nohighlight" id="equation-d4997f29-e889-45df-995c-0c829f49a9d8">
-<span class="eqno">(2.1)<a class="headerlink" href="#equation-d4997f29-e889-45df-995c-0c829f49a9d8" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-91be20b3-c93c-4ee8-b427-b1df43ec4731">
+<span class="eqno">(2.1)<a class="headerlink" href="#equation-91be20b3-c93c-4ee8-b427-b1df43ec4731" title="Permalink to this equation">#</a></span>\[\begin{equation}
 dX_t = \mu dt + \sigma dW_t, \quad t &gt;0,
 \end{equation}\]</div>
 <p>with initial condition <span class="math notranslate nohighlight">\(X_0 =x_0\)</span>, and constant parameters <span class="math notranslate nohighlight">\(\mu\in \mathbb{R}\)</span>, <span class="math notranslate nohighlight">\(\sigma&gt;0\)</span>. Without loss of generality we are going to assume that <span class="math notranslate nohighlight">\(x_0=0\)</span>. Here, <span class="math notranslate nohighlight">\(W_t\)</span> denotes a standard Brownian motion.</p>
 <p>Equation (2.1) equivales to</p>
-<div class="amsmath math notranslate nohighlight" id="equation-afa1d05d-3258-457c-a5b2-efe8e7f7e304">
-<span class="eqno">(2.2)<a class="headerlink" href="#equation-afa1d05d-3258-457c-a5b2-efe8e7f7e304" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-1a6d48fc-6786-4415-ab42-e9e4588f3aa5">
+<span class="eqno">(2.2)<a class="headerlink" href="#equation-1a6d48fc-6786-4415-ab42-e9e4588f3aa5" title="Permalink to this equation">#</a></span>\[\begin{align}
 X_t &amp;= \int_0^t \mu ds + \int_0^t \sigma dW_t =  \mu t +  \sigma W_t,
 \end{align}\]</div>
 <p>which gives us the solution.</p>
@@ -429,8 +429,8 @@ X_t &amp;= \int_0^t \mu ds + \int_0^t \sigma dW_t =  \mu t +  \sigma W_t,
 \mathbf{Var} [X_t] = Var[X_t |X_0] = \sigma^2 t \qquad \forall t&gt; 0.
 \end{equation*}\]</div>
 <p>So we have</p>
-<div class="amsmath math notranslate nohighlight" id="equation-82852543-c45e-4602-9ff8-d05d73a971b3">
-<span class="eqno">(2.3)<a class="headerlink" href="#equation-82852543-c45e-4602-9ff8-d05d73a971b3" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-390216cf-eade-475f-a37b-ec2814db16f1">
+<span class="eqno">(2.3)<a class="headerlink" href="#equation-390216cf-eade-475f-a37b-ec2814db16f1" title="Permalink to this equation">#</a></span>\[\begin{equation}
 X_t \sim \mathcal{N}(\mu t, \sigma^2 t),  \qquad \forall t&gt;0.
 \end{equation}\]</div>
 <p>Besides, for any <span class="math notranslate nohighlight">\( t &gt; s &gt;0\)</span>, we have</p>
@@ -587,7 +587,7 @@ f(x, t; \mu, \sigma) = \dfrac{1}{\sigma \sqrt{2 \pi t}}\exp\left\{ -\dfrac{1}{2}
         <span class="n">X_t</span> <span class="o">=</span> <span class="n">process</span><span class="o">.</span><span class="n">get_marginal</span><span class="p">(</span><span class="n">t</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
         <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">X_t</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mf">0.001</span><span class="p">),</span> <span class="n">X_t</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mf">0.999</span><span class="p">),</span> <span class="mi">100</span><span class="p">)</span>
         <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">X_t</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span>
-                <span class="n">alpha</span><span class="o">=</span><span class="mf">0.75</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;$\sigma$=</span><span class="si">{</span><span class="n">mu</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+                <span class="n">alpha</span><span class="o">=</span><span class="mf">0.75</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;$\sigma$=</span><span class="si">{</span><span class="n">sigma</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
         <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 <span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$X_1$ pdf from an arithmetic BM  with $\mu=1.0$&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -596,7 +596,7 @@ f(x, t; \mu, \sigma) = \dfrac{1}{\sigma \sqrt{2 \pi t}}\exp\left\{ -\dfrac{1}{2}
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/2449b95c9d86bbb54e7f7fd4539ac928da24da341e69a40157b2e8c0354908b2.png" src="_images/2449b95c9d86bbb54e7f7fd4539ac928da24da341e69a40157b2e8c0354908b2.png" />
+<img alt="_images/acce23ecf31e95d57a9fcb40f4fb2ea9c6ac696b96ea85c1ed055b1cf9b474e2.png" src="_images/acce23ecf31e95d57a9fcb40f4fb2ea9c6ac696b96ea85c1ed055b1cf9b474e2.png" />
 </div>
 </div>
 <p>Finally, let’s see what happens when we keep the parameters constant but <span class="math notranslate nohighlight">\(t\)</span> grows. For this, we will consider two cases, <span class="math notranslate nohighlight">\(\mu&gt;0\)</span> and <span class="math notranslate nohighlight">\(\mu&lt;0\)</span>.</p>
@@ -607,7 +607,7 @@ f(x, t; \mu, \sigma) = \dfrac{1}{\sigma \sqrt{2 \pi t}}\exp\left\{ -\dfrac{1}{2}
 <span class="expanded">Hide code cell source</span>
 </summary>
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">mu</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">mu</span> <span class="ow">in</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">]:</span>
     <span class="n">process</span> <span class="o">=</span> <span class="n">BrownianMotion</span><span class="p">(</span><span class="n">drift</span><span class="o">=</span><span class="n">mu</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mf">1.</span><span class="p">)</span>
     <span class="n">fig</span><span class="p">,</span> <span class="n">ax1</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">]:</span>
@@ -623,8 +623,8 @@ f(x, t; \mu, \sigma) = \dfrac{1}{\sigma \sqrt{2 \pi t}}\exp\left\{ -\dfrac{1}{2}
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/fb85dcefa612ef9346eb8028fbceb4433673e198f5a299bfd59f032604d4dc2e.png" src="_images/fb85dcefa612ef9346eb8028fbceb4433673e198f5a299bfd59f032604d4dc2e.png" />
-<img alt="_images/c25620c2e4ea6a7d6d63bea3b1fcaee4b3341fd1c3a963797e3ef3a59b225570.png" src="_images/c25620c2e4ea6a7d6d63bea3b1fcaee4b3341fd1c3a963797e3ef3a59b225570.png" />
+<img alt="_images/b9651567eebb167a5adb6b39f84ea176ba5b461ae655b41495f90f2977875d79.png" src="_images/b9651567eebb167a5adb6b39f84ea176ba5b461ae655b41495f90f2977875d79.png" />
+<img alt="_images/a8e2cd9cdce91db7e25dee748b7b9a2cb1b9fb9d78eb557883a8e5aebea52393.png" src="_images/a8e2cd9cdce91db7e25dee748b7b9a2cb1b9fb9d78eb557883a8e5aebea52393.png" />
 </div>
 </div>
 <p>In these charts, we can see the characteristic symmetric bell-shaped curves of the normal/Gaussian distribution.
@@ -651,7 +651,7 @@ Moreover, we can make the following observations:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.98862092, 0.91675212, 0.92701901, 1.89216493, 1.03777373])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.80718322, 0.99522037, 1.3487377 , 1.0921127 , 1.08216469])
 </pre></div>
 </div>
 </div>
@@ -716,7 +716,7 @@ X_t = \mu t  + \sigma W_t,
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/6c3723fd026bb16d569e8eb9012ed6fc6a2c3bdbca01cc6d16e1601c80a9431f.png" src="_images/6c3723fd026bb16d569e8eb9012ed6fc6a2c3bdbca01cc6d16e1601c80a9431f.png" />
+<img alt="_images/08a400cc3dd0698038b7be81748b571aa5b58876467d0a4e3110e2a1e87afeee.png" src="_images/08a400cc3dd0698038b7be81748b571aa5b58876467d0a4e3110e2a1e87afeee.png" />
 </div>
 </div>
 <div class="admonition note">
@@ -740,7 +740,7 @@ X_t = \mu t  + \sigma W_t,
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/3cbcb5348d58e8274ab08218e1eb925c989eca36385a50c5f4cdb2ad4be692ce.png" src="_images/3cbcb5348d58e8274ab08218e1eb925c989eca36385a50c5f4cdb2ad4be692ce.png" />
+<img alt="_images/cbcf4fb64f14cbb051e8541b12f949a873d74c58d060f82193815afe25165d15.png" src="_images/cbcf4fb64f14cbb051e8541b12f949a873d74c58d060f82193815afe25165d15.png" />
 </div>
 </div>
 <p>Similarly, we can define an arithmetic Brownian Motion over the interval <span class="math notranslate nohighlight">\([0, 10]\)</span> and simulate 50 paths with a partition of size 100.</p>
@@ -753,7 +753,7 @@ X_t = \mu t  + \sigma W_t,
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/a10bc0497aef843991697232eb7c772e69e60fd1a1ceaccaa395936df4f55a91.png" src="_images/a10bc0497aef843991697232eb7c772e69e60fd1a1ceaccaa395936df4f55a91.png" />
+<img alt="_images/0b6bd85bea66496894d7adf40f1e773eb62217ce1b42658c11a6d82b4cd89ce2.png" src="_images/0b6bd85bea66496894d7adf40f1e773eb62217ce1b42658c11a6d82b4cd89ce2.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -765,7 +765,7 @@ X_t = \mu t  + \sigma W_t,
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/4bb702fdb8939d75151f515ad89060b66a2f932de7b0559e34eda9317647ffe8.png" src="_images/4bb702fdb8939d75151f515ad89060b66a2f932de7b0559e34eda9317647ffe8.png" />
+<img alt="_images/334d7a36d7869f943e787073ce21913782eac6a4f3deedaf021d115220258da0.png" src="_images/334d7a36d7869f943e787073ce21913782eac6a4f3deedaf021d115220258da0.png" />
 </div>
 </div>
 </section>
@@ -855,7 +855,7 @@ X_t = \mu t  + \sigma W_t,
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/1adcb733850e6dda44fe1d765a3af9bf6c0cc9d43ca32d161a0827e11ba8d49b.png" src="_images/1adcb733850e6dda44fe1d765a3af9bf6c0cc9d43ca32d161a0827e11ba8d49b.png" />
+<img alt="_images/1a51da9a0016b7ea1d5bd0593dbf7198e72e10436adc00949f89808b4df72466.png" src="_images/1a51da9a0016b7ea1d5bd0593dbf7198e72e10436adc00949f89808b4df72466.png" />
 </div>
 </div>
 <div class="cell tag_hide-input docutils container">
@@ -873,7 +873,7 @@ X_t = \mu t  + \sigma W_t,
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/3b48257beeea342517c34c126ce150c09c6b596993506bcabad4e897d8b3f398.png" src="_images/3b48257beeea342517c34c126ce150c09c6b596993506bcabad4e897d8b3f398.png" />
+<img alt="_images/e79cb1238097ecab4fa9030e665b793821142f572b9989b694b273743bf15770.png" src="_images/e79cb1238097ecab4fa9030e665b793821142f572b9989b694b273743bf15770.png" />
 </div>
 </div>
 </section>
@@ -890,7 +890,7 @@ X_t = \mu t  + \sigma W_t,
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/6103b1238880eb98b2622bd288410e975b6aa18f298b350355ef4cefa6e9f14e.png" src="_images/6103b1238880eb98b2622bd288410e975b6aa18f298b350355ef4cefa6e9f14e.png" />
+<img alt="_images/807502f76a73d78aa9f55d58a46b1085ec9d20f956cab50577bb83af9f73235c.png" src="_images/807502f76a73d78aa9f55d58a46b1085ec9d20f956cab50577bb83af9f73235c.png" />
 </div>
 </div>
 </section>
