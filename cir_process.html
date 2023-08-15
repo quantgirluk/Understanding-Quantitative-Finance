@@ -359,6 +359,7 @@ document.write(`
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#definition">5.1. Definition</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#existence-and-uniqueness">5.1.1. Existence and Uniqueness</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cir-process-is-a-bessel-process">5.1.2. CIR process is a Bessel process</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#expectation-and-variance">5.2. Expectation and Variance</a><ul class="nav section-nav flex-column">
@@ -405,8 +406,8 @@ document.write(`
 <section id="definition">
 <h2><span class="section-number">5.1. </span>Definition<a class="headerlink" href="#definition" title="Permalink to this heading">#</a></h2>
 <p>The Cox-Ingersoll-Ross (CIR) model describes the dynamics of interest rates via a stochastic process which can be defined by the following Stochastic Differential Equation (SDE)</p>
-<div class="amsmath math notranslate nohighlight" id="equation-9ab29fab-c3d4-4d1d-bbf7-71824665da43">
-<span class="eqno">(5.1)<a class="headerlink" href="#equation-9ab29fab-c3d4-4d1d-bbf7-71824665da43" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-142bd12e-c7b5-4f34-8791-589694cc46ce">
+<span class="eqno">(5.1)<a class="headerlink" href="#equation-142bd12e-c7b5-4f34-8791-589694cc46ce" title="Permalink to this equation">#</a></span>\[\begin{equation}
 dX_t = \theta (\mu - X_t) dt + \sigma \sqrt{X_t} dW_t, \quad t &gt;0,
 \end{equation}\]</div>
 <p>with initial condition  <span class="math notranslate nohighlight">\(X_0 =x_0\in\mathbb{R}\)</span>, and where <span class="math notranslate nohighlight">\(W_t\)</span> is a standard Brownian motion, and the three parameters are constants:</p>
@@ -419,8 +420,8 @@ dX_t = \theta (\mu - X_t) dt + \sigma \sqrt{X_t} dW_t, \quad t &gt;0,
 <h3><span class="section-number">5.1.1. </span>Existence and Uniqueness<a class="headerlink" href="#existence-and-uniqueness" title="Permalink to this heading">#</a></h3>
 <p>In order to demonstrate that equation (5.1) has a solution we need to introduce the following two results which can be found in [Jeanblanc, Yor, Chesney, 2009].</p>
 <p><strong>Theorem 1.</strong> Consider the SDE</p>
-<div class="amsmath math notranslate nohighlight" id="equation-58a8893e-ce75-48bc-bcb4-21206a35b031">
-<span class="eqno">(5.2)<a class="headerlink" href="#equation-58a8893e-ce75-48bc-bcb4-21206a35b031" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-3f9ed91e-d560-4237-8424-8a24af733a55">
+<span class="eqno">(5.2)<a class="headerlink" href="#equation-3f9ed91e-d560-4237-8424-8a24af733a55" title="Permalink to this equation">#</a></span>\[\begin{equation}
 X_t =X_0 + \int_0^t b(s,X_s) ds + \int_0^t\sigma(s,X_s)dW_s.
 \end{equation}\]</div>
 <p>Suppose <span class="math notranslate nohighlight">\(\varphi : (0,\infty) \rightarrow (0,\infty)\)</span> is a Borel function such that</p>
@@ -445,14 +446,14 @@ X_t =X_0 + \int_0^t b(s,X_s) ds + \int_0^t\sigma(s,X_s)dW_s.
 \[ |\sigma(x) - \sigma(y)|^2 \leq |f(x) - f(y)|, \]</div>
 <p>where <span class="math notranslate nohighlight">\(f\)</span> is a bounded increasing function, <span class="math notranslate nohighlight">\(|\sigma|\geq \epsilon &gt;0\)</span>.</p>
 <p><strong>Theorem 2. (Comparison Theorem)</strong> Consider the two SDEs</p>
-<div class="amsmath math notranslate nohighlight" id="equation-45d94676-6f1b-48fc-96af-67ea3d2422cb">
-<span class="eqno">(5.3)<a class="headerlink" href="#equation-45d94676-6f1b-48fc-96af-67ea3d2422cb" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-19b66d58-c84c-4d41-a2f8-aaf36a6f0768">
+<span class="eqno">(5.3)<a class="headerlink" href="#equation-19b66d58-c84c-4d41-a2f8-aaf36a6f0768" title="Permalink to this equation">#</a></span>\[\begin{equation}
 dX^i_t = b_i(t, X^i_t) dt + \sigma(t,X^i_t) dW_t, \qquad i =1,2;
 \end{equation}\]</div>
 <p>where the functions <span class="math notranslate nohighlight">\(b_i\)</span> are both bounded and at least one of them is Lipschitz; and <span class="math notranslate nohighlight">\(\sigma\)</span> satisfies condition (2) or (3) in Theorem 1.  Suppose also that <span class="math notranslate nohighlight">\(X^1_0 \geq X^2_0,\)</span> and <span class="math notranslate nohighlight">\(b_1(x) \geq b_2(x)\)</span>. Then <span class="math notranslate nohighlight">\(X^1_t \geq X^2_t\)</span> for all <span class="math notranslate nohighlight">\(t\)</span>, almost surely.</p>
 <p>Now, in order to prove that (5.1) has a solution, let us consider the following SDE</p>
-<div class="amsmath math notranslate nohighlight" id="equation-cdca5cb5-c33e-48cf-9dfe-d99d891c199f">
-<span class="eqno">(5.4)<a class="headerlink" href="#equation-cdca5cb5-c33e-48cf-9dfe-d99d891c199f" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-339336d4-0a1b-4664-9453-db1c26d4735e">
+<span class="eqno">(5.4)<a class="headerlink" href="#equation-339336d4-0a1b-4664-9453-db1c26d4735e" title="Permalink to this equation">#</a></span>\[\begin{equation}
 dX_t = \theta (\mu - X_t) dt + \sigma \sqrt{|X_t|} dW_t, \quad t &gt;0,
 \end{equation}\]</div>
 <p>with the same  initial condition and constant parameters as in (5.1). Note that in (5.2) we take absolute value before applying the square root which guarantees that this is well-defined.</p>
@@ -466,7 +467,27 @@ dX_t = \theta (\mu - X_t) dt + \sigma \sqrt{|X_t|} dW_t, \quad t &gt;0,
 &amp; \leq \sigma^2 |x-y|,
 \end{align*}\]</div>
 <p>which means that condition (1) in Theorem 1 holds. Thus equation (5.2) admits a strong solution – which is indeed a Markov process.</p>
-<p>Observe that for <span class="math notranslate nohighlight">\(\mu=0\)</span> and <span class="math notranslate nohighlight">\(x_0=0\)</span>, the solution of (5.2) is <span class="math notranslate nohighlight">\(X_t =0, \forall t\geq0\)</span>.  Then, the Comparison Theorem tells us that assuming <span class="math notranslate nohighlight">\(\theta\mu &gt;0\)</span>,implies that <span class="math notranslate nohighlight">\(X_t\geq 0\)</span> whenever <span class="math notranslate nohighlight">\(x_0&gt;0\)</span>. In such case, we can ommit the absolute value in the diffusion coefficient and simply consider the positive solution of (5.4) whenever <span class="math notranslate nohighlight">\(\theta \mu &gt;0\)</span> and <span class="math notranslate nohighlight">\(x_0&gt;0\)</span>. This demonstrates that  (5.2) admits a unique solution which is is strong, and is a Markov process.</p>
+<p>Observe that for <span class="math notranslate nohighlight">\(\mu=0\)</span> and <span class="math notranslate nohighlight">\(x_0=0\)</span>, the solution of (5.2) is <span class="math notranslate nohighlight">\(X_t =0, \forall t\geq0\)</span>. Then, the Comparison Theorem tells us that assuming <span class="math notranslate nohighlight">\(\theta\mu &gt;0\)</span>,implies that</p>
+<div class="amsmath math notranslate nohighlight" id="equation-684d75c1-6dbf-4e3d-992e-08d1c7a93431">
+<span class="eqno">(5.5)<a class="headerlink" href="#equation-684d75c1-6dbf-4e3d-992e-08d1c7a93431" title="Permalink to this equation">#</a></span>\[\begin{equation}
+X_t\geq 0  \ \ \hbox{ whenever }  x_0&gt;0. 
+\end{equation}\]</div>
+<p>In such case, we can ommit the absolute value in the diffusion coefficient and simply consider the positive solution of (5.4) whenever <span class="math notranslate nohighlight">\(\theta \mu &gt;0\)</span> and <span class="math notranslate nohighlight">\(x_0&gt;0\)</span>. This demonstrates that  (5.2) admits a unique solution which is is strong, and is a Markov process.</p>
+</section>
+<section id="cir-process-is-a-bessel-process">
+<h3><span class="section-number">5.1.2. </span>CIR process is a Bessel process<a class="headerlink" href="#cir-process-is-a-bessel-process" title="Permalink to this heading">#</a></h3>
+<p><strong>Proposition 1.</strong>  The CIR process (5.1) is a Bessel Squared process transformed by the following space-time changes:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+X_t = e^{-\theta t} Y\left( \dfrac{\sigma^2}{4\theta} (e^{\theta t} - 1)   \right),
+\end{equation*}\]</div>
+<p>where <span class="math notranslate nohighlight">\(Y =\{Y_s, s\geq 0\}\)</span> is a Besses Squared process <span class="math notranslate nohighlight">\(BESQ^{\alpha}\)</span>, with dimension <span class="math notranslate nohighlight">\(\alpha = \dfrac{4\theta \mu}{\sigma^2}\)</span>.</p>
+<p>Proposition 1 implies that we have the following cases:</p>
+<ul class="simple">
+<li><p>If <span class="math notranslate nohighlight">\(2\theta\mu \geq \sigma^2\)</span>, a CIR process starting from a positive initial condition <span class="math notranslate nohighlight">\(x_0\)</span>, stays strictly positive</p></li>
+<li><p>If <span class="math notranslate nohighlight">\(0 \leq 2\theta\mu &lt; \sigma^2\)</span>, a CIR process starting from a positive initial condition <span class="math notranslate nohighlight">\(x_0\)</span>, hits zero with probablilty <span class="math notranslate nohighlight">\(p\in(0,1)\)</span> in the case <span class="math notranslate nohighlight">\(theta&lt;0\)</span>; and almost surely in the case <span class="math notranslate nohighlight">\(\theta\geq 0\)</span>.</p></li>
+<li><p>If <span class="math notranslate nohighlight">\(2\theta \mu &lt;0\)</span>, a CIR process starting from a positive initial condition <span class="math notranslate nohighlight">\(x_0\)</span> reaches zero almost surely.</p></li>
+</ul>
 </section>
 </section>
 <section id="expectation-and-variance">
@@ -491,8 +512,8 @@ X_te^{\theta t} &amp;= x_0 +\int_0^t X_s \theta e^{\theta s}ds + \int_0^t e^{\th
 &amp; = x_0 + \mu(e^{\theta t} - 1) + \int_0^t e^{\theta s}\sigma \sqrt{X_s} dW_s.
 \end{align*}\]</div>
 <p>Thus</p>
-<div class="amsmath math notranslate nohighlight" id="equation-c09ffdb3-c278-4aba-b594-e01acda12fc4">
-<span class="eqno">(5.5)<a class="headerlink" href="#equation-c09ffdb3-c278-4aba-b594-e01acda12fc4" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-7ea7ceec-2f9a-4d48-a233-7cadff57dcb4">
+<span class="eqno">(5.6)<a class="headerlink" href="#equation-7ea7ceec-2f9a-4d48-a233-7cadff57dcb4" title="Permalink to this equation">#</a></span>\[\begin{equation}
 X_t = x_0e^{-\theta t} +  \mu(1- e^{-\theta t})  + \sigma \int_0^t e^{-\theta (t-s)}  \sqrt{X_s} dW_s.
 \end{equation}\]</div>
 <div class="admonition note">
@@ -572,8 +593,8 @@ Var[X_t] = 0.266113
 <section id="marginal-distributions">
 <h2><span class="section-number">5.3. </span>Marginal Distributions<a class="headerlink" href="#marginal-distributions" title="Permalink to this heading">#</a></h2>
 <p>The marginal distribution <span class="math notranslate nohighlight">\(X_t | x_0\)</span> , simply denoted by <span class="math notranslate nohighlight">\(X_t\)</span>, has probability density function</p>
-<div class="amsmath math notranslate nohighlight" id="equation-bd68cfaf-1b12-4307-81cb-48df24828c7a">
-<span class="eqno">(5.6)<a class="headerlink" href="#equation-bd68cfaf-1b12-4307-81cb-48df24828c7a" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-2d6446b1-d075-4608-8afb-7f9b011c302a">
+<span class="eqno">(5.7)<a class="headerlink" href="#equation-2d6446b1-d075-4608-8afb-7f9b011c302a" title="Permalink to this equation">#</a></span>\[\begin{equation}
 f(x, t; \theta, \mu, \sigma, x_0) =  \dfrac{e^{\theta t}}{2 c(t)}   \left(\dfrac{x e^{\theta t}}{x_0}\right)^{\frac{\nu}{2}}   \exp\left(- \dfrac{x_0 + xe^{\theta t}}{2c(t)}\right) I_{\nu} \left( \dfrac{1}{c(t)}  \sqrt{x_0 x e^{\theta t}}\right) \mathbb{1}_{\{x&gt;0\}},
 \end{equation}\]</div>
 <p>where where <span class="math notranslate nohighlight">\(I_{\nu}\)</span> is the <a class="reference external" href="https://mathworld.wolfram.com/ModifiedBesselFunctionoftheFirstKind.html">modified Bessel function</a>, and</p>
@@ -601,21 +622,21 @@ g(y) &amp; = c(t) e^{-\theta t } f(yc(t)e^{-\theta t}  ) \\
 \alpha = \dfrac{x_0}{c(t)}.
 \end{equation*}\]</div>
 <p>That is, <span class="math notranslate nohighlight">\(Y_t\)</span> follows a <a class="reference external" href="https://en.wikipedia.org/wiki/Noncentral_chi-squared_distribution">non-central Chi-squared</a> distribution</p>
-<div class="amsmath math notranslate nohighlight" id="equation-cb3ab0d2-55aa-4379-beb4-f12061a9cada">
-<span class="eqno">(5.7)<a class="headerlink" href="#equation-cb3ab0d2-55aa-4379-beb4-f12061a9cada" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-c79f26d9-0005-49b0-a034-5e07a81a34e0">
+<span class="eqno">(5.8)<a class="headerlink" href="#equation-c79f26d9-0005-49b0-a034-5e07a81a34e0" title="Permalink to this equation">#</a></span>\[\begin{equation}
 Y_t = X_t \dfrac{e^{\theta t}}{c(t)} \sim \chi^2(\delta, \alpha).
 \end{equation}\]</div>
 <p>So, <span class="math notranslate nohighlight">\(X_t\)</span> follows a non-central Chi-square distribution (with  <span class="math notranslate nohighlight">\(\delta\)</span> degrees of freedom,  non-centrality parameter equal to <span class="math notranslate nohighlight">\(\alpha\)</span>)  scaled by <span class="math notranslate nohighlight">\(scale = c(t)e^{-\theta t}\)</span>.  Note that we can write these quantities  in terms of the SDE parameters initial condition as follows:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-cc2d318d-6e48-44bc-8ef1-665d4421b1db">
-<span class="eqno">(5.8)<a class="headerlink" href="#equation-cc2d318d-6e48-44bc-8ef1-665d4421b1db" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-c93c6fdc-ac44-410a-8f8c-eb5d794fe584">
+<span class="eqno">(5.9)<a class="headerlink" href="#equation-c93c6fdc-ac44-410a-8f8c-eb5d794fe584" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \delta = \dfrac{4 \theta \mu}{\sigma^2},
 \end{equation}\]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-9077a8a3-4bfc-4dde-b298-afa860a19d23">
-<span class="eqno">(5.9)<a class="headerlink" href="#equation-9077a8a3-4bfc-4dde-b298-afa860a19d23" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-8399bbb1-ece9-44c6-b8c2-cc666ccd4fb4">
+<span class="eqno">(5.10)<a class="headerlink" href="#equation-8399bbb1-ece9-44c6-b8c2-cc666ccd4fb4" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \alpha = \dfrac{4 \theta }{\sigma^2 }\dfrac{x_0}{(e^{\theta t} - 1)},
 \end{equation}\]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-1acf319e-8511-40c2-8dd2-b0d7fb2e2adf">
-<span class="eqno">(5.10)<a class="headerlink" href="#equation-1acf319e-8511-40c2-8dd2-b0d7fb2e2adf" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-5b43417e-bbeb-4f10-8c30-9024630378dd">
+<span class="eqno">(5.11)<a class="headerlink" href="#equation-5b43417e-bbeb-4f10-8c30-9024630378dd" title="Permalink to this equation">#</a></span>\[\begin{equation}
 scale = \dfrac{\sigma^2}{4 \theta} (1 -e^{-\theta t}).
 \end{equation}\]</div>
 <div class="admonition note">
@@ -905,7 +926,7 @@ Note that the distribution is skewed and that its mean is still far from the lon
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([7.0234421 , 7.93163692, 5.89324701, 7.37792909, 6.42328078])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([7.10137888, 5.27011482, 7.33446167, 6.67202348, 6.30991961])
 </pre></div>
 </div>
 </div>
@@ -919,7 +940,7 @@ Note that the distribution is skewed and that its mean is still far from the lon
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 9.10135237,  9.98861877, 10.3602841 ,  9.71387063, 10.86754687])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 8.82426987,  8.87153904, 10.17697891,  9.0126408 ,  9.73754148])
 </pre></div>
 </div>
 </div>
@@ -954,7 +975,7 @@ t_i = \frac{i}{n-1} T \qquad  \hbox{for } i = 0, \cdots, n-1.
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/a4c6eeec76bcce07776a4227003bc9ef0b87114c992879b6562c114ea76b7a1d.png" src="_images/a4c6eeec76bcce07776a4227003bc9ef0b87114c992879b6562c114ea76b7a1d.png" />
+<img alt="_images/5c7cddf2d4c79722278519816f35cf79906fb0b65678efb8ad02163c7601d78e.png" src="_images/5c7cddf2d4c79722278519816f35cf79906fb0b65678efb8ad02163c7601d78e.png" />
 </div>
 </div>
 <div class="admonition note">
@@ -977,7 +998,7 @@ t_i = \frac{i}{n-1} T \qquad  \hbox{for } i = 0, \cdots, n-1.
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/88c41d43f87a7790b71f71f68fcb958acd015fcadde83c690e8262b07c2f2430.png" src="_images/88c41d43f87a7790b71f71f68fcb958acd015fcadde83c690e8262b07c2f2430.png" />
+<img alt="_images/a931058abd2348862f156e7ea08785f8cb4be6cbd803b4f5d0cc31a4bf7a8bf3.png" src="_images/a931058abd2348862f156e7ea08785f8cb4be6cbd803b4f5d0cc31a4bf7a8bf3.png" />
 </div>
 </div>
 </section>
@@ -1066,16 +1087,16 @@ Clearly, convergence is achieved much faster. Besides, the limit variance is dif
 </section>
 <section id="what-about-delta-alpha-and-scale">
 <h3><span class="section-number">5.5.2. </span>What about <span class="math notranslate nohighlight">\(\delta, \alpha\)</span> and <span class="math notranslate nohighlight">\(scale\)</span>?<a class="headerlink" href="#what-about-delta-alpha-and-scale" title="Permalink to this heading">#</a></h3>
-<div class="amsmath math notranslate nohighlight" id="equation-680a573d-8367-481e-934b-ae81740058a6">
-<span class="eqno">(5.11)<a class="headerlink" href="#equation-680a573d-8367-481e-934b-ae81740058a6" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-d12e18a9-1da3-41c2-b014-ae3bb5275502">
+<span class="eqno">(5.12)<a class="headerlink" href="#equation-d12e18a9-1da3-41c2-b014-ae3bb5275502" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \lim_{t\rightarrow\infty} \delta =  \lim_{t\rightarrow\infty} \dfrac{4 \theta \mu}{\sigma^2} = \dfrac{4 \theta \mu}{\sigma^2},
 \end{equation}\]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-f6528573-783f-41ea-bcb9-acb96ae330a7">
-<span class="eqno">(5.12)<a class="headerlink" href="#equation-f6528573-783f-41ea-bcb9-acb96ae330a7" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-aff67854-775c-4ae3-9f99-9188ce776dde">
+<span class="eqno">(5.13)<a class="headerlink" href="#equation-aff67854-775c-4ae3-9f99-9188ce776dde" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \lim_{t\rightarrow\infty} \alpha = \lim_{t\rightarrow\infty}\dfrac{4 \theta }{\sigma^2 }\dfrac{x_0}{(e^{\theta t} - 1)} = 0,
 \end{equation}\]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-af2c10ed-9c20-4549-8005-a2f2a7a3baec">
-<span class="eqno">(5.13)<a class="headerlink" href="#equation-af2c10ed-9c20-4549-8005-a2f2a7a3baec" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-15cdad7b-29a6-4a26-8512-83186ad2456e">
+<span class="eqno">(5.14)<a class="headerlink" href="#equation-15cdad7b-29a6-4a26-8512-83186ad2456e" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \lim_{t\rightarrow\infty} scale = \lim_{t\rightarrow\infty} \dfrac{\sigma^2}{4 \theta} (1 -e^{-\theta t}) =  \dfrac{\sigma^2}{4 \theta}.
 \end{equation}\]</div>
 <div class="cell tag_hide-input docutils container">
@@ -1142,7 +1163,7 @@ X_{\infty}\dfrac{\sigma^2}{4\theta} \sim \chi^2\left(\dfrac{4\theta\mu}{\sigma^2
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/a1891685786ebeb9aa5e23780e71f50e85ad861292bbb80f43534765337cc0b0.png" src="_images/a1891685786ebeb9aa5e23780e71f50e85ad861292bbb80f43534765337cc0b0.png" />
+<img alt="_images/d51437c2e978031c4ccca67ad9871ed3c4ef6734c9c842cfbfbc48335699c8b0.png" src="_images/d51437c2e978031c4ccca67ad9871ed3c4ef6734c9c842cfbfbc48335699c8b0.png" />
 </div>
 </div>
 <p>Now, we simulate 1000 paths from the same process <code class="docutils literal notranslate"><span class="pre">CIRProcess(theta=1.0,</span> <span class="pre">mu=10.0,</span> <span class="pre">sigma=2.0,</span> <span class="pre">initial=1.0,</span> <span class="pre">T=15)</span></code> but this time over the interval <span class="math notranslate nohighlight">\([0,15]\)</span>. In the picture, we can see the the distribution of <span class="math notranslate nohighlight">\(X_{15}\)</span> has mean equal to the long term mean <span class="math notranslate nohighlight">\(\mu=10\)</span>. The expectation has reached convergence!</p>
@@ -1161,7 +1182,7 @@ X_{\infty}\dfrac{\sigma^2}{4\theta} \sim \chi^2\left(\dfrac{4\theta\mu}{\sigma^2
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/cad992f019500d6fa7650b260fdabb179ab1ae142eeb49a4ba0b469ddf0c8a80.png" src="_images/cad992f019500d6fa7650b260fdabb179ab1ae142eeb49a4ba0b469ddf0c8a80.png" />
+<img alt="_images/1e6613eff6316b664b13883266fee6bc499d709b6293a4415e05c7653fcdfd22.png" src="_images/1e6613eff6316b664b13883266fee6bc499d709b6293a4415e05c7653fcdfd22.png" />
 </div>
 </div>
 <section id="the-parameter-theta-determines-the-speed-of-convergence">
@@ -1175,7 +1196,7 @@ X_{\infty}\dfrac{\sigma^2}{4\theta} \sim \chi^2\left(\dfrac{4\theta\mu}{\sigma^2
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/49d258576d999e0c7f9053fd6c93d2baaa3a67babbd60240cf7cdef98f054dff.png" src="_images/49d258576d999e0c7f9053fd6c93d2baaa3a67babbd60240cf7cdef98f054dff.png" />
+<img alt="_images/34f369c9da90dc75f8a8bc36d954259d57e43d78dbbd67b6df29be7dae16d8fb.png" src="_images/34f369c9da90dc75f8a8bc36d954259d57e43d78dbbd67b6df29be7dae16d8fb.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1187,7 +1208,7 @@ X_{\infty}\dfrac{\sigma^2}{4\theta} \sim \chi^2\left(\dfrac{4\theta\mu}{\sigma^2
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/388a90d4738b667abdfc1917c00e6d75b4683bc7643d56aa827b4b4fec5d56cb.png" src="_images/388a90d4738b667abdfc1917c00e6d75b4683bc7643d56aa827b4b4fec5d56cb.png" />
+<img alt="_images/5e526a3226fdb7ddbbf14a85b2004d24f6748a48627b798b948dce38aed21f6c.png" src="_images/5e526a3226fdb7ddbbf14a85b2004d24f6748a48627b798b948dce38aed21f6c.png" />
 </div>
 </div>
 </section>
@@ -1202,7 +1223,7 @@ X_{\infty}\dfrac{\sigma^2}{4\theta} \sim \chi^2\left(\dfrac{4\theta\mu}{\sigma^2
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/ec30328b209c5fc8c1e75d54e91d3f18dbc18f88d7ed177633cbdf940387443e.png" src="_images/ec30328b209c5fc8c1e75d54e91d3f18dbc18f88d7ed177633cbdf940387443e.png" />
+<img alt="_images/d2793b6c6d0e1c6bc3f1336b1ae2e4feb841205e043e8962a16cb0c2a319caf2.png" src="_images/d2793b6c6d0e1c6bc3f1336b1ae2e4feb841205e043e8962a16cb0c2a319caf2.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1214,7 +1235,7 @@ X_{\infty}\dfrac{\sigma^2}{4\theta} \sim \chi^2\left(\dfrac{4\theta\mu}{\sigma^2
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/219a5d3ce078f343401ebe7bcb1d40e70973bda4f0b65b96d4554e245356fecf.png" src="_images/219a5d3ce078f343401ebe7bcb1d40e70973bda4f0b65b96d4554e245356fecf.png" />
+<img alt="_images/e3b60b5a0a665b1827246d5571d96075256c18450d4e24895ccf927617b118b8.png" src="_images/e3b60b5a0a665b1827246d5571d96075256c18450d4e24895ccf927617b118b8.png" />
 </div>
 </div>
 </section>
@@ -1239,7 +1260,7 @@ X_{\infty}\dfrac{\sigma^2}{4\theta} \sim \chi^2\left(\dfrac{4\theta\mu}{\sigma^2
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/95b12cfbf488447ee17d013a383e5c6567b399320ca7aa4c69c85cd3b3027d75.png" src="_images/95b12cfbf488447ee17d013a383e5c6567b399320ca7aa4c69c85cd3b3027d75.png" />
+<img alt="_images/3d5d8a7c723955c9f273381b9a52c7c553830875ce3d12fcaf26d4d5d4115961.png" src="_images/3d5d8a7c723955c9f273381b9a52c7c553830875ce3d12fcaf26d4d5d4115961.png" />
 </div>
 </div>
 <div class="cell tag_hide-input docutils container">
@@ -1258,7 +1279,7 @@ X_{\infty}\dfrac{\sigma^2}{4\theta} \sim \chi^2\left(\dfrac{4\theta\mu}{\sigma^2
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/690eb37da0ab5b9dcee5226a00403674634b25e88bf6ded686db7e2a89edc8bb.png" src="_images/690eb37da0ab5b9dcee5226a00403674634b25e88bf6ded686db7e2a89edc8bb.png" />
+<img alt="_images/617ff7d11645544fb8110d95ab8fe742f62c140305d783df51557904ed0601b5.png" src="_images/617ff7d11645544fb8110d95ab8fe742f62c140305d783df51557904ed0601b5.png" />
 </div>
 </div>
 <div class="cell tag_hide-input docutils container">
@@ -1294,7 +1315,7 @@ X_{\infty}\dfrac{\sigma^2}{4\theta} \sim \chi^2\left(\dfrac{4\theta\mu}{\sigma^2
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/4a20a5eae8eac2a42106a9f318ad3f9415d390eac7c2433d46d982d0e46987a7.png" src="_images/4a20a5eae8eac2a42106a9f318ad3f9415d390eac7c2433d46d982d0e46987a7.png" />
+<img alt="_images/25d1d4fe42dcf8e34acfaddd2e3111b87fa27d1c4735bb134ede825aa6e2ff41.png" src="_images/25d1d4fe42dcf8e34acfaddd2e3111b87fa27d1c4735bb134ede825aa6e2ff41.png" />
 </div>
 </div>
 </section>
@@ -1366,6 +1387,7 @@ X_{\infty}\dfrac{\sigma^2}{4\theta} \sim \chi^2\left(\dfrac{4\theta\mu}{\sigma^2
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#definition">5.1. Definition</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#existence-and-uniqueness">5.1.1. Existence and Uniqueness</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cir-process-is-a-bessel-process">5.1.2. CIR process is a Bessel process</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#expectation-and-variance">5.2. Expectation and Variance</a><ul class="nav section-nav flex-column">
