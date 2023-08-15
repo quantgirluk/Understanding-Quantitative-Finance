@@ -401,14 +401,14 @@ document.write(`
 <section id="id1">
 <h2><span class="section-number">2.2. </span>Definition<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h2>
 <p>The Arithmetic Brownian motion can be defined by the following Stochastic Differential Equation (SDE)</p>
-<div class="amsmath math notranslate nohighlight" id="equation-91be20b3-c93c-4ee8-b427-b1df43ec4731">
-<span class="eqno">(2.1)<a class="headerlink" href="#equation-91be20b3-c93c-4ee8-b427-b1df43ec4731" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-4036f682-a993-4034-ac6e-409d9efc322d">
+<span class="eqno">(2.1)<a class="headerlink" href="#equation-4036f682-a993-4034-ac6e-409d9efc322d" title="Permalink to this equation">#</a></span>\[\begin{equation}
 dX_t = \mu dt + \sigma dW_t, \quad t &gt;0,
 \end{equation}\]</div>
 <p>with initial condition <span class="math notranslate nohighlight">\(X_0 =x_0\)</span>, and constant parameters <span class="math notranslate nohighlight">\(\mu\in \mathbb{R}\)</span>, <span class="math notranslate nohighlight">\(\sigma&gt;0\)</span>. Without loss of generality we are going to assume that <span class="math notranslate nohighlight">\(x_0=0\)</span>. Here, <span class="math notranslate nohighlight">\(W_t\)</span> denotes a standard Brownian motion.</p>
 <p>Equation (2.1) equivales to</p>
-<div class="amsmath math notranslate nohighlight" id="equation-1a6d48fc-6786-4415-ab42-e9e4588f3aa5">
-<span class="eqno">(2.2)<a class="headerlink" href="#equation-1a6d48fc-6786-4415-ab42-e9e4588f3aa5" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-32ef6ae0-4e2c-4988-8e5e-81cad5f9b509">
+<span class="eqno">(2.2)<a class="headerlink" href="#equation-32ef6ae0-4e2c-4988-8e5e-81cad5f9b509" title="Permalink to this equation">#</a></span>\[\begin{align}
 X_t &amp;= \int_0^t \mu ds + \int_0^t \sigma dW_t =  \mu t +  \sigma W_t,
 \end{align}\]</div>
 <p>which gives us the solution.</p>
@@ -429,8 +429,8 @@ X_t &amp;= \int_0^t \mu ds + \int_0^t \sigma dW_t =  \mu t +  \sigma W_t,
 \mathbf{Var} [X_t] = Var[X_t |X_0] = \sigma^2 t \qquad \forall t&gt; 0.
 \end{equation*}\]</div>
 <p>So we have</p>
-<div class="amsmath math notranslate nohighlight" id="equation-390216cf-eade-475f-a37b-ec2814db16f1">
-<span class="eqno">(2.3)<a class="headerlink" href="#equation-390216cf-eade-475f-a37b-ec2814db16f1" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-eb73caf7-170c-4ba0-8f3a-8b004e344170">
+<span class="eqno">(2.3)<a class="headerlink" href="#equation-eb73caf7-170c-4ba0-8f3a-8b004e344170" title="Permalink to this equation">#</a></span>\[\begin{equation}
 X_t \sim \mathcal{N}(\mu t, \sigma^2 t),  \qquad \forall t&gt;0.
 \end{equation}\]</div>
 <p>Besides, for any <span class="math notranslate nohighlight">\( t &gt; s &gt;0\)</span>, we have</p>
@@ -651,7 +651,7 @@ Moreover, we can make the following observations:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.80718322, 0.99522037, 1.3487377 , 1.0921127 , 1.08216469])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([1.14622746, 1.35250906, 1.07138135, 0.74563166, 1.39826258])
 </pre></div>
 </div>
 </div>
@@ -716,7 +716,7 @@ X_t = \mu t  + \sigma W_t,
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/08a400cc3dd0698038b7be81748b571aa5b58876467d0a4e3110e2a1e87afeee.png" src="_images/08a400cc3dd0698038b7be81748b571aa5b58876467d0a4e3110e2a1e87afeee.png" />
+<img alt="_images/ad0a406f58207454e09ffafc692511ceda6d206f61066d5259bc03b209a69a84.png" src="_images/ad0a406f58207454e09ffafc692511ceda6d206f61066d5259bc03b209a69a84.png" />
 </div>
 </div>
 <div class="admonition note">
@@ -740,7 +740,7 @@ X_t = \mu t  + \sigma W_t,
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/cbcf4fb64f14cbb051e8541b12f949a873d74c58d060f82193815afe25165d15.png" src="_images/cbcf4fb64f14cbb051e8541b12f949a873d74c58d060f82193815afe25165d15.png" />
+<img alt="_images/52c7cc89c08aacb2ff5ab1ec3a7e07b7aa6e763815c1b43f04872b045b51c7c3.png" src="_images/52c7cc89c08aacb2ff5ab1ec3a7e07b7aa6e763815c1b43f04872b045b51c7c3.png" />
 </div>
 </div>
 <p>Similarly, we can define an arithmetic Brownian Motion over the interval <span class="math notranslate nohighlight">\([0, 10]\)</span> and simulate 50 paths with a partition of size 100.</p>
@@ -753,7 +753,7 @@ X_t = \mu t  + \sigma W_t,
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/0b6bd85bea66496894d7adf40f1e773eb62217ce1b42658c11a6d82b4cd89ce2.png" src="_images/0b6bd85bea66496894d7adf40f1e773eb62217ce1b42658c11a6d82b4cd89ce2.png" />
+<img alt="_images/5f05ca5a2ed04fbd0c830784c559713991c259b4cd7f35c13a10ab93d4680c55.png" src="_images/5f05ca5a2ed04fbd0c830784c559713991c259b4cd7f35c13a10ab93d4680c55.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -765,7 +765,7 @@ X_t = \mu t  + \sigma W_t,
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/334d7a36d7869f943e787073ce21913782eac6a4f3deedaf021d115220258da0.png" src="_images/334d7a36d7869f943e787073ce21913782eac6a4f3deedaf021d115220258da0.png" />
+<img alt="_images/87bb99b281e4353637b090bf2f0765d2d8e4fbb22275750e28dd7b711e5e2fa9.png" src="_images/87bb99b281e4353637b090bf2f0765d2d8e4fbb22275750e28dd7b711e5e2fa9.png" />
 </div>
 </div>
 </section>
@@ -855,7 +855,7 @@ X_t = \mu t  + \sigma W_t,
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/1a51da9a0016b7ea1d5bd0593dbf7198e72e10436adc00949f89808b4df72466.png" src="_images/1a51da9a0016b7ea1d5bd0593dbf7198e72e10436adc00949f89808b4df72466.png" />
+<img alt="_images/4917bfab0257dd91e3094b406005e69c28fc4f195ae54520dbc3c7ef71461558.png" src="_images/4917bfab0257dd91e3094b406005e69c28fc4f195ae54520dbc3c7ef71461558.png" />
 </div>
 </div>
 <div class="cell tag_hide-input docutils container">
@@ -873,7 +873,7 @@ X_t = \mu t  + \sigma W_t,
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/e79cb1238097ecab4fa9030e665b793821142f572b9989b694b273743bf15770.png" src="_images/e79cb1238097ecab4fa9030e665b793821142f572b9989b694b273743bf15770.png" />
+<img alt="_images/c6ecc3cf2660d4345c394071c04e9883c891b97a308ce9df6c6a0cd163332253.png" src="_images/c6ecc3cf2660d4345c394071c04e9883c891b97a308ce9df6c6a0cd163332253.png" />
 </div>
 </div>
 </section>
@@ -890,7 +890,7 @@ X_t = \mu t  + \sigma W_t,
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/807502f76a73d78aa9f55d58a46b1085ec9d20f956cab50577bb83af9f73235c.png" src="_images/807502f76a73d78aa9f55d58a46b1085ec9d20f956cab50577bb83af9f73235c.png" />
+<img alt="_images/b3d4e792fcee8a6464ce88bac0850e91d4a7191fbc85c18bea4316e7f24e21a0.png" src="_images/b3d4e792fcee8a6464ce88bac0850e91d4a7191fbc85c18bea4316e7f24e21a0.png" />
 </div>
 </div>
 </section>

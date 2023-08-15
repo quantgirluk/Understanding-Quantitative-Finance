@@ -410,8 +410,8 @@ document.write(`
 <section id="definition">
 <h2><span class="section-number">3.1. </span>Definition<a class="headerlink" href="#definition" title="Permalink to this heading">#</a></h2>
 <p>The Geometric Brownian motion can be defined by the following Stochastic Differential Equation (SDE)</p>
-<div class="amsmath math notranslate nohighlight" id="equation-6dba9c34-8dde-4ebf-a2f9-08c67bc4435b">
-<span class="eqno">(3.1)<a class="headerlink" href="#equation-6dba9c34-8dde-4ebf-a2f9-08c67bc4435b" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-c3306ca6-9713-4971-9d3a-5a6eb4068c0d">
+<span class="eqno">(3.1)<a class="headerlink" href="#equation-c3306ca6-9713-4971-9d3a-5a6eb4068c0d" title="Permalink to this equation">#</a></span>\[\begin{equation}
 dX_t = \mu X_t dt + \sigma X_t dW_t, \quad t &gt;0,
 \end{equation}\]</div>
 <p>with initial condition <span class="math notranslate nohighlight">\(X_0 =x_0&gt;0\)</span>, and constant parameters <span class="math notranslate nohighlight">\(\mu\in \mathbb{R}\)</span>, <span class="math notranslate nohighlight">\(\sigma&gt;0\)</span>. Here, <span class="math notranslate nohighlight">\(W_t\)</span> denotes a standard Brownian motion.</p>
@@ -419,13 +419,13 @@ dX_t = \mu X_t dt + \sigma X_t dW_t, \quad t &gt;0,
 <div class="math notranslate nohighlight">
 \[Y_t = Y_0 +  \left( \mu-\frac{1}{2}\sigma^2 \right)t  + \sigma W_t,\]</div>
 <p>or equivalently</p>
-<div class="amsmath math notranslate nohighlight" id="equation-c7a3ec27-6adc-40a9-b541-f4bdba0865f7">
-<span class="eqno">(3.2)<a class="headerlink" href="#equation-c7a3ec27-6adc-40a9-b541-f4bdba0865f7" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-5a5c838b-0db9-412a-acb3-7b0a6564b9c0">
+<span class="eqno">(3.2)<a class="headerlink" href="#equation-5a5c838b-0db9-412a-acb3-7b0a6564b9c0" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \ln(X_t) = \ln(x_0) +  \left( \mu-\frac{1}{2}\sigma^2 \right)t  + \sigma W_t.
 \end{equation}\]</div>
 <p>From this expression, we obtain</p>
-<div class="amsmath math notranslate nohighlight" id="equation-97d00057-5498-4c68-a111-52bc5bbc0cd3">
-<span class="eqno">(3.3)<a class="headerlink" href="#equation-97d00057-5498-4c68-a111-52bc5bbc0cd3" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-0d5d33c8-6e2d-4570-a0c3-fb3a0d094b8f">
+<span class="eqno">(3.3)<a class="headerlink" href="#equation-0d5d33c8-6e2d-4570-a0c3-fb3a0d094b8f" title="Permalink to this equation">#</a></span>\[\begin{equation}
 X_t = x_0 \exp \left\{  \left( \mu-\frac{1}{2}\sigma^2 \right)t  + \sigma W_t \right\}, \qquad t\geq 0.
 \end{equation}\]</div>
 <div class="admonition note">
@@ -715,7 +715,7 @@ Note that the variance grows at a very rapid rate, causing the density to be ver
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([1.79214066, 3.04792449, 1.54024076, 1.64893124, 1.66260186])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([3.10604435, 5.80983799, 1.43115311, 3.5404555 , 0.89894724])
 </pre></div>
 </div>
 </div>
@@ -729,8 +729,8 @@ Note that the variance grows at a very rapid rate, causing the density to be ver
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([95629.46117945,   800.90519337, 14011.20820271,  1241.01101259,
-        6251.61398048])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([11104.31951093, 19096.54686873,  6191.00909391, 45954.01731224,
+        8350.6332406 ])
 </pre></div>
 </div>
 </div>
@@ -779,7 +779,7 @@ X_t = x_0 \exp \left\{  \left( \mu-\frac{1}{2}\sigma^2 \right)t  + \sigma W_t \r
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/0801ed8c87d05cfd17b72290e8389798556098817756992dbf00a5e75c6863c0.png" src="_images/0801ed8c87d05cfd17b72290e8389798556098817756992dbf00a5e75c6863c0.png" />
+<img alt="_images/984f6d17feb60fd57c77c0fa936a68390e64e14fd501f1c705879c3103951045.png" src="_images/984f6d17feb60fd57c77c0fa936a68390e64e14fd501f1c705879c3103951045.png" />
 </div>
 </div>
 <div class="admonition note">
@@ -805,7 +805,7 @@ X_t = x_0 \exp \left\{  \left( \mu-\frac{1}{2}\sigma^2 \right)t  + \sigma W_t \r
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/842fba35aad3f01921f71f4e2591880360fdb105aa0de94b0e9cc8fb46c5af06.png" src="_images/842fba35aad3f01921f71f4e2591880360fdb105aa0de94b0e9cc8fb46c5af06.png" />
+<img alt="_images/5a38767a99e479db33e79c04edeff62390c9c67d49a439f1bedf44b0cec5ca72.png" src="_images/5a38767a99e479db33e79c04edeff62390c9c67d49a439f1bedf44b0cec5ca72.png" />
 </div>
 </div>
 <p>Similarly, we can define the GBM over the interval <span class="math notranslate nohighlight">\([0, 5]\)</span> and simulate 50 paths with a partition of size 100.</p>
@@ -824,7 +824,7 @@ X_t = x_0 \exp \left\{  \left( \mu-\frac{1}{2}\sigma^2 \right)t  + \sigma W_t \r
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/75c769e8119091d3c3255f0889a30a194ab1e674193c5dbe2995516c7426448d.png" src="_images/75c769e8119091d3c3255f0889a30a194ab1e674193c5dbe2995516c7426448d.png" />
+<img alt="_images/d40875f1b9baaa18b3adf0e4c90518ad2d1c4aa4e5ff57dcb70e0b7c107e9cce.png" src="_images/d40875f1b9baaa18b3adf0e4c90518ad2d1c4aa4e5ff57dcb70e0b7c107e9cce.png" />
 </div>
 </div>
 </section>
@@ -967,7 +967,7 @@ x_0^2, \hbox{  if  }  2\mu+\sigma^2=0.\\
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/e8ecaf8cb863a9a5440187735b2ab6e9730582c2d9c87071cf0b78d8d2abbd6b.png" src="_images/e8ecaf8cb863a9a5440187735b2ab6e9730582c2d9c87071cf0b78d8d2abbd6b.png" />
+<img alt="_images/28e5346087d113fc31e1aa706dcc2ef901aafb9ef5a6f3c11bcd5787bd26485d.png" src="_images/28e5346087d113fc31e1aa706dcc2ef901aafb9ef5a6f3c11bcd5787bd26485d.png" />
 </div>
 </div>
 </section>
@@ -983,7 +983,7 @@ x_0^2, \hbox{  if  }  2\mu+\sigma^2=0.\\
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/2d1a30b77ed21aec07169522f12e6ba09d327a96423828791ea6b5c26852b4a2.png" src="_images/2d1a30b77ed21aec07169522f12e6ba09d327a96423828791ea6b5c26852b4a2.png" />
+<img alt="_images/ad33912a2d0b90891e0c166a35e40053605ef92223801083b3a54c787b245bca.png" src="_images/ad33912a2d0b90891e0c166a35e40053605ef92223801083b3a54c787b245bca.png" />
 </div>
 </div>
 </section>
@@ -999,7 +999,7 @@ x_0^2, \hbox{  if  }  2\mu+\sigma^2=0.\\
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/76ac32dee33d29abfb952b15739abd7b0af7aa72afb6f5deb9361d1800781f07.png" src="_images/76ac32dee33d29abfb952b15739abd7b0af7aa72afb6f5deb9361d1800781f07.png" />
+<img alt="_images/6e31b286c0bfb17beafb4602cff70dad6289eb6ab344f9bcf2f69d4d6a24a0eb.png" src="_images/6e31b286c0bfb17beafb4602cff70dad6289eb6ab344f9bcf2f69d4d6a24a0eb.png" />
 </div>
 </div>
 </section>
@@ -1019,7 +1019,7 @@ x_0^2, \hbox{  if  }  2\mu+\sigma^2=0.\\
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/d90b14479b21e0fdca7ab4a05630dacd4b8349144eb61dad56fdfcc74c380f09.png" src="_images/d90b14479b21e0fdca7ab4a05630dacd4b8349144eb61dad56fdfcc74c380f09.png" />
+<img alt="_images/183532ec05ddbe996552af4b00627792027478b537845e3d0e096c175c999f33.png" src="_images/183532ec05ddbe996552af4b00627792027478b537845e3d0e096c175c999f33.png" />
 </div>
 </div>
 </section>

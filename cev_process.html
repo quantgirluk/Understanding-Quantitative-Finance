@@ -400,8 +400,8 @@ document.write(`
 <section id="definition">
 <h2>Definition<a class="headerlink" href="#definition" title="Permalink to this heading">#</a></h2>
 <p>The Constant Elasticity Variance (CEV) process can be used to describe the dynamics of forward prices via a stochastic process which can be defined by the following Stochastic Differential Equation (SDE)</p>
-<div class="amsmath math notranslate nohighlight" id="equation-1b8776c4-73f6-4b04-9357-ae814f7165c4">
-<span class="eqno">()<a class="headerlink" href="#equation-1b8776c4-73f6-4b04-9357-ae814f7165c4" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-6db7b6cc-9c4f-4e31-876e-a80658fed135">
+<span class="eqno">()<a class="headerlink" href="#equation-6db7b6cc-9c4f-4e31-876e-a80658fed135" title="Permalink to this equation">#</a></span>\[\begin{equation}
 dX_t = \mu X_t dt + \sigma X_t^{\gamma} dW_t, \quad t &gt;0,
 \end{equation}\]</div>
 <p>with initial condition  <span class="math notranslate nohighlight">\(X_0 =x_0\in\mathbb{R}\)</span>, and where <span class="math notranslate nohighlight">\(W_t\)</span> is a standard Brownian motion, and the three parameters are constants:</p>
@@ -411,13 +411,13 @@ dX_t = \mu X_t dt + \sigma X_t^{\gamma} dW_t, \quad t &gt;0,
 <li><p><span class="math notranslate nohighlight">\(\gamma\)</span> : elasticity parameter</p></li>
 </ul>
 <p>Another parameterisation is given by</p>
-<div class="amsmath math notranslate nohighlight" id="equation-7b384347-44e6-4b56-a322-2230b18edcfb">
-<span class="eqno">()<a class="headerlink" href="#equation-7b384347-44e6-4b56-a322-2230b18edcfb" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-65c30d67-9005-4f18-8080-b6efce3f59f5">
+<span class="eqno">()<a class="headerlink" href="#equation-65c30d67-9005-4f18-8080-b6efce3f59f5" title="Permalink to this equation">#</a></span>\[\begin{equation}
 dX_t = \mu X_t dt + \sigma X_t^{\gamma + 1} dW_t, \quad t &gt;0,
 \end{equation}\]</div>
 <p>so we can write</p>
-<div class="amsmath math notranslate nohighlight" id="equation-93987b05-760c-4c8f-8614-f92ce6124d75">
-<span class="eqno">()<a class="headerlink" href="#equation-93987b05-760c-4c8f-8614-f92ce6124d75" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-7f13200d-31c6-4349-b4ce-48da75e5303b">
+<span class="eqno">()<a class="headerlink" href="#equation-7f13200d-31c6-4349-b4ce-48da75e5303b" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \frac{dX_t}{X_t}= \mu  dt + \sigma X_t^{\gamma} dW_t, \quad t &gt;0,
 \end{equation}\]</div>
 </section>
@@ -443,8 +443,8 @@ X_te^{\theta t} &amp;= x_0 +\int_0^t X_s \theta e^{\theta s}ds + \int_0^t e^{\th
 &amp; = x_0 + \mu(e^{\theta t} - 1) + \int_0^t e^{\theta s}\sigma \sqrt{X_s} dW_s.
 \end{align*}\]</div>
 <p>Thus</p>
-<div class="amsmath math notranslate nohighlight" id="equation-cacfa1d9-a9a2-451e-ada9-3ba9a0a95953">
-<span class="eqno">()<a class="headerlink" href="#equation-cacfa1d9-a9a2-451e-ada9-3ba9a0a95953" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-0835591c-4236-4413-b737-26660a0c12e7">
+<span class="eqno">()<a class="headerlink" href="#equation-0835591c-4236-4413-b737-26660a0c12e7" title="Permalink to this equation">#</a></span>\[\begin{equation}
 X_t = x_0e^{-\theta t} +  \mu(1- e^{-\theta t})  + \sigma \int_0^t e^{-\theta (t-s)}  \sqrt{X_s} dW_s.
 \end{equation}\]</div>
 <div class="admonition note">
@@ -524,8 +524,8 @@ Var[X_t] = 0.266113
 <section id="marginal-distributions">
 <h2>Marginal Distributions<a class="headerlink" href="#marginal-distributions" title="Permalink to this heading">#</a></h2>
 <p>The marginal distribution <span class="math notranslate nohighlight">\(X_t | x_0\)</span> , simply denoted by <span class="math notranslate nohighlight">\(X_t\)</span>, has probability density function</p>
-<div class="amsmath math notranslate nohighlight" id="equation-8825ffe8-c091-480a-be5e-c7a3d287f871">
-<span class="eqno">()<a class="headerlink" href="#equation-8825ffe8-c091-480a-be5e-c7a3d287f871" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-55b30961-e6e4-48f0-bb88-6bc8a2eb6ab3">
+<span class="eqno">()<a class="headerlink" href="#equation-55b30961-e6e4-48f0-bb88-6bc8a2eb6ab3" title="Permalink to this equation">#</a></span>\[\begin{equation}
 f(x, t; \theta, \mu, \sigma, x_0) =  \dfrac{e^{\theta t}}{2 c(t)}   \left(\dfrac{x e^{\theta t}}{x_0}\right)^{\frac{\nu}{2}}   \exp\left(- \dfrac{x_0 + xe^{\theta t}}{2c(t)}\right) I_{\nu} \left( \dfrac{1}{c(t)}  \sqrt{x_0 x e^{\theta t}}\right) \mathbb{1}_{\{x&gt;0\}},
 \end{equation}\]</div>
 <p>where where <span class="math notranslate nohighlight">\(I_{\nu}\)</span> is the <a class="reference external" href="https://mathworld.wolfram.com/ModifiedBesselFunctionoftheFirstKind.html">modified Bessel function</a>, and</p>
@@ -553,21 +553,21 @@ g(y) &amp; = c(t) e^{-\theta t } f(yc(t)e^{-\theta t}  ) \\
 \alpha = \dfrac{x_0}{c(t)}.
 \end{equation*}\]</div>
 <p>That is, <span class="math notranslate nohighlight">\(Y_t\)</span> follows a <a class="reference external" href="https://en.wikipedia.org/wiki/Noncentral_chi-squared_distribution">non-central Chi-squared</a> distribution</p>
-<div class="amsmath math notranslate nohighlight" id="equation-a1e68343-f08f-48df-bfcc-1dfaebdfad34">
-<span class="eqno">()<a class="headerlink" href="#equation-a1e68343-f08f-48df-bfcc-1dfaebdfad34" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-9c906a70-e64f-48bf-81e8-5a123853f102">
+<span class="eqno">()<a class="headerlink" href="#equation-9c906a70-e64f-48bf-81e8-5a123853f102" title="Permalink to this equation">#</a></span>\[\begin{equation}
 Y_t = X_t \dfrac{e^{\theta t}}{c(t)} \sim \chi^2(\delta, \alpha).
 \end{equation}\]</div>
 <p>So, <span class="math notranslate nohighlight">\(X_t\)</span> follows a non-central Chi-square distribution (with  <span class="math notranslate nohighlight">\(\delta\)</span> degrees of freedom,  non-centrality parameter equal to <span class="math notranslate nohighlight">\(\alpha\)</span>)  scaled by <span class="math notranslate nohighlight">\(scale = c(t)e^{-\theta t}\)</span>.  Note that we can write these quantities  in terms of the SDE parameters initial condition as follows:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-efcb531b-a9c0-41cf-ba29-99d907f4c7ad">
-<span class="eqno">()<a class="headerlink" href="#equation-efcb531b-a9c0-41cf-ba29-99d907f4c7ad" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-bb017300-8120-420f-98e4-b335766fcaf3">
+<span class="eqno">()<a class="headerlink" href="#equation-bb017300-8120-420f-98e4-b335766fcaf3" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \delta = \dfrac{4 \theta \mu}{\sigma^2},
 \end{equation}\]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-097cca52-3adb-44f4-9e4a-5b6ae8c6c83c">
-<span class="eqno">()<a class="headerlink" href="#equation-097cca52-3adb-44f4-9e4a-5b6ae8c6c83c" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-be64449c-394d-45f3-b9b2-0dc8e8945fc6">
+<span class="eqno">()<a class="headerlink" href="#equation-be64449c-394d-45f3-b9b2-0dc8e8945fc6" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \alpha = \dfrac{4 \theta }{\sigma^2 }\dfrac{x_0}{(e^{\theta t} - 1)},
 \end{equation}\]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-c1a9fd87-df33-49a1-b027-39bcf79f593a">
-<span class="eqno">()<a class="headerlink" href="#equation-c1a9fd87-df33-49a1-b027-39bcf79f593a" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-fde2987c-2f01-4808-86f6-44410229c790">
+<span class="eqno">()<a class="headerlink" href="#equation-fde2987c-2f01-4808-86f6-44410229c790" title="Permalink to this equation">#</a></span>\[\begin{equation}
 scale = \dfrac{\sigma^2}{4 \theta} (1 -e^{-\theta t}).
 \end{equation}\]</div>
 <div class="admonition note">
@@ -856,7 +856,7 @@ scale = \dfrac{\sigma^2}{4 \theta} (1 -e^{-\theta t}).
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([6.81417783, 6.30166761, 7.28760147, 7.5054993 , 7.48431147])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([5.21388243, 5.77191088, 6.7718976 , 7.07124209, 5.76648235])
 </pre></div>
 </div>
 </div>
@@ -870,7 +870,7 @@ scale = \dfrac{\sigma^2}{4 \theta} (1 -e^{-\theta t}).
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([10.35137831,  9.195414  ,  9.81842695, 11.5949467 ,  9.4338164 ])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([10.06271199, 10.5722053 ,  9.13505837, 10.20621466, 10.14967589])
 </pre></div>
 </div>
 </div>
@@ -905,7 +905,7 @@ t_i = \frac{i}{n-1} T \qquad  \hbox{for } i = 0, \cdots, n-1.
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/e78a0235c9a1345e57fbe0b0cd3e2a1e25022a6ea48513d05e9e9ba819841369.png" src="_images/e78a0235c9a1345e57fbe0b0cd3e2a1e25022a6ea48513d05e9e9ba819841369.png" />
+<img alt="_images/5acaf56d3448997fd8fb922c8c2e5dea427525cffc6ae7d05dc86e9cb501fd92.png" src="_images/5acaf56d3448997fd8fb922c8c2e5dea427525cffc6ae7d05dc86e9cb501fd92.png" />
 </div>
 </div>
 <div class="admonition note">
@@ -928,7 +928,7 @@ t_i = \frac{i}{n-1} T \qquad  \hbox{for } i = 0, \cdots, n-1.
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/21be848d732f2ec8fbfb8767b74bbeb931d86b7e28cbb276c0bf51145e0cc326.png" src="_images/21be848d732f2ec8fbfb8767b74bbeb931d86b7e28cbb276c0bf51145e0cc326.png" />
+<img alt="_images/f871020dc4daea52541197bc396285adf8e08defeef6e198108a197355b567a2.png" src="_images/f871020dc4daea52541197bc396285adf8e08defeef6e198108a197355b567a2.png" />
 </div>
 </div>
 </section>
@@ -1017,16 +1017,16 @@ Clearly, convergence is achieved much faster. Besides, the limit variance is dif
 </section>
 <section id="what-about-delta-alpha-and-scale">
 <h3>What about <span class="math notranslate nohighlight">\(\delta, \alpha\)</span> and <span class="math notranslate nohighlight">\(scale\)</span>?<a class="headerlink" href="#what-about-delta-alpha-and-scale" title="Permalink to this heading">#</a></h3>
-<div class="amsmath math notranslate nohighlight" id="equation-33988f90-165b-44f1-8ebb-f6f21c94422e">
-<span class="eqno">()<a class="headerlink" href="#equation-33988f90-165b-44f1-8ebb-f6f21c94422e" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-97f4eb94-442d-4029-980f-d7877f2436cb">
+<span class="eqno">()<a class="headerlink" href="#equation-97f4eb94-442d-4029-980f-d7877f2436cb" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \lim_{t\rightarrow\infty} \delta =  \lim_{t\rightarrow\infty} \dfrac{4 \theta \mu}{\sigma^2} = \dfrac{4 \theta \mu}{\sigma^2},
 \end{equation}\]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-5a7de5a4-03a6-48ed-9ae0-54bf7a042459">
-<span class="eqno">()<a class="headerlink" href="#equation-5a7de5a4-03a6-48ed-9ae0-54bf7a042459" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-4ede9b60-2bea-4662-8446-6bf0163ea8dd">
+<span class="eqno">()<a class="headerlink" href="#equation-4ede9b60-2bea-4662-8446-6bf0163ea8dd" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \lim_{t\rightarrow\infty} \alpha = \lim_{t\rightarrow\infty}\dfrac{4 \theta }{\sigma^2 }\dfrac{x_0}{(e^{\theta t} - 1)} = 0,
 \end{equation}\]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-1008d0cf-ffd8-42a3-a7bd-0e7181e26a78">
-<span class="eqno">()<a class="headerlink" href="#equation-1008d0cf-ffd8-42a3-a7bd-0e7181e26a78" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-afa8491e-3f26-4987-81e8-86a8a85d54dd">
+<span class="eqno">()<a class="headerlink" href="#equation-afa8491e-3f26-4987-81e8-86a8a85d54dd" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \lim_{t\rightarrow\infty} scale = \lim_{t\rightarrow\infty} \dfrac{\sigma^2}{4 \theta} (1 -e^{-\theta t}) =  \dfrac{\sigma^2}{4 \theta}.
 \end{equation}\]</div>
 <div class="cell tag_hide-input docutils container">
@@ -1093,7 +1093,7 @@ X_{\infty}\dfrac{\sigma^2}{4\theta} \sim \chi^2\left(\dfrac{4\theta\mu}{\sigma^2
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/b05cb65a3c9c6e655f311d0b35e481776263893457253559b18b408923b60bb0.png" src="_images/b05cb65a3c9c6e655f311d0b35e481776263893457253559b18b408923b60bb0.png" />
+<img alt="_images/f3a667752a5495abf9d65d95e5c2c1ec3871e51cf7dfc98bdd8766523747a5f6.png" src="_images/f3a667752a5495abf9d65d95e5c2c1ec3871e51cf7dfc98bdd8766523747a5f6.png" />
 </div>
 </div>
 <p>Now, we simulate 1000 paths from the same process <code class="docutils literal notranslate"><span class="pre">CIRProcess(theta=1.0,</span> <span class="pre">mu=10.0,</span> <span class="pre">sigma=2.0,</span> <span class="pre">initial=1.0,</span> <span class="pre">T=15)</span></code> but this time over the interval <span class="math notranslate nohighlight">\([0,15]\)</span>. In the picture, we can see the the distribution of <span class="math notranslate nohighlight">\(X_{15}\)</span> has mean equal to the long term mean <span class="math notranslate nohighlight">\(\mu=10\)</span>. The expectation has reached convergence!</p>
@@ -1112,7 +1112,7 @@ X_{\infty}\dfrac{\sigma^2}{4\theta} \sim \chi^2\left(\dfrac{4\theta\mu}{\sigma^2
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/2e2fa71303c0bb73ea2b89633bdc879c746c98b0ca07e02b32e0172e9cf92fdd.png" src="_images/2e2fa71303c0bb73ea2b89633bdc879c746c98b0ca07e02b32e0172e9cf92fdd.png" />
+<img alt="_images/5622bf3f0904d25f7462ff7224328be8f1a490e9aeb0a12e701e8e50bd03bd7a.png" src="_images/5622bf3f0904d25f7462ff7224328be8f1a490e9aeb0a12e701e8e50bd03bd7a.png" />
 </div>
 </div>
 <section id="the-parameter-theta-determines-the-speed-of-convergence">
@@ -1126,7 +1126,7 @@ X_{\infty}\dfrac{\sigma^2}{4\theta} \sim \chi^2\left(\dfrac{4\theta\mu}{\sigma^2
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/2b743a8a445b44389247a0c4cb27b04080c5b6db89dde819e43418bf3ff382f8.png" src="_images/2b743a8a445b44389247a0c4cb27b04080c5b6db89dde819e43418bf3ff382f8.png" />
+<img alt="_images/96cd6c2a9a4b1ed18e5cf56126fdcc7118e46b59019c29b566a06e2fc3be02de.png" src="_images/96cd6c2a9a4b1ed18e5cf56126fdcc7118e46b59019c29b566a06e2fc3be02de.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1138,7 +1138,7 @@ X_{\infty}\dfrac{\sigma^2}{4\theta} \sim \chi^2\left(\dfrac{4\theta\mu}{\sigma^2
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/3773c50c80faff5870a6b2d12f4205697a14a641f4c62932c6e22048aaa276fa.png" src="_images/3773c50c80faff5870a6b2d12f4205697a14a641f4c62932c6e22048aaa276fa.png" />
+<img alt="_images/4147023523d6219e3b592d5a11ec37690d2d85592d297732ebb4c9e42d2c28bf.png" src="_images/4147023523d6219e3b592d5a11ec37690d2d85592d297732ebb4c9e42d2c28bf.png" />
 </div>
 </div>
 </section>
@@ -1153,7 +1153,7 @@ X_{\infty}\dfrac{\sigma^2}{4\theta} \sim \chi^2\left(\dfrac{4\theta\mu}{\sigma^2
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/294452495ef17473427516a2c9312c2ea7875afa66443fcfe5e198a550f8210d.png" src="_images/294452495ef17473427516a2c9312c2ea7875afa66443fcfe5e198a550f8210d.png" />
+<img alt="_images/285f15dd0db6a72eeebe692338fe39de592e1ccb7dc3858829692a67a03362f7.png" src="_images/285f15dd0db6a72eeebe692338fe39de592e1ccb7dc3858829692a67a03362f7.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1165,7 +1165,7 @@ X_{\infty}\dfrac{\sigma^2}{4\theta} \sim \chi^2\left(\dfrac{4\theta\mu}{\sigma^2
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/ea5f89f22899dfdacf0b043dcfe7f4f990c342f80230c935fd72990abb18ca22.png" src="_images/ea5f89f22899dfdacf0b043dcfe7f4f990c342f80230c935fd72990abb18ca22.png" />
+<img alt="_images/89a45dcace12f5108350f7e9f785c200c82056f1d967868b4be4c12b09fb9d5c.png" src="_images/89a45dcace12f5108350f7e9f785c200c82056f1d967868b4be4c12b09fb9d5c.png" />
 </div>
 </div>
 </section>
@@ -1190,7 +1190,7 @@ X_{\infty}\dfrac{\sigma^2}{4\theta} \sim \chi^2\left(\dfrac{4\theta\mu}{\sigma^2
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/e35ee6a35221f725856cf98406473fd79d3e9c9dcdb284c6e6a9c3ed7f1c50ef.png" src="_images/e35ee6a35221f725856cf98406473fd79d3e9c9dcdb284c6e6a9c3ed7f1c50ef.png" />
+<img alt="_images/b09ecad1fd5020a7c112a52228df02b94fc167a0f4bb81c2d108605d0e111f16.png" src="_images/b09ecad1fd5020a7c112a52228df02b94fc167a0f4bb81c2d108605d0e111f16.png" />
 </div>
 </div>
 <div class="cell tag_hide-input docutils container">
@@ -1209,7 +1209,7 @@ X_{\infty}\dfrac{\sigma^2}{4\theta} \sim \chi^2\left(\dfrac{4\theta\mu}{\sigma^2
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/5e17b58cd18c3549830c7a1eed00cef609a934f14fcacdb3a9b3386d7494986a.png" src="_images/5e17b58cd18c3549830c7a1eed00cef609a934f14fcacdb3a9b3386d7494986a.png" />
+<img alt="_images/5a0f94c7209bfdc5e942943487d020265d91e53751c50ad726eb6cb5a886ada1.png" src="_images/5a0f94c7209bfdc5e942943487d020265d91e53751c50ad726eb6cb5a886ada1.png" />
 </div>
 </div>
 <div class="cell tag_hide-input docutils container">
@@ -1245,7 +1245,7 @@ X_{\infty}\dfrac{\sigma^2}{4\theta} \sim \chi^2\left(\dfrac{4\theta\mu}{\sigma^2
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/e3d301f37f876bd1a1459501ff4d377d900f194f63604724e651455b8e9c0521.png" src="_images/e3d301f37f876bd1a1459501ff4d377d900f194f63604724e651455b8e9c0521.png" />
+<img alt="_images/505d5c06f66b2e85232ce8489d2126eb3896553eccf8fcf4454270df873dd196.png" src="_images/505d5c06f66b2e85232ce8489d2126eb3896553eccf8fcf4454270df873dd196.png" />
 </div>
 </div>
 </section>

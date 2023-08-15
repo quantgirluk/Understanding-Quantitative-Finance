@@ -375,40 +375,40 @@ document.write(`
 <section id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">#</a></h2>
 <p>Let <span class="math notranslate nohighlight">\(W_t = (W^1_t, \cdots, W^n_t)\)</span> be a n-dimensional Browanian Motion for some <span class="math notranslate nohighlight">\(n\in\mathbb{N}\)</span>. The Bessel process of dimension <span class="math notranslate nohighlight">\(n\)</span> is defined as follows</p>
-<div class="amsmath math notranslate nohighlight" id="equation-cc961aec-9155-49bb-9f26-0d9263e2f41e">
-<span class="eqno">()<a class="headerlink" href="#equation-cc961aec-9155-49bb-9f26-0d9263e2f41e" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-4ebcca75-eee8-4875-a3cc-6c7a454bfc9f">
+<span class="eqno">()<a class="headerlink" href="#equation-4ebcca75-eee8-4875-a3cc-6c7a454bfc9f" title="Permalink to this equation">#</a></span>\[\begin{equation}
 X_t = \|W_t\|,
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\| \ \   \| \)</span> denotes the Euclidean norm in <span class="math notranslate nohighlight">\(\mathbb{R}^n\)</span>, or equivalently</p>
-<div class="amsmath math notranslate nohighlight" id="equation-6909fffd-a0e6-4968-b8d6-0b5b55f8143e">
-<span class="eqno">()<a class="headerlink" href="#equation-6909fffd-a0e6-4968-b8d6-0b5b55f8143e" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-45764291-6294-40d0-8eea-58147c70502f">
+<span class="eqno">()<a class="headerlink" href="#equation-45764291-6294-40d0-8eea-58147c70502f" title="Permalink to this equation">#</a></span>\[\begin{equation}
 X_t^2 = \sum_{i=1}^n (W^i_t)^2.
 \end{equation}\]</div>
 <p>Ito’s formula implies</p>
-<div class="amsmath math notranslate nohighlight" id="equation-cbfbb2cc-791c-4656-ae59-1fa21496ce26">
-<span class="eqno">()<a class="headerlink" href="#equation-cbfbb2cc-791c-4656-ae59-1fa21496ce26" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-039e7c00-cece-4329-9b43-8caf26b2f840">
+<span class="eqno">()<a class="headerlink" href="#equation-039e7c00-cece-4329-9b43-8caf26b2f840" title="Permalink to this equation">#</a></span>\[\begin{equation}
 dX_t^2 = n dt + \sum_{i=1}^n 2(W^i_t)dW^i_t .
 \end{equation}\]</div>
 <p>Next, we observe that <span class="math notranslate nohighlight">\(\mathbb{P}(X_t = 0) =0\)</span> for any <span class="math notranslate nohighlight">\(t&gt;0\)</span>, and define the process</p>
-<div class="amsmath math notranslate nohighlight" id="equation-d0b23656-141f-4f14-9873-35db63871574">
-<span class="eqno">()<a class="headerlink" href="#equation-d0b23656-141f-4f14-9873-35db63871574" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-682a600d-42aa-424e-b71c-9ad5f188448a">
+<span class="eqno">()<a class="headerlink" href="#equation-682a600d-42aa-424e-b71c-9ad5f188448a" title="Permalink to this equation">#</a></span>\[\begin{equation}
 dB_t =  \dfrac{1}{X_t} \sum_{i=1}^nW_t^i dW_t^i, \qquad t&gt;0.
 \end{equation}\]</div>
 <p>It is not difficult to see that the process <span class="math notranslate nohighlight">\(B\)</span> is a real-valued Brownian motion.</p>
 <p>Hence, we have</p>
-<div class="amsmath math notranslate nohighlight" id="equation-2e628214-e7c5-4c70-a277-1bdaec4c1b55">
-<span class="eqno">()<a class="headerlink" href="#equation-2e628214-e7c5-4c70-a277-1bdaec4c1b55" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-b545f484-e2f6-4b60-b060-e5f25d8b3093">
+<span class="eqno">()<a class="headerlink" href="#equation-b545f484-e2f6-4b60-b060-e5f25d8b3093" title="Permalink to this equation">#</a></span>\[\begin{equation}
 dX_t^2 = n dt + 2 X_t dB_t,
 \end{equation}\]</div>
 <p>which is equivalent to</p>
-<div class="amsmath math notranslate nohighlight" id="equation-33a3fbe2-c131-48a0-a751-0da4879a4de6">
-<span class="eqno">()<a class="headerlink" href="#equation-33a3fbe2-c131-48a0-a751-0da4879a4de6" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-0dce88a0-0aa6-4620-9b44-97bb8d64ef04">
+<span class="eqno">()<a class="headerlink" href="#equation-0dce88a0-0aa6-4620-9b44-97bb8d64ef04" title="Permalink to this equation">#</a></span>\[\begin{equation}
 dY_t = n dt + 2 \sqrt{Y_t} dB_t,
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(Y_t = X^2_t\)</span>.</p>
 <p>For <span class="math notranslate nohighlight">\(n&gt;1\)</span>, Ito’s formula implies</p>
-<div class="amsmath math notranslate nohighlight" id="equation-99125f15-3846-4676-a826-f945275d43ca">
-<span class="eqno">()<a class="headerlink" href="#equation-99125f15-3846-4676-a826-f945275d43ca" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-c2f8ef90-0384-4dd5-927c-33ba34a9709d">
+<span class="eqno">()<a class="headerlink" href="#equation-c2f8ef90-0384-4dd5-927c-33ba34a9709d" title="Permalink to this equation">#</a></span>\[\begin{equation}
 dX_t= dB_t + \dfrac{(n-1)}{2} \dfrac{dt}{X_t}
 \end{equation}\]</div>
 <p>The case <span class="math notranslate nohighlight">\(n=1\)</span> can be derived from Tanaka’s formula.</p>
@@ -416,8 +416,8 @@ dX_t= dB_t + \dfrac{(n-1)}{2} \dfrac{dt}{X_t}
 <section id="definition">
 <h2>Definition<a class="headerlink" href="#definition" title="Permalink to this heading">#</a></h2>
 <p>For every <span class="math notranslate nohighlight">\(\alpha\geq 0\)</span> and <span class="math notranslate nohighlight">\(x\geq 0\)</span>,  a squared Bessel process with dimension <span class="math notranslate nohighlight">\(\alpha\)</span>, starting at <span class="math notranslate nohighlight">\(y\)</span> is defined as the unique stron solution to the SDE</p>
-<div class="amsmath math notranslate nohighlight" id="equation-e048c0cb-07c0-4ec2-b593-6fd4c2aeb456">
-<span class="eqno">()<a class="headerlink" href="#equation-e048c0cb-07c0-4ec2-b593-6fd4c2aeb456" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-83f32c4c-1f3b-4a8b-8b92-b378857ba3ad">
+<span class="eqno">()<a class="headerlink" href="#equation-83f32c4c-1f3b-4a8b-8b92-b378857ba3ad" title="Permalink to this equation">#</a></span>\[\begin{align}
 dY_t &amp;= \alpha dt + 2 \sqrt{ Y_t } dB_t,  \qquad Y_t\geq 0 \\
 Y_0 &amp; = y,
 \end{align}\]</div>
