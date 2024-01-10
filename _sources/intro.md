@@ -1,6 +1,8 @@
 # Welcome
 
-This is a collection of notes exploring a number of topics in Quantitative Finance (QF). The idea is to use [Python](https://www.python.org) &#x1F40D;to illustrate the theoretical concepts and help you to get a better understaing of each topic. My aim is to provide an open-source repository where people interested in a career in QF can find all these concepts covered in a rigorous manner but also including a practitioners point of view.
+This is a collection of notes exploring a number of topics in Quantitative Finance (QF). The idea is to use [Python](https://www.python.org) &#x1F40D;to illustrate the theoretical concepts and help you to get a better understaing of each topic. 
+
+My aim is to provide an open-source repository where people interested in a career in QF can find these concepts covered in a rigorous manner but also from a practitioners point of view.
 
 ## Contents
 
@@ -9,7 +11,7 @@ This is a collection of notes exploring a number of topics in Quantitative Finan
 
 ## Author
 
-I am Dialid Santiago. I have 7 years of experience working as a Quant in differents organisations. Currently, I am working in the Cross-Asset front office quant team at Bank of America. My previous experience includes the development and implementation of mathematical models for Counterparty Credit Risk, Market Risk, and Wholesale Credit Risk, as well as validation in Retail Credit Risk. I hold a PhD in Mathematics/Statistics from the University of Warwick where I spent 4 amazing year focusing on non-linear stochastic processes. Before coming to the UK, I obtained an MSc in Probability and Statistics, and a BSc in Applied Mathematics in Mexico. I regularly [blog](https://quantgirl.blog) about diverse topics.
+I am Dialid Santiago. I have 7 years of experience working as a Quant. Currently, I am working in the Cross-Asset front office quant team at Bank of America. My previous experience includes the development and implementation of mathematical models for Counterparty Credit Risk, Market Risk, and Wholesale Credit Risk, as well as Validation in Retail Credit Risk. I hold a PhD in Mathematics/Statistics from the University of Warwick where I spent 4 amazing years focusing on non-linear stochastic processes. Before coming to the UK, I obtained an MSc in Probability and Statistics, and a BSc in Applied Mathematics in Mexico. I regularly [blog](https://quantgirl.blog) about diverse topics.
 
 Connect with me via:
 
