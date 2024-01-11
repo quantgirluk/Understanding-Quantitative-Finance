@@ -1,6 +1,6 @@
 # Welcome
 
-This is a collection of notes exploring a number of topics in Quantitative Finance (QF). The idea is to use [Python](https://www.python.org) &#x1F40D;to illustrate the theoretical concepts and help you to get a better understaing of each topic. 
+This is a collection of notes exploring a number of topics in Quantitative Finance (QF). The idea is to use [Python](https://www.python.org) &#x1F40D;to illustrate the theoretical concepts and help you to get a better understanding of each topic. 
 
 My aim is to provide an open-source repository where people interested in a career in QF can find these concepts covered in a rigorous manner but also from a practitioners point of view.
 
