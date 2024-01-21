@@ -1,7 +1,9 @@
 ## [Understanding Quantitative Finance](https://quantgirluk.github.io/Understanding-Quantitative-Finance/intro.html)
 
 
-My aim is to create an open-source repository where people interested in a career in Quantitative Finance can find a series of notebooks covering topics in Financial Mathematics in a rigorous manner but also including a practicioners point of view. 
+This is a collection of notes exploring a number of topics in Quantitative Finance (QF). The idea is to use Python 🐍to illustrate the theoretical concepts and help you to get a better understanding of each topic.
+
+My aim is to provide an open-source repository where people interested in a career in QF can find these concepts covered in a rigorous manner while keeping the practitioners point of view into consideration.
 
 ### Content
 
@@ -12,6 +14,7 @@ Part I. Stochastic Processes
 3. [Geometric Brownian Motion](https://quantgirluk.github.io/Understanding-Quantitative-Finance/geometric_brownian_motion.html)
 4. [Vasicek Model/Process](https://quantgirluk.github.io/Understanding-Quantitative-Finance/vasicek.html)
 5. [Cox–Ingersoll–Ross process](https://quantgirluk.github.io/Understanding-Quantitative-Finance/cir_process.html)
+6. [Bessel Processes Part I](https://quantgirluk.github.io/Understanding-Quantitative-Finance/bessel_processes_part1.html)
 
 
 ```{note}
@@ -32,4 +35,4 @@ Connect with me via:
 - 👾 [Personal Website](https://quantgirl.blog)
 
 
-⭐️ **If you like this projet, please give it a star!** ⭐️
+**If you like this projet, please give it a star** ⭐️
