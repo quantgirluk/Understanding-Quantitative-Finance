@@ -1,0 +1,1171 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>6. Bessel Processes &#8212; Understanding Quantitative Finance</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'bessel_processes';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="5. Cox–Ingersoll–Ross process" href="cir_process.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/puzzle.jpeg" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/puzzle.jpeg" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Welcome
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Stochastic Processes</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="brownian_motion.html">1. Brownian Motion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="brownian_motion_arithmetic.html">2. Brownian Motion with Drift</a></li>
+<li class="toctree-l1"><a class="reference internal" href="geometric_brownian_motion.html">3. Geometric Brownian Motion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vasicek.html">4. Vasicek Model/Process</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cir_process.html">5. Cox–Ingersoll–Ross process</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">6. Bessel Processes</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/quantgirluk/Understanding-Quantitative-Finance" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/quantgirluk/Understanding-Quantitative-Finance/issues/new?title=Issue%20on%20page%20%2Fbessel_processes.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/bessel_processes.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Bessel Processes</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#integer-case">6.1. Integer Case</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#definition">6.1.1. Definition</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simulation">6.1.2. Simulation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simulating-and-visualising-paths">6.1.3. Simulating and Visualising Paths</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#marginal-distributions">6.1.4. Marginal Distributions</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#expectation-and-variance">6.1.4.1. Expectation and Variance</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#probability-density-functions">6.1.4.2. Probability Density Functions</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#visualisation">6.1.4.3. Visualisation</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sde-representation">6.1.5. SDE Representation</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#general-definition">6.2. General Definition</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#existence-and-uniqueness">6.2.1. Existence and Uniqueness</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-we-can-drop-the-absolute-value-inside-the-square-root">6.2.2. Why we can drop the absolute value inside the square root</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#transition-densities">6.2.3. Transition Densities</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">6.2.4. Expectation and Variance</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#python-implementation">6.2.5. Python Implementation</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="bessel-processes">
+<h1><span class="section-number">6. </span>Bessel Processes<a class="headerlink" href="#bessel-processes" title="Permalink to this heading">#</a></h1>
+<p>The purpose of this notebook is to provide an illustration of the <a class="reference external" href="https://en.wikipedia.org/wiki/Bessel_process">Bessel Processes</a> and some of its main properties.</p>
+<section id="integer-case">
+<h2><span class="section-number">6.1. </span>Integer Case<a class="headerlink" href="#integer-case" title="Permalink to this heading">#</a></h2>
+<section id="definition">
+<h3><span class="section-number">6.1.1. </span>Definition<a class="headerlink" href="#definition" title="Permalink to this heading">#</a></h3>
+<p>Let  <span class="math notranslate nohighlight">\(W =\{  W_t = (W^1_t, \cdots, W^d_t) : t\geq 0  \},\)</span> be a <span class="math notranslate nohighlight">\(d\)</span>-dimensional Brownian Motion, for some integer <span class="math notranslate nohighlight">\(d \geq 2\)</span>. The <strong>Bessel process</strong> of dimension <span class="math notranslate nohighlight">\(d\)</span> is defined as the Euclidean norm of <span class="math notranslate nohighlight">\(W\)</span>. That is</p>
+<div class="amsmath math notranslate nohighlight" id="equation-237635ff-a01c-458e-8522-17333e410f24">
+<span class="eqno">(6.1)<a class="headerlink" href="#equation-237635ff-a01c-458e-8522-17333e410f24" title="Permalink to this equation">#</a></span>\[\begin{equation}
+X_t  =  \|W_t\| = \sqrt{\sum_{i=1}^d (W^i_t)^2}, \qquad t \geq 0.
+\end{equation}\]</div>
+<p>Similarly, the <strong>Squared Bessel process</strong> of dimension <span class="math notranslate nohighlight">\(d\)</span> is defined as the squared Euclidean norm of <span class="math notranslate nohighlight">\(W\)</span>. That is</p>
+<div class="amsmath math notranslate nohighlight" id="equation-be82148e-0824-4ce0-a292-8c3b078e811d">
+<span class="eqno">(6.2)<a class="headerlink" href="#equation-be82148e-0824-4ce0-a292-8c3b078e811d" title="Permalink to this equation">#</a></span>\[\begin{equation}
+Y_t  =  X_t^2 = \sum_{i=1}^d (W^i_t)^2, \qquad t \geq 0.
+\end{equation}\]</div>
+</section>
+<section id="simulation">
+<h3><span class="section-number">6.1.2. </span>Simulation<a class="headerlink" href="#simulation" title="Permalink to this heading">#</a></h3>
+<p>We can simulate paths from a Bessel processs <span class="math notranslate nohighlight">\(X\)</span> of integer dimension <span class="math notranslate nohighlight">\(d\)</span> by simply using the previous definiton in terms of a multidimensional Brownian Motion.</p>
+<p>We are going to consider a discrete partition over an interval <span class="math notranslate nohighlight">\([0,T]\)</span> for the simulation to take place. For simplicity, we are going to take an equidistant partition of size <span class="math notranslate nohighlight">\(n\in \mathbb{N}\)</span>, over the interval <span class="math notranslate nohighlight">\([0,T]\)</span>, i.e.:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+t_j = \frac{j}{n-1} T \qquad  \hbox{for } j = 0, \cdots, n-1.
+\end{equation*}\]</div>
+<p>Then, for a given integer <span class="math notranslate nohighlight">\(d\geq2\)</span>, the goal is to simulate a path of the form <span class="math notranslate nohighlight">\(\{ X_{t_j} , j=0,\cdots, n-1\}\)</span>, where</p>
+<div class="math notranslate nohighlight">
+\[X_{t_j} = \| W_{t_j} \|,\]</div>
+<p>where <span class="math notranslate nohighlight">\(W\)</span> denotes a <span class="math notranslate nohighlight">\(d\)</span>-dimensional Brownian motion. To do this, we follow the next steps:</p>
+<ul class="simple">
+<li><p>Step 1. For <span class="math notranslate nohighlight">\(i=1, \cdots, d\)</span>:
+Simulate a path <span class="math notranslate nohighlight">\(\{ W_{t_j}^{i} , j=0,\cdots, n-1\}\)</span>. That is, we simulate a path from <span class="math notranslate nohighlight">\(d\)</span> <strong>independent</strong> standard Brownian motions. (Here we use fact that we know how to simulate from a standard Brownian Motion. See <a class="reference external" href="https://quantgirluk.github.io/Understanding-Quantitative-Finance/brownian_motion.html">Brownian Motion</a> for details). This allows us to construct <span class="math notranslate nohighlight">\(d\)</span>-dimensional vectors</p></li>
+</ul>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+W_{t_j} = (W_{t_j}^1, \cdots W_{t_j}^d), \qquad j=1,\cdots\ n.
+\end{equation*}\]</div>
+<ul class="simple">
+<li><p>Step 2.  For <span class="math notranslate nohighlight">\(j=1,\cdots\ n\)</span>:  Take the norm of such vectors, that is</p></li>
+</ul>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+X_{t_j} =  \sqrt{ \sum_{i=1}^d (W_{t_j}^{i})^2 }.
+\end{equation*}\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">aleatory.processes</span> <span class="kn">import</span> <span class="n">BrownianMotion</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">d</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">T</span> <span class="o">=</span> <span class="mf">1.0</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">100</span>
+
+<span class="n">times</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span> <span class="c1"># Partition of the interval [0,T]</span>
+<span class="n">brownian</span> <span class="o">=</span> <span class="n">BrownianMotion</span><span class="p">(</span><span class="n">T</span><span class="p">)</span> <span class="c1"># A Brownian Motion instance</span>
+
+<span class="n">brownian_samples</span> <span class="o">=</span> <span class="p">[</span><span class="n">brownian</span><span class="o">.</span><span class="n">sample_at</span><span class="p">(</span><span class="n">times</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">d</span><span class="p">)]</span> <span class="c1"># Step 1. Building the vectors (W_{t_j}^1 , ... W_{t_j}^d)</span>
+<span class="n">bessel_path</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">coord</span><span class="p">)</span> <span class="k">for</span> <span class="n">coord</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="n">brownian_samples</span><span class="p">)])</span> <span class="c1"># Step 2. Taking the Euclidian norm</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now, let’s plot our simulated path!</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s2">&quot;seaborn-v0_8-whitegrid&quot;</span><span class="p">)</span> <span class="c1"># These are optional configurations</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s2">&quot;figure.figsize&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+<span class="o">%</span><span class="k">config</span> InlineBackend.figure_format =&#39;retina&#39;
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">times</span><span class="p">,</span> <span class="n">bessel_path</span><span class="p">,</span> <span class="s1">&#39;o-&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Bessel Process Path&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/444efb10db7e178c4f1c50170d05479667174da5ab7231526a89732f63bdde79.png" src="_images/444efb10db7e178c4f1c50170d05479667174da5ab7231526a89732f63bdde79.png" />
+</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In this plot, we are using a linear interpolation to draw the lines between the simulated points.</p>
+</div>
+<p>Note that we can follow the same logic to simulate a path from a Squared Bessel process. The only differences is the calculation in Step 2. Instead of calculating the norm we just get the squared norm, i.e.:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+Y_{t_j} =   \sum_{i=1}^d (W_{t_j}^{i})^2 , \qquad j=1,\cdots\ n.
+\end{equation*}\]</div>
+<p>Let’s write this in <code class="docutils literal notranslate"><span class="pre">Python</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">d</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="n">T</span> <span class="o">=</span> <span class="mf">1.0</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">100</span>
+
+<span class="n">times</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span> <span class="c1"># Partition of the interval [0,T]</span>
+<span class="n">brownian</span> <span class="o">=</span> <span class="n">BrownianMotion</span><span class="p">(</span><span class="n">T</span><span class="p">)</span> <span class="c1"># A Brownian Motion instance</span>
+
+<span class="n">brownian_samples</span> <span class="o">=</span> <span class="p">[</span><span class="n">brownian</span><span class="o">.</span><span class="n">sample_at</span><span class="p">(</span><span class="n">times</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">d</span><span class="p">)]</span> <span class="c1"># Step 1. Building the vectors (W_{t_j}^1 , ... W_{t_j}^d)</span>
+<span class="n">bessel_path</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">coord</span><span class="p">))</span><span class="o">**</span><span class="mi">2</span> <span class="k">for</span> <span class="n">coord</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="n">brownian_samples</span><span class="p">)])</span> <span class="c1"># Step 2 (Modified). Taking the Square of the Euclidian norm</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">times</span><span class="p">,</span> <span class="n">bessel_path</span><span class="p">,</span> <span class="s1">&#39;o-&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Squared Bessel Process Path&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/7c0cdf7de32f98d9751095932ee822a4814d61e7cc64109d50cfa4ae51908c80.png" src="_images/7c0cdf7de32f98d9751095932ee822a4814d61e7cc64109d50cfa4ae51908c80.png" />
+</div>
+</div>
+</section>
+<section id="simulating-and-visualising-paths">
+<h3><span class="section-number">6.1.3. </span>Simulating and Visualising Paths<a class="headerlink" href="#simulating-and-visualising-paths" title="Permalink to this heading">#</a></h3>
+<p>To simulate several paths from Bessel and Squared Bessel processes and visualise them we can use the method <code class="docutils literal notranslate"><span class="pre">plot</span></code> from the <code class="docutils literal notranslate"><span class="pre">aleatory</span></code> library.</p>
+<p>Let’s simulate 5 paths from a Bessel Process of dimension 3, over the interval <span class="math notranslate nohighlight">\([0,1]\)</span> using a partition of 100 points.</p>
+<div class="tip admonition">
+<p class="admonition-title">Tip</p>
+<p>Remember that  the number of points in the partition is defined by the parameter <span class="math notranslate nohighlight">\(n\)</span>, while  the number of paths is determined by <span class="math notranslate nohighlight">\(N\)</span>.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">aleatory.processes</span> <span class="kn">import</span> <span class="n">BESProcess</span>
+
+<span class="n">bes</span> <span class="o">=</span> <span class="n">BESProcess</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">bes</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/aca6a1a422ce5b36f262ed5d97d5cee553135484751e6e8ef7ab59305d53e020.png" src="_images/aca6a1a422ce5b36f262ed5d97d5cee553135484751e6e8ef7ab59305d53e020.png" />
+</div>
+</div>
+<p>Similarly, let’s simulate 5 paths from a Squared Bessel process of dimension 4, over the interval <span class="math notranslate nohighlight">\([0,1]\)</span> using a partition of 100 points.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">aleatory.processes</span> <span class="kn">import</span> <span class="n">BESQProcess</span>
+
+<span class="n">bes</span> <span class="o">=</span> <span class="n">BESQProcess</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span> <span class="mi">4</span><span class="p">)</span>
+<span class="n">bes</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="_images/27bd0899e3a86eb91161673684dca1a4cd4439ff9bd533348fc8689d203b1a4e.png" src="_images/27bd0899e3a86eb91161673684dca1a4cd4439ff9bd533348fc8689d203b1a4e.png" />
+</div>
+</div>
+</section>
+<section id="marginal-distributions">
+<h3><span class="section-number">6.1.4. </span>Marginal Distributions<a class="headerlink" href="#marginal-distributions" title="Permalink to this heading">#</a></h3>
+<p>For any given <span class="math notranslate nohighlight">\(t\geq 0\)</span>, the definition of a <span class="math notranslate nohighlight">\(d\)</span>-dimensional Brownian Motion implies that each component  <span class="math notranslate nohighlight">\(W^i_t\)</span>, follows a normal distribution <span class="math notranslate nohighlight">\(\mathcal{N}(0,t)\)</span>. Hence, we have</p>
+<div class="amsmath math notranslate nohighlight" id="equation-ea034a95-d3b7-46c7-956c-97d1227e6112">
+<span class="eqno">(6.3)<a class="headerlink" href="#equation-ea034a95-d3b7-46c7-956c-97d1227e6112" title="Permalink to this equation">#</a></span>\[\begin{equation}
+Y_t = X_t^2 = \sum_{i=1}^d (W^i_t)^2  =  t^2 \sum_{i=1}^d \left( \dfrac{W_t^i}{t} \right)^2 \sim t^2 \chi^2(d).
+\end{equation}\]</div>
+<p>That is, the marginal distribution of a Squared Bessel process (with dimension <span class="math notranslate nohighlight">\(d\)</span>) <span class="math notranslate nohighlight">\(Y_t\)</span> is a scaled <a class="reference external" href="https://en.wikipedia.org/wiki/Chi-squared_distribution">Chi-squared</a> with <span class="math notranslate nohighlight">\(d\)</span>-degrees of freedom.</p>
+<p>Similarly, we have</p>
+<div class="amsmath math notranslate nohighlight" id="equation-ff28a710-b548-4db9-96b5-fd30ece2a7de">
+<span class="eqno">(6.4)<a class="headerlink" href="#equation-ff28a710-b548-4db9-96b5-fd30ece2a7de" title="Permalink to this equation">#</a></span>\[\begin{equation}
+X_t =  t \sqrt{ \sum_{i=1}^d \left( \dfrac{W_t^i}{t} \right)^2 } \sim t \chi(d),
+\end{equation}\]</div>
+<p>i.e.; the marginal distribution of a Bessel process (with dimension <span class="math notranslate nohighlight">\(d\)</span>) <span class="math notranslate nohighlight">\(X_t\)</span> is a scaled <a class="reference external" href="https://en.wikipedia.org/wiki/Chi_distribution">Chi</a> random-variable with <span class="math notranslate nohighlight">\(d\)</span>-degrees of freedoom</p>
+<section id="expectation-and-variance">
+<h4><span class="section-number">6.1.4.1. </span>Expectation and Variance<a class="headerlink" href="#expectation-and-variance" title="Permalink to this heading">#</a></h4>
+<p>For each <span class="math notranslate nohighlight">\(t&gt;0\)</span>, the conditional marginal <span class="math notranslate nohighlight">\(Y_t|Y_0=0\)</span> from a Squared Bessel process with dimension <span class="math notranslate nohighlight">\(d\)</span> satisfies</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\mathbf{E}[Y_t] = \mathbf{E}\left[\sum_{i=1}^d (W^i_t)^2\right]=  d t^2 ,
+\end{equation*}\]</div>
+<p>and</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\mathbf{Var} [Y_t ] = \mathbf{Var}\left[\sum_{i=1}^d (W^i_t)^2\right]=  2d t^2 ,
+\end{equation*}\]</div>
+</section>
+<section id="probability-density-functions">
+<h4><span class="section-number">6.1.4.2. </span>Probability Density Functions<a class="headerlink" href="#probability-density-functions" title="Permalink to this heading">#</a></h4>
+<p>The probability density function (pdf)of the marginal distribution <span class="math notranslate nohighlight">\(X_t\)</span>, from a  <strong>Bessel process</strong> with integer dimension <span class="math notranslate nohighlight">\(d\geq 0\)</span>, is given by the following expression</p>
+<div class="amsmath math notranslate nohighlight" id="equation-f4b98482-40e6-4c4e-bd00-997192e8d8b1">
+<span class="eqno">(6.5)<a class="headerlink" href="#equation-f4b98482-40e6-4c4e-bd00-997192e8d8b1" title="Permalink to this equation">#</a></span>\[\begin{equation}
+f_X(t, x) = \frac{1}{2^{\frac{d}{2}-1} \Gamma\left(\frac{d}{2}\right) t} \left(\frac{x}{t}\right)^{d -1} e^{-\frac{x^2}{2 t^2}}, \qquad x, t&gt;0.
+\end{equation}\]</div>
+<p>The probability density function (pdf)of the marginal distribution <span class="math notranslate nohighlight">\(Y_t\)</span>, from a <strong>Squared Bessel</strong> process with integer dimension <span class="math notranslate nohighlight">\(d\geq 0\)</span>,  is given by the following expression</p>
+<div class="amsmath math notranslate nohighlight" id="equation-6eff721f-8368-49f3-b908-efb177ec1a6b">
+<span class="eqno">(6.6)<a class="headerlink" href="#equation-6eff721f-8368-49f3-b908-efb177ec1a6b" title="Permalink to this equation">#</a></span>\[\begin{equation}
+f_Y(t, y) = \frac{1}{2^{\frac{d}{2}} \Gamma\left(\frac{d}{2}\right) t^2} \left(\frac{y}{t^2}\right) ^{\frac{d}{2} -1} e^{-\frac{y}{2 t^2}}, \qquad y, t&gt;0.
+\end{equation}\]</div>
+</section>
+<section id="visualisation">
+<h4><span class="section-number">6.1.4.3. </span>Visualisation<a class="headerlink" href="#visualisation" title="Permalink to this heading">#</a></h4>
+<p>We can visualise these probability density functions with <code class="docutils literal notranslate"><span class="pre">Python</span></code>.
+First, let’s consider a Bessel process <code class="docutils literal notranslate"><span class="pre">BESProcess(dim=3)</span></code> and plot the density function of <span class="math notranslate nohighlight">\(X_1\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">process</span> <span class="o">=</span> <span class="n">BESProcess</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">X_1</span> <span class="o">=</span> <span class="n">process</span><span class="o">.</span><span class="n">get_marginal</span><span class="p">(</span><span class="n">t</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">X_1</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mf">0.999</span><span class="p">),</span> <span class="mi">200</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">X_1</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.75</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;$t$=</span><span class="si">{</span><span class="mi">1</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;$X_1$ pdf&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/d058296c75a3355813bbcca55ba5922ea8731ae709f14c04cf5309f632359d90.png" src="_images/d058296c75a3355813bbcca55ba5922ea8731ae709f14c04cf5309f632359d90.png" />
+</div>
+</div>
+<p>We can also use do this by using the fact that <span class="math notranslate nohighlight">\(X_1\)</span> follows a Chi distribution with parameter 3.
+You can try this alternative method by running the following code.</p>
+<div class="cell tag_hide-output docutils container">
+<div class="cell_input above-output-prompt docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">chi</span>
+<span class="n">dim</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">t</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">X_1</span> <span class="o">=</span> <span class="n">chi</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="n">t</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">X_1</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mf">0.999</span><span class="p">),</span> <span class="mi">200</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">X_1</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">y</span><span class="p">),</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.75</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;$t$=</span><span class="si">{</span><span class="mi">1</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<details class="hide below-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell output</span>
+<span class="expanded">Hide code cell output</span>
+</summary>
+<div class="cell_output docutils container">
+<img alt="_images/b88eb1e506aa7fa2ef003aa587e05571aac45e0647d69fa8f0cb94a718c1e74b.png" src="_images/b88eb1e506aa7fa2ef003aa587e05571aac45e0647d69fa8f0cb94a718c1e74b.png" />
+</div>
+</details>
+</div>
+<p>Now, let’s consider a Squared Bessel process <code class="docutils literal notranslate"><span class="pre">BESQProcess(dim=3)</span></code> and plot the density function of <span class="math notranslate nohighlight">\(X_1\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">aleatory.processes</span> <span class="kn">import</span> <span class="n">BESQProcess</span>
+
+<span class="n">process</span> <span class="o">=</span> <span class="n">BESQProcess</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">Y_1</span> <span class="o">=</span> <span class="n">process</span><span class="o">.</span><span class="n">get_marginal</span><span class="p">(</span><span class="n">t</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">Y_1</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mf">0.999</span><span class="p">),</span> <span class="mi">200</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">Y_1</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">y</span><span class="p">),</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.75</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;$t$=</span><span class="si">{</span><span class="mi">1</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;$Y_1$ pdf&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/3edbc4cc6a73ad2e1f091b265badfc7481df01242c4f8ade356080a61d0f7502.png" src="_images/3edbc4cc6a73ad2e1f091b265badfc7481df01242c4f8ade356080a61d0f7502.png" />
+</div>
+</div>
+<p>Next, we vary the value of the dimension <span class="math notranslate nohighlight">\(d\)</span> and plot the corresponding pdfs. As <span class="math notranslate nohighlight">\(d\)</span> increases:</p>
+<ul class="simple">
+<li><p>The density from the Bessel marginal moves towards the right and becomes a bit wider.  reflects the fact that both the mean and the variance are increasing.</p></li>
+<li><p>The density from the Squared Bessel marginal becomes wider and the shape changes as well.</p></li>
+</ul>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">dims</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">dims</span><span class="p">:</span>
+    <span class="n">processes</span> <span class="o">=</span> <span class="p">[</span><span class="n">BESProcess</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="n">d</span><span class="p">),</span> <span class="n">BESQProcess</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="n">d</span><span class="p">)]</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">process</span><span class="p">,</span> <span class="n">ax</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">processes</span><span class="p">,</span> <span class="n">axs</span><span class="p">):</span>
+        <span class="n">X_t</span> <span class="o">=</span> <span class="n">process</span><span class="o">.</span><span class="n">get_marginal</span><span class="p">(</span><span class="n">t</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">X_t</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mf">0.999</span><span class="p">),</span> <span class="mi">100</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">X_t</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span>
+                <span class="n">alpha</span><span class="o">=</span><span class="mf">0.75</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;$d$=</span><span class="si">{</span><span class="n">d</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;$X_1$ pdf from a Bessel process/$Y_1$ from a Squared Bessel process</span><span class="se">\n</span><span class="s1"> with dimension $d$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="_images/09d70b7487684858cd8e6a47494829dd5df480440ee240a500f2eadebe1ef52d.png" src="_images/09d70b7487684858cd8e6a47494829dd5df480440ee240a500f2eadebe1ef52d.png" />
+</div>
+</div>
+<p>Finally, we fix the dimension (to 3) and vary the value of time <span class="math notranslate nohighlight">\(t\)</span>  and plot the corresponding pdfs. As <span class="math notranslate nohighlight">\(t\)</span> increases:</p>
+<ul class="simple">
+<li><p>The density from the Bessel marginal moves towards the right and becomes a bit wider.  reflects the fact that both the mean and the variance are increasing.</p></li>
+<li><p>The density from the Squared Bessel marginal becomes wider and the shape changes as well.</p></li>
+</ul>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">d</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">t_values</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">10</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">t_values</span><span class="p">:</span>
+        <span class="n">processes</span> <span class="o">=</span> <span class="p">[</span><span class="n">BESProcess</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="n">d</span><span class="p">),</span> <span class="n">BESQProcess</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="n">d</span><span class="p">)]</span>
+        <span class="k">for</span> <span class="p">(</span><span class="n">process</span><span class="p">,</span> <span class="n">ax</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">processes</span><span class="p">,</span> <span class="n">axs</span><span class="p">):</span>
+                <span class="n">X_t</span> <span class="o">=</span> <span class="n">process</span><span class="o">.</span><span class="n">get_marginal</span><span class="p">(</span><span class="n">t</span><span class="o">=</span><span class="n">t</span><span class="p">)</span>
+                <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">X_t</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mf">0.995</span><span class="p">),</span> <span class="mi">200</span><span class="p">)</span>
+                <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">X_t</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.75</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;$t$=</span><span class="si">{</span><span class="n">t</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+                <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;$X_t$ pdf from a Bessel process/$Y_t$ from a Squared Bessel process</span><span class="se">\n</span><span class="s1"> with dimension 3&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="_images/df60b7fccac20e7eb132fd1e2cb562ca341393fe368dfedb06fff793958392f9.png" src="_images/df60b7fccac20e7eb132fd1e2cb562ca341393fe368dfedb06fff793958392f9.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="sde-representation">
+<h3><span class="section-number">6.1.5. </span>SDE Representation<a class="headerlink" href="#sde-representation" title="Permalink to this heading">#</a></h3>
+<p><strong>Proposition.</strong> Let <span class="math notranslate nohighlight">\(d\geq 2\)</span> be an integer and choose <span class="math notranslate nohighlight">\(x\geq 0\)</span>. Then the Bessel process <span class="math notranslate nohighlight">\(X\)</span> with dimension <span class="math notranslate nohighlight">\(d\)</span> starting at <span class="math notranslate nohighlight">\(x\)</span> satisfies the integral equation</p>
+<div class="amsmath math notranslate nohighlight" id="equation-c082456e-b0d7-42c9-845b-df33ec5e7cfd">
+<span class="eqno">(6.7)<a class="headerlink" href="#equation-c082456e-b0d7-42c9-845b-df33ec5e7cfd" title="Permalink to this equation">#</a></span>\[\begin{equation}
+X_t = x +  \int_0^t \frac{(d-1)}{2X_s} ds + B_t, \qquad 0\leq t &lt; \infty,
+\end{equation}\]</div>
+<p>where <span class="math notranslate nohighlight">\(B\)</span> is the standard one-dimensional Brownian motion</p>
+<div class="amsmath math notranslate nohighlight" id="equation-8038b35e-a3b4-4147-8947-84162f7144b0">
+<span class="eqno">(6.8)<a class="headerlink" href="#equation-8038b35e-a3b4-4147-8947-84162f7144b0" title="Permalink to this equation">#</a></span>\[\begin{equation}
+B = \sum_{i=1}^dB^i,  \quad \text{with} \quad B_t^i = \int_0^t \frac{W_s^i}{X_s}dW_s^i,  \qquad 1 \leq i \leq d.
+\end{equation}\]</div>
+<p><em>Proof:</em> First of all, note that <span class="math notranslate nohighlight">\(X_t\)</span> can be at the origen only when <span class="math notranslate nohighlight">\(W_t^{1}\)</span> is. Hence, <span class="math notranslate nohighlight">\(\mathbb{P}(X_t = 0) =0\)</span> for any <span class="math notranslate nohighlight">\(t&gt;0\)</span>. This implies that the integrand</p>
+<div class="math notranslate nohighlight">
+\[\frac{d-1}{2X_s}\]</div>
+<p>in equation (6.4) is well defined almost surely. Next, note that the processes <span class="math notranslate nohighlight">\(B^i\)</span> are square integrable since</p>
+<div class="math notranslate nohighlight">
+\[\mathbb{E} \left[ \int_0^t  \left(\frac{1}{X_s} W_s^i \right)^2  ds\right] \leq t.\]</div>
+<p>Moreover,</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\langle B^i, B^j \rangle_t = \int_0^t \frac{1}{X_s^2}W_s^iW_s^j d\langle W^i, W^j \rangle_s= \delta_{ij} \int_0^t \frac{1}{X_s^2}W_s^iW_s^j ds,
+\end{equation*}\]</div>
+<p>which implies</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\langle B\rangle_t =  \sum_{i=1}^d \langle B^i \rangle_t =  t.
+\end{equation*}\]</div>
+<p>Thus, the using the  Levy’s characterisation theorem we can conclude that the process <span class="math notranslate nohighlight">\(B\)</span> is indeed a standard one-dimensional Brownian motion.</p>
+<p>To prove that <span class="math notranslate nohighlight">\(X\)</span> satisfies the SDE (6.4) one could think of applying Ito’s formula to the function <span class="math notranslate nohighlight">\(f(x) = \| x\|\)</span>, for which</p>
+<div class="amsmath math notranslate nohighlight" id="equation-88f22fa5-0ea9-402d-afca-03970efb2d27">
+<span class="eqno">(6.9)<a class="headerlink" href="#equation-88f22fa5-0ea9-402d-afca-03970efb2d27" title="Permalink to this equation">#</a></span>\[\begin{equation}
+\frac{\partial}{\partial x_i} f(x) = \frac{x_i}{\| x \|} , \quad \frac{\partial^2}{\partial x_i \partial x_j} f(x) = \frac{\delta_{ij}}{\| x \|} - \frac{x_i x_j}{\|x \|^3}, \qquad 1 \leq i, j \leq d,
+\end{equation}\]</div>
+<p>holds on <span class="math notranslate nohighlight">\(\mathbb{R}^d-\{0\}\)</span>. The problem here is that <span class="math notranslate nohighlight">\(f\)</span> is not differentiable at the origin and therefore we cannot use this argument directly.</p>
+<p>Instead, let us introduce the process <span class="math notranslate nohighlight">\(Y=\{Y_t=X_t^2 : t\geq 0\}\)</span>, and use Ito’s formula to prove that</p>
+<div class="amsmath math notranslate nohighlight" id="equation-aa51705b-1a1b-476b-813c-30b771e96b09">
+<span class="eqno">(6.10)<a class="headerlink" href="#equation-aa51705b-1a1b-476b-813c-30b771e96b09" title="Permalink to this equation">#</a></span>\[\begin{equation}
+Y_t = x^2 + 2 \sum_{i=1}^d \int_0^t W_s^i dW_s^i + td.
+\end{equation}\]</div>
+<p>Now, the idea is to use approximations of the function  <span class="math notranslate nohighlight">\(g(y)=\sqrt{y}\)</span>. So, for <span class="math notranslate nohighlight">\(\epsilon&gt;0\)</span>, let us define the function <span class="math notranslate nohighlight">\(g_{\epsilon}:\mathbb{R} \rightarrow \mathbb{R}\)</span>, given by</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+g_{\epsilon}(y)= \begin{cases}
+\frac{3}{8} \sqrt{\epsilon} + \frac{3}{4\sqrt{\epsilon}}y - \frac{1}{8\epsilon \sqrt{\epsilon}}y^2; &amp; y &lt; \epsilon,\\
+\sqrt{y}; &amp; y\geq \epsilon,
+\end{cases}
+\end{equation*}\]</div>
+<p>which is twice differentiable and converges towards <span class="math notranslate nohighlight">\(g(y)\)</span> as <span class="math notranslate nohighlight">\(\epsilon \downarrow 0\)</span>, for each <span class="math notranslate nohighlight">\(y\geq 0\)</span>. So, by Ito’s formula we obtain</p>
+<div class="amsmath math notranslate nohighlight" id="equation-49f2056f-5e6d-4f3f-ab33-3ce10d09ecf3">
+<span class="eqno">(6.11)<a class="headerlink" href="#equation-49f2056f-5e6d-4f3f-ab33-3ce10d09ecf3" title="Permalink to this equation">#</a></span>\[\begin{equation}
+g_{\epsilon} (Y_t) = g_{\epsilon} (x^2) + \sum_{i=1}^d I_{t}^i(\epsilon) + J_t(\epsilon) + K_t(\epsilon),
+\end{equation}\]</div>
+<p>where</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+I_{t}^i(\epsilon) &amp;= \int_0^t \left[  1_{\{Y_s\geq \epsilon\}} \frac{1}{X_s} +  1_{\{Y_s &lt; \epsilon\}} \frac{1}{2\sqrt{\epsilon}} \left( 3 - \frac{Y_s}{\epsilon} \right)  \right] W_s^i dW_s^i  \\
+J_t(\epsilon)     &amp;= \int_0^t 1_{\{Y_s\geq \epsilon\}} \frac{d - 1}{2X_s} ds  \\
+ K_t(\epsilon)    &amp;= \int_0^t 1_{\{Y_s &lt; \epsilon\}} \frac{1}{4 \sqrt{\epsilon}}  \left[ 3d - (d+2)\frac{Y_s}{\epsilon} \right]  ds.
+\end{align*}\]</div>
+<p>Next we show that, as <span class="math notranslate nohighlight">\(\epsilon\downarrow 0\)</span> equation (6.8) yields (6.4). From the monotone convergence theorem, we seee that</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+
+\lim_{\epsilon\downarrow 0} J_t(\epsilon)  =  \int_0^t 1_{\{Y_s\geq 0\}} \frac{d - 1}{2X_s} ds  =  \int_0^t\frac{d - 1}{2X_s} ds, \quad \text{a.s.}
+
+\end{equation*}\]</div>
+<p>We also have</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+0\leq \mathbb{E}[K_t(\epsilon)] \leq \frac{3d}{4\sqrt{\epsilon}} \int_0^t \mathbb{P}( Y_s &lt; \epsilon) ds.
+\end{equation*}\]</div>
+<p>The probability in the integrand is bounded above by</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+ \mathbb{P}( (W_s^1)^2 +(W_s^2)^2 &lt; \epsilon ) =  \int_0^{2\pi}\int_0^{\sqrt{\epsilon}}  \frac{1}{2\pi s} e^{-\frac{\rho^2}{2s}} \rho d\rho d\theta,
+\end{equation*}\]</div>
+<p>and so the integral becomes, upon Fubini’s theorem and the change of variable <span class="math notranslate nohighlight">\(\xi =\frac{\rho}{\sqrt{s}}\)</span>:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+
+\int_0^t \mathbb{P}(Y_t &lt; \epsilon ) ds   &amp;\leq \int_0^{\sqrt{\epsilon}}  \rho \left( \int_0^t \frac{1}{s} e^{-\frac{\rho^2}{2s}} ds \right ) d\rho \\ 
+&amp;= 2  \int_0^{\sqrt{\epsilon}}  \rho  \left( \int_{\frac{\rho}{\sqrt{t}} }^{\infty} \frac{1}{\xi} e^{-\frac{\xi^2}{2}} d\xi \right ) d\rho.
+\end{align*}\]</div>
+<p>But now it is not difficult to see that this expression is <span class="math notranslate nohighlight">\(o(\sqrt{\epsilon})\)</span> as <span class="math notranslate nohighlight">\(\epsilon\downarrow 0\)</span>, using the rule of l’Hopital. Therefore</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\lim_{\epsilon\downarrow 0} \mathbb{E}[ K_t(\epsilon) ] = 0. 
+\end{equation*}\]</div>
+<p>Finally,</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+\mathbb{E}[ (B_t^i - I_t^i(\epsilon))^2 ] &amp;= \mathbb{E} \int_0^t   1_{\{Y_s &lt; \epsilon\}} \left[\frac{1}{X_s} - \frac{1}{2\sqrt{\epsilon}} \left( 3 - \frac{Y_s}{\epsilon} \right)  \right]^2 (W_s^i)^2ds \\
+&amp; = \mathbb{E} \int_0^t   1_{Y_s &lt; \epsilon} \left[1 - \frac{1}{2}\sqrt{\frac{Y_s}{\epsilon}} \left( 3 - \frac{Y_s}{\epsilon}  \right)  \right]^2 \left( \frac{W_s^i}{X_s} \right)^2ds \\
+&amp; \leq \int_0^t \mathbb{P}(Y_s &lt; \epsilon) ds = o(\sqrt{ \epsilon }) \qquad \text{as} \ \ \epsilon\downarrow 0.
+\end{align*}\]</div>
+<p>Note: In the case <span class="math notranslate nohighlight">\(d=1\)</span>, an integral equation similar to (6.4) can be derived from Tanaka’s formula.</p>
+</section>
+</section>
+<section id="general-definition">
+<h2><span class="section-number">6.2. </span>General Definition<a class="headerlink" href="#general-definition" title="Permalink to this heading">#</a></h2>
+<p>For every <span class="math notranslate nohighlight">\(\delta\geq 0\)</span> and <span class="math notranslate nohighlight">\(y\geq 0\)</span>,  a squared Bessel process with dimension <span class="math notranslate nohighlight">\(\delta\)</span>, starting at <span class="math notranslate nohighlight">\(y\)</span> is defined as the unique strong solution of the SDE</p>
+<div class="amsmath math notranslate nohighlight" id="equation-5a3bfd9b-bb64-44ac-92db-46168bac47a3">
+<span class="eqno">(6.12)<a class="headerlink" href="#equation-5a3bfd9b-bb64-44ac-92db-46168bac47a3" title="Permalink to this equation">#</a></span>\[\begin{align}
+dY_t &amp;= \delta dt + 2 \sqrt{ |Y_t| } dB_t,  \qquad t\geq 0 \\
+Y_0 &amp; = y,
+\end{align}\]</div>
+<p>and is denoted by <span class="math notranslate nohighlight">\(BESQ^{\delta}_y\)</span>.</p>
+<p>Moreover, the process <span class="math notranslate nohighlight">\(X = \{ X_t = \sqrt{Y_t}, t\geq 0 \}\)</span>, is called a Bessel process of dimension <span class="math notranslate nohighlight">\(\delta\)</span>, starting at <span class="math notranslate nohighlight">\(x = \sqrt{y}\)</span>,  and is denoted by <span class="math notranslate nohighlight">\(BES^{\delta}_x\)</span>.</p>
+<p>Bessel processes are commonly parameterised as <span class="math notranslate nohighlight">\(BES^{(\nu)}\)</span> where <span class="math notranslate nohighlight">\(\nu\)</span> is imply</p>
+<div class="math notranslate nohighlight">
+\[\nu  = \frac{\delta}{2} -1.\]</div>
+<p>Hereafter, we are going to use this parameterisation.</p>
+<section id="existence-and-uniqueness">
+<h3><span class="section-number">6.2.1. </span>Existence and Uniqueness<a class="headerlink" href="#existence-and-uniqueness" title="Permalink to this heading">#</a></h3>
+<p>In order to demonstrate that equation (6.11) has a solution we need to introduce the following two results which can be found in [Jeanblanc, Yor, Chesney, 2009].</p>
+<p><strong>Theorem 1.</strong> Consider the SDE</p>
+<div class="amsmath math notranslate nohighlight" id="equation-6ca7fdd2-ff0c-4c49-9087-b6e00798177f">
+<span class="eqno">(6.13)<a class="headerlink" href="#equation-6ca7fdd2-ff0c-4c49-9087-b6e00798177f" title="Permalink to this equation">#</a></span>\[\begin{equation}
+X_t =X_0 + \int_0^t b(s,X_s) ds + \int_0^t\sigma(s,X_s)dW_s.
+\end{equation}\]</div>
+<p>Suppose <span class="math notranslate nohighlight">\(\varphi : (0,\infty) \rightarrow (0,\infty)\)</span> is a Borel function such that</p>
+<div class="math notranslate nohighlight">
+\[ \int_0^{\infty} \dfrac{da}{\varphi(a)}  = \infty.\]</div>
+<p>If any of the following conditions holds, then the equation admits a unique solution which is is strong. Moreover the solution <span class="math notranslate nohighlight">\(X\)</span> is a Markov process.</p>
+<ol class="arabic simple">
+<li><p>the function <span class="math notranslate nohighlight">\(b\)</span> is bounded, the function <span class="math notranslate nohighlight">\(\sigma\)</span> does not depend on the time variable and satisfies</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[ |\sigma(x) - \sigma(y)|^2 \leq \varphi(|x-y|), \]</div>
+<p>and <span class="math notranslate nohighlight">\(|\sigma|\geq \epsilon &gt;0\)</span>.</p>
+<ol class="arabic simple" start="2">
+<li><p><span class="math notranslate nohighlight">\(b\)</span> is Lipschitz continuous, and</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[ |\sigma(s,x) - \sigma(s, y)|^2 \leq \varphi(|x-y|). \]</div>
+<ol class="arabic simple" start="3">
+<li><p><span class="math notranslate nohighlight">\(b\)</span> is bounded, and <span class="math notranslate nohighlight">\(\sigma\)</span> does not depend on the time variable and satisfies</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[ |\sigma(x) - \sigma(y)|^2 \leq |f(x) - f(y)|, \]</div>
+<p>where <span class="math notranslate nohighlight">\(f\)</span> is a bounded increasing function, <span class="math notranslate nohighlight">\(|\sigma|\geq \epsilon &gt;0\)</span>.</p>
+<p><strong>Theorem 2. (Comparison Theorem)</strong> Consider the two SDEs</p>
+<div class="amsmath math notranslate nohighlight" id="equation-49857842-50ec-4829-b6f5-8ee915273f6b">
+<span class="eqno">(6.14)<a class="headerlink" href="#equation-49857842-50ec-4829-b6f5-8ee915273f6b" title="Permalink to this equation">#</a></span>\[\begin{equation}
+dX^i_t = b_i(t, X^i_t) dt + \sigma(t,X^i_t) dW_t, \qquad i =1,2;
+\end{equation}\]</div>
+<p>where the functions <span class="math notranslate nohighlight">\(b_i\)</span> are both bounded and at least one of them is Lipschitz; and <span class="math notranslate nohighlight">\(\sigma\)</span> satisfies condition (2) or (3) in Theorem 1.  Suppose also that <span class="math notranslate nohighlight">\(X^1_0 \geq X^2_0,\)</span> and <span class="math notranslate nohighlight">\(b_1(x) \geq b_2(x)\)</span>. Then <span class="math notranslate nohighlight">\(X^1_t \geq X^2_t\)</span> for all <span class="math notranslate nohighlight">\(t\)</span>, almost surely.</p>
+<p>Now, in order to show that (1) has a unique solution we introduce the SDE</p>
+<div class="amsmath math notranslate nohighlight" id="equation-c0f4849f-05b2-49ec-a302-0587bb483908">
+<span class="eqno">(6.15)<a class="headerlink" href="#equation-c0f4849f-05b2-49ec-a302-0587bb483908" title="Permalink to this equation">#</a></span>\[\begin{align}
+dY_t &amp;= \delta dt + 2 \sqrt{ |Y_t| } dB_t,  \qquad Y_t\geq 0 \\
+Y_0 &amp; = y.
+\end{align}\]</div>
+<p>Then, using the elementary inequality</p>
+<div class="math notranslate nohighlight">
+\[|\sqrt{x} - \sqrt{y}| \leq \sqrt{|x-y|},  \qquad x, y \geq 0,\]</div>
+<p>Theorem 1 implies that for every <span class="math notranslate nohighlight">\(\delta \geq 0\)</span> the equation () has a unique strong solution. Such solution is called the squared Bessel process of dimension <span class="math notranslate nohighlight">\(\delta\)</span> and is denoted by <span class="math notranslate nohighlight">\(BESQ^{\delta}\)</span>.</p>
+</section>
+<section id="why-we-can-drop-the-absolute-value-inside-the-square-root">
+<h3><span class="section-number">6.2.2. </span>Why we can drop the absolute value inside the square root<a class="headerlink" href="#why-we-can-drop-the-absolute-value-inside-the-square-root" title="Permalink to this heading">#</a></h3>
+<p>First, we should note that if the process starts at zero, i.e. <span class="math notranslate nohighlight">\(y=0\)</span>, and <span class="math notranslate nohighlight">\(\delta=0\)</span>, then the <span class="math notranslate nohighlight">\(Y=0\)</span> is the unique solution.</p>
+<p>Moreover, consider <span class="math notranslate nohighlight">\(0\leq \delta \leq \delta'\)</span> and let <span class="math notranslate nohighlight">\(Y\)</span> and <span class="math notranslate nohighlight">\(Y'\)</span> the corresponding squared Besses processes <span class="math notranslate nohighlight">\(BESQ^{\delta}\)</span> and <span class="math notranslate nohighlight">\(BESQ^{\delta'}\)</span> both starting at the same initial condition. Then the Comparison Theorem imples that</p>
+<div class="math notranslate nohighlight">
+\[ 0\leq Y_t \leq Y_t', \qquad \hbox{almost surely.}\]</div>
+<p>Thus, <span class="math notranslate nohighlight">\(Y\)</span> satistifies <span class="math notranslate nohighlight">\(Y_t\geq 0\)</span> for all <span class="math notranslate nohighlight">\(t\geq 0\)</span>, and the absolute value inside the square root term is not needed. So, hereafter we will ommit it.</p>
+</section>
+<section id="transition-densities">
+<h3><span class="section-number">6.2.3. </span>Transition Densities<a class="headerlink" href="#transition-densities" title="Permalink to this heading">#</a></h3>
+<p>Inverting the Laplace transform yield the transition density <span class="math notranslate nohighlight">\(q_t^{(\nu)}\)</span> of a <span class="math notranslate nohighlight">\(BESQ^{(\nu)}\)</span> for <span class="math notranslate nohighlight">\(\nu&gt;-1\)</span> as</p>
+<div class="amsmath math notranslate nohighlight" id="equation-a2ce1db5-80b3-4b0f-90be-536ae41ea9ba">
+<span class="eqno">(6.16)<a class="headerlink" href="#equation-a2ce1db5-80b3-4b0f-90be-536ae41ea9ba" title="Permalink to this equation">#</a></span>\[\begin{equation}
+q_t^{(\nu)}(x, y) = \dfrac{1}{2t}\left(\dfrac{y}{x}\right)^{\frac{\nu}{2}}\exp\left(-\dfrac{x+y}{2t}\right)I_{\nu}\left(\dfrac{\sqrt{xy}}{t} \right),
+\end{equation}\]</div>
+<p>and the Bessel process of index <span class="math notranslate nohighlight">\(\nu\)</span> has a transition density <span class="math notranslate nohighlight">\(p_t^{(\nu)}\)</span> defined by</p>
+<div class="amsmath math notranslate nohighlight" id="equation-71ddf6be-db12-45ac-bbb9-7d6dd0bb4b0f">
+<span class="eqno">(6.17)<a class="headerlink" href="#equation-71ddf6be-db12-45ac-bbb9-7d6dd0bb4b0f" title="Permalink to this equation">#</a></span>\[\begin{equation}
+p_t^{(\nu)}(x, y) = \dfrac{y}{t}\left(\dfrac{y}{x}\right)^{\nu}\exp\left(-\dfrac{x^2+y^2}{2t}\right)I_{\nu}\left(\dfrac{xy}{t} \right),
+\end{equation}\]</div>
+<p>where <span class="math notranslate nohighlight">\(I_{\nu}\)</span> is the usual modified Bessel function with index <span class="math notranslate nohighlight">\(\nu\)</span>.</p>
+<p>Note that</p>
+<div class="amsmath math notranslate nohighlight" id="equation-58e662c8-93fd-4ca2-97d3-c8a7d91891a5">
+<span class="eqno">(6.18)<a class="headerlink" href="#equation-58e662c8-93fd-4ca2-97d3-c8a7d91891a5" title="Permalink to this equation">#</a></span>\[\begin{equation}
+p_t^{\nu} (x,y) = 2y q_t^{\nu}(x^2, y^2).
+\end{equation}\]</div>
+</section>
+<section id="id1">
+<h3><span class="section-number">6.2.4. </span>Expectation and Variance<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h3>
+<p>For each <span class="math notranslate nohighlight">\(t&gt;0\)</span>, the conditional marginal <span class="math notranslate nohighlight">\(Y_t|Y_0\)</span> from a squared Bessel process satisfies</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\mathbf{E}[Y_t] = \mathbb{E}[Y_t|Y_0=y]= y + \delta t,
+\end{equation*}\]</div>
+<p>and</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\mathbf{Var} [Y_t ] = \mathbb{Var} [Y_t |Y_0] = 2t(2y + \delta t)
+\end{equation*}\]</div>
+</section>
+<section id="python-implementation">
+<h3><span class="section-number">6.2.5. </span>Python Implementation<a class="headerlink" href="#python-implementation" title="Permalink to this heading">#</a></h3>
+<p>For given <span class="math notranslate nohighlight">\(y, \delta&gt;0\)</span>, and <span class="math notranslate nohighlight">\(t&gt;0\)</span> we can implement the above formulas for the expectation, and variance, as follows.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">y0</span> <span class="o">=</span> <span class="mf">2.5</span>
+<span class="n">delta</span> <span class="o">=</span> <span class="mf">3.0</span>
+<span class="n">t</span> <span class="o">=</span> <span class="mf">1.0</span>
+
+<span class="n">exp</span> <span class="o">=</span> <span class="n">y0</span> <span class="o">+</span> <span class="n">delta</span><span class="o">*</span><span class="n">t</span>
+<span class="n">var</span> <span class="o">=</span> <span class="mf">2.0</span><span class="o">*</span><span class="n">t</span><span class="o">*</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">y0</span> <span class="o">+</span> <span class="n">delta</span><span class="o">*</span><span class="n">t</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;For y_0=</span><span class="si">{</span><span class="n">y0</span><span class="si">}</span><span class="s1">&#39;</span> <span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;delta=</span><span class="si">{</span><span class="n">delta</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;t=</span><span class="si">{</span><span class="n">t</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;, &quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;E[Y_t] = </span><span class="si">{</span><span class="n">exp</span><span class="si">:</span><span class="s1"> .4f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Var[Y_t] = </span><span class="si">{</span><span class="n">var</span><span class="w"> </span><span class="si">:</span><span class="s1">.4f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>For y_0=2.5, delta=3.0, t=1.0
+E[Y_t] =  5.5000
+Var[Y_t] = 16.0000
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s2">&quot;seaborn-v0_8-whitegrid&quot;</span><span class="p">)</span> <span class="c1"># These are optional configurations</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s2">&quot;figure.figsize&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+<span class="o">%</span><span class="k">config</span> InlineBackend.figure_format =&#39;retina&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s2">&quot;seaborn-v0_8-whitegrid&quot;</span><span class="p">)</span> <span class="c1"># These are optional configurations</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s2">&quot;figure.figsize&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+<span class="o">%</span><span class="k">config</span> InlineBackend.figure_format =&#39;retina&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">sqrt</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">g_epsilon</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">):</span>
+
+    <span class="k">if</span> <span class="n">y</span><span class="o">&lt;=</span> <span class="n">epsilon</span><span class="p">:</span>
+        <span class="n">sqrtep</span> <span class="o">=</span> <span class="n">sqrt</span><span class="p">(</span><span class="n">epsilon</span><span class="p">)</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="p">(</span><span class="mi">3</span><span class="o">/</span><span class="mi">8</span><span class="p">)</span><span class="o">*</span><span class="n">sqrtep</span> <span class="o">+</span><span class="p">(</span><span class="mi">3</span><span class="o">/</span><span class="mi">4</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">sqrtep</span><span class="p">)</span><span class="o">*</span><span class="n">y</span> <span class="o">-</span> <span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">8</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mf">1.0</span><span class="o">/</span><span class="p">(</span><span class="n">epsilon</span><span class="o">*</span><span class="n">sqrtep</span><span class="p">))</span><span class="o">*</span><span class="n">y</span><span class="o">**</span><span class="mi">2</span>
+        <span class="k">return</span> <span class="n">result</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">sqrt</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ys</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">,</span><span class="mi">500</span><span class="p">)</span>
+<span class="n">epsilon</span> <span class="o">=</span> <span class="mf">0.25</span>
+<span class="n">ges</span> <span class="o">=</span> <span class="p">[</span> <span class="n">g_epsilon</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">)</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">ys</span><span class="p">]</span>
+<span class="n">gs</span> <span class="o">=</span> <span class="p">[</span><span class="n">sqrt</span><span class="p">(</span><span class="n">y</span><span class="p">)</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">ys</span><span class="p">]</span>
+<span class="n">diffs</span> <span class="o">=</span> <span class="p">[</span><span class="n">a</span><span class="o">-</span><span class="n">b</span> <span class="k">for</span> <span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">ges</span><span class="p">,</span> <span class="n">gs</span><span class="p">)]</span>
+
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ys</span><span class="p">,</span> <span class="n">gs</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;$\sqrt</span><span class="si">{y}</span><span class="s1">$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ys</span><span class="p">,</span> <span class="n">ges</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;$g_{\epsilon}(y)$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ys</span><span class="p">,</span> <span class="n">diffs</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;$g_{\epsilon}(y)- \sqrt</span><span class="si">{y}</span><span class="s1">$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/63e94d408f0b3acb4a4c24a425b44ad5cfa235830cb2025933914e70b3cdc90a.png" src="_images/63e94d408f0b3acb4a4c24a425b44ad5cfa235830cb2025933914e70b3cdc90a.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># from aleatory.processes import BESProcess, BESQProcess</span>
+<span class="c1"># bes = BESProcess(dim=10)</span>
+<span class="c1"># bes.draw(n=100, N=100);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># besq = BESQProcess(dim=3)</span>
+<span class="c1"># besq.draw(n=100, N=100);</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="cir_process.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">5. </span>Cox–Ingersoll–Ross process</p>
+      </div>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#integer-case">6.1. Integer Case</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#definition">6.1.1. Definition</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simulation">6.1.2. Simulation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simulating-and-visualising-paths">6.1.3. Simulating and Visualising Paths</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#marginal-distributions">6.1.4. Marginal Distributions</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#expectation-and-variance">6.1.4.1. Expectation and Variance</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#probability-density-functions">6.1.4.2. Probability Density Functions</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#visualisation">6.1.4.3. Visualisation</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sde-representation">6.1.5. SDE Representation</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#general-definition">6.2. General Definition</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#existence-and-uniqueness">6.2.1. Existence and Uniqueness</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-we-can-drop-the-absolute-value-inside-the-square-root">6.2.2. Why we can drop the absolute value inside the square root</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#transition-densities">6.2.3. Transition Densities</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">6.2.4. Expectation and Variance</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#python-implementation">6.2.5. Python Implementation</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Dialid Santiago
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022-2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
