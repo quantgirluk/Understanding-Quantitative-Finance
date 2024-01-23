@@ -409,7 +409,7 @@ document.write(`
 <h1><span class="section-number">6. </span>Bessel Processes Part I<a class="headerlink" href="#bessel-processes-part-i" title="Permalink to this heading">#</a></h1>
 <p>The purpose of these notebooks (Bessel Processes Part I-III) is to provide an illustration of the <a class="reference external" href="https://en.wikipedia.org/wiki/Bessel_process">Bessel Processes</a> and some of their main properties.</p>
 <ul class="simple">
-<li><p>In Part I, we  introduce both Bessel and Squared Bessel processs with integer dimension <span class="math notranslate nohighlight">\(d\geq 2.\)</span></p></li>
+<li><p>In Part I, we  introduce both Bessel and Squared Bessel processes with integer dimension <span class="math notranslate nohighlight">\(d\geq 2.\)</span></p></li>
 <li><p>In Part II, we will show that Squared Bessel processes with integer dimension satisfy an Stochastic Differential Equation (SDE). This representation will allow us define Squared Bessel processes with real dimension <span class="math notranslate nohighlight">\(\delta \geq 0\)</span>.</p></li>
 <li><p>Finally, in Part III we will study Bessel processes with general dimension <span class="math notranslate nohighlight">\(\delta \geq 0.\)</span></p></li>
 </ul>
@@ -419,7 +419,7 @@ document.write(`
 <li><p><a class="reference external" href="https://github.com/quantgirluk/aleatory"><code class="docutils literal notranslate"><span class="pre">aleatory</span></code></a></p></li>
 </ul>
 <p>together with the style sheet <a class="reference external" href="https://github.com/quantgirluk/matplotlib-stylesheets">Quant-Pastel Light</a>.</p>
-<p>These tools will help us to make insightful visualisation of Bessel processes.</p>
+<p>These tools will help us to make insightful visualisations of Bessel processes.</p>
 <div class="cell tag_hide-input docutils container">
 <details class="hide above-input">
 <summary aria-label="Toggle hidden content">
@@ -445,14 +445,13 @@ document.write(`
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">aleatory.processes</span> <span class="kn">import</span> <span class="n">BESProcess</span><span class="p">,</span> <span class="n">BESQProcess</span>
 <span class="n">process</span> <span class="o">=</span> <span class="n">BESProcess</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="mf">3.0</span><span class="p">)</span>
-<span class="n">process</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">envelope</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">colormap</span><span class="o">=</span><span class="s2">&quot;pink&quot;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Bessel Process of dimension 3&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">process</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">envelope</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">colormap</span><span class="o">=</span><span class="s2">&quot;pink&quot;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Bessel Process of dimension 3&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/2515644e5dee681d2e1df1a41546e3295336467e44f07d4ffe18c9173458f82a.png" src="_images/2515644e5dee681d2e1df1a41546e3295336467e44f07d4ffe18c9173458f82a.png" />
+<img alt="_images/565fb7695453b7da6af3dbfc1eea72bac7731e57646efa728a6e8d5c3ae84e48.png" src="_images/565fb7695453b7da6af3dbfc1eea72bac7731e57646efa728a6e8d5c3ae84e48.png" />
 </div>
 </div>
 <div class="admonition-important admonition">
@@ -463,13 +462,13 @@ document.write(`
 <h2><span class="section-number">6.1. </span>Definition<a class="headerlink" href="#definition" title="Permalink to this heading">#</a></h2>
 <p>Let  <span class="math notranslate nohighlight">\(W =\{  W_t = (W^1_t, \cdots, W^d_t) : t\geq 0 \},\)</span> be a <span class="math notranslate nohighlight">\(d\)</span>-dimensional standard Brownian Motion, for some integer <span class="math notranslate nohighlight">\(d \geq 2\)</span>.</p>
 <p>The <strong>Bessel process</strong> of dimension <span class="math notranslate nohighlight">\(d\)</span>, is defined as the Euclidean norm of <span class="math notranslate nohighlight">\(W\)</span>. That is</p>
-<div class="amsmath math notranslate nohighlight" id="equation-8061e7db-e4e8-4fcd-a353-1ea0553acc81">
-<span class="eqno">(6.1)<a class="headerlink" href="#equation-8061e7db-e4e8-4fcd-a353-1ea0553acc81" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-3e8dc800-d659-45ec-aba0-c43136bdcef5">
+<span class="eqno">(6.1)<a class="headerlink" href="#equation-3e8dc800-d659-45ec-aba0-c43136bdcef5" title="Permalink to this equation">#</a></span>\[\begin{equation}
 X_t  =  \|W_t\| = \sqrt{\sum_{i=1}^d (W^i_t)^2}, \qquad t \geq 0.
 \end{equation}\]</div>
 <p>Similarly, the <strong>Squared Bessel process</strong>  of dimension <span class="math notranslate nohighlight">\(d\)</span>, is defined as the squared Euclidean norm of <span class="math notranslate nohighlight">\(W\)</span>.</p>
-<div class="amsmath math notranslate nohighlight" id="equation-71881a44-acde-4445-855c-f91dec4a8e1f">
-<span class="eqno">(6.2)<a class="headerlink" href="#equation-71881a44-acde-4445-855c-f91dec4a8e1f" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-cf06bb28-2e1f-45d3-aa69-85f963dccfe4">
+<span class="eqno">(6.2)<a class="headerlink" href="#equation-cf06bb28-2e1f-45d3-aa69-85f963dccfe4" title="Permalink to this equation">#</a></span>\[\begin{equation}
 Y_t  = \|W_t\|^2 = \sum_{i=1}^d (W^i_t)^2, \qquad t \geq 0.
 \end{equation}\]</div>
 <div class="tip admonition">
@@ -545,7 +544,7 @@ W_{t_j} = (W_{t_j}^1, \cdots W_{t_j}^d), \qquad j=1,\cdots\ n.
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/d38ce36b6a8922f6ad0764c80a69ba7289ac6c3afde6a692130afb743527213a.png" src="_images/d38ce36b6a8922f6ad0764c80a69ba7289ac6c3afde6a692130afb743527213a.png" />
+<img alt="_images/3eb76a2987430880ffb63a66fbeac84e6d7e3df5a451b2769ecfab1b6a8a7c39.png" src="_images/3eb76a2987430880ffb63a66fbeac84e6d7e3df5a451b2769ecfab1b6a8a7c39.png" />
 </div>
 </div>
 <div class="admonition note">
@@ -581,7 +580,7 @@ Y_{t_j} =   \sum_{i=1}^d (W_{t_j}^{i})^2 , \qquad j=1,\cdots\ n.
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/4b1ae62c754771c2c96dd42f2b77fb41e13a8409107a44edaa4188b55c873ac1.png" src="_images/4b1ae62c754771c2c96dd42f2b77fb41e13a8409107a44edaa4188b55c873ac1.png" />
+<img alt="_images/8e35e5ff3a0a3f6986e528fd8023e5d4271e96e8e779e765b82f4816c9e36eed.png" src="_images/8e35e5ff3a0a3f6986e528fd8023e5d4271e96e8e779e765b82f4816c9e36eed.png" />
 </div>
 </div>
 </section>
@@ -610,13 +609,12 @@ Y_{t_j} =   \sum_{i=1}^d (W_{t_j}^{i})^2 , \qquad j=1,\cdots\ n.
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Snippet to Simulate and Visualise the paths from the Bessel process</span>
 <span class="kn">from</span> <span class="nn">aleatory.processes</span> <span class="kn">import</span> <span class="n">BESProcess</span>
 <span class="n">bes</span> <span class="o">=</span> <span class="n">BESProcess</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span> <span class="mi">3</span><span class="p">)</span>
-<span class="n">bes</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">bes</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/b0456b29150c3b9ce30815bcb5c00f1cafc4561b7de2557f498a5ba4e99921f7.png" src="_images/b0456b29150c3b9ce30815bcb5c00f1cafc4561b7de2557f498a5ba4e99921f7.png" />
+<img alt="_images/2ab981b41ab4cd340cb995e200a790203f1c2d70bd612c20574beb3f99907a72.png" src="_images/2ab981b41ab4cd340cb995e200a790203f1c2d70bd612c20574beb3f99907a72.png" />
 </div>
 </div>
 <p>Similarly, let’s simulate 5 paths from a Squared Bessel process of dimension 6, over the interval <span class="math notranslate nohighlight">\([0,1]\)</span> using a partition of 100 points.</p>
@@ -630,14 +628,13 @@ Y_{t_j} =   \sum_{i=1}^d (W_{t_j}^{i})^2 , \qquad j=1,\cdots\ n.
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Snippet to Simulate and Visualise the paths from the Squared Bessel process</span>
 <span class="kn">from</span> <span class="nn">aleatory.processes</span> <span class="kn">import</span> <span class="n">BESQProcess</span>
 <span class="n">bes</span> <span class="o">=</span> <span class="n">BESQProcess</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span> <span class="mi">6</span><span class="p">)</span>
-<span class="n">bes</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">bes</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/8566b6d39e4941cf31d1e5cc01415944b5fbc67fd50788f4b366d90211cedc4d.png" src="_images/8566b6d39e4941cf31d1e5cc01415944b5fbc67fd50788f4b366d90211cedc4d.png" />
+<img alt="_images/af7ce39751e09f4b775f208b7fda308c1de4bdc1348feeb92cf9443e4ac58bdb.png" src="_images/af7ce39751e09f4b775f208b7fda308c1de4bdc1348feeb92cf9443e4ac58bdb.png" />
 </div>
 </div>
 <div class="admonition note">
@@ -650,14 +647,14 @@ Y_{t_j} =   \sum_{i=1}^d (W_{t_j}^{i})^2 , \qquad j=1,\cdots\ n.
 <h2><span class="section-number">6.3. </span>Marginal Distributions<a class="headerlink" href="#marginal-distributions" title="Permalink to this heading">#</a></h2>
 <p>For any given <span class="math notranslate nohighlight">\(t\geq 0\)</span>, the definition of a <span class="math notranslate nohighlight">\(d\)</span>-dimensional Brownian Motion implies that each component  <span class="math notranslate nohighlight">\(W^i_t\)</span>, follows a normal distribution <span class="math notranslate nohighlight">\(\mathcal{N}(0,t)\)</span>. Moreover, these components are independent of each other.</p>
 <p>Hence, we have</p>
-<div class="amsmath math notranslate nohighlight" id="equation-601b8fb8-0df0-44ca-a495-44145039420c">
-<span class="eqno">(6.3)<a class="headerlink" href="#equation-601b8fb8-0df0-44ca-a495-44145039420c" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-d9403565-a7e0-4f0e-a276-096ec2ba249f">
+<span class="eqno">(6.3)<a class="headerlink" href="#equation-d9403565-a7e0-4f0e-a276-096ec2ba249f" title="Permalink to this equation">#</a></span>\[\begin{equation}
 X_t =  \sqrt{t} \sqrt{ \sum_{i=1}^d \left( \dfrac{W_t^i}{ \sqrt{t}} \right)^2 } \sim \sqrt{t} \chi(d), \qquad t\geq 0,
 \end{equation}\]</div>
 <p>i.e.; the marginal distribution of a Bessel process <span class="math notranslate nohighlight">\(BES_0^d\)</span> (with integer dimension <span class="math notranslate nohighlight">\(d\geq2\)</span>) is a scaled <a class="reference external" href="https://en.wikipedia.org/wiki/Chi_distribution">Chi</a> random-variable with <span class="math notranslate nohighlight">\(d\)</span>-degrees of freedom.</p>
 <p>Similarly,</p>
-<div class="amsmath math notranslate nohighlight" id="equation-781801e5-bd69-4f78-9702-3edc1916cb29">
-<span class="eqno">(6.4)<a class="headerlink" href="#equation-781801e5-bd69-4f78-9702-3edc1916cb29" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-01c9da2c-7857-41e1-8a03-355ceadc9f07">
+<span class="eqno">(6.4)<a class="headerlink" href="#equation-01c9da2c-7857-41e1-8a03-355ceadc9f07" title="Permalink to this equation">#</a></span>\[\begin{equation}
 Y_t = \sum_{i=1}^d (W^i_t)^2  =  t \sum_{i=1}^d \left( \dfrac{W_t^i}{\sqrt{t}} \right)^2 \sim t \chi^2(d), \qquad t\geq 0,
 \end{equation}\]</div>
 <p>that is, the marginal distribution of a Squared Bessel process <span class="math notranslate nohighlight">\(BESQ_0^2\)</span> (with integer dimension <span class="math notranslate nohighlight">\(d\geq 2\)</span>) is a scaled <a class="reference external" href="https://en.wikipedia.org/wiki/Chi-squared_distribution">Chi-squared</a> with <span class="math notranslate nohighlight">\(d\)</span>-degrees of freedom.</p>
@@ -780,13 +777,13 @@ Var[Y_t] = 24.000000
 <section id="probability-density-functions">
 <h3><span class="section-number">6.3.2. </span>Probability Density Functions<a class="headerlink" href="#probability-density-functions" title="Permalink to this heading">#</a></h3>
 <p>The probability density function (pdf)of the marginal distribution <span class="math notranslate nohighlight">\(X_t\)</span>, from a  <strong>Bessel process</strong> with integer dimension <span class="math notranslate nohighlight">\(d\geq 0\)</span>, is given by the following expression</p>
-<div class="amsmath math notranslate nohighlight" id="equation-981de527-76ac-41fb-8e11-1478819f8b2a">
-<span class="eqno">(6.5)<a class="headerlink" href="#equation-981de527-76ac-41fb-8e11-1478819f8b2a" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-3b15b48e-7c40-4a6d-9278-a9ca3105c52e">
+<span class="eqno">(6.5)<a class="headerlink" href="#equation-3b15b48e-7c40-4a6d-9278-a9ca3105c52e" title="Permalink to this equation">#</a></span>\[\begin{equation}
 f_X(x, t) = \frac{1}{2^{\frac{d}{2}-1} \Gamma\left(\frac{d}{2}\right) \sqrt{t}} \left(\frac{x}{\sqrt{t}}\right)^{d -1} e^{-\frac{x^2}{2 t}}, \qquad x, t&gt;0.
 \end{equation}\]</div>
 <p>The probability density function (pdf)of the marginal distribution <span class="math notranslate nohighlight">\(Y_t\)</span>, from a <strong>Squared Bessel</strong> process with integer dimension <span class="math notranslate nohighlight">\(d\geq 0\)</span>,  is given by the following expression</p>
-<div class="amsmath math notranslate nohighlight" id="equation-43ba8cd6-3fbb-4e4a-9f6b-dee81eaf55f9">
-<span class="eqno">(6.6)<a class="headerlink" href="#equation-43ba8cd6-3fbb-4e4a-9f6b-dee81eaf55f9" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-44ff84bd-a819-421f-920f-38741225806b">
+<span class="eqno">(6.6)<a class="headerlink" href="#equation-44ff84bd-a819-421f-920f-38741225806b" title="Permalink to this equation">#</a></span>\[\begin{equation}
 f_Y(y, t) = \frac{1}{2^{\frac{d}{2}} \Gamma\left(\frac{d}{2}\right) t} \left(\frac{y}{t}\right) ^{\frac{d}{2} -1} e^{-\frac{y}{2 t}}, \qquad y, t&gt;0.
 \end{equation}\]</div>
 <section id="visualisation">
@@ -1097,16 +1094,15 @@ You can try this alternative method by running the following code.</p>
 <span class="expanded">Hide code cell source</span>
 </summary>
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">aleatory.processes</span> <span class="kn">import</span> <span class="n">BESProcess</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># from aleatory.processes import BESProcess</span>
 <span class="n">bes</span> <span class="o">=</span> <span class="n">BESProcess</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="mi">5000</span><span class="p">)</span>
-<span class="n">bes</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">bes</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/31dbddc78f1fbf3abda01b1d53fe3a3d1e17da0d7813f1dc05ffb531ef019109.png" src="_images/31dbddc78f1fbf3abda01b1d53fe3a3d1e17da0d7813f1dc05ffb531ef019109.png" />
+<img alt="_images/87862d7ca67ec4c14007a69ad6fa04ceba1e7e2f935bda441213d79127c10990.png" src="_images/87862d7ca67ec4c14007a69ad6fa04ceba1e7e2f935bda441213d79127c10990.png" />
 </div>
 </div>
 <div class="cell tag_hide-input docutils container">
@@ -1116,16 +1112,15 @@ You can try this alternative method by running the following code.</p>
 <span class="expanded">Hide code cell source</span>
 </summary>
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">aleatory.processes</span> <span class="kn">import</span> <span class="n">BESProcess</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># from aleatory.processes import BESProcess</span>
 <span class="n">bes</span> <span class="o">=</span> <span class="n">BESQProcess</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="mi">5000</span><span class="p">)</span>
-<span class="n">bes</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">bes</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/d43bbb7a1d32c38b3db0814990813a225f0fa62e547abf396d0b3f4d1f36efef.png" src="_images/d43bbb7a1d32c38b3db0814990813a225f0fa62e547abf396d0b3f4d1f36efef.png" />
+<img alt="_images/f4061c29fbd20ace9434b57debdf64044cbd742fb9c177ea1b2da1857e8413dd.png" src="_images/f4061c29fbd20ace9434b57debdf64044cbd742fb9c177ea1b2da1857e8413dd.png" />
 </div>
 </div>
 </section>
@@ -1142,14 +1137,13 @@ You can try this alternative method by running the following code.</p>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># from aleatory.processes import BESProcess</span>
 <span class="n">bes</span> <span class="o">=</span> <span class="n">BESProcess</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">bes</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">envelope</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">colormap</span><span class="o">=</span><span class="s2">&quot;pink&quot;</span><span class="p">,</span> <span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">bes</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">envelope</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">colormap</span><span class="o">=</span><span class="s2">&quot;pink&quot;</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/775e40037da8d7261e0885975528b7be996aebfa150f795aa4d16e7e28515398.png" src="_images/775e40037da8d7261e0885975528b7be996aebfa150f795aa4d16e7e28515398.png" />
+<img alt="_images/5545d55f3b0ff12472a541a136eb26c0193c4398df8cb067471dd92b4887f908.png" src="_images/5545d55f3b0ff12472a541a136eb26c0193c4398df8cb067471dd92b4887f908.png" />
 </div>
 </div>
 <div class="cell tag_hide-input docutils container">
@@ -1161,14 +1155,13 @@ You can try this alternative method by running the following code.</p>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># from aleatory.processes import BESQProcess</span>
 <span class="n">bes</span> <span class="o">=</span> <span class="n">BESQProcess</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
-<span class="n">bes</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">envelope</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">colormap</span><span class="o">=</span><span class="s2">&quot;cool&quot;</span><span class="p">,</span> <span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">bes</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">envelope</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">colormap</span><span class="o">=</span><span class="s2">&quot;cool&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/509c5368191b1b5cdc9807e31cb9468cc80a8e4e912d87d51366ad219ee3ca0e.png" src="_images/509c5368191b1b5cdc9807e31cb9468cc80a8e4e912d87d51366ad219ee3ca0e.png" />
+<img alt="_images/9413b7374e6aa1cdf04c9c320b27840a5aaf6921f6402290186506efdf239e8d.png" src="_images/9413b7374e6aa1cdf04c9c320b27840a5aaf6921f6402290186506efdf239e8d.png" />
 </div>
 </div>
 <div class="cell tag_hide-input docutils container">

@@ -398,13 +398,13 @@ document.write(`
   <section class="tex2jax_ignore mathjax_ignore" id="vasicek-model-process">
 <h1><span class="section-number">4. </span>Vasicek Model/Process<a class="headerlink" href="#vasicek-model-process" title="Permalink to this heading">#</a></h1>
 <p>The purpose of this notebook is to provide an illustration of the <a class="reference external" href="https://en.wikipedia.org/wiki/Vasicek_model">Vasicek Model/Processs</a> and some of its main properties.</p>
-<p>Before diving into the theory, let’s start by loading</p>
+<p>Before diving into the theory, let’s start by loading the libraries</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">matplotlib</span></code></p></li>
-<li><p>my style sheet <a class="reference external" href="https://github.com/quantgirluk/matplotlib-stylesheets">Quant-Pastel Light</a></p></li>
 <li><p><a class="reference external" href="https://github.com/quantgirluk/aleatory"><code class="docutils literal notranslate"><span class="pre">aleatory</span></code></a></p></li>
 </ul>
-<p>which will help us to make some nice plots.</p>
+<p>together with the style sheet <a class="reference external" href="https://github.com/quantgirluk/matplotlib-stylesheets">Quant-Pastel Light</a>.</p>
+<p>These tools will help us to make insightful visualisations.</p>
 <div class="cell tag_hide-input docutils container">
 <details class="hide above-input">
 <summary aria-label="Toggle hidden content">
@@ -437,25 +437,14 @@ document.write(`
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/3b990c47ba945fb9049a36530266e94771dcaff5fee6d0add47d59aa2edc3e20.png" src="_images/3b990c47ba945fb9049a36530266e94771dcaff5fee6d0add47d59aa2edc3e20.png" />
-</div>
-</div>
-<p>Before going into the theory, let’s start by loading  <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code> and my style sheet <a class="reference external" href="https://github.com/quantgirluk/matplotlib-stylesheets">Quant-Pastel Light</a> to make some pretty picures.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="n">mystyle</span> <span class="o">=</span> <span class="s2">&quot;https://raw.githubusercontent.com/quantgirluk/matplotlib-stylesheets/main/quant-pastel-light.mplstyle&quot;</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="n">mystyle</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s2">&quot;figure.figsize&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
-</pre></div>
-</div>
+<img alt="_images/6d7af9f5aa063699ce6815a122fc6bd09ca0237a06d23bc4f39d19e2f9045859.png" src="_images/6d7af9f5aa063699ce6815a122fc6bd09ca0237a06d23bc4f39d19e2f9045859.png" />
 </div>
 </div>
 <section id="definition">
 <h2><span class="section-number">4.1. </span>Definition<a class="headerlink" href="#definition" title="Permalink to this heading">#</a></h2>
 <p>The Vasicek model specifies that the instantaneous interest rate is defined by a stochastic process which can be defined by the following Stochastic Differential Equation (SDE)</p>
-<div class="amsmath math notranslate nohighlight" id="equation-416d0bf9-16f1-4dc6-8100-1903d1b6f7f0">
-<span class="eqno">(4.1)<a class="headerlink" href="#equation-416d0bf9-16f1-4dc6-8100-1903d1b6f7f0" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-87538bf0-44c6-466e-b3e6-11f39bf9adc0">
+<span class="eqno">(4.1)<a class="headerlink" href="#equation-87538bf0-44c6-466e-b3e6-11f39bf9adc0" title="Permalink to this equation">#</a></span>\[\begin{equation}
 dX_t = \theta (\mu - X_t) dt + \sigma dW_t, \quad t &gt;0,
 \end{equation}\]</div>
 <p>with initial condition  <span class="math notranslate nohighlight">\(X_0 =x_0\in\mathbb{R}\)</span>, and where <span class="math notranslate nohighlight">\(W_t\)</span> is a standard Brownian motion, and the three parameters are constants:</p>
@@ -473,8 +462,8 @@ X_te^{\theta t} &amp;= x_0 +\int_0^t X_s \theta e^{\theta s}ds + \int_0^t e^{\th
 &amp; = x_0 + \mu(e^{\theta t} - 1) + \int_0^t e^{\theta s}\sigma dW_s.
 \end{align*}\]</div>
 <p>Thus</p>
-<div class="amsmath math notranslate nohighlight" id="equation-55f4527a-3abb-430b-b586-7d2b7a48e173">
-<span class="eqno">(4.2)<a class="headerlink" href="#equation-55f4527a-3abb-430b-b586-7d2b7a48e173" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-162224af-9cb8-48db-a4c0-9e78d5c4484c">
+<span class="eqno">(4.2)<a class="headerlink" href="#equation-162224af-9cb8-48db-a4c0-9e78d5c4484c" title="Permalink to this equation">#</a></span>\[\begin{equation}
 X_t = x_0e^{-\theta t} +  \mu(1- e^{-\theta t})  + \sigma \int_0^t e^{-\theta (t-s)}dW_s.
 \end{equation}\]</div>
 <div class="admonition note">
@@ -616,34 +605,6 @@ Cov[X_t, X_s]=0.000842
 f(x, t; \theta,  \mu, \sigma, x_0) = \dfrac{1}{ \frac{\sigma}{ \sqrt{2\theta}}  \sqrt{ (1- e^{-2\theta t})} \sqrt{2 \pi }}\exp\left\{ -\dfrac{1}{2} \left(\dfrac{x- [x_0e^{-\theta t} +  \mu(1- e^{-\theta t})] }{ \frac{\sigma}{ \sqrt{2\theta}}  \sqrt{ (1- e^{-2\theta t})}}\right)^2  \right\}, \qquad \forall x\in\mathbb{R}, t&gt;0.
 \end{equation*}\]</div>
 <p>Let’s take a look at the density function of <span class="math notranslate nohighlight">\(X_1\)</span> for different values of <span class="math notranslate nohighlight">\(\theta\)</span>, <span class="math notranslate nohighlight">\(\mu\)</span>, and <span class="math notranslate nohighlight">\(\sigma\)</span>.</p>
-<div class="cell tag_hide-input docutils container">
-<details class="hide above-input">
-<summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell source</span>
-<span class="expanded">Hide code cell source</span>
-</summary>
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-</pre></div>
-</div>
-</div>
-</details>
-</div>
-<div class="cell tag_hide-input docutils container">
-<details class="hide above-input">
-<summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell source</span>
-<span class="expanded">Hide code cell source</span>
-</summary>
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s2">&quot;seaborn-v0_8-whitegrid&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s2">&quot;figure.figsize&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
-<span class="o">%</span><span class="k">config</span> InlineBackend.figure_format =&#39;retina&#39;
-</pre></div>
-</div>
-</div>
-</details>
-</div>
 <p>First we consider the process
 <code class="docutils literal notranslate"><span class="pre">Vasicek(theta=1.0,</span> <span class="pre">mu=10.0,</span> <span class="pre">sigma=0.5,</span> <span class="pre">initial=1.0)</span></code> and plot the marginal density of <span class="math notranslate nohighlight">\(X_1\)</span>.
 Note that the mean is still far from the long term mean <span class="math notranslate nohighlight">\(\mu=10\)</span>.</p>
@@ -666,7 +627,7 @@ Note that the mean is still far from the long term mean <span class="math notran
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/500a0f4242a3d9b38830f536c8375e8bd4d5cbeae851ae25f2781a1947b72588.png" src="_images/500a0f4242a3d9b38830f536c8375e8bd4d5cbeae851ae25f2781a1947b72588.png" />
+<img alt="_images/48b7aba2fdbd02f2802ffdfdb7ed410b604870de3adbdb6b089e3857f2172169.png" src="_images/48b7aba2fdbd02f2802ffdfdb7ed410b604870de3adbdb6b089e3857f2172169.png" />
 </div>
 </div>
 <p>Next we vary the value of the parameter <span class="math notranslate nohighlight">\(\theta\)</span> (the speed of reversion)  <code class="docutils literal notranslate"><span class="pre">Vasicek(theta=theta,</span> <span class="pre">mu=10.0,</span> <span class="pre">sigma=0.5,</span> <span class="pre">initial=1.0)</span></code> and again plot the densities of <span class="math notranslate nohighlight">\(X_1\)</span>. Note how the value of <span class="math notranslate nohighlight">\(\theta\)</span> impacts both the mean and the variance of the density.</p>
@@ -699,7 +660,7 @@ Note that the mean is still far from the long term mean <span class="math notran
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/53edbd3a46297ee8d5644b7e0d13cb496eced430337a391c7bbb97792f3808c0.png" src="_images/53edbd3a46297ee8d5644b7e0d13cb496eced430337a391c7bbb97792f3808c0.png" />
+<img alt="_images/16239f356569aa0f42dd1d0f2cec36ce545ae7a2811acd1021b6ffbeda33aac1.png" src="_images/16239f356569aa0f42dd1d0f2cec36ce545ae7a2811acd1021b6ffbeda33aac1.png" />
 </div>
 </div>
 <p>Next we vary the value of the parameter <span class="math notranslate nohighlight">\(\mu\)</span> (the long term mean) in  <code class="docutils literal notranslate"><span class="pre">Vasicek(theta=1.0,</span> <span class="pre">mu=mu,</span> <span class="pre">sigma=0.5,</span> <span class="pre">initial=1.0)</span></code> and again plot the densities corresponding to <span class="math notranslate nohighlight">\(X_1\)</span>. Note how the value of <span class="math notranslate nohighlight">\(\mu\)</span> impacts only the mean of the density. We can see that the mean of the density follows the direction of the parameter <span class="math notranslate nohighlight">\(\mu\)</span> which is expected since it will converge to it when <span class="math notranslate nohighlight">\(t\)</span> goes to infinity.</p>
@@ -727,7 +688,7 @@ Note that the mean is still far from the long term mean <span class="math notran
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/51499a81155716cd5df52b7f420577dcaca39dfaeddc77e3a15f7e871d10ea6e.png" src="_images/51499a81155716cd5df52b7f420577dcaca39dfaeddc77e3a15f7e871d10ea6e.png" />
+<img alt="_images/b80e3b128f2e11775a1524d43f4c656fbee8283765dedb593e7016f8e611d996.png" src="_images/b80e3b128f2e11775a1524d43f4c656fbee8283765dedb593e7016f8e611d996.png" />
 </div>
 </div>
 <p>Next we vary the value of the parameter <span class="math notranslate nohighlight">\(\sigma\)</span> (the volatility) in  <code class="docutils literal notranslate"><span class="pre">Vasicek(theta=1.0,</span> <span class="pre">mu=10.0,</span> <span class="pre">sigma=sigma,</span> <span class="pre">initial=1.0)</span></code> and again plot the densities of <span class="math notranslate nohighlight">\(X_1\)</span>. Note that the value of <span class="math notranslate nohighlight">\(\sigma\)</span> impacts only the variance of the density while the mean remains constant. As <span class="math notranslate nohighlight">\(\sigma\)</span> increases the variance of <span class="math notranslate nohighlight">\(X_1\)</span> increases and the distribution becomes wider. We can see this by looking at the range in the x-axis of the plots.</p>
@@ -755,7 +716,7 @@ Note that the mean is still far from the long term mean <span class="math notran
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/da1ecd30bdc2f12a6bd4fec75ac7fdbc18f6b6f32ab5d783d4cd8d190633a99b.png" src="_images/da1ecd30bdc2f12a6bd4fec75ac7fdbc18f6b6f32ab5d783d4cd8d190633a99b.png" />
+<img alt="_images/0b4603e687bf6969437b8de7b54e7cd74d70eb38e3a43ad26b3c9b5ca50b9524.png" src="_images/0b4603e687bf6969437b8de7b54e7cd74d70eb38e3a43ad26b3c9b5ca50b9524.png" />
 </div>
 </div>
 <p>Finally, we will keep all parameters fixed in <code class="docutils literal notranslate"><span class="pre">Vasicek(theta=1.0,</span> <span class="pre">mu=10.0,</span> <span class="pre">sigma=0.5,</span> <span class="pre">initial=1.0)</span></code> and now plot the densities of <span class="math notranslate nohighlight">\(X_t\)</span> for several values of <span class="math notranslate nohighlight">\(t\)</span>. Note how varying <span class="math notranslate nohighlight">\(t\)</span> would impact both the mean and the variance of the density.</p>
@@ -788,7 +749,7 @@ Note that the mean is still far from the long term mean <span class="math notran
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/2e50ec261d417cd670ae154fe2182f15fc96abcd778a7f408e5977557dd66c87.png" src="_images/2e50ec261d417cd670ae154fe2182f15fc96abcd778a7f408e5977557dd66c87.png" />
+<img alt="_images/09ea1d3c2ef4e56e6866f05331c070653f24087ffcd7116aeca3047ebb2248e1.png" src="_images/09ea1d3c2ef4e56e6866f05331c070653f24087ffcd7116aeca3047ebb2248e1.png" />
 </div>
 </div>
 </section>
@@ -798,8 +759,7 @@ Note that the mean is still far from the long term mean <span class="math notran
 <p>The next cell shows how to get a sample of size 5 from <span class="math notranslate nohighlight">\(X_1\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">aleatory.processes</span> <span class="kn">import</span> <span class="n">Vasicek</span>
-
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># from aleatory.processes import Vasicek</span>
 <span class="n">process</span> <span class="o">=</span> <span class="n">Vasicek</span><span class="p">(</span><span class="n">theta</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="mf">10.0</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">initial</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
 <span class="n">X_1</span><span class="o">=</span> <span class="n">process</span><span class="o">.</span><span class="n">get_marginal</span><span class="p">(</span><span class="n">t</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
 <span class="n">X_1</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
@@ -807,7 +767,7 @@ Note that the mean is still far from the long term mean <span class="math notran
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([6.28620319, 6.15018271, 6.38456304, 6.83635322, 6.58504651])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([6.44938293, 6.23560185, 6.92975035, 7.08458955, 6.72182289])
 </pre></div>
 </div>
 </div>
@@ -821,7 +781,7 @@ Note that the mean is still far from the long term mean <span class="math notran
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([10.27393472,  9.96851775, 10.23154567, 10.20058849, 10.26560802])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 9.92513478, 10.24253171, 10.18981617, 10.13246961, 10.22117405])
 </pre></div>
 </div>
 </div>
@@ -847,16 +807,14 @@ t_i = \frac{i}{n-1} T \qquad  \hbox{for } i = 0, \cdots, n-1.
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">aleatory.processes</span> <span class="kn">import</span> <span class="n">Vasicek</span>
-
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># from aleatory.processes import Vasicek</span>
 <span class="n">process</span> <span class="o">=</span> <span class="n">Vasicek</span><span class="p">(</span><span class="n">theta</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="mf">10.0</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">initial</span><span class="o">=</span><span class="mf">2.0</span><span class="p">)</span>
-<span class="n">process</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;10 paths of the Vasicek Process&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">process</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;10 paths of the Vasicek Process&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/54a6dd09f6912981a3d9eff4e0e18f7ea9afaed47f4011366cb27d273a3b8025.png" src="_images/54a6dd09f6912981a3d9eff4e0e18f7ea9afaed47f4011366cb27d273a3b8025.png" />
+<img alt="_images/73426de360680a7dcbf4d07faf520be4bc9c30a9541e83b1cfd5ead89d0a29b7.png" src="_images/73426de360680a7dcbf4d07faf520be4bc9c30a9541e83b1cfd5ead89d0a29b7.png" />
 </div>
 </div>
 <div class="admonition note">
@@ -871,15 +829,15 @@ t_i = \frac{i}{n-1} T \qquad  \hbox{for } i = 0, \cdots, n-1.
 <span class="expanded">Hide code cell source</span>
 </summary>
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">process</span> <span class="o">=</span> <span class="n">Vasicek</span><span class="p">(</span><span class="n">theta</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="mf">10.0</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">initial</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="mf">5.0</span><span class="p">)</span>
-<span class="n">process</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;100 paths of the Vasicek Process&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># from aleatory.processes import Vasicek</span>
+<span class="n">process</span> <span class="o">=</span> <span class="n">Vasicek</span><span class="p">(</span><span class="n">theta</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="mf">10.0</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">initial</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="mf">5.0</span><span class="p">)</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">process</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;100 paths of the Vasicek Process&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/738b2d9aab491f9012693c61a1dec2922bad2e22b2080676b44b77e46abf0464.png" src="_images/738b2d9aab491f9012693c61a1dec2922bad2e22b2080676b44b77e46abf0464.png" />
+<img alt="_images/d9b5125871cffe0c7aea97d4037f89615cfb095055f64384f4d41deb9080f414.png" src="_images/d9b5125871cffe0c7aea97d4037f89615cfb095055f64384f4d41deb9080f414.png" />
 </div>
 </div>
 </section>
@@ -941,7 +899,7 @@ t_i = \frac{i}{n-1} T \qquad  \hbox{for } i = 0, \cdots, n-1.
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/237f381f209c7e42ab6252a7e11190dbacaea0904662bac7dce17abb14e3960a.png" src="_images/237f381f209c7e42ab6252a7e11190dbacaea0904662bac7dce17abb14e3960a.png" />
+<img alt="_images/447c0d94aaf887ce1c7c7c5748b3b2fcf037c122573405131a872a62ce6aaa03.png" src="_images/447c0d94aaf887ce1c7c7c5748b3b2fcf037c122573405131a872a62ce6aaa03.png" />
 </div>
 </div>
 <div class="cell tag_hide-input docutils container">
@@ -957,7 +915,7 @@ t_i = \frac{i}{n-1} T \qquad  \hbox{for } i = 0, \cdots, n-1.
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/2c177df0661a58b9d3a773719efe338bdfaecc75f704e26cc391007ec9a9ae6b.png" src="_images/2c177df0661a58b9d3a773719efe338bdfaecc75f704e26cc391007ec9a9ae6b.png" />
+<img alt="_images/e2fa50e78ffdcc97b6a49bc59aea654009d5cb8b4c5c7bba1c7999ab3d8f85ce.png" src="_images/e2fa50e78ffdcc97b6a49bc59aea654009d5cb8b4c5c7bba1c7999ab3d8f85ce.png" />
 </div>
 </div>
 </section>
@@ -977,15 +935,15 @@ X_{\infty} \sim  \mathcal{N} \left(\mu  ,  \frac{\sigma}{ \sqrt{2\theta} }\right
 <span class="expanded">Hide code cell source</span>
 </summary>
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">process</span> <span class="o">=</span> <span class="n">Vasicek</span><span class="p">(</span><span class="n">theta</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="mf">10.0</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">initial</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
-<span class="n">process</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Vasicek Process before reaching convergence to the asymptotic distribution&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># from aleatory.processes import Vasicek</span>
+<span class="n">process</span> <span class="o">=</span> <span class="n">Vasicek</span><span class="p">(</span><span class="n">theta</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="mf">10.0</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">initial</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">process</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Vasicek Process before reaching convergence to the asymptotic distribution&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/f6a563494ad69d33107ee9dd8889ae9ea50a859fa0df4e2b3bf2a95381a599ea.png" src="_images/f6a563494ad69d33107ee9dd8889ae9ea50a859fa0df4e2b3bf2a95381a599ea.png" />
+<img alt="_images/b8f291054a5e5a33d970153f3b661107429d346f3e037f6dd013e98f9652a72e.png" src="_images/b8f291054a5e5a33d970153f3b661107429d346f3e037f6dd013e98f9652a72e.png" />
 </div>
 </div>
 <p>Now, we simulate 1000 paths from the same process <code class="docutils literal notranslate"><span class="pre">Vasicek(theta=1.0,</span> <span class="pre">mu=10.0,</span> <span class="pre">sigma=2.0,</span> <span class="pre">initial=1.0,</span> <span class="pre">T=15)</span></code> but this time over the interval <span class="math notranslate nohighlight">\([0,15]\)</span>. In the picture, we can see the the distribution of <span class="math notranslate nohighlight">\(X_{15}\)</span> has mean equal to the long term mean <span class="math notranslate nohighlight">\(\mu=10\)</span>. The process has reached convergence!</p>
@@ -996,29 +954,29 @@ X_{\infty} \sim  \mathcal{N} \left(\mu  ,  \frac{\sigma}{ \sqrt{2\theta} }\right
 <span class="expanded">Hide code cell source</span>
 </summary>
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">process</span> <span class="o">=</span> <span class="n">Vasicek</span><span class="p">(</span><span class="n">theta</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="mf">10.0</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">initial</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="mf">15.0</span><span class="p">)</span>
-<span class="n">process</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Vasicek Process reaching convergence to the asymptotic distribution&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># from aleatory.processes import Vasicek</span>
+<span class="n">process</span> <span class="o">=</span> <span class="n">Vasicek</span><span class="p">(</span><span class="n">theta</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="mf">10.0</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">initial</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="mf">15.0</span><span class="p">)</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">process</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Vasicek Process reaching convergence to the asymptotic distribution&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/e5a475db8cb42a054f2fdaad0ed2f77819d8df2d6f3bdc6a8ed43c0475429d8a.png" src="_images/e5a475db8cb42a054f2fdaad0ed2f77819d8df2d6f3bdc6a8ed43c0475429d8a.png" />
+<img alt="_images/7fb4223d39906dfc3674685ce309ac838c8efba276110c51d76fb4611b9f2f0d.png" src="_images/7fb4223d39906dfc3674685ce309ac838c8efba276110c51d76fb4611b9f2f0d.png" />
 </div>
 </div>
 <section id="the-parameter-theta-determines-the-speed-of-convergence">
 <h4><span class="section-number">4.4.2.1. </span>The parameter <span class="math notranslate nohighlight">\(\theta\)</span> determines the Speed of Convergence<a class="headerlink" href="#the-parameter-theta-determines-the-speed-of-convergence" title="Permalink to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">process</span> <span class="o">=</span> <span class="n">Vasicek</span><span class="p">(</span><span class="n">theta</span><span class="o">=</span><span class="mf">5.0</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="mf">10.0</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">initial</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
-<span class="n">process</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Vasicek Process quickly reaching convergence to the asymptotic distribution&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># from aleatory.processes import Vasicek</span>
+<span class="n">process</span> <span class="o">=</span> <span class="n">Vasicek</span><span class="p">(</span><span class="n">theta</span><span class="o">=</span><span class="mf">5.0</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="mf">10.0</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">initial</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">process</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Vasicek Process quickly reaching convergence to the asymptotic distribution&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/4f24c59651a6aa77d9b2b6265be35f92409cb99f226af8a428ba850903737d61.png" src="_images/4f24c59651a6aa77d9b2b6265be35f92409cb99f226af8a428ba850903737d61.png" />
+<img alt="_images/035d37f89efcd8591a435d15d1d8537832cc6148ddbb92025b9c3f2a0ae27c4f.png" src="_images/035d37f89efcd8591a435d15d1d8537832cc6148ddbb92025b9c3f2a0ae27c4f.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1030,7 +988,7 @@ X_{\infty} \sim  \mathcal{N} \left(\mu  ,  \frac{\sigma}{ \sqrt{2\theta} }\right
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/1f60f813a08bae630e20fc75ad8e0d76590bbd8828fa0fc5e00cc91b8e4435d4.png" src="_images/1f60f813a08bae630e20fc75ad8e0d76590bbd8828fa0fc5e00cc91b8e4435d4.png" />
+<img alt="_images/d953b9d479be0487d218601b50999ddb85c6020b4f7e4319efe980db87bcd5f4.png" src="_images/d953b9d479be0487d218601b50999ddb85c6020b4f7e4319efe980db87bcd5f4.png" />
 </div>
 </div>
 </section>
@@ -1038,26 +996,26 @@ X_{\infty} \sim  \mathcal{N} \left(\mu  ,  \frac{\sigma}{ \sqrt{2\theta} }\right
 <h4><span class="section-number">4.4.2.2. </span>The parameter <span class="math notranslate nohighlight">\(\sigma\)</span> determines the volatility in the simulation<a class="headerlink" href="#the-parameter-sigma-determines-the-volatility-in-the-simulation" title="Permalink to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">process</span> <span class="o">=</span> <span class="n">Vasicek</span><span class="p">(</span><span class="n">theta</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="mf">10.0</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">initial</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
-<span class="n">process</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Vasicek Process with low volatility&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># from aleatory.processes import Vasicek</span>
+<span class="n">process</span> <span class="o">=</span> <span class="n">Vasicek</span><span class="p">(</span><span class="n">theta</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="mf">10.0</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">initial</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">process</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Vasicek Process with low volatility&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/80a184dba527dba9f0d0f933038c839516ecade7b1c3744305589236f5232683.png" src="_images/80a184dba527dba9f0d0f933038c839516ecade7b1c3744305589236f5232683.png" />
+<img alt="_images/e5b8e493c3172f5526f72d139c20652c962d12941ecfdf7b9fc4a9f4ef864103.png" src="_images/e5b8e493c3172f5526f72d139c20652c962d12941ecfdf7b9fc4a9f4ef864103.png" />
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">process</span> <span class="o">=</span> <span class="n">Vasicek</span><span class="p">(</span><span class="n">theta</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="mf">10.0</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mf">5.0</span><span class="p">,</span> <span class="n">initial</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
-<span class="n">process</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Vasicek Process with high volatility&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># from aleatory.processes import Vasicek</span>
+<span class="n">process</span> <span class="o">=</span> <span class="n">Vasicek</span><span class="p">(</span><span class="n">theta</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="mf">10.0</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mf">5.0</span><span class="p">,</span> <span class="n">initial</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
+<span class="n">fig</span> <span class="o">=</span><span class="n">process</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Vasicek Process with high volatility&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/003cdbad95c980d06e6a0b044725d5bb4c26c71ddde25ef6ccfefb585015e428.png" src="_images/003cdbad95c980d06e6a0b044725d5bb4c26c71ddde25ef6ccfefb585015e428.png" />
+<img alt="_images/897f477a7fd524c5e07f7bc64a0f33f35af0d7b9bb508157d68849b86360379a.png" src="_images/897f477a7fd524c5e07f7bc64a0f33f35af0d7b9bb508157d68849b86360379a.png" />
 </div>
 </div>
 </section>
@@ -1068,28 +1026,26 @@ X_{\infty} \sim  \mathcal{N} \left(\mu  ,  \frac{\sigma}{ \sqrt{2\theta} }\right
 <p>To finish this note, let’s take a final look at a some simulations from the Vasicek process.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">aleatory.processes</span> <span class="kn">import</span> <span class="n">Vasicek</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># from aleatory.processes import Vasicek</span>
 <span class="n">process</span> <span class="o">=</span> <span class="n">Vasicek</span><span class="p">(</span><span class="n">theta</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="mf">10.0</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">initial</span><span class="o">=-</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="mf">20.0</span><span class="p">)</span>
-<span class="n">process</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">envelope</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">process</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">envelope</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/b91cef5a136994760156492691229ae112b2b0febee37b2c3efc43ce4cc68637.png" src="_images/b91cef5a136994760156492691229ae112b2b0febee37b2c3efc43ce4cc68637.png" />
+<img alt="_images/62a92b9379dac652ba9ae382d8d79cca48947c136bfa4887f3245e2f07192892.png" src="_images/62a92b9379dac652ba9ae382d8d79cca48947c136bfa4887f3245e2f07192892.png" />
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">aleatory.processes</span> <span class="kn">import</span> <span class="n">Vasicek</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># from aleatory.processes import Vasicek</span>
 <span class="n">process</span> <span class="o">=</span> <span class="n">Vasicek</span><span class="p">(</span><span class="n">theta</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">mu</span><span class="o">=-</span><span class="mf">10.0</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">initial</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="mf">20.0</span><span class="p">)</span>
-<span class="n">process</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">envelope</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">colormap</span><span class="o">=</span><span class="s2">&quot;cool&quot;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Vasicek Process&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">process</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">envelope</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">colormap</span><span class="o">=</span><span class="s2">&quot;cool&quot;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Vasicek Process&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/bf198687b22a558c8c5e26f58dc792d37a96a00dcfeccec33b47267534c8feec.png" src="_images/bf198687b22a558c8c5e26f58dc792d37a96a00dcfeccec33b47267534c8feec.png" />
+<img alt="_images/283a014721ec39e727165509a4dc72f8e5c8ac1a334f928e559921eee71997c1.png" src="_images/283a014721ec39e727165509a4dc72f8e5c8ac1a334f928e559921eee71997c1.png" />
 </div>
 </div>
 <div class="cell tag_hide-input docutils container">
@@ -1099,9 +1055,9 @@ X_{\infty} \sim  \mathcal{N} \left(\mu  ,  \frac{\sigma}{ \sqrt{2\theta} }\right
 <span class="expanded">Hide code cell source</span>
 </summary>
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">aleatory.processes</span> <span class="kn">import</span> <span class="n">Vasicek</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># from aleatory.processes import Vasicek</span>
+<span class="c1"># import matplotlib.pyplot as plt</span>
+<span class="c1"># import numpy as np</span>
 
 <span class="n">process</span> <span class="o">=</span> <span class="n">Vasicek</span><span class="p">(</span><span class="n">theta</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">mu</span><span class="o">=-</span><span class="mf">10.0</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="n">initial</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="mf">12.0</span><span class="p">)</span>
 <span class="n">path</span> <span class="o">=</span> <span class="n">process</span><span class="o">.</span><span class="n">simulate</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
@@ -1125,7 +1081,7 @@ X_{\infty} \sim  \mathcal{N} \left(\mu  ,  \frac{\sigma}{ \sqrt{2\theta} }\right
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/4716cb6f0ed8837b4c44da0afa9a92330466cea3a673289dbfedb378f9fa2f8a.png" src="_images/4716cb6f0ed8837b4c44da0afa9a92330466cea3a673289dbfedb378f9fa2f8a.png" />
+<img alt="_images/4ed1e50a5282d63ebd0ddc4b0ffcb43f2d360748caeef850a363e6288193fec0.png" src="_images/4ed1e50a5282d63ebd0ddc4b0ffcb43f2d360748caeef850a363e6288193fec0.png" />
 </div>
 </div>
 </section>
@@ -1147,16 +1103,16 @@ X_{\infty} \sim  \mathcal{N} \left(\mu  ,  \frac{\sigma}{ \sqrt{2\theta} }\right
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "local-venv"
+            mode: "python"
         },
         kernelOptions: {
-            name: "local-venv",
+            name: "python3",
             path: "./."
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'local-venv'</script>
+    <script>kernelName = 'python3'</script>
 
                 </article>
               
