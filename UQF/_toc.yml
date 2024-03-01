@@ -17,6 +17,7 @@ parts:
   - file: bessel_processes_part1
 
 - caption: Other Topics
+  numbered: True
   chapters:
   - file: AOS
 
