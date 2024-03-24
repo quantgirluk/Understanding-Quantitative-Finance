@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Bessel Processes Part II &#8212; Understanding Quantitative Finance</title>
+    <title>7. Bessel Processes Part II &#8212; Understanding Quantitative Finance</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -50,12 +50,12 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="8. Bessel Processes Part III" href="bessel_processes_part3.html" />
+    <link rel="prev" title="6. Bessel Processes Part I" href="bessel_processes_part1.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -120,7 +120,7 @@ const thebe_selector_output = ".output, .cell_output"
   Stochastic Processes
  </span>
 </p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="brownian_motion.html">
    1. Brownian Motion
@@ -149,6 +149,16 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1">
   <a class="reference internal" href="bessel_processes_part1.html">
    6. Bessel Processes Part I
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   7. Bessel Processes Part II
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="bessel_processes_part3.html">
+   8. Bessel Processes Part III
   </a>
  </li>
 </ul>
@@ -371,45 +381,30 @@ title="Print to PDF"
         <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#sde-representation">
-   SDE Representation
+   7.1. SDE Representation
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#general-definition">
-   General Definition
+  <a class="reference internal nav-link" href="#general-sdes">
+   7.2. General SDEs
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#existence-and-uniqueness">
-     Existence and Uniqueness
+     7.2.1. Existence and Uniqueness
     </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#why-we-can-drop-the-absolute-value-inside-the-square-root">
-     Why we can drop the absolute value inside the square root
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#transition-densities">
-     Transition Densities
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#marginal-distributions">
-   Marginal Distributions
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#expectation-and-variance">
-     Expectation and Variance
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#python-implementation">
-     Python Implementation
-    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#squared-bessel-processes">
+       7.2.1.1. Squared Bessel Processes
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#bessel-processes">
+       7.2.1.2. Bessel Processes
+      </a>
+     </li>
+    </ul>
    </li>
   </ul>
  </li>
@@ -434,45 +429,30 @@ title="Print to PDF"
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#sde-representation">
-   SDE Representation
+   7.1. SDE Representation
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#general-definition">
-   General Definition
+  <a class="reference internal nav-link" href="#general-sdes">
+   7.2. General SDEs
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#existence-and-uniqueness">
-     Existence and Uniqueness
+     7.2.1. Existence and Uniqueness
     </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#why-we-can-drop-the-absolute-value-inside-the-square-root">
-     Why we can drop the absolute value inside the square root
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#transition-densities">
-     Transition Densities
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#marginal-distributions">
-   Marginal Distributions
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#expectation-and-variance">
-     Expectation and Variance
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#python-implementation">
-     Python Implementation
-    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#squared-bessel-processes">
+       7.2.1.1. Squared Bessel Processes
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#bessel-processes">
+       7.2.1.2. Bessel Processes
+      </a>
+     </li>
+    </ul>
    </li>
   </ul>
  </li>
@@ -487,23 +467,23 @@ title="Print to PDF"
               <div>
                 
   <section class="tex2jax_ignore mathjax_ignore" id="bessel-processes-part-ii">
-<h1>Bessel Processes Part II<a class="headerlink" href="#bessel-processes-part-ii" title="Permalink to this headline">#</a></h1>
+<h1><span class="section-number">7. </span>Bessel Processes Part II<a class="headerlink" href="#bessel-processes-part-ii" title="Permalink to this headline">#</a></h1>
 <p>The purpose of these notebooks (Bessel Processes Part I-III) is to provide an illustration of the <a class="reference external" href="https://en.wikipedia.org/wiki/Bessel_process">Bessel Processes</a> and some of their main properties.</p>
 <ul class="simple">
-<li><p>In Part I, we  introduce both Bessel and Squared Bessel processes with integer dimension <span class="math notranslate nohighlight">\(d\geq 2.\)</span></p></li>
-<li><p>In Part II, we will show that Squared Bessel processes with integer dimension satisfy an Stochastic Differential Equation (SDE). This representation will allow us define Squared Bessel processes with real dimension <span class="math notranslate nohighlight">\(\delta \geq 0\)</span>.</p></li>
-<li><p>Finally, in Part III we will study Bessel processes with general dimension <span class="math notranslate nohighlight">\(\delta \geq 0.\)</span></p></li>
+<li><p>In Part I, we  introduce both Bessel and Squared Bessel processes with integer dimension <span class="math notranslate nohighlight">\(d\geq 2,\)</span> and study some of its main properties.</p></li>
+<li><p>In Part II, we show that Bessel processes with integer dimension satisfy certain Stochastic Differential Equations (SDEs). This representation allows us to extend them to the non-integer case.</p></li>
+<li><p>Finally, in Part III we illustrate both Bessel and Squared Bessel processes with general dimension <span class="math notranslate nohighlight">\(\delta \geq 0\)</span>, and some of its main properties.</p></li>
 </ul>
-<p>Before diving into the theory, let’s start by loading the libraries</p>
+<p>Before diving into the theory, let’s start by loading the following libraries</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">matplotlib</span></code></p></li>
 <li><p><a class="reference external" href="https://github.com/quantgirluk/aleatory"><code class="docutils literal notranslate"><span class="pre">aleatory</span></code></a></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">matplotlib</span></code></p></li>
 </ul>
 <p>together with the style sheet <a class="reference external" href="https://github.com/quantgirluk/matplotlib-stylesheets">Quant-Pastel Light</a>.</p>
-<p>These tools will help us to make insightful visualisations of Bessel processes.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">aleatory.processes</span> <span class="kn">import</span> <span class="n">BESProcess</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="n">mystyle</span> <span class="o">=</span> <span class="s2">&quot;https://raw.githubusercontent.com/quantgirluk/matplotlib-stylesheets/main/quant-pastel-light.mplstyle&quot;</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="n">mystyle</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s2">&quot;figure.figsize&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">6</span><span class="p">)</span>
@@ -511,43 +491,46 @@ title="Print to PDF"
 </div>
 </div>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">aleatory.processes</span> <span class="kn">import</span> <span class="n">BESProcess</span>
-<span class="n">process</span> <span class="o">=</span> <span class="n">BESProcess</span><span class="p">(</span><span class="n">initial</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mf">3.5</span><span class="p">)</span>
-<span class="n">fig</span> <span class="o">=</span> <span class="n">process</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">envelope</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">colormap</span><span class="o">=</span><span class="s2">&quot;autumn&quot;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Bessel Process with dimension 3.5 starting at 1&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
+<p>These tools will help us to make insightful visualisations of Bessel processes.</p>
+<div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<img alt="_images/bessel_processes_part2_4_0.png" src="_images/bessel_processes_part2_4_0.png" />
+<img alt="_images/bessel_processes_part2_5_0.png" src="_images/bessel_processes_part2_5_0.png" />
 </div>
 </div>
 <section id="sde-representation">
-<h2>SDE Representation<a class="headerlink" href="#sde-representation" title="Permalink to this headline">#</a></h2>
-<p><strong>Proposition.</strong> Let <span class="math notranslate nohighlight">\(d\geq 2\)</span> be an integer and choose <span class="math notranslate nohighlight">\(x\geq 0\)</span>. Then the Bessel process <span class="math notranslate nohighlight">\(X\)</span> with integer dimension <span class="math notranslate nohighlight">\(d\)</span> starting at zero satisfies the integral equation:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-18264a1b-2926-4aac-a664-6b46f05d0b1e">
-<span class="eqno">()<a class="headerlink" href="#equation-18264a1b-2926-4aac-a664-6b46f05d0b1e" title="Permalink to this equation">#</a></span>\[\begin{equation}
-X_t = X_0 +  \int_0^t \frac{(d-1)}{2X_s} ds + B_t, \qquad 0\leq t &lt; \infty,
+<h2><span class="section-number">7.1. </span>SDE Representation<a class="headerlink" href="#sde-representation" title="Permalink to this headline">#</a></h2>
+<p>The next results proves that Bessel processes of integer dimension satisfy a Stochastic Differential Equation (SDE) which can be generalised for non-integer values.</p>
+<p><strong>Proposition 1.</strong> Let <span class="math notranslate nohighlight">\(d\geq 2\)</span> be an integer. Then the Bessel process <span class="math notranslate nohighlight">\(X\)</span> with integer dimension <span class="math notranslate nohighlight">\(d\)</span> starting at zero satisfies the integral equation:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-2320c20c-16cc-4f97-9e8c-4cda60c6c550">
+<span class="eqno">(7.1)<a class="headerlink" href="#equation-2320c20c-16cc-4f97-9e8c-4cda60c6c550" title="Permalink to this equation">#</a></span>\[\begin{equation}
+X_t = \int_0^t \frac{(d-1)}{2X_s} ds + B_t, \qquad 0\leq t &lt; \infty,
 \end{equation}\]</div>
-<p>where <span class="math notranslate nohighlight">\(X_0=0\)</span>, and <span class="math notranslate nohighlight">\(B\)</span> is a standard one-dimensional Brownian motion</p>
-<div class="amsmath math notranslate nohighlight" id="equation-e789dbba-c547-46ab-976b-9f0e6d3e7f08">
-<span class="eqno">()<a class="headerlink" href="#equation-e789dbba-c547-46ab-976b-9f0e6d3e7f08" title="Permalink to this equation">#</a></span>\[\begin{equation}
-B_t = \sum_{i=1}^dB_t^i,  \quad \text{with} \quad B_t^i = \int_0^t \frac{W_s^i}{X_s}dW_s^i,  \qquad 1 \leq i \leq d.
-\end{equation}\]</div>
-<p><em>Proof:</em> First of all, note that  <span class="math notranslate nohighlight">\(X_t\)</span> can be at the origen only when <span class="math notranslate nohighlight">\(W_t^{1}\)</span> is, since by definition</p>
+<p>where <span class="math notranslate nohighlight">\(B\)</span> is a standard Brownian motion given by</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+B_t = \sum_{i=1}^dB_t^i,
+\end{equation*}\]</div>
+<p>with</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+B_t^i = \int_0^t \frac{W_s^i}{X_s}dW_s^i,  \qquad 1 \leq i \leq d.
+\end{equation*}\]</div>
+<p><em>Proof:</em> A Bessel process with integer dimension <span class="math notranslate nohighlight">\(d\)</span> is defined as</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{equation*}
 X_t  =  \|W_t\| = \sqrt{\sum_{i=1}^d (W^i_t)^2}, \qquad t \geq 0.
 \end{equation*}\]</div>
-<p>Hence, <span class="math notranslate nohighlight">\(\mathbb{P}(X_t = 0) =0\)</span> for any <span class="math notranslate nohighlight">\(t&gt;0\)</span>. This implies that the integrand</p>
+<p>This means that the process  <span class="math notranslate nohighlight">\(X_t\)</span> can be at the origen only when <span class="math notranslate nohighlight">\(W_t^{1}\)</span> is. Thus,</p>
 <div class="math notranslate nohighlight">
-\[\frac{d-1}{2X_s}\]</div>
-<p>in equation (TBD) is well defined almost surely.</p>
-<p>Next, note that the processes <span class="math notranslate nohighlight">\(B^i\)</span> are square integrable since</p>
+\[\mathbb{P}(X_t = 0) = 0, \quad \hbox{for any } t&gt;0.\]</div>
+<p>This implies that the integrand</p>
 <div class="math notranslate nohighlight">
-\[\mathbb{E} \left[ \int_0^t  \left(\frac{1}{X_s} W_s^i \right)^2  ds\right] \leq t.\]</div>
-<p>Moreover,  we have</p>
+\[\frac{d-1}{2X_s},\]</div>
+<p>in equation (7.1) is well defined almost surely.</p>
+<p>Next, note that for any <span class="math notranslate nohighlight">\(i=1,\cdots, d\)</span>, the process <span class="math notranslate nohighlight">\(B^i\)</span> is  square integrable since</p>
+<div class="math notranslate nohighlight">
+\[\mathbb{E} \left[ (B^i_t)^2 \right] = \mathbb{E} \left[ \int_0^t  \left(\frac{1}{X_s} W_s^i \right)^2  ds\right] \leq t.\]</div>
+<p>So, the process <span class="math notranslate nohighlight">\(B\)</span> is square integrable.  Moreover,  we have</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{equation*}
 \langle B^i, B^j \rangle_t = \int_0^t \frac{1}{X_s^2}W_s^iW_s^j d\langle W^i, W^j \rangle_s= \delta_{ij} \int_0^t \frac{1}{X_s^2}W_s^iW_s^j ds,
@@ -557,19 +540,23 @@ X_t  =  \|W_t\| = \sqrt{\sum_{i=1}^d (W^i_t)^2}, \qquad t \geq 0.
 \[\begin{equation*}
 \langle B\rangle_t =  \sum_{i=1}^d \langle B^i \rangle_t =  t.
 \end{equation*}\]</div>
-<p>By the  Levy’s characterisation theorem we can conclude that the process <span class="math notranslate nohighlight">\(B\)</span> is indeed a standard one-dimensional Brownian motion.</p>
+<p>By the  Levy’s characterisation theorem we can conclude that the process <span class="math notranslate nohighlight">\(B\)</span> is indeed a standard Brownian motion.</p>
 <p>To prove that <span class="math notranslate nohighlight">\(X\)</span> satisfies the SDE (6.4) one could think of applying Ito’s formula to the function <span class="math notranslate nohighlight">\(f(x) = \| x\|\)</span>, for which</p>
-<div class="amsmath math notranslate nohighlight" id="equation-2eb0c4f6-d5d2-4b28-9d8a-e7eb7e450c3d">
-<span class="eqno">()<a class="headerlink" href="#equation-2eb0c4f6-d5d2-4b28-9d8a-e7eb7e450c3d" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
 \frac{\partial}{\partial x_i} f(x) = \frac{x_i}{\| x \|} , \quad \frac{\partial^2}{\partial x_i \partial x_j} f(x) = \frac{\delta_{ij}}{\| x \|} - \frac{x_i x_j}{\|x \|^3}, \qquad 1 \leq i, j \leq d,
+\end{equation*}\]</div>
+<p>holds on <span class="math notranslate nohighlight">\(\mathbb{R}^d-\{0\}\)</span>. However, this argument cannot be used directly since <span class="math notranslate nohighlight">\(f\)</span> is clearly not differentiable at the origin.  Instead, we  will use the corresponding Squared Bessel process</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+Y_t  = X_t^2 = \|W_t\|^2 = \sum_{i=1}^d (W^i_t)^2, \qquad t \geq 0.
+\end{equation*}\]</div>
+<p>Ito’s formula implies that</p>
+<div class="amsmath math notranslate nohighlight" id="equation-efe2abe1-92d7-4839-be7b-9240b0c8f79b">
+<span class="eqno">(7.2)<a class="headerlink" href="#equation-efe2abe1-92d7-4839-be7b-9240b0c8f79b" title="Permalink to this equation">#</a></span>\[\begin{equation}
+Y_t = 2 \sum_{i=1}^d \int_0^t W_s^i dW_s^i + td.
 \end{equation}\]</div>
-<p>holds on <span class="math notranslate nohighlight">\(\mathbb{R}^d-\{0\}\)</span>. The problem here is that <span class="math notranslate nohighlight">\(f\)</span> is not differentiable at the origin and therefore we cannot use this argument directly.</p>
-<p>Instead, let us introduce the process <span class="math notranslate nohighlight">\(Y=\{Y_t=X_t^2 : t\geq 0\}\)</span>. By Ito’s formula we have</p>
-<div class="amsmath math notranslate nohighlight" id="equation-697b0887-7255-4296-b6c2-3d91263015dc">
-<span class="eqno">()<a class="headerlink" href="#equation-697b0887-7255-4296-b6c2-3d91263015dc" title="Permalink to this equation">#</a></span>\[\begin{equation}
-Y_t = x^2 + 2 \sum_{i=1}^d \int_0^t W_s^i dW_s^i + td.
-\end{equation}\]</div>
-<p>Now, the idea is to use approximations of the function  <span class="math notranslate nohighlight">\(g(y)=\sqrt{y}\)</span>. So, for <span class="math notranslate nohighlight">\(\epsilon&gt;0\)</span>, let us define the function <span class="math notranslate nohighlight">\(g_{\epsilon}:\mathbb{R} \rightarrow \mathbb{R}\)</span>, given by</p>
+<p>Now, the idea is to approximat the function  <span class="math notranslate nohighlight">\(g(y)=\sqrt{y}\)</span> smoothly. For <span class="math notranslate nohighlight">\(\epsilon&gt;0\)</span>, let us define the function <span class="math notranslate nohighlight">\(g_{\epsilon}:\mathbb{R} \rightarrow \mathbb{R}\)</span>, given by</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{equation*}
 g_{\epsilon}(y)= \begin{cases}
@@ -577,56 +564,16 @@ g_{\epsilon}(y)= \begin{cases}
 \sqrt{y}; &amp; y\geq \epsilon,
 \end{cases}
 \end{equation*}\]</div>
-<p>which is twice differentiable and converges towards <span class="math notranslate nohighlight">\(g(y)\)</span> as <span class="math notranslate nohighlight">\(\epsilon \downarrow 0\)</span>, for each <span class="math notranslate nohighlight">\(y\geq 0\)</span>.</p>
-<p>The next plot shows this approximation for <span class="math notranslate nohighlight">\(\epsilon = 0.25\)</span>.</p>
-<div class="cell tag_hide-input docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="n">mystyle</span> <span class="o">=</span> <span class="s2">&quot;https://raw.githubusercontent.com/quantgirluk/matplotlib-stylesheets/main/quant-pastel-light.mplstyle&quot;</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="n">mystyle</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s2">&quot;figure.figsize&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">6</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell tag_hide-input docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">sqrt</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-
-<span class="k">def</span> <span class="nf">g_epsilon</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">):</span>
-
-    <span class="k">if</span> <span class="n">y</span><span class="o">&lt;=</span> <span class="n">epsilon</span><span class="p">:</span>
-        <span class="n">sqrtep</span> <span class="o">=</span> <span class="n">sqrt</span><span class="p">(</span><span class="n">epsilon</span><span class="p">)</span>
-        <span class="n">result</span> <span class="o">=</span> <span class="p">(</span><span class="mi">3</span><span class="o">/</span><span class="mi">8</span><span class="p">)</span><span class="o">*</span><span class="n">sqrtep</span> <span class="o">+</span><span class="p">(</span><span class="mi">3</span><span class="o">/</span><span class="mi">4</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">sqrtep</span><span class="p">)</span><span class="o">*</span><span class="n">y</span> <span class="o">-</span> <span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">8</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mf">1.0</span><span class="o">/</span><span class="p">(</span><span class="n">epsilon</span><span class="o">*</span><span class="n">sqrtep</span><span class="p">))</span><span class="o">*</span><span class="n">y</span><span class="o">**</span><span class="mi">2</span>
-        <span class="k">return</span> <span class="n">result</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">sqrt</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
-    
-<span class="n">ys</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">,</span><span class="mi">500</span><span class="p">)</span>
-<span class="n">epsilon</span> <span class="o">=</span> <span class="mf">0.25</span>
-<span class="n">ges</span> <span class="o">=</span> <span class="p">[</span> <span class="n">g_epsilon</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">)</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">ys</span><span class="p">]</span>
-<span class="n">gs</span> <span class="o">=</span> <span class="p">[</span><span class="n">sqrt</span><span class="p">(</span><span class="n">y</span><span class="p">)</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">ys</span><span class="p">]</span>
-<span class="n">diffs</span> <span class="o">=</span> <span class="p">[</span><span class="n">a</span><span class="o">-</span><span class="n">b</span> <span class="k">for</span> <span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">ges</span><span class="p">,</span> <span class="n">gs</span><span class="p">)]</span>
-
-
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ys</span><span class="p">,</span> <span class="n">gs</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;$\sqrt</span><span class="si">{y}</span><span class="s1">$&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ys</span><span class="p">,</span> <span class="n">ges</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;$g_{ \epsilon}(y)$&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ys</span><span class="p">,</span> <span class="n">diffs</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;$g_{\epsilon}(y)- \sqrt</span><span class="si">{y}</span><span class="s1">$&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Approximating $\sqrt</span><span class="si">{y}</span><span class="s1">$ by $g_{\epsilon}(y)$&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
+<p>which is twice differentiable and converges towards <span class="math notranslate nohighlight">\(\sqrt{y}\)</span> as <span class="math notranslate nohighlight">\(\epsilon \downarrow 0\)</span>, for each <span class="math notranslate nohighlight">\(y\geq 0\)</span>. The next plot shows this approximation.</p>
+<div class="cell tag_hide-input tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<img alt="_images/bessel_processes_part2_13_0.png" src="_images/bessel_processes_part2_13_0.png" />
+<img alt="_images/bessel_processes_part2_12_0.png" src="_images/bessel_processes_part2_12_0.png" />
 </div>
 </div>
-<p>So, by Ito’s formula we obtain</p>
-<div class="amsmath math notranslate nohighlight" id="equation-3ec3b957-9dfb-4124-a2be-cc58f88b36cc">
-<span class="eqno">()<a class="headerlink" href="#equation-3ec3b957-9dfb-4124-a2be-cc58f88b36cc" title="Permalink to this equation">#</a></span>\[\begin{equation}
-g_{\epsilon} (Y_t) = g_{\epsilon} (x^2) + \sum_{i=1}^d I_{t}^i(\epsilon) + J_t(\epsilon) + K_t(\epsilon),
+<p>So, for <span class="math notranslate nohighlight">\(\epsilon&gt;0\)</span> Ito’s formula implies that</p>
+<div class="amsmath math notranslate nohighlight" id="equation-0f03b401-613a-425e-9a9d-cf968960fdd6">
+<span class="eqno">(7.3)<a class="headerlink" href="#equation-0f03b401-613a-425e-9a9d-cf968960fdd6" title="Permalink to this equation">#</a></span>\[\begin{equation}
+g_{\epsilon} (Y_t) = \sum_{i=1}^d I_{t}^i(\epsilon) + J_t(\epsilon) + K_t(\epsilon),
 \end{equation}\]</div>
 <p>where</p>
 <div class="amsmath math notranslate nohighlight">
@@ -635,66 +582,87 @@ I_{t}^i(\epsilon) &amp;= \int_0^t \left[  1_{\{Y_s\geq \epsilon\}} \frac{1}{X_s}
 J_t(\epsilon)     &amp;= \int_0^t 1_{\{Y_s\geq \epsilon\}} \frac{d - 1}{2X_s} ds  \\
  K_t(\epsilon)    &amp;= \int_0^t 1_{\{Y_s &lt; \epsilon\}} \frac{1}{4 \sqrt{\epsilon}}  \left[ 3d - (d+2)\frac{Y_s}{\epsilon} \right]  ds.
 \end{align*}\]</div>
-<p>Next we show that, as <span class="math notranslate nohighlight">\(\epsilon\downarrow 0\)</span> equation (6.8) yields (6.4). From the monotone convergence theorem, we seee that</p>
+<p>Next we show that, as <span class="math notranslate nohighlight">\(\epsilon\downarrow 0\)</span> equation (7.5) yields (7.1).</p>
+<p>First, observe that</p>
 <div class="amsmath math notranslate nohighlight">
-\[\begin{equation*}
+\[\begin{align*}
+\nonumber \mathbb{E}[ (B_t^i - I_t^i(\epsilon))^2 ] &amp;= \mathbb{E} \int_0^t   1_{\{Y_s &lt; \epsilon\}} \left[\frac{1}{X_s} - \frac{1}{2\sqrt{\epsilon}} \left( 3 - \frac{Y_s}{\epsilon} \right)  \right]^2 (W_s^i)^2ds \\
+\nonumber &amp; = \mathbb{E} \int_0^t   1_{Y_s &lt; \epsilon} \left[1 - \frac{1}{2}\sqrt{\frac{Y_s}{\epsilon}} \left( 3 - \frac{Y_s}{\epsilon}  \right)  \right]^2 \left( \frac{W_s^i}{X_s} \right)^2ds.
+\end{align*}\]</div>
+<p>Then</p>
+<div class="amsmath math notranslate nohighlight" id="equation-b58c1714-675a-49c3-a90e-b8c341503d72">
+<span class="eqno">(7.4)<a class="headerlink" href="#equation-b58c1714-675a-49c3-a90e-b8c341503d72" title="Permalink to this equation">#</a></span>\[\begin{align}
+\nonumber \mathbb{E}[ (B_t^i - I_t^i(\epsilon))^2 ] &amp; \leq \int_0^t \mathbb{P}(Y_s &lt; \epsilon) ds = o(\sqrt{ \epsilon }) \qquad \text{as} \ \ \epsilon\downarrow 0.
+\end{align}\]</div>
+<p>Second,  the  monotone convergence theorem implies that</p>
+<div class="amsmath math notranslate nohighlight" id="equation-7684e79b-ff28-4e69-b251-2cfbe4ffb1b2">
+<span class="eqno">(7.5)<a class="headerlink" href="#equation-7684e79b-ff28-4e69-b251-2cfbe4ffb1b2" title="Permalink to this equation">#</a></span>\[\begin{equation}
 
 \lim_{\epsilon\downarrow 0} J_t(\epsilon)  =  \int_0^t 1_{\{Y_s\geq 0\}} \frac{d - 1}{2X_s} ds  =  \int_0^t\frac{d - 1}{2X_s} ds, \quad \text{a.s.}
 
-\end{equation*}\]</div>
-<p>We also have</p>
+\end{equation}\]</div>
+<p>Finally, for the third term we have</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{equation*}
 0\leq \mathbb{E}[K_t(\epsilon)] \leq \frac{3d}{4\sqrt{\epsilon}} \int_0^t \mathbb{P}( Y_s &lt; \epsilon) ds.
 \end{equation*}\]</div>
-<p>The probability in the integrand is bounded above by</p>
+<p>The probability in the term inside the last integral is bounded above by</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{equation*}
  \mathbb{P}( (W_s^1)^2 +(W_s^2)^2 &lt; \epsilon ) =  \int_0^{2\pi}\int_0^{\sqrt{\epsilon}}  \frac{1}{2\pi s} e^{-\frac{\rho^2}{2s}} \rho d\rho d\theta,
 \end{equation*}\]</div>
-<p>and so the integral becomes, upon Fubini’s theorem and the change of variable <span class="math notranslate nohighlight">\(\xi =\frac{\rho}{\sqrt{s}}\)</span>:</p>
+<p>and so</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{align*}
-
 \int_0^t \mathbb{P}(Y_t &lt; \epsilon ) ds   &amp;\leq \int_0^{\sqrt{\epsilon}}  \rho \left( \int_0^t \frac{1}{s} e^{-\frac{\rho^2}{2s}} ds \right ) d\rho \\ 
 &amp;= 2  \int_0^{\sqrt{\epsilon}}  \rho  \left( \int_{\frac{\rho}{\sqrt{t}} }^{\infty} \frac{1}{\xi} e^{-\frac{\xi^2}{2}} d\xi \right ) d\rho.
 \end{align*}\]</div>
-<p>But now it is not difficult to see that this expression is <span class="math notranslate nohighlight">\(o(\sqrt{\epsilon})\)</span> as <span class="math notranslate nohighlight">\(\epsilon\downarrow 0\)</span>, using the rule of l’Hopital. Therefore</p>
+<p>upon Fubini’s theorem and the change of variable <span class="math notranslate nohighlight">\(\xi =\frac{\rho}{\sqrt{s}}\)</span>. Now it is not difficult to see that this expression is <span class="math notranslate nohighlight">\(o(\sqrt{\epsilon})\)</span> as <span class="math notranslate nohighlight">\(\epsilon\downarrow 0\)</span>, using the rule of l’Hopital. Therefore</p>
+<div class="amsmath math notranslate nohighlight" id="equation-5c2fa872-2019-4975-a000-ea36071115d2">
+<span class="eqno">(7.6)<a class="headerlink" href="#equation-5c2fa872-2019-4975-a000-ea36071115d2" title="Permalink to this equation">#</a></span>\[\begin{equation}
+\lim_{\epsilon\downarrow 0} \mathbb{E}[ K_t(\epsilon) ] = 0. 
+\end{equation}\]</div>
+<p>Replacing equations (7.4)-(7.6) in (7.3), we obtain the desired result. <span class="math notranslate nohighlight">\(\blacksquare\)</span></p>
+<p>So, we have shown that the Bessel process with integer dimension <span class="math notranslate nohighlight">\(BES_0^d\)</span> satisfies the following SDE:</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{equation*}
-\lim_{\epsilon\downarrow 0} \mathbb{E}[ K_t(\epsilon) ] = 0. 
+X_t = B_t +  \int_0^t\frac{(d - 1)}{2X_s} ds, \quad  t\geq 0.
 \end{equation*}\]</div>
-<p>Finally,</p>
-<div class="amsmath math notranslate nohighlight">
-\[\begin{align*}
-\mathbb{E}[ (B_t^i - I_t^i(\epsilon))^2 ] &amp;= \mathbb{E} \int_0^t   1_{\{Y_s &lt; \epsilon\}} \left[\frac{1}{X_s} - \frac{1}{2\sqrt{\epsilon}} \left( 3 - \frac{Y_s}{\epsilon} \right)  \right]^2 (W_s^i)^2ds \\
-&amp; = \mathbb{E} \int_0^t   1_{Y_s &lt; \epsilon} \left[1 - \frac{1}{2}\sqrt{\frac{Y_s}{\epsilon}} \left( 3 - \frac{Y_s}{\epsilon}  \right)  \right]^2 \left( \frac{W_s^i}{X_s} \right)^2ds \\
-&amp; \leq \int_0^t \mathbb{P}(Y_s &lt; \epsilon) ds = o(\sqrt{ \epsilon }) \qquad \text{as} \ \ \epsilon\downarrow 0.
-\end{align*}\]</div>
+<p>where <span class="math notranslate nohighlight">\(B\)</span> is a standard Brownian motion.</p>
 <p>Note: In the case <span class="math notranslate nohighlight">\(d=1\)</span>, an integral equation similar to (6.4) can be derived from Tanaka’s formula.</p>
+<p>Moreover,  Ito’s formula implies that the Squared Bessel process <span class="math notranslate nohighlight">\(BESQ_0^d\)</span> satisfies the following SDE:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+Y_t = 2 \int_0^t \sqrt{Y_t} dB_s +   t d, \quad t\geq 0.
+\end{equation*}\]</div>
 </section>
-<section id="general-definition">
-<h2>General Definition<a class="headerlink" href="#general-definition" title="Permalink to this headline">#</a></h2>
-<p>For every <span class="math notranslate nohighlight">\(\delta\geq 0\)</span> and <span class="math notranslate nohighlight">\(y\geq 0\)</span>,  a squared Bessel process with dimension <span class="math notranslate nohighlight">\(\delta\)</span>, starting at <span class="math notranslate nohighlight">\(y\)</span> is defined as the unique strong solution of the SDE</p>
-<div class="amsmath math notranslate nohighlight" id="equation-73e986db-4835-4a49-828a-f289a877a56d">
-<span class="eqno">()<a class="headerlink" href="#equation-73e986db-4835-4a49-828a-f289a877a56d" title="Permalink to this equation">#</a></span>\[\begin{align}
-dY_t &amp;= \delta dt + 2 \sqrt{ |Y_t| } dB_t,  \qquad t\geq 0 \\
-Y_0 &amp; = y,
+<section id="general-sdes">
+<h2><span class="section-number">7.2. </span>General SDEs<a class="headerlink" href="#general-sdes" title="Permalink to this headline">#</a></h2>
+<p>Now, we can generalise the SDEs obtained in the previous section by</p>
+<ul class="simple">
+<li><p>replacing the integer <span class="math notranslate nohighlight">\(d\geq 2\)</span>, by a <span class="math notranslate nohighlight">\(\delta \geq 0\)</span>;</p></li>
+<li><p>and consider an initial point <span class="math notranslate nohighlight">\(x\geq 0\)</span>.</p></li>
+</ul>
+<p>So, for every <span class="math notranslate nohighlight">\(\delta\geq 0\)</span> and <span class="math notranslate nohighlight">\(x\geq 0\)</span>, consider the SDE given by</p>
+<div class="amsmath math notranslate nohighlight" id="equation-c979a7e3-d485-4e46-b85c-4b63e5f4967c">
+<span class="eqno">(7.7)<a class="headerlink" href="#equation-c979a7e3-d485-4e46-b85c-4b63e5f4967c" title="Permalink to this equation">#</a></span>\[\begin{align}
+X_t &amp;= x +  B_t + \int_0^t\frac{(\delta - 1)}{2X_s} ds, \qquad t\geq 0.
 \end{align}\]</div>
-<p>and is denoted by <span class="math notranslate nohighlight">\(BESQ^{\delta}_y\)</span>.</p>
-<p>Moreover, the process <span class="math notranslate nohighlight">\(X = \{ X_t = \sqrt{Y_t}, t\geq 0 \}\)</span>, is called a Bessel process of dimension <span class="math notranslate nohighlight">\(\delta\)</span>, starting at <span class="math notranslate nohighlight">\(x = \sqrt{y}\)</span>,  and is denoted by <span class="math notranslate nohighlight">\(BES^{\delta}_x\)</span>.</p>
-<p>Bessel processes are commonly parameterised as <span class="math notranslate nohighlight">\(BES^{(\nu)}\)</span> where <span class="math notranslate nohighlight">\(\nu\)</span> is imply</p>
-<div class="math notranslate nohighlight">
-\[\nu  = \frac{\delta}{2} -1.\]</div>
-<p>Hereafter, we are going to use this parameterisation.</p>
+<p>Similarly, for every <span class="math notranslate nohighlight">\(\delta\geq 0\)</span> and <span class="math notranslate nohighlight">\(y\geq 0\)</span>, consider the SDE given by</p>
+<div class="amsmath math notranslate nohighlight" id="equation-d9cd0b81-1d2f-4a76-9755-1516bb5c49ab">
+<span class="eqno">(7.8)<a class="headerlink" href="#equation-d9cd0b81-1d2f-4a76-9755-1516bb5c49ab" title="Permalink to this equation">#</a></span>\[\begin{align}
+Y_t &amp;=  y  + 2 \int_0^t \sqrt{ Y_t } dB_s +  t\delta,  \qquad t\geq 0.\\
+\end{align}\]</div>
 <section id="existence-and-uniqueness">
-<h3>Existence and Uniqueness<a class="headerlink" href="#existence-and-uniqueness" title="Permalink to this headline">#</a></h3>
-<p>In order to demonstrate that equation (6.11) has a solution we need to introduce the following two results which can be found in [Jeanblanc, Yor, Chesney, 2009].</p>
+<h3><span class="section-number">7.2.1. </span>Existence and Uniqueness<a class="headerlink" href="#existence-and-uniqueness" title="Permalink to this headline">#</a></h3>
+<section id="squared-bessel-processes">
+<h4><span class="section-number">7.2.1.1. </span>Squared Bessel Processes<a class="headerlink" href="#squared-bessel-processes" title="Permalink to this headline">#</a></h4>
+<p>In order to demonstrate that equation (7.8) has a solution we require the following two results whose proofs can be found in [Jeanblanc, Yor, Chesney, 2009].</p>
 <p><strong>Theorem 1.</strong> Consider the SDE</p>
-<div class="amsmath math notranslate nohighlight" id="equation-1105775f-5d28-4a99-bb2d-fc920d18b05d">
-<span class="eqno">()<a class="headerlink" href="#equation-1105775f-5d28-4a99-bb2d-fc920d18b05d" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
 X_t =X_0 + \int_0^t b(s,X_s) ds + \int_0^t\sigma(s,X_s)dW_s.
-\end{equation}\]</div>
+\end{equation*}\]</div>
 <p>Suppose <span class="math notranslate nohighlight">\(\varphi : (0,\infty) \rightarrow (0,\infty)\)</span> is a Borel function such that</p>
 <div class="math notranslate nohighlight">
 \[ \int_0^{\infty} \dfrac{da}{\varphi(a)}  = \infty.\]</div>
@@ -717,94 +685,64 @@ X_t =X_0 + \int_0^t b(s,X_s) ds + \int_0^t\sigma(s,X_s)dW_s.
 \[ |\sigma(x) - \sigma(y)|^2 \leq |f(x) - f(y)|, \]</div>
 <p>where <span class="math notranslate nohighlight">\(f\)</span> is a bounded increasing function, <span class="math notranslate nohighlight">\(|\sigma|\geq \epsilon &gt;0\)</span>.</p>
 <p><strong>Theorem 2. (Comparison Theorem)</strong> Consider the two SDEs</p>
-<div class="amsmath math notranslate nohighlight" id="equation-2e56070c-fab6-48b9-863f-dcb5a7b024a4">
-<span class="eqno">()<a class="headerlink" href="#equation-2e56070c-fab6-48b9-863f-dcb5a7b024a4" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
 dX^i_t = b_i(t, X^i_t) dt + \sigma(t,X^i_t) dW_t, \qquad i =1,2;
-\end{equation}\]</div>
+\end{equation*}\]</div>
 <p>where the functions <span class="math notranslate nohighlight">\(b_i\)</span> are both bounded and at least one of them is Lipschitz; and <span class="math notranslate nohighlight">\(\sigma\)</span> satisfies condition (2) or (3) in Theorem 1.  Suppose also that <span class="math notranslate nohighlight">\(X^1_0 \geq X^2_0,\)</span> and <span class="math notranslate nohighlight">\(b_1(x) \geq b_2(x)\)</span>. Then <span class="math notranslate nohighlight">\(X^1_t \geq X^2_t\)</span> for all <span class="math notranslate nohighlight">\(t\)</span>, almost surely.</p>
-<p>Now, in order to show that (1) has a unique solution we introduce the SDE</p>
-<div class="amsmath math notranslate nohighlight" id="equation-abcdfb98-d835-488a-868c-9c02bd18076e">
-<span class="eqno">()<a class="headerlink" href="#equation-abcdfb98-d835-488a-868c-9c02bd18076e" title="Permalink to this equation">#</a></span>\[\begin{align}
-dY_t &amp;= \delta dt + 2 \sqrt{ |Y_t| } dB_t,  \qquad Y_t\geq 0 \\
-Y_0 &amp; = y.
+<p>Next we will show that (7.8) has a unique strong solution. To do this we first introduce the SDE</p>
+<div class="amsmath math notranslate nohighlight" id="equation-859099d6-edc6-4ddd-ac10-282784d2e321">
+<span class="eqno">(7.9)<a class="headerlink" href="#equation-859099d6-edc6-4ddd-ac10-282784d2e321" title="Permalink to this equation">#</a></span>\[\begin{align}
+Y_t &amp;=  y + \delta t + 2 \int_0^t \sqrt{ |Y_s| } dB_s,  \qquad Y_s\geq 0,\\
 \end{align}\]</div>
-<p>Then, using the elementary inequality</p>
+<p>which is almost identical to (7.8) but with an absolute value inside the square root term. Then, using the elementary inequality</p>
 <div class="math notranslate nohighlight">
 \[|\sqrt{x} - \sqrt{y}| \leq \sqrt{|x-y|},  \qquad x, y \geq 0,\]</div>
-<p>Theorem 1 implies that for every <span class="math notranslate nohighlight">\(\delta \geq 0\)</span> the equation () has a unique strong solution. Such solution is called the squared Bessel process of dimension <span class="math notranslate nohighlight">\(\delta\)</span> and is denoted by <span class="math notranslate nohighlight">\(BESQ^{\delta}\)</span>.</p>
-</section>
-<section id="why-we-can-drop-the-absolute-value-inside-the-square-root">
-<h3>Why we can drop the absolute value inside the square root<a class="headerlink" href="#why-we-can-drop-the-absolute-value-inside-the-square-root" title="Permalink to this headline">#</a></h3>
-<p>First, we should note that if the process starts at zero, i.e. <span class="math notranslate nohighlight">\(y=0\)</span>, and <span class="math notranslate nohighlight">\(\delta=0\)</span>, then the <span class="math notranslate nohighlight">\(Y=0\)</span> is the unique solution.</p>
-<p>Moreover, consider <span class="math notranslate nohighlight">\(0\leq \delta \leq \delta'\)</span> and let <span class="math notranslate nohighlight">\(Y\)</span> and <span class="math notranslate nohighlight">\(Y'\)</span> the corresponding squared Besses processes <span class="math notranslate nohighlight">\(BESQ^{\delta}\)</span> and <span class="math notranslate nohighlight">\(BESQ^{\delta'}\)</span> both starting at the same initial condition. Then the Comparison Theorem imples that</p>
+<p>Theorem 1 implies that the equation () has a unique strong solution. Such solution is called the Squared Bessel process of dimension <span class="math notranslate nohighlight">\(\delta\)</span> starting from <span class="math notranslate nohighlight">\(y\)</span>, and is denoted by <span class="math notranslate nohighlight">\(BESQ_y^{\delta}\)</span>.</p>
+<p>The final thing to do is explaining why we can drop the absolute value inside the square root term. First, we should note that if the process starts at zero, i.e. when <span class="math notranslate nohighlight">\(y=0\)</span>, and <span class="math notranslate nohighlight">\(\delta=0\)</span>, then the <span class="math notranslate nohighlight">\(Y=0\)</span> is the unique solution.</p>
+<p>Moreover, consider <span class="math notranslate nohighlight">\(0\leq \delta \leq \delta'\)</span> and let <span class="math notranslate nohighlight">\(Y\)</span> and <span class="math notranslate nohighlight">\(Y'\)</span> the squared Besses processes with such dimensions, both starting at the same initial condition. Then, the Comparison Theorem imples that</p>
 <div class="math notranslate nohighlight">
 \[ 0\leq Y_t \leq Y_t', \qquad \hbox{almost surely.}\]</div>
 <p>Thus, <span class="math notranslate nohighlight">\(Y\)</span> satistifies <span class="math notranslate nohighlight">\(Y_t\geq 0\)</span> for all <span class="math notranslate nohighlight">\(t\geq 0\)</span>, and the absolute value inside the square root term is not needed. So, hereafter we will ommit it.</p>
 </section>
-<section id="transition-densities">
-<h3>Transition Densities<a class="headerlink" href="#transition-densities" title="Permalink to this headline">#</a></h3>
-<p>Inverting the Laplace transform yield the transition density <span class="math notranslate nohighlight">\(q_t^{(\nu)}\)</span> of a <span class="math notranslate nohighlight">\(BESQ^{(\nu)}\)</span> for <span class="math notranslate nohighlight">\(\nu&gt;-1\)</span> as</p>
-<div class="amsmath math notranslate nohighlight" id="equation-80bd36cf-6a84-4020-986f-9161da30f33c">
-<span class="eqno">()<a class="headerlink" href="#equation-80bd36cf-6a84-4020-986f-9161da30f33c" title="Permalink to this equation">#</a></span>\[\begin{equation}
-q_t^{(\nu)}(x, y) = \dfrac{1}{2t}\left(\dfrac{y}{x}\right)^{\frac{\nu}{2}}\exp\left(-\dfrac{x+y}{2t}\right)I_{\nu}\left(\dfrac{\sqrt{xy}}{t} \right),
-\end{equation}\]</div>
-<p>and the Bessel process of index <span class="math notranslate nohighlight">\(\nu\)</span> has a transition density <span class="math notranslate nohighlight">\(p_t^{(\nu)}\)</span> defined by</p>
-<div class="amsmath math notranslate nohighlight" id="equation-9eb40334-0dc6-4381-bdce-2d9686190a57">
-<span class="eqno">()<a class="headerlink" href="#equation-9eb40334-0dc6-4381-bdce-2d9686190a57" title="Permalink to this equation">#</a></span>\[\begin{equation}
-p_t^{(\nu)}(x, y) = \dfrac{y}{t}\left(\dfrac{y}{x}\right)^{\nu}\exp\left(-\dfrac{x^2+y^2}{2t}\right)I_{\nu}\left(\dfrac{xy}{t} \right),
-\end{equation}\]</div>
-<p>where <span class="math notranslate nohighlight">\(I_{\nu}\)</span> is the usual modified Bessel function with index <span class="math notranslate nohighlight">\(\nu\)</span>.</p>
-<p>Note that</p>
-<div class="amsmath math notranslate nohighlight" id="equation-a680c2a8-32da-48cb-aa9c-c25bc37d104a">
-<span class="eqno">()<a class="headerlink" href="#equation-a680c2a8-32da-48cb-aa9c-c25bc37d104a" title="Permalink to this equation">#</a></span>\[\begin{equation}
-p_t^{\nu} (x,y) = 2y q_t^{\nu}(x^2, y^2).
-\end{equation}\]</div>
-</section>
-</section>
-<section id="marginal-distributions">
-<h2>Marginal Distributions<a class="headerlink" href="#marginal-distributions" title="Permalink to this headline">#</a></h2>
-<p>In particular the marginal distributions of <span class="math notranslate nohighlight">\(X_t | X_0=x\)</span> is given by</p>
-<section id="expectation-and-variance">
-<h3>Expectation and Variance<a class="headerlink" href="#expectation-and-variance" title="Permalink to this headline">#</a></h3>
-<p>For each <span class="math notranslate nohighlight">\(t&gt;0\)</span>, the conditional marginal <span class="math notranslate nohighlight">\(Y_t|Y_0\)</span> from a squared Bessel process satisfies</p>
-<div class="amsmath math notranslate nohighlight">
-\[\begin{equation*}
-\mathbf{E}[Y_t] = \mathbb{E}[Y_t|Y_0=y]= y + \delta t,
-\end{equation*}\]</div>
-<p>and</p>
-<div class="amsmath math notranslate nohighlight">
-\[\begin{equation*}
-\mathbf{Var} [Y_t ] = \mathbb{Var} [Y_t |Y_0] = 2t(2y + \delta t)
-\end{equation*}\]</div>
-</section>
-<section id="python-implementation">
-<h3>Python Implementation<a class="headerlink" href="#python-implementation" title="Permalink to this headline">#</a></h3>
-<p>For given <span class="math notranslate nohighlight">\(y, \delta&gt;0\)</span>, and <span class="math notranslate nohighlight">\(t&gt;0\)</span> we can implement the above formulas for the expectation, and variance, as follows.</p>
-<div class="cell docutils container">
+<section id="bessel-processes">
+<h4><span class="section-number">7.2.1.2. </span>Bessel Processes<a class="headerlink" href="#bessel-processes" title="Permalink to this headline">#</a></h4>
+<p>The following result on the behaviour of the trajectories of Squared Bessel processes can be found in [Revuz &amp; Yor 1999]</p>
+<p><strong>Proposition 2.</strong> Let <span class="math notranslate nohighlight">\(Y\)</span> a squared Bessel process <span class="math notranslate nohighlight">\(BESQ_y^{\delta}\)</span>.</p>
+<ul class="simple">
+<li><p>For <span class="math notranslate nohighlight">\(\delta=0\)</span>, the origin (point zero) is absorbing</p></li>
+<li><p>For <span class="math notranslate nohighlight">\(0&lt;\delta &lt;2\)</span>, the point <span class="math notranslate nohighlight">\(y=0\)</span> is reflecting</p></li>
+<li><p>For <span class="math notranslate nohighlight">\(\delta \leq 1\)</span>, the point <span class="math notranslate nohighlight">\(y=0\)</span> is reached almost surely</p></li>
+<li><p>For <span class="math notranslate nohighlight">\(\delta \geq 2\)</span>, the point <span class="math notranslate nohighlight">\(y=0\)</span> is unattainable.</p></li>
+</ul>
+<p>When <span class="math notranslate nohighlight">\(y&gt;0\)</span> and <span class="math notranslate nohighlight">\(\delta \geq 2\)</span>, the square root of <span class="math notranslate nohighlight">\(BESQ^{\delta}_{y}\)</span> is called the Bessel process of dimension <span class="math notranslate nohighlight">\(\delta\)</span> started at <span class="math notranslate nohighlight">\(x=\sqrt{y}\)</span> and denoted by <span class="math notranslate nohighlight">\(BES^{\delta}_{x}\)</span>. Note that in this case the origin is unattainable, and we can apply Ito’s formula to find that <span class="math notranslate nohighlight">\(BES^{\delta}_{x}\)</span> indeed satisfies SDE (7.7).</p>
+<p>Let’s finish this notebook by showing some colorful simulations!</p>
+<div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-
-<span class="n">y0</span> <span class="o">=</span> <span class="mf">2.5</span>
-<span class="n">delta</span> <span class="o">=</span> <span class="mf">3.0</span>
-<span class="n">t</span> <span class="o">=</span> <span class="mf">1.0</span>
-
-<span class="n">exp</span> <span class="o">=</span> <span class="n">y0</span> <span class="o">+</span> <span class="n">delta</span><span class="o">*</span><span class="n">t</span>
-<span class="n">var</span> <span class="o">=</span> <span class="mf">2.0</span><span class="o">*</span><span class="n">t</span><span class="o">*</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">y0</span> <span class="o">+</span> <span class="n">delta</span><span class="o">*</span><span class="n">t</span><span class="p">)</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;For y_0=</span><span class="si">{</span><span class="n">y0</span><span class="si">}</span><span class="s1">&#39;</span> <span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;delta=</span><span class="si">{</span><span class="n">delta</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;t=</span><span class="si">{</span><span class="n">t</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;, &quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;E[Y_t] = </span><span class="si">{</span><span class="n">exp</span><span class="si">:</span><span class="s1"> .4f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Var[Y_t] = </span><span class="si">{</span><span class="n">var</span> <span class="si">:</span><span class="s1">.4f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">aleatory.processes</span> <span class="kn">import</span> <span class="n">BESProcess</span>
+<span class="n">process</span> <span class="o">=</span> <span class="n">BESProcess</span><span class="p">(</span><span class="n">initial</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mf">4.5</span><span class="p">)</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">process</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">envelope</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">colormap</span><span class="o">=</span><span class="s2">&quot;autumn&quot;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Bessel Process with dimension 4.5 started at 2.0&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>For y_0=2.5, delta=3.0, t=1.0
-E[Y_t] =  5.5000
-Var[Y_t] = 16.0000
+<img alt="_images/bessel_processes_part2_24_0.png" src="_images/bessel_processes_part2_24_0.png" />
+</div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">aleatory.processes</span> <span class="kn">import</span> <span class="n">BESQProcess</span>
+<span class="n">process</span> <span class="o">=</span> <span class="n">BESQProcess</span><span class="p">(</span><span class="n">initial</span><span class="o">=</span><span class="mf">4.0</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mf">4.5</span><span class="p">)</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">process</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">envelope</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">colormap</span><span class="o">=</span><span class="s2">&quot;cool&quot;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Squared Bessel Process with dimension 4.5 started at 4.0&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="_images/bessel_processes_part2_25_0.png" src="_images/bessel_processes_part2_25_0.png" />
 </div>
+</div>
+<p>In the next notebook we will explore these processes further!</p>
+</section>
 </section>
 </section>
 </section>
@@ -836,6 +774,20 @@ Var[Y_t] = 16.0000
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="bessel_processes_part1.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title"><span class="section-number">6. </span>Bessel Processes Part I</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="bessel_processes_part3.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">8. </span>Bessel Processes Part III</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
 </div>
             </footer>
         </div>
