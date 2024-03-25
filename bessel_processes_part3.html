@@ -620,15 +620,15 @@ title="Print to PDF"
 <section id="definition">
 <h2><span class="section-number">8.1. </span>Definition<a class="headerlink" href="#definition" title="Permalink to this headline">#</a></h2>
 <p>For every <span class="math notranslate nohighlight">\(\delta\geq 0\)</span> and <span class="math notranslate nohighlight">\(x\geq 0\)</span>, a <strong>Bessel process</strong> with dimension <span class="math notranslate nohighlight">\(\delta\)</span> started at <span class="math notranslate nohighlight">\(x\)</span> is defined as the unique strong solution of the SDE</p>
-<div class="amsmath math notranslate nohighlight" id="equation-265d97a5-2686-42aa-bdce-84272ed6e0d1">
-<span class="eqno">(8.1)<a class="headerlink" href="#equation-265d97a5-2686-42aa-bdce-84272ed6e0d1" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-eaadb529-0c23-4767-95c6-92c60cf85312">
+<span class="eqno">(8.1)<a class="headerlink" href="#equation-eaadb529-0c23-4767-95c6-92c60cf85312" title="Permalink to this equation">#</a></span>\[\begin{align}
 X_t &amp;= x +  \int_0^t\frac{\delta - 1}{2X_s} ds + B_t, \qquad t\geq 0,\\
 \end{align}\]</div>
 <p>and is denoted by <span class="math notranslate nohighlight">\(BES^{\delta}_{x}\)</span>.</p>
 <p>For every <span class="math notranslate nohighlight">\(\delta\geq 0\)</span> and <span class="math notranslate nohighlight">\(y\geq 0\)</span>,  a <strong>Squared Bessel process</strong> with dimension <span class="math notranslate nohighlight">\(\delta\)</span> started at <span class="math notranslate nohighlight">\(y\)</span> is defined as the unique strong solution of the SDE</p>
-<div class="amsmath math notranslate nohighlight" id="equation-c4b28486-33be-4aa8-a722-70658721b137">
-<span class="eqno">(8.2)<a class="headerlink" href="#equation-c4b28486-33be-4aa8-a722-70658721b137" title="Permalink to this equation">#</a></span>\[\begin{align}
-Y_t &amp;=  y +  \delta t + 2 \int_0^t \sqrt{ |Y_t| } dB_s,  \qquad t\geq 0 \\
+<div class="amsmath math notranslate nohighlight" id="equation-ff646148-a2ea-45f2-9fd3-6493bc30d7bf">
+<span class="eqno">(8.2)<a class="headerlink" href="#equation-ff646148-a2ea-45f2-9fd3-6493bc30d7bf" title="Permalink to this equation">#</a></span>\[\begin{align}
+Y_t &amp;=  y +  \delta t + 2 \int_0^t \sqrt{ Y_t } dB_s,  \qquad t\geq 0, \\
 \end{align}\]</div>
 <p>and is denoted by <span class="math notranslate nohighlight">\(BESQ^{\delta}_y\)</span>.</p>
 <p>Bessel processes are frequently parameterised in terms of  the quantity</p>
@@ -646,16 +646,16 @@ Y_t &amp;=  y +  \delta t + 2 \int_0^t \sqrt{ |Y_t| } dB_s,  \qquad t\geq 0 \\
 <section id="transition-densities">
 <h3><span class="section-number">8.1.1. </span>Transition Densities<a class="headerlink" href="#transition-densities" title="Permalink to this headline">#</a></h3>
 <p>For any <span class="math notranslate nohighlight">\(\delta &gt;0\)</span>  (or equivalently <span class="math notranslate nohighlight">\(\nu&gt;-1\)</span>) the  transition density <span class="math notranslate nohighlight">\(p_t^{(\nu)}\)</span> of a Bessel process <span class="math notranslate nohighlight">\(BES^{(\nu)}\)</span>  is given by</p>
-<div class="amsmath math notranslate nohighlight" id="equation-1ae6c04c-4d7b-4793-b6ad-196b26926feb">
-<span class="eqno">(8.3)<a class="headerlink" href="#equation-1ae6c04c-4d7b-4793-b6ad-196b26926feb" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-52c977bd-db11-4a7c-a85e-8925efe93e61">
+<span class="eqno">(8.3)<a class="headerlink" href="#equation-52c977bd-db11-4a7c-a85e-8925efe93e61" title="Permalink to this equation">#</a></span>\[\begin{equation}
 p_t^{(\nu)}(x, u) = \dfrac{u}{t}\left(\dfrac{u}{x}\right)^{\nu}\exp\left(-\dfrac{x^2+u^2}{2t}\right)I_{\nu}\left(\dfrac{xu}{t} \right), \quad t&gt;0, x&gt;0,
 \end{equation}\]</div>
 <p>and the transition density <span class="math notranslate nohighlight">\(q_t^{(\nu)}\)</span> of a Squared Bessel process <span class="math notranslate nohighlight">\(BESQ^{(\nu)}\)</span>  is given by</p>
-<div class="amsmath math notranslate nohighlight" id="equation-1b5bb571-dc0c-4f7d-8f45-ac54ece05dd5">
-<span class="eqno">(8.4)<a class="headerlink" href="#equation-1b5bb571-dc0c-4f7d-8f45-ac54ece05dd5" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-30a35b96-7bf0-4fae-ad10-083f385afe0e">
+<span class="eqno">(8.4)<a class="headerlink" href="#equation-30a35b96-7bf0-4fae-ad10-083f385afe0e" title="Permalink to this equation">#</a></span>\[\begin{equation}
 q_t^{(\nu)}(x, u) = \dfrac{1}{2t}\left(\dfrac{u}{x}\right)^{\frac{\nu}{2}}\exp\left(-\dfrac{x+u}{2t}\right)I_{\nu}\left(\dfrac{\sqrt{xu}}{t} \right),  \quad t&gt;0, x&gt;0,
 \end{equation}\]</div>
-<p>where <span class="math notranslate nohighlight">\(I_{\nu}\)</span> is the usual modified Bessel function with index <span class="math notranslate nohighlight">\(\nu\)</span>.</p>
+<p>where <span class="math notranslate nohighlight">\(I_{\nu}\)</span> is the usual <a class="reference external" href="https://en.wikipedia.org/wiki/Bessel_function#Modified_Bessel_functions">modified Bessel function</a> with index <span class="math notranslate nohighlight">\(\nu\)</span>.</p>
 <p>Note that</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{equation*}
@@ -667,23 +667,23 @@ p_t^{\nu} (x,u) = 2y q_t^{\nu}(x^2, u^2).
 <h2><span class="section-number">8.2. </span>Marginal Distributions<a class="headerlink" href="#marginal-distributions" title="Permalink to this headline">#</a></h2>
 <p>The definition of the transition densities imply the following about the marginal distributions.</p>
 <p>Given a <strong>Bessel process</strong> <span class="math notranslate nohighlight">\(X \sim BES_x^{(\nu)}\)</span> the marginal distribution <span class="math notranslate nohighlight">\(X_t|X_0\)</span> (denoted as <span class="math notranslate nohighlight">\(X_t\)</span> for simplicity) has density function</p>
-<div class="amsmath math notranslate nohighlight" id="equation-fb19b527-064d-4bae-874c-67d45d14b84c">
-<span class="eqno">(8.5)<a class="headerlink" href="#equation-fb19b527-064d-4bae-874c-67d45d14b84c" title="Permalink to this equation">#</a></span>\[\begin{equation}
-f^{(\nu)}_{X}(u, t) = \dfrac{u}{t}\left(\dfrac{u}{x}\right)^{\nu}\exp\left(-\dfrac{x^2+u^2}{2t}\right)I_{\nu}\left(\dfrac{xu}{t} \right), \qquad t\geq 0.
+<div class="amsmath math notranslate nohighlight" id="equation-07aef501-14ba-48e1-b2c1-86580dab9011">
+<span class="eqno">(8.5)<a class="headerlink" href="#equation-07aef501-14ba-48e1-b2c1-86580dab9011" title="Permalink to this equation">#</a></span>\[\begin{equation}
+f^{(\nu)}_{X_t}(u) = \dfrac{u}{t}\left(\dfrac{u}{x}\right)^{\nu}\exp\left(-\dfrac{x^2+u^2}{2t}\right)I_{\nu}\left(\dfrac{xu}{t} \right), \qquad t\geq 0.
 \end{equation}\]</div>
 <p>Thus, the marginal is a scaled non-central Chi random variable</p>
-<div class="amsmath math notranslate nohighlight" id="equation-918ffcc9-4285-40ba-9305-d025d3c9deec">
-<span class="eqno">(8.6)<a class="headerlink" href="#equation-918ffcc9-4285-40ba-9305-d025d3c9deec" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-39a932a9-5856-4389-b8e8-5f4f00e282fb">
+<span class="eqno">(8.6)<a class="headerlink" href="#equation-39a932a9-5856-4389-b8e8-5f4f00e282fb" title="Permalink to this equation">#</a></span>\[\begin{equation}
 X_t\sim  \sqrt{t} \chi \left(\delta, \frac{x}{\sqrt{t}} \right), \qquad  t\geq 0.
 \end{equation}\]</div>
 <p>Given a <strong>Squared Bessel process</strong> <span class="math notranslate nohighlight">\(Y\sim BESQ_y^{(\nu)}\)</span> the marginal distribution <span class="math notranslate nohighlight">\(Y_t|Y_0\)</span>  (denoted as <span class="math notranslate nohighlight">\(Y_t\)</span> for simplicity) has density function</p>
-<div class="amsmath math notranslate nohighlight" id="equation-26e99adc-65b5-4155-bb11-c6b085e80639">
-<span class="eqno">(8.7)<a class="headerlink" href="#equation-26e99adc-65b5-4155-bb11-c6b085e80639" title="Permalink to this equation">#</a></span>\[\begin{equation}
-f_{Y}^{(\nu)}(u, t) = \dfrac{1}{2t}\left(\dfrac{u}{y}\right)^{\frac{\nu}{2}}\exp\left(-\dfrac{y+u}{2t}\right)I_{\nu}\left(\dfrac{\sqrt{y u }}{t} \right), \qquad t\geq 0.
+<div class="amsmath math notranslate nohighlight" id="equation-8fa8bf0d-6660-4b9e-beab-7b76dfd42402">
+<span class="eqno">(8.7)<a class="headerlink" href="#equation-8fa8bf0d-6660-4b9e-beab-7b76dfd42402" title="Permalink to this equation">#</a></span>\[\begin{equation}
+f_{Y_t}^{(\nu)}(u) = \dfrac{1}{2t}\left(\dfrac{u}{y}\right)^{\frac{\nu}{2}}\exp\left(-\dfrac{y+u}{2t}\right)I_{\nu}\left(\dfrac{\sqrt{y u }}{t} \right), \qquad t\geq 0.
 \end{equation}\]</div>
 <p>Thus the marginal is a scaled non-central Chi squared random variable</p>
-<div class="amsmath math notranslate nohighlight" id="equation-4a113aad-5a16-4e6c-a25c-c89bf2e23ae6">
-<span class="eqno">(8.8)<a class="headerlink" href="#equation-4a113aad-5a16-4e6c-a25c-c89bf2e23ae6" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-bc819555-cc2a-4669-90f7-5b9f566c2b32">
+<span class="eqno">(8.8)<a class="headerlink" href="#equation-bc819555-cc2a-4669-90f7-5b9f566c2b32" title="Permalink to this equation">#</a></span>\[\begin{equation}
 Y_t \sim t \chi^2 \left(\delta, \frac{y}{t}\right), \qquad t\geq 0.
 \end{equation}\]</div>
 <section id="visualisation">
@@ -723,7 +723,7 @@ Y_t \sim t \chi^2 \left(\delta, \frac{y}{t}\right), \qquad t\geq 0.
 <img alt="_images/bessel_processes_part3_18_0.png" src="_images/bessel_processes_part3_18_0.png" />
 </div>
 </div>
-<p>Next, we vary the value of the dimension <span class="math notranslate nohighlight">\(\delta\)</span> and plot the corresponding pdfs. As <span class="math notranslate nohighlight">\(\delta\)</span> increases:</p>
+<p>Next, we vary the value of the dimension <span class="math notranslate nohighlight">\(\delta\)</span> and plot the corresponding pdfs. As the dimension increases:</p>
 <ul class="simple">
 <li><p>The density from the Bessel marginal moves towards the right and becomes more symmetric.</p></li>
 <li><p>The density from the Squared Bessel marginal also move towards the right, it becomes wider and its shape changes as well.</p></li>
@@ -819,7 +819,7 @@ Y_t \sim t \chi^2 \left(\delta, \frac{y}{t}\right), \qquad t\geq 0.
 \mathbf{Var} [X_t ] = t \left(\delta + \frac{x^2}{t} \right) - \mu^2 ,
 \end{equation*}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\mu = \mathbf{E}[X_t]\)</span>.</p>
-<p>Clearly, the  expression for the variance coincide with the one from Part I when <span class="math notranslate nohighlight">\(x=0\)</span> and <span class="math notranslate nohighlight">\(\delta\)</span> is integer.  To see that the same is true for the expectation, one should note that the Laguerre polynomials satisfy</p>
+<p>Clearly, the  expression for the variance coincide with the one from <a class="reference external" href="https://quantgirluk.github.io/Understanding-Quantitative-Finance/bessel_processes_part1.html">Bessel Processes Part I</a> when <span class="math notranslate nohighlight">\(x=0\)</span> and <span class="math notranslate nohighlight">\(\delta\)</span> is integer.  To see that the same is true for the expectation, one should note that the Laguerre polynomials satisfy</p>
 <div class="math notranslate nohighlight">
 \[L_{\frac{1}{2}}^{\nu}(0) =  \dfrac{\Gamma(1/2 + \delta/2  ) }{ (1/2)! \Gamma(\delta/2 ) } =  2 \dfrac{\Gamma(\frac{\delta+1}{2}  ) }{ \sqrt{\pi} \Gamma(\frac{\delta}{2} )}.\]</div>
 <section id="python-implementation">
@@ -859,7 +859,7 @@ Y_t \sim t \chi^2 \left(\delta, \frac{y}{t}\right), \qquad t\geq 0.
 \[\begin{equation*}
 \mathbf{Var} [Y_t ] = 2 t^2 \left(\delta + 2\frac{y}{t} \right).
 \end{equation*}\]</div>
-<p>Clearly, these  expressions coincide with the ones from Part I when <span class="math notranslate nohighlight">\(x=0\)</span> and <span class="math notranslate nohighlight">\(\delta\)</span> is integer.</p>
+<p>Clearly, these  expressions coincide with the ones from <a class="reference external" href="https://quantgirluk.github.io/Understanding-Quantitative-Finance/bessel_processes_part1.html">Bessel Processes Part I</a> when <span class="math notranslate nohighlight">\(x=0\)</span> and <span class="math notranslate nohighlight">\(\delta\)</span> is integer.</p>
 <section id="id1">
 <h5><span class="section-number">8.2.2.2.1. </span>Python Implementation<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h5>
 <p>For given <span class="math notranslate nohighlight">\(\delta, y, t\geq 0\)</span>, we can implement the above formulas for the expectation, and variance, as follows.</p>
@@ -1004,12 +1004,11 @@ Var[X_t] = 36.000000
 <h2><span class="section-number">8.4. </span>Simulation<a class="headerlink" href="#simulation" title="Permalink to this headline">#</a></h2>
 <p>Knowing  the distribution of the marginals allows us to simulate paths from Bessel and Squared Bessel processes.</p>
 <p>To simulate several paths from Bessel and Squared Bessel processes and visualise them we can use the methods <code class="docutils literal notranslate"><span class="pre">simulate</span></code> and <code class="docutils literal notranslate"><span class="pre">plot</span></code> from the <code class="docutils literal notranslate"><span class="pre">aleatory</span></code> library.</p>
-<p>Let’s simulate 5 paths from a Bessel Process of dimension 3.5 starting at 1.0, over the interval <span class="math notranslate nohighlight">\([0,1]\)</span> using a partition of 100 points.</p>
 <div class="tip admonition">
 <p class="admonition-title">Tip</p>
 <p>Remember that  the number of points in the partition is defined by the parameter <span class="math notranslate nohighlight">\(n\)</span>, while  the number of paths is determined by <span class="math notranslate nohighlight">\(N\)</span>.</p>
 </div>
-<p>The following snippet simulates the paths and returns them as a numpy array object.</p>
+<p>Let’s start by simulating 5 paths from a Bessel Process of dimension 3.5 started at 1.0, over the interval <span class="math notranslate nohighlight">\([0,1]\)</span> using a partition of 100 points. The following snippet shows how to do this by calling the method <code class="docutils literal notranslate"><span class="pre">simulate</span></code> which returns a list containing the paths as  <code class="docutils literal notranslate"><span class="pre">numpy</span></code> array objects.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Snippet to Simulate N paths from the Bessel process</span>
@@ -1020,7 +1019,7 @@ Var[X_t] = 36.000000
 </div>
 </div>
 </div>
-<p>If we want to simulate and visualise the paths, we will use the method <code class="docutils literal notranslate"><span class="pre">plot</span></code> from the <code class="docutils literal notranslate"><span class="pre">aleatory</span></code> library.</p>
+<p>If we want to simulate and create a simple visualision of the paths, we can use the method <code class="docutils literal notranslate"><span class="pre">plot</span></code> from the <code class="docutils literal notranslate"><span class="pre">aleatory</span></code> library.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Snippet to Simulate and Visualise the paths from the Bessel process</span>
@@ -1052,6 +1051,7 @@ Var[X_t] = 36.000000
 <p class="admonition-title">Note</p>
 <p>In all plots we are using a linear interpolation to draw the lines between the simulated points.</p>
 </div>
+<p>In the next section, we will see how to create more interesting visualisations!</p>
 </section>
 <section id="final-visualisations">
 <h2><span class="section-number">8.5. </span>Final Visualisations<a class="headerlink" href="#final-visualisations" title="Permalink to this headline">#</a></h2>
@@ -1059,14 +1059,13 @@ Var[X_t] = 36.000000
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># from aleatory.processes import BESProcess</span>
-
 <span class="n">bes</span> <span class="o">=</span> <span class="n">BESProcess</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="mf">4.5</span><span class="p">,</span> <span class="n">initial</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">fig</span> <span class="o">=</span> <span class="n">bes</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">envelope</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">colormap</span><span class="o">=</span><span class="s2">&quot;autumn&quot;</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/bessel_processes_part3_48_0.png" src="_images/bessel_processes_part3_48_0.png" />
+<img alt="_images/bessel_processes_part3_49_0.png" src="_images/bessel_processes_part3_49_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1078,15 +1077,14 @@ Var[X_t] = 36.000000
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/bessel_processes_part3_49_0.png" src="_images/bessel_processes_part3_49_0.png" />
+<img alt="_images/bessel_processes_part3_50_0.png" src="_images/bessel_processes_part3_50_0.png" />
 </div>
 </div>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># from aleatory.processes import BESProcess</span>
 <span class="c1"># import matplotlib.pyplot as plt</span>
 <span class="c1"># import numpy as np</span>
-
 <span class="n">process</span> <span class="o">=</span> <span class="n">BESProcess</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="mf">2.5</span><span class="p">,</span> <span class="n">initial</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">rng</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="n">seed</span><span class="o">=</span><span class="mi">1234</span><span class="p">))</span>
 <span class="n">paths</span> <span class="o">=</span> <span class="n">process</span><span class="o">.</span><span class="n">simulate</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
 <span class="n">ts</span> <span class="o">=</span> <span class="n">process</span><span class="o">.</span><span class="n">times</span>
@@ -1102,10 +1100,10 @@ Var[X_t] = 36.000000
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/bessel_processes_part3_50_0.png" src="_images/bessel_processes_part3_50_0.png" />
+<img alt="_images/bessel_processes_part3_51_0.png" src="_images/bessel_processes_part3_51_0.png" />
 </div>
 </div>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># from aleatory.processes import BESQProcess</span>
 <span class="c1"># import matplotlib.pyplot as plt</span>
@@ -1126,7 +1124,7 @@ Var[X_t] = 36.000000
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/bessel_processes_part3_51_0.png" src="_images/bessel_processes_part3_51_0.png" />
+<img alt="_images/bessel_processes_part3_52_0.png" src="_images/bessel_processes_part3_52_0.png" />
 </div>
 </div>
 </section>
