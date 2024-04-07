@@ -50,8 +50,6 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
@@ -151,6 +149,16 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1">
   <a class="reference internal" href="bessel_processes_part1.html">
    6. Bessel Processes Part I
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="bessel_processes_part2.html">
+   7. Bessel Processes Part II
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="bessel_processes_part3.html">
+   8. Bessel Processes Part III
   </a>
  </li>
 </ul>
@@ -717,41 +725,34 @@ title="Print to PDF"
   <section class="tex2jax_ignore mathjax_ignore" id="geometric-brownian-motion">
 <h1><span class="section-number">3. </span>Geometric Brownian Motion<a class="headerlink" href="#geometric-brownian-motion" title="Permalink to this headline">#</a></h1>
 <p>The purpose of this notebook is to review and illustrate the  <a class="reference external" href="https://en.wikipedia.org/wiki/Geometric_Brownian_motion">Geometric Brownian motion</a> and some of its main properties.</p>
-<p>Before diving into the theory, let’s start by loading the libraries</p>
+<p>Before diving into the theory, let’s start by loading the following libraries</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">matplotlib</span></code></p></li>
 <li><p><a class="reference external" href="https://github.com/quantgirluk/aleatory"><code class="docutils literal notranslate"><span class="pre">aleatory</span></code></a></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">matplotlib</span></code></p></li>
 </ul>
 <p>together with the style sheet <a class="reference external" href="https://github.com/quantgirluk/matplotlib-stylesheets">Quant-Pastel Light</a>.</p>
-<p>These tools will help us to make insightful visualisations.</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">aleatory.processes</span> <span class="kn">import</span> <span class="n">BESProcess</span><span class="p">,</span> <span class="n">BESQProcess</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="n">mystyle</span> <span class="o">=</span> <span class="s2">&quot;https://raw.githubusercontent.com/quantgirluk/matplotlib-stylesheets/main/quant-pastel-light.mplstyle&quot;</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="n">mystyle</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s2">&quot;figure.figsize&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s2">&quot;figure.figsize&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">6</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
-<div class="cell tag_hide-input docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">aleatory.processes</span> <span class="kn">import</span> <span class="n">GBM</span>
-<span class="n">process</span> <span class="o">=</span> <span class="n">GBM</span><span class="p">()</span>
-<span class="n">process</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
+<p>These tools will help us to make insightful visualisations of Bessel processes.</p>
+<div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<img alt="_images/geometric_brownian_motion_3_0.png" src="_images/geometric_brownian_motion_3_0.png" />
+<img alt="_images/geometric_brownian_motion_4_0.png" src="_images/geometric_brownian_motion_4_0.png" />
 </div>
 </div>
 <section id="definition">
 <h2><span class="section-number">3.1. </span>Definition<a class="headerlink" href="#definition" title="Permalink to this headline">#</a></h2>
 <p>The Geometric Brownian motion can be defined by the following Stochastic Differential Equation (SDE)</p>
-<div class="amsmath math notranslate nohighlight" id="equation-2350f0ba-17b9-4580-8990-35fa8bd58273">
-<span class="eqno">(3.1)<a class="headerlink" href="#equation-2350f0ba-17b9-4580-8990-35fa8bd58273" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-bb41d13c-bd76-4b40-a09a-054d4f86b60d">
+<span class="eqno">(3.1)<a class="headerlink" href="#equation-bb41d13c-bd76-4b40-a09a-054d4f86b60d" title="Permalink to this equation">#</a></span>\[\begin{equation}
 dX_t = \mu X_t dt + \sigma X_t dW_t, \quad t &gt;0,
 \end{equation}\]</div>
 <p>with initial condition <span class="math notranslate nohighlight">\(X_0 =x_0&gt;0\)</span>, and constant parameters <span class="math notranslate nohighlight">\(\mu\in \mathbb{R}\)</span>, <span class="math notranslate nohighlight">\(\sigma&gt;0\)</span>. Here, <span class="math notranslate nohighlight">\(W_t\)</span> denotes a standard Brownian motion.</p>
@@ -759,13 +760,13 @@ dX_t = \mu X_t dt + \sigma X_t dW_t, \quad t &gt;0,
 <div class="math notranslate nohighlight">
 \[Y_t = Y_0 +  \left( \mu-\frac{1}{2}\sigma^2 \right)t  + \sigma W_t,\]</div>
 <p>or equivalently</p>
-<div class="amsmath math notranslate nohighlight" id="equation-7ac96807-0bfb-431f-8f8e-cd5126190c6e">
-<span class="eqno">(3.2)<a class="headerlink" href="#equation-7ac96807-0bfb-431f-8f8e-cd5126190c6e" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-9bcc36c7-26c5-4de9-a819-04c25678e896">
+<span class="eqno">(3.2)<a class="headerlink" href="#equation-9bcc36c7-26c5-4de9-a819-04c25678e896" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \ln(X_t) = \ln(x_0) +  \left( \mu-\frac{1}{2}\sigma^2 \right)t  + \sigma W_t.
 \end{equation}\]</div>
 <p>From this expression, we obtain</p>
-<div class="amsmath math notranslate nohighlight" id="equation-7909a786-ca01-4a01-aa46-036fc27f9d1e">
-<span class="eqno">(3.3)<a class="headerlink" href="#equation-7909a786-ca01-4a01-aa46-036fc27f9d1e" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-d8293dfd-d66a-4bb4-bb9b-605296724857">
+<span class="eqno">(3.3)<a class="headerlink" href="#equation-d8293dfd-d66a-4bb4-bb9b-605296724857" title="Permalink to this equation">#</a></span>\[\begin{equation}
 X_t = x_0 \exp \left\{  \left( \mu-\frac{1}{2}\sigma^2 \right)t  + \sigma W_t \right\}, \qquad t\geq 0.
 \end{equation}\]</div>
 <div class="admonition note">
@@ -829,7 +830,6 @@ X_t = x_0 \exp \left\{  \left( \mu-\frac{1}{2}\sigma^2 \right)t  + \sigma W_t \r
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-
 <span class="n">x0</span> <span class="o">=</span> <span class="mf">1.0</span>
 <span class="n">mu</span> <span class="o">=</span> <span class="mf">0.1</span>
 <span class="n">sigma</span> <span class="o">=</span> <span class="mf">0.2</span>
@@ -921,7 +921,7 @@ f(x, t) = {\displaystyle {\frac {1}{x\sigma  {\sqrt {2\pi t}}}}\ \exp \left\{-{\
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/geometric_brownian_motion_18_0.png" src="_images/geometric_brownian_motion_18_0.png" />
+<img alt="_images/geometric_brownian_motion_19_0.png" src="_images/geometric_brownian_motion_19_0.png" />
 </div>
 </div>
 <p>Next, we vary the value of the parameter <span class="math notranslate nohighlight">\(\mu\)</span> and plot the corresponding pdfs. As <span class="math notranslate nohighlight">\(\mu\)</span> increases the density becomes wider and the shape changes as well. This reflects the fact that both the mean and the variance are increasing.</p>
@@ -943,7 +943,7 @@ f(x, t) = {\displaystyle {\frac {1}{x\sigma  {\sqrt {2\pi t}}}}\ \exp \left\{-{\
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/geometric_brownian_motion_20_0.png" src="_images/geometric_brownian_motion_20_0.png" />
+<img alt="_images/geometric_brownian_motion_21_0.png" src="_images/geometric_brownian_motion_21_0.png" />
 </div>
 </div>
 <p>Now we keep <span class="math notranslate nohighlight">\(\mu\)</span> fixed and vary <span class="math notranslate nohighlight">\(\sigma\)</span>. Once again, both the mean and the variance grow with <span class="math notranslate nohighlight">\(\sigma\)</span>.
@@ -966,7 +966,7 @@ Note that the variance grows at a very rapid rate, causing the density to be ver
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/geometric_brownian_motion_22_0.png" src="_images/geometric_brownian_motion_22_0.png" />
+<img alt="_images/geometric_brownian_motion_23_0.png" src="_images/geometric_brownian_motion_23_0.png" />
 </div>
 </div>
 <p>Finally, let’s fix both parameters and plot the densities <span class="math notranslate nohighlight">\(X_t\)</span> as <span class="math notranslate nohighlight">\(t\)</span> grows, i.e. as the process evolves in time.</p>
@@ -988,7 +988,7 @@ Note that the variance grows at a very rapid rate, causing the density to be ver
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/geometric_brownian_motion_24_0.png" src="_images/geometric_brownian_motion_24_0.png" />
+<img alt="_images/geometric_brownian_motion_25_0.png" src="_images/geometric_brownian_motion_25_0.png" />
 </div>
 </div>
 </section>
@@ -1008,7 +1008,7 @@ Note that the variance grows at a very rapid rate, causing the density to be ver
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([1.6281049 , 3.25238644, 2.81659478, 1.76857214, 2.08399337])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([1.24237482, 1.14191413, 1.41380548, 1.4001431 , 2.95415425])
 </pre></div>
 </div>
 </div>
@@ -1022,8 +1022,8 @@ Note that the variance grows at a very rapid rate, causing the density to be ver
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([  861.76416946, 18635.55787412,   516.00144345,  9074.77186416,
-         654.59476148])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([51552.21913171, 18875.71009878, 70596.44296786,  5660.37260899,
+        2712.34445151])
 </pre></div>
 </div>
 </div>
@@ -1047,7 +1047,10 @@ X_t = x_0 \exp \left\{  \left( \mu-\frac{1}{2}\sigma^2 \right)t  + \sigma W_t \r
 <p>and the fact that we know how to simulate a Brownian Motion (see <a class="reference external" href="https://quantgirluk.github.io/Understanding-Quantitative-Finance/brownian_motion.html">Brownian Motion</a> for details).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">aleatory.processes</span> <span class="kn">import</span> <span class="n">BrownianMotion</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Snippet to Simulate a Geometric Brownian Path</span>
+<span class="kn">from</span> <span class="nn">aleatory.processes</span> <span class="kn">import</span> <span class="n">BrownianMotion</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
 <span class="n">T</span> <span class="o">=</span> <span class="mf">1.0</span>
 <span class="n">n</span> <span class="o">=</span> <span class="mi">100</span>
 <span class="n">x0</span> <span class="o">=</span> <span class="mf">1.0</span> 
@@ -1056,8 +1059,8 @@ X_t = x_0 \exp \left\{  \left( \mu-\frac{1}{2}\sigma^2 \right)t  + \sigma W_t \r
 <span class="n">t</span> <span class="o">=</span> <span class="mf">1.0</span>
 <span class="n">times</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>  <span class="c1"># Partition</span>
 <span class="n">BM</span> <span class="o">=</span> <span class="n">BrownianMotion</span><span class="p">(</span><span class="n">T</span><span class="o">=</span><span class="n">T</span><span class="p">)</span> <span class="c1"># Brownian Motion</span>
-<span class="n">bm_path</span> <span class="o">=</span> <span class="n">BM</span><span class="o">.</span><span class="n">sample_at</span><span class="p">(</span><span class="n">times</span><span class="p">)</span> <span class="c1"># Simulation from BM</span>
-<span class="n">gbm_path</span> <span class="o">=</span> <span class="n">x0</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">((</span><span class="n">mu</span> <span class="o">-</span> <span class="mf">0.5</span><span class="o">*</span><span class="n">sigma</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">t</span> <span class="o">+</span> <span class="n">sigma</span><span class="o">*</span><span class="n">bm_path</span><span class="p">)</span> <span class="c1"># Equation (3.3)</span>
+<span class="n">bm_path</span> <span class="o">=</span> <span class="n">BM</span><span class="o">.</span><span class="n">sample_at</span><span class="p">(</span><span class="n">times</span><span class="p">)</span> <span class="c1"># Simulated path from BM</span>
+<span class="n">gbm_path</span> <span class="o">=</span> <span class="n">x0</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">((</span><span class="n">mu</span> <span class="o">-</span> <span class="mf">0.5</span><span class="o">*</span><span class="n">sigma</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">times</span> <span class="o">+</span> <span class="n">sigma</span><span class="o">*</span><span class="n">bm_path</span><span class="p">)</span> <span class="c1"># Simulated path from GBM</span>
 </pre></div>
 </div>
 </div>
@@ -1072,7 +1075,7 @@ X_t = x_0 \exp \left\{  \left( \mu-\frac{1}{2}\sigma^2 \right)t  + \sigma W_t \r
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/geometric_brownian_motion_32_0.png" src="_images/geometric_brownian_motion_32_0.png" />
+<img alt="_images/geometric_brownian_motion_33_0.png" src="_images/geometric_brownian_motion_33_0.png" />
 </div>
 </div>
 <div class="admonition note">
@@ -1098,7 +1101,7 @@ X_t = x_0 \exp \left\{  \left( \mu-\frac{1}{2}\sigma^2 \right)t  + \sigma W_t \r
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/geometric_brownian_motion_35_0.png" src="_images/geometric_brownian_motion_35_0.png" />
+<img alt="_images/geometric_brownian_motion_36_0.png" src="_images/geometric_brownian_motion_36_0.png" />
 </div>
 </div>
 <p>Similarly, we can define the GBM over the interval <span class="math notranslate nohighlight">\([0, 5]\)</span> and simulate 50 paths with a partition of size 100.</p>
@@ -1111,7 +1114,7 @@ X_t = x_0 \exp \left\{  \left( \mu-\frac{1}{2}\sigma^2 \right)t  + \sigma W_t \r
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/geometric_brownian_motion_37_0.png" src="_images/geometric_brownian_motion_37_0.png" />
+<img alt="_images/geometric_brownian_motion_38_0.png" src="_images/geometric_brownian_motion_38_0.png" />
 </div>
 </div>
 </section>
@@ -1172,7 +1175,7 @@ x_0^2, \hbox{  if  }  2\mu+\sigma^2=0.\\
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/geometric_brownian_motion_41_0.png" src="_images/geometric_brownian_motion_41_0.png" />
+<img alt="_images/geometric_brownian_motion_42_0.png" src="_images/geometric_brownian_motion_42_0.png" />
 </div>
 </div>
 </section>
@@ -1185,7 +1188,7 @@ x_0^2, \hbox{  if  }  2\mu+\sigma^2=0.\\
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/geometric_brownian_motion_43_0.png" src="_images/geometric_brownian_motion_43_0.png" />
+<img alt="_images/geometric_brownian_motion_44_0.png" src="_images/geometric_brownian_motion_44_0.png" />
 </div>
 </div>
 </section>
@@ -1198,7 +1201,7 @@ x_0^2, \hbox{  if  }  2\mu+\sigma^2=0.\\
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/geometric_brownian_motion_45_0.png" src="_images/geometric_brownian_motion_45_0.png" />
+<img alt="_images/geometric_brownian_motion_46_0.png" src="_images/geometric_brownian_motion_46_0.png" />
 </div>
 </div>
 </section>
@@ -1211,7 +1214,7 @@ x_0^2, \hbox{  if  }  2\mu+\sigma^2=0.\\
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/geometric_brownian_motion_47_0.png" src="_images/geometric_brownian_motion_47_0.png" />
+<img alt="_images/geometric_brownian_motion_48_0.png" src="_images/geometric_brownian_motion_48_0.png" />
 </div>
 </div>
 </section>
@@ -1224,7 +1227,7 @@ x_0^2, \hbox{  if  }  2\mu+\sigma^2=0.\\
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/geometric_brownian_motion_49_0.png" src="_images/geometric_brownian_motion_49_0.png" />
+<img alt="_images/geometric_brownian_motion_50_0.png" src="_images/geometric_brownian_motion_50_0.png" />
 </div>
 </div>
 </section>
@@ -1248,7 +1251,7 @@ x_0^2, \hbox{  if  }  2\mu+\sigma^2=0.\\
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/geometric_brownian_motion_52_0.png" src="_images/geometric_brownian_motion_52_0.png" />
+<img alt="_images/geometric_brownian_motion_53_0.png" src="_images/geometric_brownian_motion_53_0.png" />
 </div>
 </div>
 </section>
@@ -1264,7 +1267,7 @@ x_0^2, \hbox{  if  }  2\mu+\sigma^2=0.\\
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/geometric_brownian_motion_54_0.png" src="_images/geometric_brownian_motion_54_0.png" />
+<img alt="_images/geometric_brownian_motion_55_0.png" src="_images/geometric_brownian_motion_55_0.png" />
 </div>
 </div>
 </section>
@@ -1280,7 +1283,7 @@ x_0^2, \hbox{  if  }  2\mu+\sigma^2=0.\\
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/geometric_brownian_motion_56_0.png" src="_images/geometric_brownian_motion_56_0.png" />
+<img alt="_images/geometric_brownian_motion_57_0.png" src="_images/geometric_brownian_motion_57_0.png" />
 </div>
 </div>
 </section>
@@ -1300,7 +1303,7 @@ x_0^2, \hbox{  if  }  2\mu+\sigma^2=0.\\
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/geometric_brownian_motion_58_0.png" src="_images/geometric_brownian_motion_58_0.png" />
+<img alt="_images/geometric_brownian_motion_59_0.png" src="_images/geometric_brownian_motion_59_0.png" />
 </div>
 </div>
 </section>
@@ -1322,16 +1325,16 @@ x_0^2, \hbox{  if  }  2\mu+\sigma^2=0.\\
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "python"
+            mode: "local-venv"
         },
         kernelOptions: {
-            kernelName: "python3",
+            kernelName: "local-venv",
             path: "./."
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'python3'</script>
+    <script>kernelName = 'local-venv'</script>
 
               </div>
               

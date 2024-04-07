@@ -620,14 +620,14 @@ title="Print to PDF"
 <section id="definition">
 <h2><span class="section-number">8.1. </span>Definition<a class="headerlink" href="#definition" title="Permalink to this headline">#</a></h2>
 <p>For every <span class="math notranslate nohighlight">\(\delta\geq 0\)</span> and <span class="math notranslate nohighlight">\(x\geq 0\)</span>, a <strong>Bessel process</strong> with dimension <span class="math notranslate nohighlight">\(\delta\)</span> started at <span class="math notranslate nohighlight">\(x\)</span> is defined as the unique strong solution of the SDE</p>
-<div class="amsmath math notranslate nohighlight" id="equation-eaadb529-0c23-4767-95c6-92c60cf85312">
-<span class="eqno">(8.1)<a class="headerlink" href="#equation-eaadb529-0c23-4767-95c6-92c60cf85312" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-8f79948a-032c-444a-bf19-d088b98b26ce">
+<span class="eqno">(8.1)<a class="headerlink" href="#equation-8f79948a-032c-444a-bf19-d088b98b26ce" title="Permalink to this equation">#</a></span>\[\begin{align}
 X_t &amp;= x +  \int_0^t\frac{\delta - 1}{2X_s} ds + B_t, \qquad t\geq 0,\\
 \end{align}\]</div>
 <p>and is denoted by <span class="math notranslate nohighlight">\(BES^{\delta}_{x}\)</span>.</p>
 <p>For every <span class="math notranslate nohighlight">\(\delta\geq 0\)</span> and <span class="math notranslate nohighlight">\(y\geq 0\)</span>,  a <strong>Squared Bessel process</strong> with dimension <span class="math notranslate nohighlight">\(\delta\)</span> started at <span class="math notranslate nohighlight">\(y\)</span> is defined as the unique strong solution of the SDE</p>
-<div class="amsmath math notranslate nohighlight" id="equation-ff646148-a2ea-45f2-9fd3-6493bc30d7bf">
-<span class="eqno">(8.2)<a class="headerlink" href="#equation-ff646148-a2ea-45f2-9fd3-6493bc30d7bf" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-385b1d6d-343b-45c5-a22d-18b4dcca2a8a">
+<span class="eqno">(8.2)<a class="headerlink" href="#equation-385b1d6d-343b-45c5-a22d-18b4dcca2a8a" title="Permalink to this equation">#</a></span>\[\begin{align}
 Y_t &amp;=  y +  \delta t + 2 \int_0^t \sqrt{ Y_t } dB_s,  \qquad t\geq 0, \\
 \end{align}\]</div>
 <p>and is denoted by <span class="math notranslate nohighlight">\(BESQ^{\delta}_y\)</span>.</p>
@@ -646,13 +646,13 @@ Y_t &amp;=  y +  \delta t + 2 \int_0^t \sqrt{ Y_t } dB_s,  \qquad t\geq 0, \\
 <section id="transition-densities">
 <h3><span class="section-number">8.1.1. </span>Transition Densities<a class="headerlink" href="#transition-densities" title="Permalink to this headline">#</a></h3>
 <p>For any <span class="math notranslate nohighlight">\(\delta &gt;0\)</span>  (or equivalently <span class="math notranslate nohighlight">\(\nu&gt;-1\)</span>) the  transition density <span class="math notranslate nohighlight">\(p_t^{(\nu)}\)</span> of a Bessel process <span class="math notranslate nohighlight">\(BES^{(\nu)}\)</span>  is given by</p>
-<div class="amsmath math notranslate nohighlight" id="equation-52c977bd-db11-4a7c-a85e-8925efe93e61">
-<span class="eqno">(8.3)<a class="headerlink" href="#equation-52c977bd-db11-4a7c-a85e-8925efe93e61" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-ca6ff829-e4ba-4e90-8bd6-030373b4fd18">
+<span class="eqno">(8.3)<a class="headerlink" href="#equation-ca6ff829-e4ba-4e90-8bd6-030373b4fd18" title="Permalink to this equation">#</a></span>\[\begin{equation}
 p_t^{(\nu)}(x, u) = \dfrac{u}{t}\left(\dfrac{u}{x}\right)^{\nu}\exp\left(-\dfrac{x^2+u^2}{2t}\right)I_{\nu}\left(\dfrac{xu}{t} \right), \quad t&gt;0, x&gt;0,
 \end{equation}\]</div>
 <p>and the transition density <span class="math notranslate nohighlight">\(q_t^{(\nu)}\)</span> of a Squared Bessel process <span class="math notranslate nohighlight">\(BESQ^{(\nu)}\)</span>  is given by</p>
-<div class="amsmath math notranslate nohighlight" id="equation-30a35b96-7bf0-4fae-ad10-083f385afe0e">
-<span class="eqno">(8.4)<a class="headerlink" href="#equation-30a35b96-7bf0-4fae-ad10-083f385afe0e" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-dafa98d7-638f-4a1b-930a-f010eeb0104c">
+<span class="eqno">(8.4)<a class="headerlink" href="#equation-dafa98d7-638f-4a1b-930a-f010eeb0104c" title="Permalink to this equation">#</a></span>\[\begin{equation}
 q_t^{(\nu)}(x, u) = \dfrac{1}{2t}\left(\dfrac{u}{x}\right)^{\frac{\nu}{2}}\exp\left(-\dfrac{x+u}{2t}\right)I_{\nu}\left(\dfrac{\sqrt{xu}}{t} \right),  \quad t&gt;0, x&gt;0,
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(I_{\nu}\)</span> is the usual <a class="reference external" href="https://en.wikipedia.org/wiki/Bessel_function#Modified_Bessel_functions">modified Bessel function</a> with index <span class="math notranslate nohighlight">\(\nu\)</span>.</p>
@@ -667,25 +667,32 @@ p_t^{\nu} (x,u) = 2y q_t^{\nu}(x^2, u^2).
 <h2><span class="section-number">8.2. </span>Marginal Distributions<a class="headerlink" href="#marginal-distributions" title="Permalink to this headline">#</a></h2>
 <p>The definition of the transition densities imply the following about the marginal distributions.</p>
 <p>Given a <strong>Bessel process</strong> <span class="math notranslate nohighlight">\(X \sim BES_x^{(\nu)}\)</span> the marginal distribution <span class="math notranslate nohighlight">\(X_t|X_0\)</span> (denoted as <span class="math notranslate nohighlight">\(X_t\)</span> for simplicity) has density function</p>
-<div class="amsmath math notranslate nohighlight" id="equation-07aef501-14ba-48e1-b2c1-86580dab9011">
-<span class="eqno">(8.5)<a class="headerlink" href="#equation-07aef501-14ba-48e1-b2c1-86580dab9011" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-2924d48b-a7f9-41a3-a3ac-49991a44d799">
+<span class="eqno">(8.5)<a class="headerlink" href="#equation-2924d48b-a7f9-41a3-a3ac-49991a44d799" title="Permalink to this equation">#</a></span>\[\begin{equation}
 f^{(\nu)}_{X_t}(u) = \dfrac{u}{t}\left(\dfrac{u}{x}\right)^{\nu}\exp\left(-\dfrac{x^2+u^2}{2t}\right)I_{\nu}\left(\dfrac{xu}{t} \right), \qquad t\geq 0.
 \end{equation}\]</div>
-<p>Thus, the marginal is a scaled non-central Chi random variable</p>
-<div class="amsmath math notranslate nohighlight" id="equation-39a932a9-5856-4389-b8e8-5f4f00e282fb">
-<span class="eqno">(8.6)<a class="headerlink" href="#equation-39a932a9-5856-4389-b8e8-5f4f00e282fb" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<p>Thus, the marginal is a scaled non-central Chi random variable with <span class="math notranslate nohighlight">\(\delta\)</span> degrees of freedom and non-centrality parameter <span class="math notranslate nohighlight">\(\frac{x}{\sqrt{t}}\)</span>, i.e.:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-caefe533-08ea-476d-8a23-9830deedd0e1">
+<span class="eqno">(8.6)<a class="headerlink" href="#equation-caefe533-08ea-476d-8a23-9830deedd0e1" title="Permalink to this equation">#</a></span>\[\begin{equation}
 X_t\sim  \sqrt{t} \chi \left(\delta, \frac{x}{\sqrt{t}} \right), \qquad  t\geq 0.
 \end{equation}\]</div>
 <p>Given a <strong>Squared Bessel process</strong> <span class="math notranslate nohighlight">\(Y\sim BESQ_y^{(\nu)}\)</span> the marginal distribution <span class="math notranslate nohighlight">\(Y_t|Y_0\)</span>  (denoted as <span class="math notranslate nohighlight">\(Y_t\)</span> for simplicity) has density function</p>
-<div class="amsmath math notranslate nohighlight" id="equation-8fa8bf0d-6660-4b9e-beab-7b76dfd42402">
-<span class="eqno">(8.7)<a class="headerlink" href="#equation-8fa8bf0d-6660-4b9e-beab-7b76dfd42402" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-54d4bd82-293f-45b0-b00a-73d581a5d692">
+<span class="eqno">(8.7)<a class="headerlink" href="#equation-54d4bd82-293f-45b0-b00a-73d581a5d692" title="Permalink to this equation">#</a></span>\[\begin{equation}
 f_{Y_t}^{(\nu)}(u) = \dfrac{1}{2t}\left(\dfrac{u}{y}\right)^{\frac{\nu}{2}}\exp\left(-\dfrac{y+u}{2t}\right)I_{\nu}\left(\dfrac{\sqrt{y u }}{t} \right), \qquad t\geq 0.
 \end{equation}\]</div>
-<p>Thus the marginal is a scaled non-central Chi squared random variable</p>
-<div class="amsmath math notranslate nohighlight" id="equation-bc819555-cc2a-4669-90f7-5b9f566c2b32">
-<span class="eqno">(8.8)<a class="headerlink" href="#equation-bc819555-cc2a-4669-90f7-5b9f566c2b32" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<p>Thus the marginal is a scaled non-central Chi squared random variable with <span class="math notranslate nohighlight">\(\delta\)</span> degrees of freedom and non-centrality parameter <span class="math notranslate nohighlight">\(\frac{y}{t}\)</span>, i.e.:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-76a78e47-9923-49cc-8938-21cb25b810f1">
+<span class="eqno">(8.8)<a class="headerlink" href="#equation-76a78e47-9923-49cc-8938-21cb25b810f1" title="Permalink to this equation">#</a></span>\[\begin{equation}
 Y_t \sim t \chi^2 \left(\delta, \frac{y}{t}\right), \qquad t\geq 0.
 \end{equation}\]</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ul class="simple">
+<li><p>The number of  degrees of freedom does not depend on <span class="math notranslate nohighlight">\(t\)</span>, which means that the number of degrees of freedom remains constant as the process evolves.</p></li>
+<li><p>The non-centrality parameter tends to zero as <span class="math notranslate nohighlight">\(t\)</span> grows.</p></li>
+</ul>
+</div>
 <section id="visualisation">
 <h3><span class="section-number">8.2.1. </span>Visualisation<a class="headerlink" href="#visualisation" title="Permalink to this headline">#</a></h3>
 <p>To visualise these probability density functions in <code class="docutils literal notranslate"><span class="pre">Python</span></code>, we can use the method <code class="docutils literal notranslate"><span class="pre">get_marginal</span></code> from the <code class="docutils literal notranslate"><span class="pre">aleatory</span></code> library. Let’s consider a Bessel process <code class="docutils literal notranslate"><span class="pre">BESProcess(dim=3.5,</span> <span class="pre">initial=1.0)</span></code> and plot the density function of the marginal <span class="math notranslate nohighlight">\(X_1\)</span></p>
@@ -703,7 +710,7 @@ Y_t \sim t \chi^2 \left(\delta, \frac{y}{t}\right), \qquad t\geq 0.
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/bessel_processes_part3_16_0.png" src="_images/bessel_processes_part3_16_0.png" />
+<img alt="_images/bessel_processes_part3_17_0.png" src="_images/bessel_processes_part3_17_0.png" />
 </div>
 </div>
 <p>Similarly, we can take a Squared Bessel process <code class="docutils literal notranslate"><span class="pre">BESQProcess(dim=3.5,</span> <span class="pre">initial=1.0)</span></code> and plot the density function of <span class="math notranslate nohighlight">\(Y_1\)</span>.</p>
@@ -720,7 +727,7 @@ Y_t \sim t \chi^2 \left(\delta, \frac{y}{t}\right), \qquad t\geq 0.
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/bessel_processes_part3_18_0.png" src="_images/bessel_processes_part3_18_0.png" />
+<img alt="_images/bessel_processes_part3_19_0.png" src="_images/bessel_processes_part3_19_0.png" />
 </div>
 </div>
 <p>Next, we vary the value of the dimension <span class="math notranslate nohighlight">\(\delta\)</span> and plot the corresponding pdfs. As the dimension increases:</p>
@@ -745,7 +752,7 @@ Y_t \sim t \chi^2 \left(\delta, \frac{y}{t}\right), \qquad t\geq 0.
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/bessel_processes_part3_20_0.png" src="_images/bessel_processes_part3_20_0.png" />
+<img alt="_images/bessel_processes_part3_21_0.png" src="_images/bessel_processes_part3_21_0.png" />
 </div>
 </div>
 <p>Now, we fix the dimension to <span class="math notranslate nohighlight">\(\delta =3.5\)</span> vary the value of the initial condition and plot the corresponding pdfs. As the initial condition increases:</p>
@@ -771,7 +778,7 @@ Y_t \sim t \chi^2 \left(\delta, \frac{y}{t}\right), \qquad t\geq 0.
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/bessel_processes_part3_22_0.png" src="_images/bessel_processes_part3_22_0.png" />
+<img alt="_images/bessel_processes_part3_23_0.png" src="_images/bessel_processes_part3_23_0.png" />
 </div>
 </div>
 <p>Finally, we fix both the dimension and the initial condition and vary the value of time <span class="math notranslate nohighlight">\(t\)</span>  and plot the corresponding pdfs. As <span class="math notranslate nohighlight">\(t\)</span> increases:</p>
@@ -800,7 +807,7 @@ Y_t \sim t \chi^2 \left(\delta, \frac{y}{t}\right), \qquad t\geq 0.
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/bessel_processes_part3_24_0.png" src="_images/bessel_processes_part3_24_0.png" />
+<img alt="_images/bessel_processes_part3_25_0.png" src="_images/bessel_processes_part3_25_0.png" />
 </div>
 </div>
 </section>
@@ -952,7 +959,7 @@ Var[X_t] = 36.000000
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/bessel_processes_part3_36_0.png" src="_images/bessel_processes_part3_36_0.png" />
+<img alt="_images/bessel_processes_part3_37_0.png" src="_images/bessel_processes_part3_37_0.png" />
 </div>
 </div>
 </section>
@@ -994,7 +1001,7 @@ Var[X_t] = 36.000000
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/bessel_processes_part3_39_0.png" src="_images/bessel_processes_part3_39_0.png" />
+<img alt="_images/bessel_processes_part3_40_0.png" src="_images/bessel_processes_part3_40_0.png" />
 </div>
 </div>
 </section>
@@ -1030,7 +1037,7 @@ Var[X_t] = 36.000000
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/bessel_processes_part3_43_0.png" src="_images/bessel_processes_part3_43_0.png" />
+<img alt="_images/bessel_processes_part3_44_0.png" src="_images/bessel_processes_part3_44_0.png" />
 </div>
 </div>
 <p>Similarly, let’s simulate 5 paths from a Squared Bessel process of dimension 6.5 and initial point 2.0, over the interval <span class="math notranslate nohighlight">\([0,1]\)</span> using a partition of 100 points.</p>
@@ -1044,7 +1051,7 @@ Var[X_t] = 36.000000
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/bessel_processes_part3_45_0.png" src="_images/bessel_processes_part3_45_0.png" />
+<img alt="_images/bessel_processes_part3_46_0.png" src="_images/bessel_processes_part3_46_0.png" />
 </div>
 </div>
 <div class="admonition note">
@@ -1065,7 +1072,7 @@ Var[X_t] = 36.000000
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/bessel_processes_part3_49_0.png" src="_images/bessel_processes_part3_49_0.png" />
+<img alt="_images/bessel_processes_part3_50_0.png" src="_images/bessel_processes_part3_50_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1077,7 +1084,7 @@ Var[X_t] = 36.000000
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/bessel_processes_part3_50_0.png" src="_images/bessel_processes_part3_50_0.png" />
+<img alt="_images/bessel_processes_part3_51_0.png" src="_images/bessel_processes_part3_51_0.png" />
 </div>
 </div>
 <div class="cell tag_hide-input docutils container">
@@ -1100,7 +1107,7 @@ Var[X_t] = 36.000000
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/bessel_processes_part3_51_0.png" src="_images/bessel_processes_part3_51_0.png" />
+<img alt="_images/bessel_processes_part3_52_0.png" src="_images/bessel_processes_part3_52_0.png" />
 </div>
 </div>
 <div class="cell tag_hide-input docutils container">
@@ -1124,7 +1131,7 @@ Var[X_t] = 36.000000
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/bessel_processes_part3_52_0.png" src="_images/bessel_processes_part3_52_0.png" />
+<img alt="_images/bessel_processes_part3_53_0.png" src="_images/bessel_processes_part3_53_0.png" />
 </div>
 </div>
 </section>
