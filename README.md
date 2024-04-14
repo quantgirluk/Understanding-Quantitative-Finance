@@ -1,11 +1,10 @@
-## [Understanding Quantitative Finance](https://quantgirluk.github.io/Understanding-Quantitative-Finance/intro.html)
-
+# [Understanding Quantitative Finance](https://quantgirluk.github.io/Understanding-Quantitative-Finance/intro.html)
 
 This is a collection of notes exploring a number of topics in Quantitative Finance (QF). The idea is to use Python 🐍to illustrate the theoretical concepts and help you to get a better understanding of each topic.
 
 My aim is to provide an open-source repository where people interested in a career in QF can find these concepts covered in a rigorous manner while keeping the practitioners point of view into consideration.
 
-### Content
+## Content
 
 Part I. Stochastic Processes
 
@@ -25,7 +24,9 @@ This project is under construction 🦺 and new content will be added on a regul
 
 You can visit the current version here: [Understanding Quantitative Finance Website](https://quantgirluk.github.io/Understanding-Quantitative-Finance/intro.html)
 
-### Thanks for Visiting! ✨
+**If you like this project, please give it a star** ⭐️
+
+## Thanks for Visiting! ✨
 
 Connect with me via:
 
@@ -35,4 +36,4 @@ Connect with me via:
 - 👾 [Personal Website](https://quantgirl.blog)
 
 
-**If you like this projet, please give it a star** ⭐️
+
