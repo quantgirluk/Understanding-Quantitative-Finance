@@ -11,7 +11,11 @@ My aim is to provide an open-source repository where people interested in a care
 
 ## Author
 
-I am Dialid Santiago. I have 7 years of experience working as a Quant. Currently, I am working in the Cross-Asset front office quant team at Bank of America. My previous experience includes the development and implementation of mathematical models for Counterparty Credit Risk, Market Risk, and Wholesale Credit Risk, as well as Validation in Retail Credit Risk. I hold a PhD in Mathematics/Statistics from the University of Warwick where I spent 4 amazing years focusing on non-linear stochastic processes. Before coming to the UK, I obtained an MSc in Probability and Statistics, and a BSc in Applied Mathematics in Mexico. I regularly [blog](https://quantgirl.blog) about diverse topics.
+I have 8 years of experience working as a Quant. Currently, I am working in the Cross-Asset front office quant team at Bank of America. My previous experience includes the development and implementation of mathematical models for Counterparty Credit Risk, Market Risk, and Wholesale Credit Risk, as well as Validation in Retail Credit Risk. 
+
+I hold a PhD in Mathematics/Statistics from the University of Warwick where I spent 4 amazing years focusing on non-linear stochastic processes. Before coming to the UK, I obtained an MSc in Probability and Statistics, and a BSc in Applied Mathematics in Mexico. 
+
+I regularly write [here](https://quantgirl.blog) about diverse topics.
 
 Connect with me via:
 
@@ -23,7 +27,7 @@ Connect with me via:
 ```{note}
 
  - This project is under construction 🦺 and notes will be released on an ongoing basis 🌱
- - If you like this projet, please give it a star in [GitHub](https://github.com/quantgirluk/Understanding-Quantitative-Finance) ⭐️ 
+ - If you like this project, please give it a star in [GitHub](https://github.com/quantgirluk/Understanding-Quantitative-Finance) ⭐️ 
 
 ```
 

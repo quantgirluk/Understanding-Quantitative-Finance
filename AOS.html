@@ -54,7 +54,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="prev" title="6. Bessel Processes Part I" href="bessel_processes_part1.html" />
+    <link rel="prev" title="8. Bessel Processes Part III" href="bessel_processes_part3.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -148,6 +148,16 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1">
   <a class="reference internal" href="bessel_processes_part1.html">
    6. Bessel Processes Part I
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="bessel_processes_part2.html">
+   7. Bessel Processes Part II
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="bessel_processes_part3.html">
+   8. Bessel Processes Part III
   </a>
  </li>
 </ul>
@@ -467,6 +477,10 @@ title="Print to PDF"
                 
   <section class="tex2jax_ignore mathjax_ignore" id="american-options-pricing-using-the-longstaff-schwartz-algorithm">
 <h1>American Options Pricing using the Longstaff-Schwartz Algorithm<a class="headerlink" href="#american-options-pricing-using-the-longstaff-schwartz-algorithm" title="Permalink to this headline">#</a></h1>
+<p>This notebook is part of the materials that I used in my industry expert Lecture at KCL. You can find the slides and further details here:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://quantgirl.blog/expert-lecture-at-kcl-2024/">Expert Lecture at KCL 2024</a></p></li>
+</ul>
 <p>In this notebook, we are going to illustrate the <a class="reference external" href="https://people.math.ethz.ch/~hjfurrer/teaching/LongstaffSchwartzAmericanOptionsLeastSquareMonteCarlo.pdf">Longstaff-Schwartz Algorithm</a> to price American options.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -677,8 +691,8 @@ This means that <span class="math notranslate nohighlight">\(X\)</span> satisfie
 			(X(t_{n-1}, \omega), V(t_{n-1}, t_{n}, \omega)),
 \end{equation*}\]</div>
 <p>and then use such polynomial to approximate the continuation value as follows:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-41a2e884-e7a9-4d43-89c6-688cb4c0a4c5">
-<span class="eqno">(1)<a class="headerlink" href="#equation-41a2e884-e7a9-4d43-89c6-688cb4c0a4c5" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-699da631-c5dc-49cb-aa23-fcaf5d2d6c65">
+<span class="eqno">(1)<a class="headerlink" href="#equation-699da631-c5dc-49cb-aa23-fcaf5d2d6c65" title="Permalink to this equation">#</a></span>\[\begin{equation}
 		   C(t_{n-1}) \approx \sum_{j=0}^{\infty} \hat{\alpha}_{ij} L_{j}(X(t_i)).
 \end{equation}\]</div>
 <p>There are two choices to make here:</p>
@@ -707,7 +721,7 @@ This means that <span class="math notranslate nohighlight">\(X\)</span> satisfie
 <div class="cell_output docutils container">
 <img alt="_images/AOS_24_0.png" src="_images/AOS_24_0.png" />
 <div class="output text_latex math notranslate nohighlight">
-\[x \mapsto \text{-111.98284226}\,{L}_{0}(\text{-0.21936949} + \text{0.49565668}x) + \text{500.06773548}\,{L}_{1}(\text{-0.21936949} + \text{0.49565668}x) - \text{835.05177592}\,{L}_{2}(\text{-0.21936949} + \text{0.49565668}x) + \text{618.4573668}\,{L}_{3}(\text{-0.21936949} + \text{0.49565668}x) - \text{170.81376925}\,{L}_{4}(\text{-0.21936949} + \text{0.49565668}x)\]</div>
+\[x \mapsto \text{-68.7495323}\,{L}_{0}(\text{-0.22627941} + \text{0.663215}x) + \text{314.82138533}\,{L}_{1}(\text{-0.22627941} + \text{0.663215}x) - \text{539.5052747}\,{L}_{2}(\text{-0.22627941} + \text{0.663215}x) + \text{411.65432383}\,{L}_{3}(\text{-0.22627941} + \text{0.663215}x) - \text{117.46296161}\,{L}_{4}(\text{-0.22627941} + \text{0.663215}x)\]</div>
 </div>
 </div>
 <p>We can try other choices!</p>
@@ -743,7 +757,7 @@ This means that <span class="math notranslate nohighlight">\(X\)</span> satisfie
 </div>
 <div class="cell_output docutils container">
 <div class="output text_latex math notranslate nohighlight">
-\[x \mapsto \text{0.18247362}\,{H}_{0}(\text{-1.43873898} + \text{0.99131336}x) - \text{0.26207322}\,{H}_{1}(\text{-1.43873898} + \text{0.99131336}x) + \text{0.09944627}\,{H}_{2}(\text{-1.43873898} + \text{0.99131336}x) - \text{0.03913485}\,{H}_{3}(\text{-1.43873898} + \text{0.99131336}x)\]</div>
+\[x \mapsto \text{0.25148587}\,{H}_{0}(\text{-1.45255883} + \text{1.32642999}x) - \text{0.20201954}\,{H}_{1}(\text{-1.45255883} + \text{1.32642999}x) + \text{0.09399961}\,{H}_{2}(\text{-1.45255883} + \text{1.32642999}x) - \text{0.00213526}\,{H}_{3}(\text{-1.45255883} + \text{1.32642999}x)\]</div>
 </div>
 </div>
 <div class="cell docutils container">
@@ -754,7 +768,7 @@ This means that <span class="math notranslate nohighlight">\(X\)</span> satisfie
 </div>
 <div class="cell_output docutils container">
 <div class="output text_latex math notranslate nohighlight">
-\[x \mapsto \text{47718.5966806}\,{L}_{0}(\text{-0.21936949} + \text{0.49565668}x) - \text{305394.31325606}\,{L}_{1}(\text{-0.21936949} + \text{0.49565668}x) + \text{814251.73818118}\,{L}_{2}(\text{-0.21936949} + \text{0.49565668}x) - \text{1157652.35392543}\,{L}_{3}(\text{-0.21936949} + \text{0.49565668}x) + \text{925615.70629536}\,{L}_{4}(\text{-0.21936949} + \text{0.49565668}x) - \text{394619.28021624}\,{L}_{5}(\text{-0.21936949} + \text{0.49565668}x) + \text{70080.56214403}\,{L}_{6}(\text{-0.21936949} + \text{0.49565668}x)\]</div>
+\[x \mapsto \text{15621.19166214}\,{L}_{0}(\text{-0.22627941} + \text{0.663215}x) - \text{102033.69366731}\,{L}_{1}(\text{-0.22627941} + \text{0.663215}x) + \text{277816.86439415}\,{L}_{2}(\text{-0.22627941} + \text{0.663215}x) - \text{403604.83914871}\,{L}_{3}(\text{-0.22627941} + \text{0.663215}x) + \text{329954.4565466}\,{L}_{4}(\text{-0.22627941} + \text{0.663215}x) - \text{143918.26299558}\,{L}_{5}(\text{-0.22627941} + \text{0.663215}x) + \text{26165.06062887}\,{L}_{6}(\text{-0.22627941} + \text{0.663215}x)\]</div>
 </div>
 </div>
 <div class="cell docutils container">
@@ -765,7 +779,7 @@ This means that <span class="math notranslate nohighlight">\(X\)</span> satisfie
 </div>
 <div class="cell_output docutils container">
 <div class="output text_latex math notranslate nohighlight">
-\[x \mapsto \text{1.26714895}\,{T}_{0}(\text{-1.43873898} + \text{0.99131336}x) + \text{1.49392303}\,{T}_{1}(\text{-1.43873898} + \text{0.99131336}x) + \text{0.93545578}\,{T}_{2}(\text{-1.43873898} + \text{0.99131336}x) - \text{0.39162393}\,{T}_{3}(\text{-1.43873898} + \text{0.99131336}x) - \text{1.00550774}\,{T}_{4}(\text{-1.43873898} + \text{0.99131336}x) - \text{1.05615347}\,{T}_{5}(\text{-1.43873898} + \text{0.99131336}x) - \text{0.77608559}\,{T}_{6}(\text{-1.43873898} + \text{0.99131336}x) - \text{0.37593457}\,{T}_{7}(\text{-1.43873898} + \text{0.99131336}x) - \text{0.09122739}\,{T}_{8}(\text{-1.43873898} + \text{0.99131336}x)\]</div>
+\[x \mapsto \text{0.24534738}\,{T}_{0}(\text{-1.45255883} + \text{1.32642999}x) - \text{0.38552054}\,{T}_{1}(\text{-1.45255883} + \text{1.32642999}x) + \text{0.17101309}\,{T}_{2}(\text{-1.45255883} + \text{1.32642999}x) - \text{0.00547649}\,{T}_{3}(\text{-1.45255883} + \text{1.32642999}x) - \text{0.03208221}\,{T}_{4}(\text{-1.45255883} + \text{1.32642999}x) + \text{0.0017933}\,{T}_{5}(\text{-1.45255883} + \text{1.32642999}x) + \text{0.01124565}\,{T}_{6}(\text{-1.45255883} + \text{1.32642999}x) + \text{0.00388878}\,{T}_{7}(\text{-1.45255883} + \text{1.32642999}x) - \text{0.01453728}\,{T}_{8}(\text{-1.45255883} + \text{1.32642999}x)\]</div>
 </div>
 </div>
 <p>Once we have made these choices, we can proceed to approximate the Continuation Value.</p>
@@ -801,7 +815,7 @@ This means that <span class="math notranslate nohighlight">\(X\)</span> satisfie
 <div class="cell_output docutils container">
 <img alt="_images/AOS_31_0.png" src="_images/AOS_31_0.png" />
 <div class="output text_latex math notranslate nohighlight">
-\[x \mapsto \text{-0.01641891} - \text{0.05452829}\,\left(\text{-1.43873898} + \text{0.99131336}x\right) + \text{0.39778506}\,\left(\text{-1.43873898} + \text{0.99131336}x\right)^{2} - \text{0.31307877}\,\left(\text{-1.43873898} + \text{0.99131336}x\right)^{3}\]</div>
+\[x \mapsto \text{0.06348665} - \text{0.37841592}\,\left(\text{-1.45255883} + \text{1.32642999}x\right) + \text{0.37599843}\,\left(\text{-1.45255883} + \text{1.32642999}x\right)^{2} - \text{0.01708211}\,\left(\text{-1.45255883} + \text{1.32642999}x\right)^{3}\]</div>
 </div>
 </div>
 <p>Using only ITM points.</p>
@@ -855,7 +869,7 @@ This means that <span class="math notranslate nohighlight">\(X\)</span> satisfie
 <div class="cell_output docutils container">
 <img alt="_images/AOS_33_0.png" src="_images/AOS_33_0.png" />
 <div class="output text_latex math notranslate nohighlight">
-\[x \mapsto \text{0.34679224} - \text{0.30942629}\,\left(\text{-2.40712419} + \text{3.17934139}x\right) - \text{0.00072114}\,\left(\text{-2.40712419} + \text{3.17934139}x\right)^{2} - \text{0.00829663}\,\left(\text{-2.40712419} + \text{3.17934139}x\right)^{3}\]</div>
+\[x \mapsto \text{0.39052756} - \text{0.36191262}\,\left(\text{-1.93828917} + \text{2.75008422}x\right) + \text{0.00191842}\,\left(\text{-1.93828917} + \text{2.75008422}x\right)^{2} - \text{0.02365089}\,\left(\text{-1.93828917} + \text{2.75008422}x\right)^{3}\]</div>
 </div>
 </div>
 <div class="cell tag_hide-input docutils container">
@@ -1042,8 +1056,8 @@ This means that <span class="math notranslate nohighlight">\(X\)</span> satisfie
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.196716
-0.167796
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.179838
+0.163496
 </pre></div>
 </div>
 </div>
@@ -1078,11 +1092,11 @@ This means that <span class="math notranslate nohighlight">\(X\)</span> satisfie
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="bessel_processes_part1.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="bessel_processes_part3.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title"><span class="section-number">6. </span>Bessel Processes Part I</p>
+            <p class="prev-next-title"><span class="section-number">8. </span>Bessel Processes Part III</p>
         </div>
     </a>
 </div>
