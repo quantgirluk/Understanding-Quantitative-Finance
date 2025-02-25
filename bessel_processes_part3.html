@@ -1,48 +1,56 @@
 
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>8. Bessel Processes Part III &#8212; Understanding Quantitative Finance</title>
-    
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <link href="_static/styles/theme.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+<link href="_static/styles/bootstrap.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+<link href="_static/styles/pydata-sphinx-theme.css?digest=796348d33e8b1d947c94" rel="stylesheet">
 
-    
-  <link rel="stylesheet"
-    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2">
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=4ec06e9971c5264fbd345897d5258098f11cc577" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
-    
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=796348d33e8b1d947c94">
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=796348d33e8b1d947c94">
 
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=8bf782fb4ee92b3d3646425e50f299c4e1fd152d"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="_static/togglebutton.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
@@ -52,61 +60,368 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'bessel_processes_part3';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="American Options Pricing using the Longstaff-Schwartz Algorithm" href="AOS.html" />
     <link rel="prev" title="7. Bessel Processes Part II" href="bessel_processes_part2.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="None">
-    
-
-    <!-- Google Analytics -->
-    
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="docsearch:language" content="en">
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
-<!-- Checkboxes to toggle the left sidebar -->
-<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
-<label class="overlay overlay-navbar" for="__navigation">
-    <div class="visually-hidden">Toggle navigation sidebar</div>
-</label>
-<!-- Checkboxes to toggle the in-page toc -->
-<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
-<label class="overlay overlay-pagetoc" for="__page-toc">
-    <div class="visually-hidden">Toggle in-page Table of Contents</div>
-</label>
-<!-- Headers at the top -->
-<div class="announcement header-item noprint"></div>
-<div class="header header-item noprint"></div>
+  
+  
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="180" data-default-mode="">
 
-    
-    <div class="container-fluid" id="banner"></div>
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
 
-    
+  
+  <input type="checkbox" class="sidebar-toggle" name="__primary" id="__primary">
+  <label class="overlay overlay-primary" for="__primary"></label>
 
-    <div class="container-xl">
-      <div class="row">
-          
-<!-- Sidebar -->
-<div class="bd-sidebar noprint" id="site-navigation">
-    <div class="bd-sidebar__content">
-        <div class="bd-sidebar__top"><div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="index.html">
+  
+  <input type="checkbox" class="sidebar-toggle" name="__secondary" id="__secondary">
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
       
-        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+<form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+    </div>
+  </div>
+
+  
+  <nav class="bd-header navbar navbar-expand-lg bd-navbar" id="navbar-main"><div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+      <span class="fa-solid fa-bars"></span>
+  </label>
+  <div id="navbar-start">
+    
+    
+  
+
+
+<a class="navbar-brand logo" href="intro.html">
+
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <img src="_static/puzzle.jpeg" class="logo__image only-light" alt="Logo image">
+    <img src="_static/puzzle.jpeg" class="logo__image only-dark" alt="Logo image">
+  
+  
+</a>
+    
+  </div>
+
+  
+  <div class="col-lg-9 navbar-header-items">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
         
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="brownian_motion.html">
+                        Brownian Motion
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="brownian_motion_arithmetic.html">
+                        Arithmetic Brownian Motion
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="geometric_brownian_motion.html">
+                        Geometric Brownian Motion
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="vasicek.html">
+                        Vasicek Model/Process
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="cir_process.html">
+                        Cox–Ingersoll–Ross process
+                      </a>
+                    </li>
+                
+            <div class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    More
+                </button>
+                <div class="dropdown-menu">
+                    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="bessel_processes_part1.html">
+                        Bessel Processes Part I
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="bessel_processes_part2.html">
+                        Bessel Processes Part II
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="#">
+                        Bessel Processes Part III
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="AOS.html">
+                        American Options Pricing using the Longstaff-Schwartz Algorithm
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="malliavin_delta_gbm.html">
+                        Malliavin Greeks under Black-Scholes Dynamics
+                      </a>
+                    </li>
+                
+                </div>
+            </div>
+            
+    </ul>
+</nav>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+        <div class="navbar-end-item navbar-persistent--container">
+          
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-toggle="tooltip">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+        </div>
       
       
-      <img src="_static/puzzle.jpeg" class="logo" alt="logo">
+      <div class="navbar-end-item">
+        <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+</button>
+      </div>
       
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+      </ul>
+      </div>
       
-      <h1 class="site-logo" id="site-title">Understanding Quantitative Finance</h1>
+    </div>
+  </div>
+
+
+  
+  
+    <div class="navbar-persistent--mobile">
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-toggle="tooltip">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+    </div>
+  
+
+  
+  <label class="sidebar-toggle secondary-toggle" for="__secondary">
+      <span class="fa-solid fa-outdent"></span>
+  </label>
+  
+
+</div>
+  </nav>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
       
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item active">
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="brownian_motion.html">
+                        Brownian Motion
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="brownian_motion_arithmetic.html">
+                        Arithmetic Brownian Motion
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="geometric_brownian_motion.html">
+                        Geometric Brownian Motion
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="vasicek.html">
+                        Vasicek Model/Process
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="cir_process.html">
+                        Cox–Ingersoll–Ross process
+                      </a>
+                    </li>
+                
+            <div class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    More
+                </button>
+                <div class="dropdown-menu">
+                    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="bessel_processes_part1.html">
+                        Bessel Processes Part I
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="bessel_processes_part2.html">
+                        Bessel Processes Part II
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="#">
+                        Bessel Processes Part III
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="AOS.html">
+                        American Options Pricing using the Longstaff-Schwartz Algorithm
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="malliavin_delta_gbm.html">
+                        Malliavin Greeks under Black-Scholes Dynamics
+                      </a>
+                    </li>
+                
+                </div>
+            </div>
+            
+    </ul>
+</nav>
+      </div>
+      
+      </div>
+    
+
+    
+    
+    <div class="sidebar-header-items__end">
+      
+      <div class="navbar-end-item">
+        <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+</button>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+      </ul>
+      </div>
+      
+    </div>
+    
+  </div>
+
+  
+  <div class="sidebar-start-items sidebar-primary__section">
+    <div class="sidebar-start-items__item">
+  
+
+
+<a class="navbar-brand logo" href="intro.html">
+
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <img src="_static/puzzle.jpeg" class="logo__image only-light" alt="Logo image">
+    <img src="_static/puzzle.jpeg" class="logo__image only-dark" alt="Logo image">
+  
+  
+</a>
+    </div>
+    <div class="sidebar-start-items__item">
+<form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+    </div>
+    <div class="sidebar-start-items__item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
@@ -115,479 +430,284 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Stochastic Processes
- </span>
-</p>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Stochastic Processes</span></p>
 <ul class="current nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="brownian_motion.html">
-   1. Brownian Motion
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="brownian_motion_arithmetic.html">
-   2. Brownian Motion with Drift
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="geometric_brownian_motion.html">
-   3. Geometric Brownian Motion
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="vasicek.html">
-   4. Vasicek Model/Process
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="cir_process.html">
-   5. Cox–Ingersoll–Ross process
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="bessel_processes_part1.html">
-   6. Bessel Processes Part I
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="bessel_processes_part2.html">
-   7. Bessel Processes Part II
-  </a>
- </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   8. Bessel Processes Part III
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="brownian_motion.html">1. Brownian Motion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="brownian_motion_arithmetic.html">2. Arithmetic Brownian Motion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="geometric_brownian_motion.html">3. Geometric Brownian Motion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vasicek.html">4. Vasicek Model/Process</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cir_process.html">5. Cox–Ingersoll–Ross process</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bessel_processes_part1.html">6. Bessel Processes Part I</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bessel_processes_part2.html">7. Bessel Processes Part II</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">8. Bessel Processes Part III</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Other Topics
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Other Topics</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="AOS.html">
-   American Options Pricing using the Longstaff-Schwartz Algorithm
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="AOS.html">American Options Pricing using the Longstaff-Schwartz Algorithm</a></li>
+<li class="toctree-l1"><a class="reference internal" href="malliavin_delta_gbm.html">Malliavin Greeks under Black-Scholes Dynamics</a></li>
 </ul>
 
     </div>
-</nav></div>
-        <div class="bd-sidebar__bottom">
-             <!-- To handle the deprecated key -->
-            
-            <div class="navbar_extra_footer">
-            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-            </div>
-            
-        </div>
+</nav>
     </div>
-    <div id="rtd-footer-container"></div>
-</div>
+  </div>
+  
 
+  
+  <div class="sidebar-end-items sidebar-primary__section">
+    <div class="sidebar-end-items__item">
+    </div>
+  </div>
 
-          
+  
+  <div id="rtd-footer-container"></div>
 
-
-          
-<!-- A tiny helper pixel to detect if we've scrolled -->
-<div class="sbt-scroll-pixel-helper"></div>
-<!-- Main content -->
-<div class="col py-0 content-container">
-    
-    <div class="header-article row sticky-top noprint">
+      </div>
+      <main id="main-content" class="bd-main">
         
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+        <div class="bd-content">
+          <div class="bd-article-container">
+            
+            <div class="bd-header-article">
+                
 
 
 
 <div class="col py-1 d-flex header-article-main">
     <div class="header-article__left">
-        
-        <label for="__navigation"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="right"
-title="Toggle navigation"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-bars"></i>
-  </span>
-
-</label>
-
-        
+        <label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" data-toggle="tooltip" data-placement="right" title="Toggle primary sidebar">
+            <span class="fa-solid fa-bars"></span>
+        </label>
     </div>
     <div class="header-article__right">
-<div class="menu-dropdown menu-dropdown-launch-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Launch interactive content">
-      <i class="fas fa-rocket"></i>
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://mybinder.org/v2/gh/quantgirluk/Understanding-Quantitative-Finance/master?urlpath=tree/UQF/bessel_processes_part3.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Launch on Binder"
->
-  
-
-<span class="headerbtn__icon-container">
-  
-    <img src="_static/images/logo_binder.svg">
-  </span>
-<span class="headerbtn__text-container">Binder</span>
-</a>
-
-      </li>
-      
-    </ul>
-  </div>
+  <ul class="dropdown-menu">
+  </ul>
 </div>
 
 <button onclick="toggleFullScreen()"
-  class="headerbtn"
+  class="btn btn-sm"
   data-toggle="tooltip"
 data-placement="bottom"
 title="Fullscreen mode"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   <i class="fas fa-expand"></i>
   </span>
 
 </button>
 
-<div class="menu-dropdown menu-dropdown-repository-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Source repositories">
-      <i class="fab fa-github"></i>
+
+
+<div class="dropdown dropdown-repository-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://github.com/quantgirluk/Understanding-Quantitative-Finance"
-   class="headerbtn"
+  <ul class="dropdown-menu">
+      <li><a href="https://github.com/quantgirluk/Understanding-Quantitative-Finance" target="_blank"
+   class="btn btn-sm dropdown-item"
    data-toggle="tooltip"
 data-placement="left"
 title="Source repository"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   <i class="fab fa-github"></i>
   </span>
-<span class="headerbtn__text-container">repository</span>
+<span class="btn__text-container">repository</span>
 </a>
-
-      </li>
+</a>
       
-      <li>
-        <a href="https://github.com/quantgirluk/Understanding-Quantitative-Finance/issues/new?title=Issue%20on%20page%20%2Fbessel_processes_part3.html&body=Your%20issue%20content%20here."
-   class="headerbtn"
+      <li><a href="https://github.com/quantgirluk/Understanding-Quantitative-Finance/issues/new?title=Issue%20on%20page%20%2Fbessel_processes_part3.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm dropdown-item"
    data-toggle="tooltip"
 data-placement="left"
 title="Open an issue"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   <i class="fas fa-lightbulb"></i>
   </span>
-<span class="headerbtn__text-container">open issue</span>
+<span class="btn__text-container">open issue</span>
 </a>
-
-      </li>
+</a>
       
-    </ul>
-  </div>
+  </ul>
 </div>
 
-<div class="menu-dropdown menu-dropdown-download-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Download this page">
-      <i class="fas fa-download"></i>
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="_sources/bessel_processes_part3.ipynb"
-   class="headerbtn"
+  <ul class="dropdown-menu">
+      <li><a href="_sources/bessel_processes_part3.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
    data-toggle="tooltip"
 data-placement="left"
 title="Download source file"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   <i class="fas fa-file"></i>
   </span>
-<span class="headerbtn__text-container">.ipynb</span>
+<span class="btn__text-container">.ipynb</span>
 </a>
-
-      </li>
+</a>
       
       <li>
-        
 <button onclick="printPdf(this)"
-  class="headerbtn"
+  class="btn btn-sm dropdown-item"
   data-toggle="tooltip"
 data-placement="left"
 title="Print to PDF"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   <i class="fas fa-file-pdf"></i>
   </span>
-<span class="headerbtn__text-container">.pdf</span>
+<span class="btn__text-container">.pdf</span>
 </button>
-
-      </li>
+</a>
       
-    </ul>
-  </div>
+  </ul>
 </div>
-<label for="__page-toc"
-  class="headerbtn headerbtn-page-toc"
-  
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-list"></i>
-  </span>
-
-</label>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary" data-toggle="tooltip" data-placement="left" title="Toggle secondary sidebar">
+            <span class="fa-solid fa-list"></span>
+        </label>
     </div>
 </div>
-
-<!-- Table of contents -->
-<div class="col-md-3 bd-toc show noprint">
-    <div class="tocsection onthispage pt-5 pb-3">
-        <i class="fas fa-list"></i> Contents
-    </div>
-    <nav id="bd-toc-nav" aria-label="Page">
-        <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#definition">
-   8.1. Definition
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#transition-densities">
-     8.1.1. Transition Densities
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#marginal-distributions">
-   8.2. Marginal Distributions
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#visualisation">
-     8.2.1. Visualisation
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#expectation-and-variance">
-     8.2.2. Expectation and Variance
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#bessel">
-       8.2.2.1. Bessel
-      </a>
-      <ul class="nav section-nav flex-column">
-       <li class="toc-h5 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#python-implementation">
-         8.2.2.1.1. Python Implementation
-        </a>
-       </li>
-      </ul>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#squared-bessel">
-       8.2.2.2. Squared Bessel
-      </a>
-      <ul class="nav section-nav flex-column">
-       <li class="toc-h5 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#id1">
-         8.2.2.2.1. Python Implementation
-        </a>
-       </li>
-      </ul>
-     </li>
-    </ul>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#long-time-behaviour">
-   8.3. Long Time Behaviour
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id2">
-     8.3.1. Expectation and Variance
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id3">
-       8.3.1.1. Bessel
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id4">
-       8.3.1.2. Squared Bessel
-      </a>
-     </li>
-    </ul>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#simulation">
-   8.4. Simulation
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#final-visualisations">
-   8.5. Final Visualisations
-  </a>
- </li>
-</ul>
-
-    </nav>
-</div>
-    </div>
-    <div class="article row">
-        <div class="col pl-md-3 pl-lg-5 content-container">
-            <!-- Table of contents that is only displayed when printing the page -->
-            <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Bessel Processes Part III</h1>
-                <!-- Table of contents -->
-                <div id="print-main-content">
-                    <div id="jb-print-toc">
-                        
-                        <div>
-                            <h2> Contents </h2>
-                        </div>
-                        <nav aria-label="Page">
-                            <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#definition">
-   8.1. Definition
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#transition-densities">
-     8.1.1. Transition Densities
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#marginal-distributions">
-   8.2. Marginal Distributions
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#visualisation">
-     8.2.1. Visualisation
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#expectation-and-variance">
-     8.2.2. Expectation and Variance
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#bessel">
-       8.2.2.1. Bessel
-      </a>
-      <ul class="nav section-nav flex-column">
-       <li class="toc-h5 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#python-implementation">
-         8.2.2.1.1. Python Implementation
-        </a>
-       </li>
-      </ul>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#squared-bessel">
-       8.2.2.2. Squared Bessel
-      </a>
-      <ul class="nav section-nav flex-column">
-       <li class="toc-h5 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#id1">
-         8.2.2.2.1. Python Implementation
-        </a>
-       </li>
-      </ul>
-     </li>
-    </ul>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#long-time-behaviour">
-   8.3. Long Time Behaviour
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id2">
-     8.3.1. Expectation and Variance
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id3">
-       8.3.1.1. Bessel
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id4">
-       8.3.1.2. Squared Bessel
-      </a>
-     </li>
-    </ul>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#simulation">
-   8.4. Simulation
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#final-visualisations">
-   8.5. Final Visualisations
-  </a>
- </li>
-</ul>
-
-                        </nav>
-                    </div>
-                </div>
             </div>
-            <main id="main-content" role="main">
-                
-              <div>
-                
+            
+            
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Bessel Processes Part III</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#definition">
+   8.1. Definition
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#transition-densities">
+     8.1.1. Transition Densities
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#marginal-distributions">
+   8.2. Marginal Distributions
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#visualisation">
+     8.2.1. Visualisation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#expectation-and-variance">
+     8.2.2. Expectation and Variance
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#bessel">
+       8.2.2.1. Bessel
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#python-implementation">
+         8.2.2.1.1. Python Implementation
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#squared-bessel">
+       8.2.2.2. Squared Bessel
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#id1">
+         8.2.2.2.1. Python Implementation
+        </a>
+       </li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#long-time-behaviour">
+   8.3. Long Time Behaviour
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     8.3.1. Expectation and Variance
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id3">
+       8.3.1.1. Bessel
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id4">
+       8.3.1.2. Squared Bessel
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#simulation">
+   8.4. Simulation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#final-visualisations">
+   8.5. Final Visualisations
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+            <article class="bd-article" role="main">
+              
   <section class="tex2jax_ignore mathjax_ignore" id="bessel-processes-part-iii">
-<h1><span class="section-number">8. </span>Bessel Processes Part III<a class="headerlink" href="#bessel-processes-part-iii" title="Permalink to this headline">#</a></h1>
+<h1><span class="section-number">8. </span>Bessel Processes Part III<a class="headerlink" href="#bessel-processes-part-iii" title="Permalink to this heading">#</a></h1>
 <p>The purpose of these notebooks (Bessel Processes Part I-III) is to provide an illustration of the <a class="reference external" href="https://en.wikipedia.org/wiki/Bessel_process">Bessel Processes</a> and some of their main properties.</p>
 <ul class="simple">
 <li><p>In Part I, we  introduce both Bessel and Squared Bessel processes with integer dimension <span class="math notranslate nohighlight">\(d\geq 2,\)</span> and study some of its main properties.</p></li>
@@ -602,8 +722,8 @@ title="Print to PDF"
 <p>together with the style sheet <a class="reference external" href="https://github.com/quantgirluk/matplotlib-stylesheets">Quant-Pastel Light</a>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">aleatory.processes</span> <span class="kn">import</span> <span class="n">BESProcess</span><span class="p">,</span> <span class="n">BESQProcess</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">aleatory.processes</span><span class="w"> </span><span class="kn">import</span> <span class="n">BESProcess</span><span class="p">,</span> <span class="n">BESQProcess</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 <span class="n">mystyle</span> <span class="o">=</span> <span class="s2">&quot;https://raw.githubusercontent.com/quantgirluk/matplotlib-stylesheets/main/quant-pastel-light.mplstyle&quot;</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="n">mystyle</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s2">&quot;figure.figsize&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">6</span><span class="p">)</span>
@@ -614,20 +734,20 @@ title="Print to PDF"
 <p>These tools will help us to make insightful visualisations of Bessel processes.</p>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<img alt="_images/bessel_processes_part3_5_0.png" src="_images/bessel_processes_part3_5_0.png" />
+<img alt="_images/4a917996c52a82cbbede2519e76ba71559c6f0055596e22ff58774b824dd22b4.png" src="_images/4a917996c52a82cbbede2519e76ba71559c6f0055596e22ff58774b824dd22b4.png" />
 </div>
 </div>
 <section id="definition">
-<h2><span class="section-number">8.1. </span>Definition<a class="headerlink" href="#definition" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">8.1. </span>Definition<a class="headerlink" href="#definition" title="Permalink to this heading">#</a></h2>
 <p>For every <span class="math notranslate nohighlight">\(\delta\geq 0\)</span> and <span class="math notranslate nohighlight">\(x\geq 0\)</span>, a <strong>Bessel process</strong> with dimension <span class="math notranslate nohighlight">\(\delta\)</span> started at <span class="math notranslate nohighlight">\(x\)</span> is defined as the unique strong solution of the SDE</p>
-<div class="amsmath math notranslate nohighlight" id="equation-8f79948a-032c-444a-bf19-d088b98b26ce">
-<span class="eqno">(8.1)<a class="headerlink" href="#equation-8f79948a-032c-444a-bf19-d088b98b26ce" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-c24c0079-216d-48d5-896c-d0ed32bdc31a">
+<span class="eqno">(8.1)<a class="headerlink" href="#equation-c24c0079-216d-48d5-896c-d0ed32bdc31a" title="Permalink to this equation">#</a></span>\[\begin{align}
 X_t &amp;= x +  \int_0^t\frac{\delta - 1}{2X_s} ds + B_t, \qquad t\geq 0,\\
 \end{align}\]</div>
 <p>and is denoted by <span class="math notranslate nohighlight">\(BES^{\delta}_{x}\)</span>.</p>
 <p>For every <span class="math notranslate nohighlight">\(\delta\geq 0\)</span> and <span class="math notranslate nohighlight">\(y\geq 0\)</span>,  a <strong>Squared Bessel process</strong> with dimension <span class="math notranslate nohighlight">\(\delta\)</span> started at <span class="math notranslate nohighlight">\(y\)</span> is defined as the unique strong solution of the SDE</p>
-<div class="amsmath math notranslate nohighlight" id="equation-385b1d6d-343b-45c5-a22d-18b4dcca2a8a">
-<span class="eqno">(8.2)<a class="headerlink" href="#equation-385b1d6d-343b-45c5-a22d-18b4dcca2a8a" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-18f0793c-ab5d-4971-a0ad-2c40b91e877d">
+<span class="eqno">(8.2)<a class="headerlink" href="#equation-18f0793c-ab5d-4971-a0ad-2c40b91e877d" title="Permalink to this equation">#</a></span>\[\begin{align}
 Y_t &amp;=  y +  \delta t + 2 \int_0^t \sqrt{ Y_t } dB_s,  \qquad t\geq 0, \\
 \end{align}\]</div>
 <p>and is denoted by <span class="math notranslate nohighlight">\(BESQ^{\delta}_y\)</span>.</p>
@@ -644,15 +764,15 @@ Y_t &amp;=  y +  \delta t + 2 \int_0^t \sqrt{ Y_t } dB_s,  \qquad t\geq 0, \\
 </ul>
 </div>
 <section id="transition-densities">
-<h3><span class="section-number">8.1.1. </span>Transition Densities<a class="headerlink" href="#transition-densities" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">8.1.1. </span>Transition Densities<a class="headerlink" href="#transition-densities" title="Permalink to this heading">#</a></h3>
 <p>For any <span class="math notranslate nohighlight">\(\delta &gt;0\)</span>  (or equivalently <span class="math notranslate nohighlight">\(\nu&gt;-1\)</span>) the  transition density <span class="math notranslate nohighlight">\(p_t^{(\nu)}\)</span> of a Bessel process <span class="math notranslate nohighlight">\(BES^{(\nu)}\)</span>  is given by</p>
-<div class="amsmath math notranslate nohighlight" id="equation-ca6ff829-e4ba-4e90-8bd6-030373b4fd18">
-<span class="eqno">(8.3)<a class="headerlink" href="#equation-ca6ff829-e4ba-4e90-8bd6-030373b4fd18" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-dd817da0-4920-4f51-a995-c1e9f4186cb2">
+<span class="eqno">(8.3)<a class="headerlink" href="#equation-dd817da0-4920-4f51-a995-c1e9f4186cb2" title="Permalink to this equation">#</a></span>\[\begin{equation}
 p_t^{(\nu)}(x, u) = \dfrac{u}{t}\left(\dfrac{u}{x}\right)^{\nu}\exp\left(-\dfrac{x^2+u^2}{2t}\right)I_{\nu}\left(\dfrac{xu}{t} \right), \quad t&gt;0, x&gt;0,
 \end{equation}\]</div>
 <p>and the transition density <span class="math notranslate nohighlight">\(q_t^{(\nu)}\)</span> of a Squared Bessel process <span class="math notranslate nohighlight">\(BESQ^{(\nu)}\)</span>  is given by</p>
-<div class="amsmath math notranslate nohighlight" id="equation-dafa98d7-638f-4a1b-930a-f010eeb0104c">
-<span class="eqno">(8.4)<a class="headerlink" href="#equation-dafa98d7-638f-4a1b-930a-f010eeb0104c" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-eeef5dd7-45c5-4cc0-814a-4ea891bc8a13">
+<span class="eqno">(8.4)<a class="headerlink" href="#equation-eeef5dd7-45c5-4cc0-814a-4ea891bc8a13" title="Permalink to this equation">#</a></span>\[\begin{equation}
 q_t^{(\nu)}(x, u) = \dfrac{1}{2t}\left(\dfrac{u}{x}\right)^{\frac{\nu}{2}}\exp\left(-\dfrac{x+u}{2t}\right)I_{\nu}\left(\dfrac{\sqrt{xu}}{t} \right),  \quad t&gt;0, x&gt;0,
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(I_{\nu}\)</span> is the usual <a class="reference external" href="https://en.wikipedia.org/wiki/Bessel_function#Modified_Bessel_functions">modified Bessel function</a> with index <span class="math notranslate nohighlight">\(\nu\)</span>.</p>
@@ -664,26 +784,26 @@ p_t^{\nu} (x,u) = 2y q_t^{\nu}(x^2, u^2).
 </section>
 </section>
 <section id="marginal-distributions">
-<h2><span class="section-number">8.2. </span>Marginal Distributions<a class="headerlink" href="#marginal-distributions" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">8.2. </span>Marginal Distributions<a class="headerlink" href="#marginal-distributions" title="Permalink to this heading">#</a></h2>
 <p>The definition of the transition densities imply the following about the marginal distributions.</p>
 <p>Given a <strong>Bessel process</strong> <span class="math notranslate nohighlight">\(X \sim BES_x^{(\nu)}\)</span> the marginal distribution <span class="math notranslate nohighlight">\(X_t|X_0\)</span> (denoted as <span class="math notranslate nohighlight">\(X_t\)</span> for simplicity) has density function</p>
-<div class="amsmath math notranslate nohighlight" id="equation-2924d48b-a7f9-41a3-a3ac-49991a44d799">
-<span class="eqno">(8.5)<a class="headerlink" href="#equation-2924d48b-a7f9-41a3-a3ac-49991a44d799" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-c3cbd51f-61e5-4a99-804c-6c265edef212">
+<span class="eqno">(8.5)<a class="headerlink" href="#equation-c3cbd51f-61e5-4a99-804c-6c265edef212" title="Permalink to this equation">#</a></span>\[\begin{equation}
 f^{(\nu)}_{X_t}(u) = \dfrac{u}{t}\left(\dfrac{u}{x}\right)^{\nu}\exp\left(-\dfrac{x^2+u^2}{2t}\right)I_{\nu}\left(\dfrac{xu}{t} \right), \qquad t\geq 0.
 \end{equation}\]</div>
 <p>Thus, the marginal is a scaled non-central Chi random variable with <span class="math notranslate nohighlight">\(\delta\)</span> degrees of freedom and non-centrality parameter <span class="math notranslate nohighlight">\(\frac{x}{\sqrt{t}}\)</span>, i.e.:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-caefe533-08ea-476d-8a23-9830deedd0e1">
-<span class="eqno">(8.6)<a class="headerlink" href="#equation-caefe533-08ea-476d-8a23-9830deedd0e1" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-b59a0661-29de-4747-9fa7-f6d55b10c382">
+<span class="eqno">(8.6)<a class="headerlink" href="#equation-b59a0661-29de-4747-9fa7-f6d55b10c382" title="Permalink to this equation">#</a></span>\[\begin{equation}
 X_t\sim  \sqrt{t} \chi \left(\delta, \frac{x}{\sqrt{t}} \right), \qquad  t\geq 0.
 \end{equation}\]</div>
 <p>Given a <strong>Squared Bessel process</strong> <span class="math notranslate nohighlight">\(Y\sim BESQ_y^{(\nu)}\)</span> the marginal distribution <span class="math notranslate nohighlight">\(Y_t|Y_0\)</span>  (denoted as <span class="math notranslate nohighlight">\(Y_t\)</span> for simplicity) has density function</p>
-<div class="amsmath math notranslate nohighlight" id="equation-54d4bd82-293f-45b0-b00a-73d581a5d692">
-<span class="eqno">(8.7)<a class="headerlink" href="#equation-54d4bd82-293f-45b0-b00a-73d581a5d692" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-56007e03-e61c-4d61-9c9c-3a4a0271bf07">
+<span class="eqno">(8.7)<a class="headerlink" href="#equation-56007e03-e61c-4d61-9c9c-3a4a0271bf07" title="Permalink to this equation">#</a></span>\[\begin{equation}
 f_{Y_t}^{(\nu)}(u) = \dfrac{1}{2t}\left(\dfrac{u}{y}\right)^{\frac{\nu}{2}}\exp\left(-\dfrac{y+u}{2t}\right)I_{\nu}\left(\dfrac{\sqrt{y u }}{t} \right), \qquad t\geq 0.
 \end{equation}\]</div>
 <p>Thus the marginal is a scaled non-central Chi squared random variable with <span class="math notranslate nohighlight">\(\delta\)</span> degrees of freedom and non-centrality parameter <span class="math notranslate nohighlight">\(\frac{y}{t}\)</span>, i.e.:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-76a78e47-9923-49cc-8938-21cb25b810f1">
-<span class="eqno">(8.8)<a class="headerlink" href="#equation-76a78e47-9923-49cc-8938-21cb25b810f1" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-6efd7fba-cd9b-4b62-b086-b11151bb8b3f">
+<span class="eqno">(8.8)<a class="headerlink" href="#equation-6efd7fba-cd9b-4b62-b086-b11151bb8b3f" title="Permalink to this equation">#</a></span>\[\begin{equation}
 Y_t \sim t \chi^2 \left(\delta, \frac{y}{t}\right), \qquad t\geq 0.
 \end{equation}\]</div>
 <div class="admonition note">
@@ -694,12 +814,17 @@ Y_t \sim t \chi^2 \left(\delta, \frac{y}{t}\right), \qquad t\geq 0.
 </ul>
 </div>
 <section id="visualisation">
-<h3><span class="section-number">8.2.1. </span>Visualisation<a class="headerlink" href="#visualisation" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">8.2.1. </span>Visualisation<a class="headerlink" href="#visualisation" title="Permalink to this heading">#</a></h3>
 <p>To visualise these probability density functions in <code class="docutils literal notranslate"><span class="pre">Python</span></code>, we can use the method <code class="docutils literal notranslate"><span class="pre">get_marginal</span></code> from the <code class="docutils literal notranslate"><span class="pre">aleatory</span></code> library. Let’s consider a Bessel process <code class="docutils literal notranslate"><span class="pre">BESProcess(dim=3.5,</span> <span class="pre">initial=1.0)</span></code> and plot the density function of the marginal <span class="math notranslate nohighlight">\(X_1\)</span></p>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># from aleatory.processes import BESProcess</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <span class="n">process</span> <span class="o">=</span> <span class="n">BESProcess</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span> <span class="mf">3.5</span><span class="p">,</span> <span class="n">initial</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
 <span class="n">X_1</span> <span class="o">=</span> <span class="n">process</span><span class="o">.</span><span class="n">get_marginal</span><span class="p">(</span><span class="n">t</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">X_1</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mf">0.999</span><span class="p">),</span> <span class="mi">200</span><span class="p">)</span>
@@ -709,12 +834,18 @@ Y_t \sim t \chi^2 \left(\delta, \frac{y}{t}\right), \qquad t\geq 0.
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/bessel_processes_part3_17_0.png" src="_images/bessel_processes_part3_17_0.png" />
+<img alt="_images/36c8c083acfbc9c3b6fde1c4252b36345e2064895359785e03a3613feda2e158.png" src="_images/36c8c083acfbc9c3b6fde1c4252b36345e2064895359785e03a3613feda2e158.png" />
 </div>
 </div>
 <p>Similarly, we can take a Squared Bessel process <code class="docutils literal notranslate"><span class="pre">BESQProcess(dim=3.5,</span> <span class="pre">initial=1.0)</span></code> and plot the density function of <span class="math notranslate nohighlight">\(Y_1\)</span>.</p>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># from aleatory.processes import BESQProcess</span>
 <span class="n">process</span> <span class="o">=</span> <span class="n">BESQProcess</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span> <span class="mf">3.5</span><span class="p">,</span> <span class="n">initial</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
@@ -726,8 +857,9 @@ Y_t \sim t \chi^2 \left(\delta, \frac{y}{t}\right), \qquad t\geq 0.
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/bessel_processes_part3_19_0.png" src="_images/bessel_processes_part3_19_0.png" />
+<img alt="_images/3b5ab7288eb8460a26171b55ac85fb52f29707261e41c479be75f1ff6a10110d.png" src="_images/3b5ab7288eb8460a26171b55ac85fb52f29707261e41c479be75f1ff6a10110d.png" />
 </div>
 </div>
 <p>Next, we vary the value of the dimension <span class="math notranslate nohighlight">\(\delta\)</span> and plot the corresponding pdfs. As the dimension increases:</p>
@@ -736,6 +868,11 @@ Y_t \sim t \chi^2 \left(\delta, \frac{y}{t}\right), \qquad t\geq 0.
 <li><p>The density from the Squared Bessel marginal also move towards the right, it becomes wider and its shape changes as well.</p></li>
 </ul>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
 <span class="n">dims</span> <span class="o">=</span> <span class="p">[</span><span class="mf">2.5</span><span class="p">,</span> <span class="mf">3.5</span><span class="p">,</span> <span class="mf">5.5</span><span class="p">,</span> <span class="mf">10.5</span><span class="p">]</span>
@@ -751,8 +888,9 @@ Y_t \sim t \chi^2 \left(\delta, \frac{y}{t}\right), \qquad t\geq 0.
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/bessel_processes_part3_21_0.png" src="_images/bessel_processes_part3_21_0.png" />
+<img alt="_images/d978fc9a70aa3a5f02f08c73525dc310cb8fa528cfa9b1865b98fe96af9a5a3d.png" src="_images/d978fc9a70aa3a5f02f08c73525dc310cb8fa528cfa9b1865b98fe96af9a5a3d.png" />
 </div>
 </div>
 <p>Now, we fix the dimension to <span class="math notranslate nohighlight">\(\delta =3.5\)</span> vary the value of the initial condition and plot the corresponding pdfs. As the initial condition increases:</p>
@@ -761,6 +899,11 @@ Y_t \sim t \chi^2 \left(\delta, \frac{y}{t}\right), \qquad t\geq 0.
 <li><p>The density from the Squared Bessel margina becomes wider and more symmetric.</p></li>
 </ul>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
 <span class="n">initials</span> <span class="o">=</span> <span class="p">[</span><span class="mf">2.5</span><span class="p">,</span> <span class="mf">3.5</span><span class="p">,</span> <span class="mf">5.5</span><span class="p">,</span> <span class="mf">10.5</span><span class="p">]</span>
@@ -777,8 +920,9 @@ Y_t \sim t \chi^2 \left(\delta, \frac{y}{t}\right), \qquad t\geq 0.
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/bessel_processes_part3_23_0.png" src="_images/bessel_processes_part3_23_0.png" />
+<img alt="_images/735165453ba0277045f740657723a4a230c19735899e65690d81678c0964d1be.png" src="_images/735165453ba0277045f740657723a4a230c19735899e65690d81678c0964d1be.png" />
 </div>
 </div>
 <p>Finally, we fix both the dimension and the initial condition and vary the value of time <span class="math notranslate nohighlight">\(t\)</span>  and plot the corresponding pdfs. As <span class="math notranslate nohighlight">\(t\)</span> increases:</p>
@@ -787,6 +931,11 @@ Y_t \sim t \chi^2 \left(\delta, \frac{y}{t}\right), \qquad t\geq 0.
 <li><p>The density from the Squared Bessel marginal becomes wider very rapidly as <span class="math notranslate nohighlight">\(t\)</span> grows.</p></li>
 </ul>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">d</span> <span class="o">=</span> <span class="mf">3.5</span>
 <span class="n">initial</span> <span class="o">=</span> <span class="mf">1.0</span> 
@@ -806,15 +955,16 @@ Y_t \sim t \chi^2 \left(\delta, \frac{y}{t}\right), \qquad t\geq 0.
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/bessel_processes_part3_25_0.png" src="_images/bessel_processes_part3_25_0.png" />
+<img alt="_images/70169c76e3ee35c6c577e3972c566cf8f8cd78fb794a82810519be055f89e89e.png" src="_images/70169c76e3ee35c6c577e3972c566cf8f8cd78fb794a82810519be055f89e89e.png" />
 </div>
 </div>
 </section>
 <section id="expectation-and-variance">
-<h3><span class="section-number">8.2.2. </span>Expectation and Variance<a class="headerlink" href="#expectation-and-variance" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">8.2.2. </span>Expectation and Variance<a class="headerlink" href="#expectation-and-variance" title="Permalink to this heading">#</a></h3>
 <section id="bessel">
-<h4><span class="section-number">8.2.2.1. </span>Bessel<a class="headerlink" href="#bessel" title="Permalink to this headline">#</a></h4>
+<h4><span class="section-number">8.2.2.1. </span>Bessel<a class="headerlink" href="#bessel" title="Permalink to this heading">#</a></h4>
 <p>For each <span class="math notranslate nohighlight">\(t&gt;0\)</span>, the  marginal distribution <span class="math notranslate nohighlight">\(X_t|X_0=x\)</span> from a Bessel process <span class="math notranslate nohighlight">\(BES_x^{\delta}\)</span> satisfies</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{equation*}
@@ -830,11 +980,11 @@ Y_t \sim t \chi^2 \left(\delta, \frac{y}{t}\right), \qquad t\geq 0.
 <div class="math notranslate nohighlight">
 \[L_{\frac{1}{2}}^{\nu}(0) =  \dfrac{\Gamma(1/2 + \delta/2  ) }{ (1/2)! \Gamma(\delta/2 ) } =  2 \dfrac{\Gamma(\frac{\delta+1}{2}  ) }{ \sqrt{\pi} \Gamma(\frac{\delta}{2} )}.\]</div>
 <section id="python-implementation">
-<h5><span class="section-number">8.2.2.1.1. </span>Python Implementation<a class="headerlink" href="#python-implementation" title="Permalink to this headline">#</a></h5>
+<h5><span class="section-number">8.2.2.1.1. </span>Python Implementation<a class="headerlink" href="#python-implementation" title="Permalink to this heading">#</a></h5>
 <p>We can use the method <code class="docutils literal notranslate"><span class="pre">get_marginal</span></code> to obtain the marginal distribution and the get its mean and variance</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">aleatory.processes</span> <span class="kn">import</span> <span class="n">BESProcess</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">aleatory.processes</span><span class="w"> </span><span class="kn">import</span> <span class="n">BESProcess</span>
 <span class="n">delta</span> <span class="o">=</span> <span class="mf">3.5</span>
 <span class="n">x</span> <span class="o">=</span> <span class="mf">1.0</span>
 <span class="n">t</span> <span class="o">=</span> <span class="mi">2</span>
@@ -855,7 +1005,7 @@ Y_t \sim t \chi^2 \left(\delta, \frac{y}{t}\right), \qquad t\geq 0.
 </section>
 </section>
 <section id="squared-bessel">
-<h4><span class="section-number">8.2.2.2. </span>Squared Bessel<a class="headerlink" href="#squared-bessel" title="Permalink to this headline">#</a></h4>
+<h4><span class="section-number">8.2.2.2. </span>Squared Bessel<a class="headerlink" href="#squared-bessel" title="Permalink to this heading">#</a></h4>
 <p>For each <span class="math notranslate nohighlight">\(t&gt;0\)</span>, the conditional marginal <span class="math notranslate nohighlight">\(Y_t|Y_0=y\)</span> from a Squared Bessel process <span class="math notranslate nohighlight">\(BESQ_y^{\delta}\)</span> satisfies</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{equation*}
@@ -868,7 +1018,7 @@ Y_t \sim t \chi^2 \left(\delta, \frac{y}{t}\right), \qquad t\geq 0.
 \end{equation*}\]</div>
 <p>Clearly, these  expressions coincide with the ones from <a class="reference external" href="https://quantgirluk.github.io/Understanding-Quantitative-Finance/bessel_processes_part1.html">Bessel Processes Part I</a> when <span class="math notranslate nohighlight">\(x=0\)</span> and <span class="math notranslate nohighlight">\(\delta\)</span> is integer.</p>
 <section id="id1">
-<h5><span class="section-number">8.2.2.2.1. </span>Python Implementation<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h5>
+<h5><span class="section-number">8.2.2.2.1. </span>Python Implementation<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h5>
 <p>For given <span class="math notranslate nohighlight">\(\delta, y, t\geq 0\)</span>, we can implement the above formulas for the expectation, and variance, as follows.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -881,7 +1031,7 @@ Y_t \sim t \chi^2 \left(\delta, \frac{y}{t}\right), \qquad t\geq 0.
 
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;For d=</span><span class="si">{</span><span class="n">d</span><span class="si">}</span><span class="s1">&#39;</span> <span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;t=</span><span class="si">{</span><span class="n">t</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;, &quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;E[X_t] = </span><span class="si">{</span><span class="n">expectation</span><span class="si">:</span><span class="s1"> .6f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Var[X_t] = </span><span class="si">{</span><span class="n">variance</span> <span class="si">:</span><span class="s1">.6f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Var[X_t] = </span><span class="si">{</span><span class="n">variance</span><span class="w"> </span><span class="si">:</span><span class="s1">.6f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -919,11 +1069,11 @@ Var[X_t] = 36.000000
 </section>
 </section>
 <section id="long-time-behaviour">
-<h2><span class="section-number">8.3. </span>Long Time Behaviour<a class="headerlink" href="#long-time-behaviour" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">8.3. </span>Long Time Behaviour<a class="headerlink" href="#long-time-behaviour" title="Permalink to this heading">#</a></h2>
 <section id="id2">
-<h3><span class="section-number">8.3.1. </span>Expectation and Variance<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">8.3.1. </span>Expectation and Variance<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h3>
 <section id="id3">
-<h4><span class="section-number">8.3.1.1. </span>Bessel<a class="headerlink" href="#id3" title="Permalink to this headline">#</a></h4>
+<h4><span class="section-number">8.3.1.1. </span>Bessel<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h4>
 <p>The conditional marginal from a Bessel process <span class="math notranslate nohighlight">\(BES_x^{\delta}\)</span>, satisfies</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{equation*}
@@ -936,8 +1086,13 @@ Var[X_t] = 36.000000
 \end{equation*}\]</div>
 <p>That is, both the mean and the variance tend to infinity as <span class="math notranslate nohighlight">\(t\)</span> grows. Besides, these expressions imply that the variance grows faster (at linear rate with respect to <span class="math notranslate nohighlight">\(t\)</span>) than the mean. The next plot illustrates these observations.</p>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">draw_mean_variance</span><span class="p">(</span><span class="n">delta</span><span class="o">=</span><span class="mf">3.5</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>  <span class="n">T</span><span class="o">=</span><span class="mi">100</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">draw_mean_variance</span><span class="p">(</span><span class="n">delta</span><span class="o">=</span><span class="mf">3.5</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>  <span class="n">T</span><span class="o">=</span><span class="mi">100</span><span class="p">):</span>
     <span class="n">process</span> <span class="o">=</span> <span class="n">BESProcess</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="n">delta</span><span class="p">,</span> <span class="n">initial</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="n">T</span><span class="p">)</span>
     <span class="n">ts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">T</span><span class="p">)</span>
     <span class="n">means</span> <span class="o">=</span> <span class="n">process</span><span class="o">.</span><span class="n">marginal_expectation</span><span class="p">(</span><span class="n">ts</span><span class="p">)</span>
@@ -958,13 +1113,14 @@ Var[X_t] = 36.000000
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/bessel_processes_part3_37_0.png" src="_images/bessel_processes_part3_37_0.png" />
+<img alt="_images/bd65adccf7943e69352fcbd0793e6cba05c015a5c54ecaac7a792fefdad73ab1.png" src="_images/bd65adccf7943e69352fcbd0793e6cba05c015a5c54ecaac7a792fefdad73ab1.png" />
 </div>
 </div>
 </section>
 <section id="id4">
-<h4><span class="section-number">8.3.1.2. </span>Squared Bessel<a class="headerlink" href="#id4" title="Permalink to this headline">#</a></h4>
+<h4><span class="section-number">8.3.1.2. </span>Squared Bessel<a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h4>
 <p>The conditional marginal from a Squared Bessel process <span class="math notranslate nohighlight">\(BESQ_0^d\)</span>, with integer dimension <span class="math notranslate nohighlight">\(d\geq 2\)</span>, satisfies</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{equation*}
@@ -977,8 +1133,13 @@ Var[X_t] = 36.000000
 \end{equation*}\]</div>
 <p>That is, both the mean and the variance tend to infinity as <span class="math notranslate nohighlight">\(t\)</span> grows. Besides, from these equations we can conclude that the variance grows faster than the mean.  The next plot illustrates these observations.</p>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">draw_mean_variance</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="n">initial</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="mi">100</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">draw_mean_variance</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="n">initial</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="mi">100</span><span class="p">):</span>
 
     <span class="n">process</span> <span class="o">=</span> <span class="n">BESQProcess</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="n">dim</span><span class="p">,</span> <span class="n">initial</span><span class="o">=</span><span class="n">initial</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="n">T</span><span class="p">)</span>
     <span class="n">ts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.00001</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">T</span><span class="p">)</span>
@@ -1000,15 +1161,16 @@ Var[X_t] = 36.000000
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/bessel_processes_part3_40_0.png" src="_images/bessel_processes_part3_40_0.png" />
+<img alt="_images/ff47ec5d09807d9ec491cfae58e3ace7af9967de367b6f1bd50a693f8ffa226e.png" src="_images/ff47ec5d09807d9ec491cfae58e3ace7af9967de367b6f1bd50a693f8ffa226e.png" />
 </div>
 </div>
 </section>
 </section>
 </section>
 <section id="simulation">
-<h2><span class="section-number">8.4. </span>Simulation<a class="headerlink" href="#simulation" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">8.4. </span>Simulation<a class="headerlink" href="#simulation" title="Permalink to this heading">#</a></h2>
 <p>Knowing  the distribution of the marginals allows us to simulate paths from Bessel and Squared Bessel processes.</p>
 <p>To simulate several paths from Bessel and Squared Bessel processes and visualise them we can use the methods <code class="docutils literal notranslate"><span class="pre">simulate</span></code> and <code class="docutils literal notranslate"><span class="pre">plot</span></code> from the <code class="docutils literal notranslate"><span class="pre">aleatory</span></code> library.</p>
 <div class="tip admonition">
@@ -1019,7 +1181,7 @@ Var[X_t] = 36.000000
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Snippet to Simulate N paths from the Bessel process</span>
-<span class="kn">from</span> <span class="nn">aleatory.processes</span> <span class="kn">import</span> <span class="n">BESProcess</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">aleatory.processes</span><span class="w"> </span><span class="kn">import</span> <span class="n">BESProcess</span>
 <span class="n">bes</span> <span class="o">=</span> <span class="n">BESProcess</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span> <span class="mf">3.5</span><span class="p">,</span> <span class="n">initial</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
 <span class="n">paths</span> <span class="o">=</span> <span class="n">bes</span><span class="o">.</span><span class="n">simulate</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
 </pre></div>
@@ -1030,28 +1192,28 @@ Var[X_t] = 36.000000
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Snippet to Simulate and Visualise the paths from the Bessel process</span>
-<span class="kn">from</span> <span class="nn">aleatory.processes</span> <span class="kn">import</span> <span class="n">BESProcess</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">aleatory.processes</span><span class="w"> </span><span class="kn">import</span> <span class="n">BESProcess</span>
 <span class="n">bes</span> <span class="o">=</span> <span class="n">BESProcess</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span> <span class="mf">3.5</span><span class="p">,</span> <span class="n">initial</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
 <span class="n">fig</span> <span class="o">=</span> <span class="n">bes</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/bessel_processes_part3_44_0.png" src="_images/bessel_processes_part3_44_0.png" />
+<img alt="_images/8d5d5b8b3e4a6f64eaf04a9859aaa97e662221615750b0be86cdee2348d20cb6.png" src="_images/8d5d5b8b3e4a6f64eaf04a9859aaa97e662221615750b0be86cdee2348d20cb6.png" />
 </div>
 </div>
 <p>Similarly, let’s simulate 5 paths from a Squared Bessel process of dimension 6.5 and initial point 2.0, over the interval <span class="math notranslate nohighlight">\([0,1]\)</span> using a partition of 100 points.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Snippet to Simulate and Visualise the paths from the Squared Bessel process</span>
-<span class="kn">from</span> <span class="nn">aleatory.processes</span> <span class="kn">import</span> <span class="n">BESQProcess</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">aleatory.processes</span><span class="w"> </span><span class="kn">import</span> <span class="n">BESQProcess</span>
 <span class="n">bes</span> <span class="o">=</span> <span class="n">BESQProcess</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span> <span class="mf">6.5</span><span class="p">,</span> <span class="n">initial</span><span class="o">=</span><span class="mf">2.0</span><span class="p">)</span>
 <span class="n">fig</span> <span class="o">=</span> <span class="n">bes</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/bessel_processes_part3_46_0.png" src="_images/bessel_processes_part3_46_0.png" />
+<img alt="_images/9a52ecd5455410fce4cbd1cdb113aa76cc17ca79c4438c593eff1c2055541fcb.png" src="_images/9a52ecd5455410fce4cbd1cdb113aa76cc17ca79c4438c593eff1c2055541fcb.png" />
 </div>
 </div>
 <div class="admonition note">
@@ -1061,7 +1223,7 @@ Var[X_t] = 36.000000
 <p>In the next section, we will see how to create more interesting visualisations!</p>
 </section>
 <section id="final-visualisations">
-<h2><span class="section-number">8.5. </span>Final Visualisations<a class="headerlink" href="#final-visualisations" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">8.5. </span>Final Visualisations<a class="headerlink" href="#final-visualisations" title="Permalink to this heading">#</a></h2>
 <p>To finish this note, let us take a look at some simulations.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1072,7 +1234,7 @@ Var[X_t] = 36.000000
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/bessel_processes_part3_50_0.png" src="_images/bessel_processes_part3_50_0.png" />
+<img alt="_images/672e21c0e3e63da19f436d3acf13654bec0b4f6eec171637fbd7027ca8e554a0.png" src="_images/672e21c0e3e63da19f436d3acf13654bec0b4f6eec171637fbd7027ca8e554a0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1084,10 +1246,15 @@ Var[X_t] = 36.000000
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/bessel_processes_part3_51_0.png" src="_images/bessel_processes_part3_51_0.png" />
+<img alt="_images/799301ddcfe7583aeb0ebe20f0aad208041dcec23101ba54cad966c89a0553bd.png" src="_images/799301ddcfe7583aeb0ebe20f0aad208041dcec23101ba54cad966c89a0553bd.png" />
 </div>
 </div>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># from aleatory.processes import BESProcess</span>
 <span class="c1"># import matplotlib.pyplot as plt</span>
@@ -1106,11 +1273,17 @@ Var[X_t] = 36.000000
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/bessel_processes_part3_52_0.png" src="_images/bessel_processes_part3_52_0.png" />
+<img alt="_images/afbfa07ba192e2afad1b771f8abbeebb7f221c33c74cda2e0132ce4d3922dedf.png" src="_images/afbfa07ba192e2afad1b771f8abbeebb7f221c33c74cda2e0132ce4d3922dedf.png" />
 </div>
 </div>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># from aleatory.processes import BESQProcess</span>
 <span class="c1"># import matplotlib.pyplot as plt</span>
@@ -1130,8 +1303,9 @@ Var[X_t] = 36.000000
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/bessel_processes_part3_53_0.png" src="_images/bessel_processes_part3_53_0.png" />
+<img alt="_images/d7cfd729924f4a117450956fc87e0c28da92b465b5961d993177ec26563bb9c8.png" src="_images/d7cfd729924f4a117450956fc87e0c28da92b465b5961d993177ec26563bb9c8.png" />
 </div>
 </div>
 </section>
@@ -1149,7 +1323,7 @@ Var[X_t] = 36.000000
             mode: "local-venv"
         },
         kernelOptions: {
-            kernelName: "local-venv",
+            name: "local-venv",
             path: "./."
         },
         predefinedOutput: true
@@ -1157,50 +1331,189 @@ Var[X_t] = 36.000000
     </script>
     <script>kernelName = 'local-venv'</script>
 
-              </div>
-              
-            </main>
-            <footer class="footer-article noprint">
-                
-    <!-- Previous / next buttons -->
+            </article>
+            
+
+            
+            
+            <footer class="bd-footer-article">
+                <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="bessel_processes_part2.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title"><span class="section-number">7. </span>Bessel Processes Part II</p>
-        </div>
-    </a>
-    <a class='right-next' id="next-link" href="AOS.html" title="next page">
-    <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">American Options Pricing using the Longstaff-Schwartz Algorithm</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
-    </a>
+  <a class='left-prev' id="prev-link" href="bessel_processes_part2.html" title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+          <p class="prev-next-subtitle">previous</p>
+          <p class="prev-next-title"><span class="section-number">7. </span>Bessel Processes Part II</p>
+      </div>
+  </a>
+  <a class='right-next' id="next-link" href="AOS.html" title="next page">
+  <div class="prev-next-info">
+      <p class="prev-next-subtitle">next</p>
+      <p class="prev-next-title">American Options Pricing using the Longstaff-Schwartz Algorithm</p>
+  </div>
+  <i class="fa-solid fa-angle-right"></i>
+  </a>
 </div>
             </footer>
-        </div>
-    </div>
-    <div class="footer-content row">
-        <footer class="col footer"><p>
+            
+          </div>
+          
+          
+          
+            <div class="bd-sidebar-secondary bd-toc">
+              
+<div class="toc-item">
   
-    By Dialid Santiago<br/>
-  
-      &copy; Copyright 2022-2024.<br/>
-</p>
-        </footer>
-    </div>
-    
+<div class="tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+</div>
+<nav id="bd-toc-nav" class="page-toc">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#definition">
+   8.1. Definition
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#transition-densities">
+     8.1.1. Transition Densities
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#marginal-distributions">
+   8.2. Marginal Distributions
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#visualisation">
+     8.2.1. Visualisation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#expectation-and-variance">
+     8.2.2. Expectation and Variance
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#bessel">
+       8.2.2.1. Bessel
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#python-implementation">
+         8.2.2.1.1. Python Implementation
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#squared-bessel">
+       8.2.2.2. Squared Bessel
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#id1">
+         8.2.2.2.1. Python Implementation
+        </a>
+       </li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#long-time-behaviour">
+   8.3. Long Time Behaviour
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     8.3.1. Expectation and Variance
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id3">
+       8.3.1.1. Bessel
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id4">
+       8.3.1.2. Squared Bessel
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#simulation">
+   8.4. Simulation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#final-visualisations">
+   8.5. Final Visualisations
+  </a>
+ </li>
+</ul>
+
+</nav>
 </div>
 
-
-      </div>
-    </div>
+            </div>
+          
+          
+        </div>
+        <footer class="bd-footer-content">
+          <div class="bd-footer-content__inner">
+            
+<div class="bd-footer-content__inner container">
   
-  <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+  <div class="footer-item">
+    
+<p class="component-author">
+By Dialid Santiago
+</p>
 
+  </div>
+  
+  <div class="footer-item">
+    
+<p class="copyright">
+
+    &copy; Copyright 2022-2024.<br>
+
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    <p class="last-updated">
+Last updated on None.<br>
+</p>
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </div>
+        </footer>
+        
+
+      </main>
+    </div>
+  </div>
+
+  
+    
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=796348d33e8b1d947c94"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=796348d33e8b1d947c94"></script>
 
   </body>
 </html>

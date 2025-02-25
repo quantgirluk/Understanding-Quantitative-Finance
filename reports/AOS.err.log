@@ -1,0 +1,46 @@
+Traceback (most recent call last):
+  File "/Users/dialidsantiago/Git/Understanding-Quantitative-Finance/.venv/lib/python3.11/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
+    executenb(
+  File "/Users/dialidsantiago/Git/Understanding-Quantitative-Finance/.venv/lib/python3.11/site-packages/nbclient/client.py", line 1305, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/dialidsantiago/Git/Understanding-Quantitative-Finance/.venv/lib/python3.11/site-packages/jupyter_core/utils/__init__.py", line 165, in wrapped
+    return loop.run_until_complete(inner)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/asyncio/base_events.py", line 653, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/Users/dialidsantiago/Git/Understanding-Quantitative-Finance/.venv/lib/python3.11/site-packages/nbclient/client.py", line 705, in async_execute
+    await self.async_execute_cell(
+  File "/Users/dialidsantiago/Git/Understanding-Quantitative-Finance/.venv/lib/python3.11/site-packages/nbclient/client.py", line 1058, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/Users/dialidsantiago/Git/Understanding-Quantitative-Finance/.venv/lib/python3.11/site-packages/nbclient/client.py", line 914, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+import numpy as np
+from ipywidgets import interact, IntSlider
+from aleatory.processes import GBM
+from aleatory.utils.utils import draw_paths
+
+%config InlineBackend.figure_format ='retina'
+
+import matplotlib.pyplot as plt
+my_style = "https://raw.githubusercontent.com/quantgirluk/matplotlib-stylesheets/main/quant-pastel-light.mplstyle"
+plt.style.use(my_style)
+plt.rcParams["figure.figsize"] = (12, 7)
+plt.rcParams["figure.dpi"] = 100
+------------------
+
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mImportError[0m                               Traceback (most recent call last)
+Input [0;32mIn [1][0m, in [0;36m<module>[0;34m[0m
+[1;32m      2[0m [38;5;28;01mfrom[39;00m [38;5;21;01mipywidgets[39;00m [38;5;28;01mimport[39;00m interact, IntSlider
+[1;32m      3[0m [38;5;28;01mfrom[39;00m [38;5;21;01maleatory[39;00m[38;5;21;01m.[39;00m[38;5;21;01mprocesses[39;00m [38;5;28;01mimport[39;00m GBM
+[0;32m----> 4[0m [38;5;28;01mfrom[39;00m [38;5;21;01maleatory[39;00m[38;5;21;01m.[39;00m[38;5;21;01mutils[39;00m[38;5;21;01m.[39;00m[38;5;21;01mutils[39;00m [38;5;28;01mimport[39;00m draw_paths
+[1;32m      6[0m get_ipython()[38;5;241m.[39mrun_line_magic([38;5;124m'[39m[38;5;124mconfig[39m[38;5;124m'[39m, [38;5;124m"[39m[38;5;124mInlineBackend.figure_format =[39m[38;5;124m'[39m[38;5;124mretina[39m[38;5;124m'[39m[38;5;124m"[39m)
+[1;32m      8[0m [38;5;28;01mimport[39;00m [38;5;21;01mmatplotlib[39;00m[38;5;21;01m.[39;00m[38;5;21;01mpyplot[39;00m [38;5;28;01mas[39;00m [38;5;21;01mplt[39;00m
+
+[0;31mImportError[0m: cannot import name 'draw_paths' from 'aleatory.utils.utils' (/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/aleatory/utils/utils.py)
+
