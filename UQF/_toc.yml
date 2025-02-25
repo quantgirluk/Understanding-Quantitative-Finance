@@ -21,6 +21,7 @@ parts:
 - caption: Other Topics
   chapters:
   - file: AOS
+  - file: malliavin_delta_gbm
 
 
 
