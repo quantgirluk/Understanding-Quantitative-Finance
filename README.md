@@ -33,7 +33,7 @@ Connect with me via:
 - 🦜 [Twitter](https://twitter.com/Quant_Girl)
 - 👩🏽‍💼 [Linkedin](https://www.linkedin.com/in/dialidsantiago/)
 - 📸 [Instagram](https://www.instagram.com/quant_girl/)
-- 👾 [Personal Website](https://quantgirl.blog)
+- 👾 [Personal Website](https://dialidsantiago.com)
 
 
 
