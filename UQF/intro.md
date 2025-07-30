@@ -11,18 +11,20 @@ My aim is to provide an open-source repository where people interested in a care
 
 ## Author
 
-I have 8 years of experience working as a Quant. Currently, I am working in the Cross-Asset front office quant team at Bank of America. My previous experience includes the development and implementation of mathematical models for Counterparty Credit Risk, Market Risk, and Wholesale Credit Risk, as well as Validation in Retail Credit Risk. 
+I am Dialid Santiago, also known as Quant Girl —a mathematician with nine years of experience working as a Quant (short for Financial Quantitative Analyst).
 
-I hold a PhD in Mathematics/Statistics from the University of Warwick where I spent 4 amazing years focusing on non-linear stochastic processes. Before coming to the UK, I obtained an MSc in Probability and Statistics, and a BSc in Applied Mathematics in Mexico. 
+My work focuses on designing and implementing mathematical models to price financial instruments and manage risk across a broad range of asset classes, including Equities, Credit, Commodities, and Rates.
 
-I regularly write [here](https://quantgirl.blog) about diverse topics.
+I hold a PhD in Statistics from the University of Warwick, where I spent some amazing years researching non-linear stochastic processes. Prior to that, I earned an M.Sc. in Probability and Statistics and a B.Sc. in Mathematics.
+
+I regularly post [here](https://dialidsantiago.com/scrapbook/) about diverse topics.
 
 Connect with me via:
 
 - 🦜 [Twitter](https://twitter.com/Quant_Girl)
 - 👩🏽‍💼 [Linkedin](https://www.linkedin.com/in/dialidsantiago/)
 - 📸 [Instagram](https://www.instagram.com/quant_girl/)
-- 👾 [Personal Website](https://quantgirl.blog)
+- 👾 [Personal Website](https://dialidsantiago.com)
 
 ```{note}
 
