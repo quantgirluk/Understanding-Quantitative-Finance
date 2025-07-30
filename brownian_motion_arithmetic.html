@@ -1,10 +1,12 @@
 
 <!DOCTYPE html>
 
-<html lang="en">
+
+<html lang="en" data-content_root="./" >
+
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>2. Arithmetic Brownian Motion &#8212; Understanding Quantitative Finance</title>
   
@@ -12,52 +14,49 @@
   
   <script data-cfasync="false">
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
-    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=796348d33e8b1d947c94" rel="stylesheet">
-<link href="_static/styles/bootstrap.css?digest=796348d33e8b1d947c94" rel="stylesheet">
-<link href="_static/styles/pydata-sphinx-theme.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
 
   
-  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=796348d33e8b1d947c94" rel="stylesheet">
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2">
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2">
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2">
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=4ec06e9971c5264fbd345897d5258098f11cc577" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=796348d33e8b1d947c94">
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=796348d33e8b1d947c94">
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="_static/doctools.js"></script>
-    <script src="_static/clipboard.min.js"></script>
-    <script src="_static/copybutton.js"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?digest=8bf782fb4ee92b3d3646425e50f299c4e1fd152d"></script>
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="_static/togglebutton.js"></script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="_static/design-tabs.js"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
-    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script src="_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'brownian_motion_arithmetic';</script>
@@ -65,362 +64,114 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="3. Geometric Brownian Motion" href="geometric_brownian_motion.html" />
     <link rel="prev" title="1. Brownian Motion" href="brownian_motion.html" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="docsearch:language" content="en">
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
   
   
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="180" data-default-mode="">
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
   
   
-  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <input type="checkbox" class="sidebar-toggle" name="__primary" id="__primary">
-  <label class="overlay overlay-primary" for="__primary"></label>
-
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
   
-  <input type="checkbox" class="sidebar-toggle" name="__secondary" id="__secondary">
-  <label class="overlay overlay-secondary" for="__secondary"></label>
-
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
   
   <div class="search-button__wrapper">
     <div class="search-button__overlay"></div>
     <div class="search-button__search-container">
-      
-<form class="bd-search d-flex align-items-center" action="search.html" method="get">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
   <i class="fa-solid fa-magnifying-glass"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form>
-    </div>
+</form></div>
   </div>
 
-  
-  <nav class="bd-header navbar navbar-expand-lg bd-navbar" id="navbar-main"><div class="bd-header__inner bd-page-width">
-  <label class="sidebar-toggle primary-toggle" for="__primary">
-      <span class="fa-solid fa-bars"></span>
-  </label>
-  <div id="navbar-start">
-    
-    
-  
-
-
-<a class="navbar-brand logo" href="intro.html">
-
-  
-  
-  
-  
-  
-  
-  
-
-  
-    <img src="_static/puzzle.jpeg" class="logo__image only-light" alt="Logo image">
-    <img src="_static/puzzle.jpeg" class="logo__image only-dark" alt="Logo image">
-  
-  
-</a>
-    
-  </div>
-
-  
-  <div class="col-lg-9 navbar-header-items">
-    <div id="navbar-center" class="mr-auto">
-      
-      <div class="navbar-center-item">
-        <nav class="navbar-nav">
-    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
-        Site Navigation
-    </p>
-    <ul id="navbar-main-elements" class="navbar-nav">
-        
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="brownian_motion.html">
-                        Brownian Motion
-                      </a>
-                    </li>
-                
-
-                    <li class="nav-item current active">
-                      <a class="nav-link nav-internal" href="#">
-                        Arithmetic Brownian Motion
-                      </a>
-                    </li>
-                
-
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="geometric_brownian_motion.html">
-                        Geometric Brownian Motion
-                      </a>
-                    </li>
-                
-
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="vasicek.html">
-                        Vasicek Model/Process
-                      </a>
-                    </li>
-                
-
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="cir_process.html">
-                        Cox–Ingersoll–Ross process
-                      </a>
-                    </li>
-                
-            <div class="nav-item dropdown">
-                <button class="btn dropdown-toggle nav-item" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    More
-                </button>
-                <div class="dropdown-menu">
-                    
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="bessel_processes_part1.html">
-                        Bessel Processes Part I
-                      </a>
-                    </li>
-                
-
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="bessel_processes_part2.html">
-                        Bessel Processes Part II
-                      </a>
-                    </li>
-                
-
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="bessel_processes_part3.html">
-                        Bessel Processes Part III
-                      </a>
-                    </li>
-                
-
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="AOS.html">
-                        American Options Pricing using the Longstaff-Schwartz Algorithm
-                      </a>
-                    </li>
-                
-
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="malliavin_delta_gbm.html">
-                        Malliavin Greeks under Black-Scholes Dynamics
-                      </a>
-                    </li>
-                
-                </div>
-            </div>
-            
-    </ul>
-</nav>
-      </div>
-      
-    </div>
-
-    <div id="navbar-end">
-      
-        <div class="navbar-end-item navbar-persistent--container">
-          
-<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-toggle="tooltip">
-  <i class="fa-solid fa-magnifying-glass"></i>
-</button>
-        </div>
-      
-      
-      <div class="navbar-end-item">
-        <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-toggle="tooltip">
-    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
-    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
-    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
-</button>
-      </div>
-      
-      <div class="navbar-end-item">
-        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
-      </ul>
-      </div>
-      
-    </div>
-  </div>
-
-
-  
-  
-    <div class="navbar-persistent--mobile">
-<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-toggle="tooltip">
-  <i class="fa-solid fa-magnifying-glass"></i>
-</button>
-    </div>
-  
-
-  
-  <label class="sidebar-toggle secondary-toggle" for="__secondary">
-      <span class="fa-solid fa-outdent"></span>
-  </label>
-  
-
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
 </div>
-  </nav>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
   
 
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
       
+      
+      
       <div class="bd-sidebar-primary bd-sidebar">
         
+
   
   <div class="sidebar-header-items sidebar-primary__section">
     
     
-      <div class="sidebar-header-items__center">
-      
-      <div class="navbar-center-item">
-        <nav class="navbar-nav">
-    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
-        Site Navigation
-    </p>
-    <ul id="navbar-main-elements" class="navbar-nav">
-        
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="brownian_motion.html">
-                        Brownian Motion
-                      </a>
-                    </li>
-                
-
-                    <li class="nav-item current active">
-                      <a class="nav-link nav-internal" href="#">
-                        Arithmetic Brownian Motion
-                      </a>
-                    </li>
-                
-
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="geometric_brownian_motion.html">
-                        Geometric Brownian Motion
-                      </a>
-                    </li>
-                
-
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="vasicek.html">
-                        Vasicek Model/Process
-                      </a>
-                    </li>
-                
-
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="cir_process.html">
-                        Cox–Ingersoll–Ross process
-                      </a>
-                    </li>
-                
-            <div class="nav-item dropdown">
-                <button class="btn dropdown-toggle nav-item" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    More
-                </button>
-                <div class="dropdown-menu">
-                    
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="bessel_processes_part1.html">
-                        Bessel Processes Part I
-                      </a>
-                    </li>
-                
-
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="bessel_processes_part2.html">
-                        Bessel Processes Part II
-                      </a>
-                    </li>
-                
-
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="bessel_processes_part3.html">
-                        Bessel Processes Part III
-                      </a>
-                    </li>
-                
-
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="AOS.html">
-                        American Options Pricing using the Longstaff-Schwartz Algorithm
-                      </a>
-                    </li>
-                
-
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="malliavin_delta_gbm.html">
-                        Malliavin Greeks under Black-Scholes Dynamics
-                      </a>
-                    </li>
-                
-                </div>
-            </div>
-            
-    </ul>
-</nav>
-      </div>
-      
-      </div>
     
-
-    
-    
-    <div class="sidebar-header-items__end">
-      
-      <div class="navbar-end-item">
-        <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-toggle="tooltip">
-    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
-    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
-    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
-</button>
-      </div>
-      
-      <div class="navbar-end-item">
-        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
-      </ul>
-      </div>
-      
-    </div>
     
   </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
 
   
-  <div class="sidebar-start-items sidebar-primary__section">
-    <div class="sidebar-start-items__item">
+    
   
-
 
 <a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/puzzle.jpeg" class="logo__image only-light" alt="Understanding Quantitative Finance - Home"/>
+    <script>document.write(`<img src="_static/puzzle.jpeg" class="logo__image only-dark" alt="Understanding Quantitative Finance - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
 
-  
-  
-  
-  
-  
-  
-  
-
-  
-    <img src="_static/puzzle.jpeg" class="logo__image only-light" alt="Logo image">
-    <img src="_static/puzzle.jpeg" class="logo__image only-dark" alt="Logo image">
-  
-  
-</a>
-    </div>
-    <div class="sidebar-start-items__item">
-<form class="bd-search d-flex align-items-center" action="search.html" method="get">
-  <i class="fa-solid fa-magnifying-glass"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
-  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form>
-    </div>
-    <div class="sidebar-start-items__item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
@@ -448,57 +199,146 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 
     </div>
-</nav>
+</nav></div>
     </div>
-  </div>
   
-
   
-  <div class="sidebar-end-items sidebar-primary__section">
-    <div class="sidebar-end-items__item">
-    </div>
+  <div class="sidebar-primary-items__end sidebar-primary__section">
   </div>
-
   
   <div id="rtd-footer-container"></div>
 
+
       </div>
-      <main id="main-content" class="bd-main">
+      
+      <main id="main-content" class="bd-main" role="main">
         
         
 
 <div class="sbt-scroll-pixel-helper"></div>
 
-        <div class="bd-content">
-          <div class="bd-article-container">
-            
-            <div class="bd-header-article">
-                
-
-
-
-<div class="col py-1 d-flex header-article-main">
-    <div class="header-article__left">
-        <label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" data-toggle="tooltip" data-placement="right" title="Toggle primary sidebar">
-            <span class="fa-solid fa-bars"></span>
-        </label>
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
     </div>
-    <div class="header-article__right">
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
 
 
-<div class="dropdown dropdown-launch-buttons">
-  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
-    <i class="fas fa-rocket"></i>
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
   </button>
   <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/quantgirluk/Understanding-Quantitative-Finance" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/quantgirluk/Understanding-Quantitative-Finance/issues/new?title=Issue%20on%20page%20%2Fbrownian_motion_arithmetic.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
   </ul>
 </div>
 
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/brownian_motion_arithmetic.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
 <button onclick="toggleFullScreen()"
-  class="btn btn-sm"
-  data-toggle="tooltip"
-data-placement="bottom"
-title="Fullscreen mode"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
 >
   
 
@@ -510,92 +350,35 @@ title="Fullscreen mode"
 
 
 
-<div class="dropdown dropdown-repository-buttons">
-  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
-    <i class="fab fa-github"></i>
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
   </button>
-  <ul class="dropdown-menu">
-      <li><a href="https://github.com/quantgirluk/Understanding-Quantitative-Finance" target="_blank"
-   class="btn btn-sm dropdown-item"
-   data-toggle="tooltip"
-data-placement="left"
-title="Source repository"
->
-  
-
-<span class="btn__icon-container">
-  <i class="fab fa-github"></i>
-  </span>
-<span class="btn__text-container">repository</span>
-</a>
-</a>
-      
-      <li><a href="https://github.com/quantgirluk/Understanding-Quantitative-Finance/issues/new?title=Issue%20on%20page%20%2Fbrownian_motion_arithmetic.html&body=Your%20issue%20content%20here." target="_blank"
-   class="btn btn-sm dropdown-item"
-   data-toggle="tooltip"
-data-placement="left"
-title="Open an issue"
->
-  
-
-<span class="btn__icon-container">
-  <i class="fas fa-lightbulb"></i>
-  </span>
-<span class="btn__text-container">open issue</span>
-</a>
-</a>
-      
-  </ul>
-</div>
+`);
+</script>
 
 
-
-<div class="dropdown dropdown-download-buttons">
-  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
-    <i class="fas fa-download"></i>
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
-  <ul class="dropdown-menu">
-      <li><a href="_sources/brownian_motion_arithmetic.ipynb" target="_blank"
-   class="btn btn-sm dropdown-item"
-   data-toggle="tooltip"
-data-placement="left"
-title="Download source file"
->
-  
-
-<span class="btn__icon-container">
-  <i class="fas fa-file"></i>
-  </span>
-<span class="btn__text-container">.ipynb</span>
-</a>
-</a>
-      
-      <li>
-<button onclick="printPdf(this)"
-  class="btn btn-sm dropdown-item"
-  data-toggle="tooltip"
-data-placement="left"
-title="Print to PDF"
->
-  
-
-<span class="btn__icon-container">
-  <i class="fas fa-file-pdf"></i>
-  </span>
-<span class="btn__text-container">.pdf</span>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
 </button>
-</a>
+</div></div>
       
-  </ul>
-</div>
-<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary" data-toggle="tooltip" data-placement="left" title="Toggle secondary sidebar">
-            <span class="fa-solid fa-list"></span>
-        </label>
     </div>
+  
 </div>
-            </div>
-            
-            
+</div>
+              
+              
 
 <div id="jb-print-docs-body" class="onlyprint">
     <h1>Arithmetic Brownian Motion</h1>
@@ -608,90 +391,40 @@ title="Print to PDF"
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#definition">
-   2.1. Definition
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#marginal-distributions">
-   2.2. Marginal Distributions
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#expectation-variance-and-covariance">
-     2.2.1. Expectation,  Variance, and Covariance
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#marginal-distributions-in-python">
-     2.2.2. Marginal Distributions in Python
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#probability-density-functions">
-     2.2.3. Probability Density Functions
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#visualisation">
-       2.2.3.1. Visualisation
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#sampling">
-     2.2.4. Sampling
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#simulation">
-   2.3. Simulation
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#simulating-and-visualising-paths">
-     2.3.1. Simulating and Visualising Paths
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#long-time-behaviour">
-   2.4. Long Time Behaviour
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#expectation-and-variance">
-     2.4.1. Expectation and Variance
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id1">
-   2.5. Visualisation
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#references-and-further-reading">
-   2.6. References and Further Reading
-  </a>
- </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#definition">2.1. Definition</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#marginal-distributions">2.2. Marginal Distributions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#expectation-variance-and-covariance">2.2.1. Expectation,  Variance, and Covariance</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#marginal-distributions-in-python">2.2.2. Marginal Distributions in Python</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#probability-density-functions">2.2.3. Probability Density Functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#visualisation">2.2.3.1. Visualisation</a></li>
 </ul>
-
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sampling">2.2.4. Sampling</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simulation">2.3. Simulation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simulating-and-visualising-paths">2.3.1. Simulating and Visualising Paths</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#long-time-behaviour">2.4. Long Time Behaviour</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#expectation-and-variance">2.4.1. Expectation and Variance</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">2.5. Visualisation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references-and-further-reading">2.6. References and Further Reading</a></li>
+</ul>
             </nav>
         </div>
     </div>
 </div>
 
-            <article class="bd-article" role="main">
               
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
   <section class="tex2jax_ignore mathjax_ignore" id="arithmetic-brownian-motion">
-<h1><span class="section-number">2. </span>Arithmetic Brownian Motion<a class="headerlink" href="#arithmetic-brownian-motion" title="Permalink to this heading">#</a></h1>
+<h1><span class="section-number">2. </span>Arithmetic Brownian Motion<a class="headerlink" href="#arithmetic-brownian-motion" title="Link to this heading">#</a></h1>
 <p>The purpose of this notebook is to review and illustrate the Brownian motion with Drift, also called Arithmetic Brownian Motion, and some of its main properties.</p>
 <p>Before diving into the theory, let’s start by loading the libraries</p>
 <ul class="simple">
@@ -701,26 +434,26 @@ title="Print to PDF"
 <p>together with the style sheet <a class="reference external" href="https://github.com/quantgirluk/matplotlib-stylesheets">Quant-Pastel Light</a>.</p>
 <p>These tools will help us to make insightful visualisations.</p>
 <div class="cell tag_hide-input docutils container">
-<details class="hide above-input">
+<details class="admonition hide above-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell source</span>
-<span class="expanded">Hide code cell source</span>
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 <span class="n">mystyle</span> <span class="o">=</span> <span class="s2">&quot;https://raw.githubusercontent.com/quantgirluk/matplotlib-stylesheets/main/quant-pastel-light.mplstyle&quot;</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="n">mystyle</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s2">&quot;figure.figsize&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s2">&quot;figure.figsize&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </details>
 </div>
 <div class="cell tag_hide-input docutils container">
-<details class="hide above-input">
+<details class="admonition hide above-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell source</span>
-<span class="expanded">Hide code cell source</span>
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">aleatory.processes</span><span class="w"> </span><span class="kn">import</span> <span class="n">BrownianMotion</span>
@@ -732,29 +465,29 @@ title="Print to PDF"
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/010caa517e9bbce643d1efd59b2824597a3b68ccc675ba0261dcbfc9b3f8fd40.png" src="_images/010caa517e9bbce643d1efd59b2824597a3b68ccc675ba0261dcbfc9b3f8fd40.png" />
+<img alt="_images/78847f81743f9ee43a594cc43c20675d647a8ec2d20c3cfb5f98ec85620840f9.png" src="_images/78847f81743f9ee43a594cc43c20675d647a8ec2d20c3cfb5f98ec85620840f9.png" />
 </div>
 </div>
 <section id="definition">
-<h2><span class="section-number">2.1. </span>Definition<a class="headerlink" href="#definition" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">2.1. </span>Definition<a class="headerlink" href="#definition" title="Link to this heading">#</a></h2>
 <p>The Arithmetic Brownian motion can be defined by the following Stochastic Differential Equation (SDE)</p>
-<div class="amsmath math notranslate nohighlight" id="equation-15eff146-dcbc-42c8-a4c9-fe919cd5e24c">
-<span class="eqno">(2.1)<a class="headerlink" href="#equation-15eff146-dcbc-42c8-a4c9-fe919cd5e24c" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-fc17fafd-9ca7-4576-aec8-83ad689448b7">
+<span class="eqno">(2.1)<a class="headerlink" href="#equation-fc17fafd-9ca7-4576-aec8-83ad689448b7" title="Permalink to this equation">#</a></span>\[\begin{equation}
 dX_t = \mu dt + \sigma dW_t, \quad t &gt;0,
 \end{equation}\]</div>
 <p>with initial condition <span class="math notranslate nohighlight">\(X_0 =x_0\)</span>, and constant parameters <span class="math notranslate nohighlight">\(\mu\in \mathbb{R}\)</span>, <span class="math notranslate nohighlight">\(\sigma&gt;0\)</span>. Without loss of generality we are going to assume that <span class="math notranslate nohighlight">\(x_0=0\)</span>. Here, <span class="math notranslate nohighlight">\(W_t\)</span> denotes a standard Brownian motion.</p>
 <p>Equation (2.1) equivales to</p>
-<div class="amsmath math notranslate nohighlight" id="equation-ef7b19b8-559c-42e1-91d6-726d482e6297">
-<span class="eqno">(2.2)<a class="headerlink" href="#equation-ef7b19b8-559c-42e1-91d6-726d482e6297" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-f653bd32-a6b7-472d-b04d-257435e0456a">
+<span class="eqno">(2.2)<a class="headerlink" href="#equation-f653bd32-a6b7-472d-b04d-257435e0456a" title="Permalink to this equation">#</a></span>\[\begin{align}
 X_t &amp;= \int_0^t \mu ds + \int_0^t \sigma dW_t =  \mu t +  \sigma W_t,
 \end{align}\]</div>
 <p>which gives us the solution.</p>
 </section>
 <section id="marginal-distributions">
-<h2><span class="section-number">2.2. </span>Marginal Distributions<a class="headerlink" href="#marginal-distributions" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">2.2. </span>Marginal Distributions<a class="headerlink" href="#marginal-distributions" title="Link to this heading">#</a></h2>
 <p>The las equation implies that for each <span class="math notranslate nohighlight">\(t&gt;0\)</span>, the marginal  <span class="math notranslate nohighlight">\(X_t|X_0\)</span> (which we will denote by <span class="math notranslate nohighlight">\(X_t\)</span> for simplicity)  is <strong>normally distributed</strong> since it is the sum of a deterministic part plus the marginal of a standard Brownian motion <span class="math notranslate nohighlight">\(W_t\)</span> –which follows a Gaussian distritbuion <span class="math notranslate nohighlight">\(\mathcal{N}(0,t)\)</span> times a constant .</p>
 <section id="expectation-variance-and-covariance">
-<h3><span class="section-number">2.2.1. </span>Expectation,  Variance, and Covariance<a class="headerlink" href="#expectation-variance-and-covariance" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">2.2.1. </span>Expectation,  Variance, and Covariance<a class="headerlink" href="#expectation-variance-and-covariance" title="Link to this heading">#</a></h3>
 <p>From equation (2.2) we obtain</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{equation*}
@@ -766,8 +499,8 @@ X_t &amp;= \int_0^t \mu ds + \int_0^t \sigma dW_t =  \mu t +  \sigma W_t,
 \mathbf{Var} [X_t] = Var[X_t |X_0] = \sigma^2 t, \qquad \forall t&gt; 0.
 \end{equation*}\]</div>
 <p>So we have</p>
-<div class="amsmath math notranslate nohighlight" id="equation-58658f2e-d341-495e-b14c-4194bb682e8e">
-<span class="eqno">(2.3)<a class="headerlink" href="#equation-58658f2e-d341-495e-b14c-4194bb682e8e" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-e763296c-6ac4-4951-bdf4-b3c9320329bb">
+<span class="eqno">(2.3)<a class="headerlink" href="#equation-e763296c-6ac4-4951-bdf4-b3c9320329bb" title="Permalink to this equation">#</a></span>\[\begin{equation}
 X_t \sim \mathcal{N}(\mu t, \sigma^2 t),  \qquad \forall t&gt;0.
 \end{equation}\]</div>
 <p>Besides, for any <span class="math notranslate nohighlight">\( t &gt; s &gt;0\)</span>, we have</p>
@@ -782,7 +515,7 @@ X_t \sim \mathcal{N}(\mu t, \sigma^2 t),  \qquad \forall t&gt;0.
 \end{equation*}\]</div>
 </section>
 <section id="marginal-distributions-in-python">
-<h3><span class="section-number">2.2.2. </span>Marginal Distributions in Python<a class="headerlink" href="#marginal-distributions-in-python" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">2.2.2. </span>Marginal Distributions in Python<a class="headerlink" href="#marginal-distributions-in-python" title="Link to this heading">#</a></h3>
 <p>Equation (2.3) allows us to implement the marginal distributions with <code class="docutils literal notranslate"><span class="pre">Python</span></code>.</p>
 <p>One way to do this is by using the object  <code class="docutils literal notranslate"><span class="pre">norm</span></code>  from the library <code class="docutils literal notranslate"><span class="pre">scipy.stats</span></code>.</p>
 <p>The next cell shows how to create <span class="math notranslate nohighlight">\(X_1\)</span> using this method.</p>
@@ -807,7 +540,7 @@ X_t \sim \mathcal{N}(\mu t, \sigma^2 t),  \qquad \forall t&gt;0.
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(array(1.), array(0.0625), array(0.), array(0.))
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(np.float64(1.0), np.float64(0.0625), np.float64(0.0), np.float64(0.0))
 </pre></div>
 </div>
 </div>
@@ -825,7 +558,7 @@ X_t \sim \mathcal{N}(\mu t, \sigma^2 t),  \qquad \forall t&gt;0.
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(array(1.), array(0.0625), array(0.), array(0.))
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(np.float64(1.0), np.float64(0.0625), np.float64(0.0), np.float64(0.0))
 </pre></div>
 </div>
 </div>
@@ -833,62 +566,41 @@ X_t \sim \mathcal{N}(\mu t, \sigma^2 t),  \qquad \forall t&gt;0.
 <p>Hereafter, we will use the latter method to create marginal distributions from the arithmetic Brownian Motion.</p>
 </section>
 <section id="probability-density-functions">
-<h3><span class="section-number">2.2.3. </span>Probability Density Functions<a class="headerlink" href="#probability-density-functions" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">2.2.3. </span>Probability Density Functions<a class="headerlink" href="#probability-density-functions" title="Link to this heading">#</a></h3>
 <p>The probability density function (pdf) of the marginal distribution <span class="math notranslate nohighlight">\(X_t|X_0\)</span> is given by the following expression</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{equation*}
 f(x, t; \mu, \sigma) = \dfrac{1}{\sigma \sqrt{2 \pi t}}\exp\left\{ -\dfrac{1}{2} \left(\dfrac{x-\mu t}{\sigma \sqrt{t}}\right)^2  \right\}, \qquad \forall x\in\mathbb{R}, t&gt;0.
 \end{equation*}\]</div>
 <section id="visualisation">
-<h4><span class="section-number">2.2.3.1. </span>Visualisation<a class="headerlink" href="#visualisation" title="Permalink to this heading">#</a></h4>
-<p>In order to visualise these functions, we are going to load the library <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code> and set some formatting options.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell tag_hide-input tag_hide-code docutils container">
-<details class="hide above-input">
-<summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell source</span>
-<span class="expanded">Hide code cell source</span>
-</summary>
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s2">&quot;seaborn-v0_8-whitegrid&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s2">&quot;figure.figsize&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
-<span class="o">%</span><span class="k">config</span> InlineBackend.figure_format =&#39;retina&#39;
-</pre></div>
-</div>
-</div>
-</details>
-</div>
+<h4><span class="section-number">2.2.3.1. </span>Visualisation<a class="headerlink" href="#visualisation" title="Link to this heading">#</a></h4>
 <p>Now, we consider an arithmetic Brownian Motion <code class="docutils literal notranslate"><span class="pre">BrownianMotion(drift=1.0,</span> <span class="pre">scale=1.0)</span></code>  and plot the probability density function of <span class="math notranslate nohighlight">\(X_1\)</span> as follows.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">process</span> <span class="o">=</span> <span class="n">BrownianMotion</span><span class="p">(</span><span class="n">drift</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
 <span class="n">X_1</span> <span class="o">=</span> <span class="n">process</span><span class="o">.</span><span class="n">get_marginal</span><span class="p">(</span><span class="n">t</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">X_1</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mf">0.005</span><span class="p">)</span> <span class="o">-</span><span class="mi">1</span> <span class="p">,</span> <span class="n">X_1</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mf">0.995</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="mi">200</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">X_1</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.75</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;$t$=</span><span class="si">{</span><span class="mi">1</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;$X_1$ pdf&#39;</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>  
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">X_1</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.75</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;$t$=</span><span class="si">{</span><span class="mi">1</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;$X_1$ pdf&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/6af7d4518010965b949210fee242c5b9859a722dbcb7b4061e0bde549728ce85.png" src="_images/6af7d4518010965b949210fee242c5b9859a722dbcb7b4061e0bde549728ce85.png" />
+<img alt="_images/7c5142b833478116fb6c570f2504582d538ef71a589ea5a7897545d221c6b880.png" src="_images/7c5142b833478116fb6c570f2504582d538ef71a589ea5a7897545d221c6b880.png" />
 </div>
 </div>
 <p>Next, we vary the value of the parameter <span class="math notranslate nohighlight">\(\mu\)</span> and plot the corresponding pdfs. Clearly, the mean of the distribution moves along with <span class="math notranslate nohighlight">\(\mu\)</span> (in this case it is equal to <span class="math notranslate nohighlight">\(\mu\)</span> since <span class="math notranslate nohighlight">\(t=1\)</span>) while the variance stays the same.</p>
 <div class="cell tag_hide-input docutils container">
-<details class="hide above-input">
+<details class="admonition hide above-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell source</span>
-<span class="expanded">Hide code cell source</span>
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
 </summary>
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
 <span class="n">mu_values</span> <span class="o">=</span> <span class="p">([</span><span class="mi">1</span><span class="p">,</span>  <span class="o">-</span><span class="mf">5.0</span><span class="p">,</span> <span class="o">-</span><span class="mi">10</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span> <span class="p">,</span> <span class="mi">10</span><span class="p">])</span>
 <span class="k">for</span> <span class="p">(</span><span class="n">mus</span><span class="p">,</span> <span class="n">ax</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">mu_values</span><span class="p">,</span> <span class="n">axs</span><span class="p">):</span>
     <span class="k">for</span> <span class="n">mu</span> <span class="ow">in</span> <span class="n">mus</span><span class="p">:</span>
@@ -896,7 +608,7 @@ f(x, t; \mu, \sigma) = \dfrac{1}{\sigma \sqrt{2 \pi t}}\exp\left\{ -\dfrac{1}{2}
         <span class="n">X_t</span> <span class="o">=</span> <span class="n">process</span><span class="o">.</span><span class="n">get_marginal</span><span class="p">(</span><span class="n">t</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
         <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">X_t</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mf">0.001</span><span class="p">),</span> <span class="n">X_t</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mf">0.999</span><span class="p">),</span> <span class="mi">100</span><span class="p">)</span>
         <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">X_t</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span>
-                <span class="n">alpha</span><span class="o">=</span><span class="mf">0.75</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;$\mu$=</span><span class="si">{</span><span class="n">mu</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+                <span class="n">alpha</span><span class="o">=</span><span class="mf">0.75</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;$</span><span class="se">\\</span><span class="s1">mu$=</span><span class="si">{</span><span class="n">mu</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
         <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 <span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$X_1$ pdf from an arithmetic BM  with $\sigma=1.0$&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -905,18 +617,18 @@ f(x, t; \mu, \sigma) = \dfrac{1}{\sigma \sqrt{2 \pi t}}\exp\left\{ -\dfrac{1}{2}
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/821ccb5d0e9d971658048807a1353cf1babf506f23489520cb190dd039433077.png" src="_images/821ccb5d0e9d971658048807a1353cf1babf506f23489520cb190dd039433077.png" />
+<img alt="_images/7153faf270e9513fc4c11eef7a38c03753754c05fa41be0997f6e1040edcb71a.png" src="_images/7153faf270e9513fc4c11eef7a38c03753754c05fa41be0997f6e1040edcb71a.png" />
 </div>
 </div>
 <p>Similarly, we vary the value of the parameter <span class="math notranslate nohighlight">\(\sigma\)</span> and plot the corresponding pdfs. This time, the mean of the distribution remains contant while the variance moves along with the value of <span class="math notranslate nohighlight">\(\sigma\)</span>. As <span class="math notranslate nohighlight">\(\sigma\)</span> grows, the density becomes wider.</p>
 <div class="cell tag_hide-input docutils container">
-<details class="hide above-input">
+<details class="admonition hide above-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell source</span>
-<span class="expanded">Hide code cell source</span>
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
 </summary>
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
 <span class="n">sigma_values</span> <span class="o">=</span> <span class="p">([</span><span class="mi">1</span><span class="p">,</span>  <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">10</span><span class="p">])</span>
 <span class="k">for</span> <span class="p">(</span><span class="n">sigmas</span><span class="p">,</span> <span class="n">ax</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">sigma_values</span><span class="p">,</span> <span class="n">axs</span><span class="p">):</span>
     <span class="k">for</span> <span class="n">sigma</span> <span class="ow">in</span> <span class="n">sigmas</span><span class="p">:</span>
@@ -924,7 +636,7 @@ f(x, t; \mu, \sigma) = \dfrac{1}{\sigma \sqrt{2 \pi t}}\exp\left\{ -\dfrac{1}{2}
         <span class="n">X_t</span> <span class="o">=</span> <span class="n">process</span><span class="o">.</span><span class="n">get_marginal</span><span class="p">(</span><span class="n">t</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
         <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">X_t</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mf">0.001</span><span class="p">),</span> <span class="n">X_t</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mf">0.999</span><span class="p">),</span> <span class="mi">100</span><span class="p">)</span>
         <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">X_t</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span>
-                <span class="n">alpha</span><span class="o">=</span><span class="mf">0.75</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;$\sigma$=</span><span class="si">{</span><span class="n">sigma</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+                <span class="n">alpha</span><span class="o">=</span><span class="mf">0.75</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;$</span><span class="se">\\</span><span class="s1">sigma$=</span><span class="si">{</span><span class="n">sigma</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
         <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 <span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$X_1$ pdf from an arithmetic BM  with $\mu=1.0$&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -933,15 +645,15 @@ f(x, t; \mu, \sigma) = \dfrac{1}{\sigma \sqrt{2 \pi t}}\exp\left\{ -\dfrac{1}{2}
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/13a9377815516978c3f4eb153f94ba0d694811dfe4f36af028d8217aca978f3f.png" src="_images/13a9377815516978c3f4eb153f94ba0d694811dfe4f36af028d8217aca978f3f.png" />
+<img alt="_images/2c2d3fa8422cc2dd9a41cf63c5133f0c39bd4ba8b8e674fd4633350a997fc6c5.png" src="_images/2c2d3fa8422cc2dd9a41cf63c5133f0c39bd4ba8b8e674fd4633350a997fc6c5.png" />
 </div>
 </div>
 <p>Finally, let’s see what happens when we keep the parameters constant but <span class="math notranslate nohighlight">\(t\)</span> grows. For this, we will consider two cases, <span class="math notranslate nohighlight">\(\mu&gt;0\)</span> and <span class="math notranslate nohighlight">\(\mu&lt;0\)</span>.</p>
 <div class="cell tag_hide-input docutils container">
-<details class="hide above-input">
+<details class="admonition hide above-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell source</span>
-<span class="expanded">Hide code cell source</span>
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">mu</span> <span class="ow">in</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">]:</span>
@@ -953,15 +665,15 @@ f(x, t; \mu, \sigma) = \dfrac{1}{\sigma \sqrt{2 \pi t}}\exp\left\{ -\dfrac{1}{2}
         <span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">X_t</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span>
                 <span class="n">alpha</span><span class="o">=</span><span class="mf">0.75</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;$t$=</span><span class="si">{</span><span class="n">t</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
     <span class="n">ax1</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;$X_t$ pdfs from an arithmetic BM with $\mu$=</span><span class="si">{</span><span class="n">mu</span><span class="si">}</span><span class="s1"> and $\sigma$=</span><span class="si">{</span><span class="mf">1.0</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;$X_t$ pdfs from an arithmetic BM with $</span><span class="se">\\</span><span class="s1">mu$=</span><span class="si">{</span><span class="n">mu</span><span class="si">}</span><span class="s1"> and $</span><span class="se">\\</span><span class="s1">sigma$=</span><span class="si">{</span><span class="mf">1.0</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/e1283d3013f9250907c0c9bb71e23c0cb9b9df73b204c3eea4156b7dedc6d5b6.png" src="_images/e1283d3013f9250907c0c9bb71e23c0cb9b9df73b204c3eea4156b7dedc6d5b6.png" />
-<img alt="_images/e2c4a05840c25b62d81e06c4a08bcd067609adb37a696f5393836d3c4c17dff0.png" src="_images/e2c4a05840c25b62d81e06c4a08bcd067609adb37a696f5393836d3c4c17dff0.png" />
+<img alt="_images/67ad9e478325a5692b08ec3c6aa1267ca50dba1831f6a26ba47fa2a9d1868752.png" src="_images/67ad9e478325a5692b08ec3c6aa1267ca50dba1831f6a26ba47fa2a9d1868752.png" />
+<img alt="_images/cf6aeaa9cdf8c3e770f41080268e3ede7b563dcad593e6bdae9a8c5f16e50503.png" src="_images/cf6aeaa9cdf8c3e770f41080268e3ede7b563dcad593e6bdae9a8c5f16e50503.png" />
 </div>
 </div>
 <p>In these charts, we can see the characteristic symmetric bell-shaped curves of the normal/Gaussian distribution.
@@ -975,7 +687,7 @@ Moreover, we can make the following observations:</p>
 </section>
 </section>
 <section id="sampling">
-<h3><span class="section-number">2.2.4. </span>Sampling<a class="headerlink" href="#sampling" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">2.2.4. </span>Sampling<a class="headerlink" href="#sampling" title="Link to this heading">#</a></h3>
 <p>Now, let’s see how to obtain a random sample from the marginal <span class="math notranslate nohighlight">\(X_t\)</span> for <span class="math notranslate nohighlight">\(t&gt;0\)</span>.</p>
 <p>The next cell shows how to get a sample of size 5 from <span class="math notranslate nohighlight">\(X_1\)</span>.</p>
 <div class="cell docutils container">
@@ -988,7 +700,7 @@ Moreover, we can make the following observations:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([1.01570249, 0.94391172, 0.85968884, 0.99666063, 1.40763752])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([1.09694812, 1.06185031, 1.10241678, 1.06457149, 0.58126585])
 </pre></div>
 </div>
 </div>
@@ -996,7 +708,7 @@ Moreover, we can make the following observations:</p>
 </section>
 </section>
 <section id="simulation">
-<h2><span class="section-number">2.3. </span>Simulation<a class="headerlink" href="#simulation" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">2.3. </span>Simulation<a class="headerlink" href="#simulation" title="Link to this heading">#</a></h2>
 <p>In order to simulate paths from a stochastic process, we need to set a discrete partition over an interval for the simulation to take place.</p>
 <p>For simplicity, we are going to consider an equidistant partition of size <span class="math notranslate nohighlight">\(n\)</span> over <span class="math notranslate nohighlight">\([0,T]\)</span>, i.e.:</p>
 <div class="amsmath math notranslate nohighlight">
@@ -1053,7 +765,7 @@ X_t = \mu t  + \sigma W_t,
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/ee7cf92f78a451df4c814aa2caec7326066c237f9eecc411be94ef5add29c2cd.png" src="_images/ee7cf92f78a451df4c814aa2caec7326066c237f9eecc411be94ef5add29c2cd.png" />
+<img alt="_images/5d78243407d9a430d3a6f5aa35181860bd9c0e6f9cf3ecab9fd6dd6cf294a55e.png" src="_images/5d78243407d9a430d3a6f5aa35181860bd9c0e6f9cf3ecab9fd6dd6cf294a55e.png" />
 </div>
 </div>
 <div class="admonition note">
@@ -1061,7 +773,7 @@ X_t = \mu t  + \sigma W_t,
 <p>In this plot, we are using a linear interpolation to draw the lines between the simulated points.</p>
 </div>
 <section id="simulating-and-visualising-paths">
-<h3><span class="section-number">2.3.1. </span>Simulating and Visualising Paths<a class="headerlink" href="#simulating-and-visualising-paths" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">2.3.1. </span>Simulating and Visualising Paths<a class="headerlink" href="#simulating-and-visualising-paths" title="Link to this heading">#</a></h3>
 <p>To simulate several paths from an Arithmetic Brownian Motion and visualise them we can use the method <code class="docutils literal notranslate"><span class="pre">plot</span></code> from the <code class="docutils literal notranslate"><span class="pre">aleatory</span></code> library.</p>
 <p>Let’s simulate 10 paths over the interval <span class="math notranslate nohighlight">\([0,1]\)</span> using a partition of 100 points.</p>
 <div class="tip admonition">
@@ -1077,7 +789,7 @@ X_t = \mu t  + \sigma W_t,
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/dedb51ad7644b005bab043b9f6cf8d79b4029acaf60afee6b172b0dd20bc3c74.png" src="_images/dedb51ad7644b005bab043b9f6cf8d79b4029acaf60afee6b172b0dd20bc3c74.png" />
+<img alt="_images/b2c9c0941b2e021c4ec67b36b6b169570e36ffb30795a21c61151f7efbf59113.png" src="_images/b2c9c0941b2e021c4ec67b36b6b169570e36ffb30795a21c61151f7efbf59113.png" />
 </div>
 </div>
 <p>Similarly, we can define an arithmetic Brownian Motion over the interval <span class="math notranslate nohighlight">\([0, 10]\)</span> and simulate 50 paths with a partition of size 100.</p>
@@ -1090,7 +802,7 @@ X_t = \mu t  + \sigma W_t,
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/c907e788d8912bfe266efcd2f153e6565f192a44c0cef9e47eec29a30c545540.png" src="_images/c907e788d8912bfe266efcd2f153e6565f192a44c0cef9e47eec29a30c545540.png" />
+<img alt="_images/988726f6a2df816d4d8702d8ed9c3d630f1bb99f4e9fe77b61d74ca0ca2b07b4.png" src="_images/988726f6a2df816d4d8702d8ed9c3d630f1bb99f4e9fe77b61d74ca0ca2b07b4.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1102,15 +814,15 @@ X_t = \mu t  + \sigma W_t,
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/ee1270c8897b865febdeaa3fe9d1caa08a699f244756b764364a237849ee3bce.png" src="_images/ee1270c8897b865febdeaa3fe9d1caa08a699f244756b764364a237849ee3bce.png" />
+<img alt="_images/5e7e94528649dc8a69149681b2a5b2219fe04aee429b656b0280c6f38d05edbc.png" src="_images/5e7e94528649dc8a69149681b2a5b2219fe04aee429b656b0280c6f38d05edbc.png" />
 </div>
 </div>
 </section>
 </section>
 <section id="long-time-behaviour">
-<h2><span class="section-number">2.4. </span>Long Time Behaviour<a class="headerlink" href="#long-time-behaviour" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">2.4. </span>Long Time Behaviour<a class="headerlink" href="#long-time-behaviour" title="Link to this heading">#</a></h2>
 <section id="expectation-and-variance">
-<h3><span class="section-number">2.4.1. </span>Expectation and Variance<a class="headerlink" href="#expectation-and-variance" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">2.4.1. </span>Expectation and Variance<a class="headerlink" href="#expectation-and-variance" title="Link to this heading">#</a></h3>
 <p>We have</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{equation*}
@@ -1128,10 +840,10 @@ X_t = \mu t  + \sigma W_t,
 \end{equation*}\]</div>
 <p>Next, we illustrate the convergence of both the mean and the variance as <span class="math notranslate nohighlight">\(t\)</span> grows under the two cases <span class="math notranslate nohighlight">\(\mu&gt;0\)</span> and <span class="math notranslate nohighlight">\(\mu&lt;0\)</span> (<span class="math notranslate nohighlight">\(\mu=0\)</span> is trivial).</p>
 <div class="cell tag_hide-input docutils container">
-<details class="hide above-input">
+<details class="admonition hide above-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell source</span>
-<span class="expanded">Hide code cell source</span>
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">draw_mean_variance</span><span class="p">(</span><span class="n">mu</span><span class="p">,</span> <span class="n">sigma</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="mi">100</span><span class="p">):</span>
@@ -1149,7 +861,7 @@ X_t = \mu t  + \sigma W_t,
     <span class="n">ax2</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;t&#39;</span><span class="p">)</span>
     <span class="n">ax2</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
     <span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span>
-        <span class="s1">&#39;Expectation and Variance of $X_t$ with &#39;</span> <span class="sa">f</span><span class="s1">&#39;$\mu$=</span><span class="si">{</span><span class="n">mu</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">, $\sigma$=</span><span class="si">{</span><span class="n">sigma</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+        <span class="s1">&#39;Expectation and Variance of $X_t$ with &#39;</span> <span class="sa">f</span><span class="s1">&#39;$</span><span class="se">\\</span><span class="s1">mu$=</span><span class="si">{</span><span class="n">mu</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">, $</span><span class="se">\\</span><span class="s1">sigma$=</span><span class="si">{</span><span class="n">sigma</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -1163,7 +875,7 @@ X_t = \mu t  + \sigma W_t,
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/26de425697c4abc0f43d38de39c02ba7278c5a81fe0805a7ecde459a63d91a39.png" src="_images/26de425697c4abc0f43d38de39c02ba7278c5a81fe0805a7ecde459a63d91a39.png" />
+<img alt="_images/5fdf5b6c2bc339c849e489424aa0051ef15d94ebb148be89f040aaf8491e3260.png" src="_images/5fdf5b6c2bc339c849e489424aa0051ef15d94ebb148be89f040aaf8491e3260.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1173,50 +885,50 @@ X_t = \mu t  + \sigma W_t,
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/9dd16f50915749836b6dd2a6c0d9b25ddeb5a2d8844da0435335340d3e2d91ce.png" src="_images/9dd16f50915749836b6dd2a6c0d9b25ddeb5a2d8844da0435335340d3e2d91ce.png" />
+<img alt="_images/537982d57eb8ec537b32345f52b1f54f86c48e11f5874c77d8ace6d0ee4015f3.png" src="_images/537982d57eb8ec537b32345f52b1f54f86c48e11f5874c77d8ace6d0ee4015f3.png" />
 </div>
 </div>
 <p>Finally, let’s take a look at how the process simulations look under these two cases.</p>
 <div class="cell tag_hide-input docutils container">
-<details class="hide above-input">
+<details class="admonition hide above-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell source</span>
-<span class="expanded">Hide code cell source</span>
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">process</span> <span class="o">=</span> <span class="n">BrownianMotion</span><span class="p">(</span><span class="n">drift</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
-<span class="n">process</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Arithmetic Browniam Motion with $\mu$=2 and $\sigma$=2&quot;</span><span class="p">)</span>
+<span class="n">process</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Arithmetic Browniam Motion with $</span><span class="se">\\</span><span class="s2">mu$=2 and $</span><span class="se">\\</span><span class="s2">sigma$=2&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/0e90566936ae59d793d0bd71b4c63724d0406e1fc9f17a194040031822811cd3.png" src="_images/0e90566936ae59d793d0bd71b4c63724d0406e1fc9f17a194040031822811cd3.png" />
+<img alt="_images/f1b608ac48c817b6f810df180ba548b4c8a49a63b38ae6368d3d3a4ada1c0886.png" src="_images/f1b608ac48c817b6f810df180ba548b4c8a49a63b38ae6368d3d3a4ada1c0886.png" />
 </div>
 </div>
 <div class="cell tag_hide-input docutils container">
-<details class="hide above-input">
+<details class="admonition hide above-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell source</span>
-<span class="expanded">Hide code cell source</span>
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">process</span> <span class="o">=</span> <span class="n">BrownianMotion</span><span class="p">(</span><span class="n">drift</span><span class="o">=-</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
-<span class="n">process</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Arithmetic Browniam Motion with $\mu$=-2 and $\sigma$=2&quot;</span><span class="p">)</span>
+<span class="n">process</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Arithmetic Browniam Motion with $</span><span class="se">\\</span><span class="s2">mu$=-2 and $</span><span class="se">\\</span><span class="s2">sigma$=2&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/6c4a3dd7040a1563f04d6a157e0ff45af8fbf208d0ec5abea999386edee3405d.png" src="_images/6c4a3dd7040a1563f04d6a157e0ff45af8fbf208d0ec5abea999386edee3405d.png" />
+<img alt="_images/7df56cac36b77e856c5e7adfddc7856fd9a6e6b13ecf7555b6dc60467cf392cd.png" src="_images/7df56cac36b77e856c5e7adfddc7856fd9a6e6b13ecf7555b6dc60467cf392cd.png" />
 </div>
 </div>
 </section>
 </section>
 <section id="id1">
-<h2><span class="section-number">2.5. </span>Visualisation<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">2.5. </span>Visualisation<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
 <p>To finish this note, let’s take a final look at a simulation from the arithmetic Brownian Motion.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1228,12 +940,12 @@ X_t = \mu t  + \sigma W_t,
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/5da45d9c2224c762877de8ff223788285576d86eec7608b444045970791025c3.png" src="_images/5da45d9c2224c762877de8ff223788285576d86eec7608b444045970791025c3.png" />
+<img alt="_images/9b9bf526c4e5e566f0fa5a884ed5c1784258ab27fecec3227dc8248a29a60cc6.png" src="_images/9b9bf526c4e5e566f0fa5a884ed5c1784258ab27fecec3227dc8248a29a60cc6.png" />
 </div>
 </div>
 </section>
 <section id="references-and-further-reading">
-<h2><span class="section-number">2.6. </span>References and Further Reading<a class="headerlink" href="#references-and-further-reading" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">2.6. </span>References and Further Reading<a class="headerlink" href="#references-and-further-reading" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p><a class="reference external" href="https://www.stat.berkeley.edu/~aldous/205B/bmbook.pdf">Brownian Motion</a> Notes by Peter Morters and Yuval Peres (2008).</p></li>
 </ul>
@@ -1249,139 +961,90 @@ X_t = \mu t  + \sigma W_t,
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "local-venv"
+            mode: "python"
         },
         kernelOptions: {
-            name: "local-venv",
+            name: "python3",
             path: "./."
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'local-venv'</script>
+    <script>kernelName = 'python3'</script>
 
-            </article>
-            
+                </article>
+              
 
-            
-            
-            <footer class="bd-footer-article">
-                <!-- Previous / next buttons -->
-<div class='prev-next-area'>
-  <a class='left-prev' id="prev-link" href="brownian_motion.html" title="previous page">
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="brownian_motion.html"
+       title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
-          <p class="prev-next-subtitle">previous</p>
-          <p class="prev-next-title"><span class="section-number">1. </span>Brownian Motion</p>
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">1. </span>Brownian Motion</p>
       </div>
-  </a>
-  <a class='right-next' id="next-link" href="geometric_brownian_motion.html" title="next page">
-  <div class="prev-next-info">
-      <p class="prev-next-subtitle">next</p>
-      <p class="prev-next-title"><span class="section-number">3. </span>Geometric Brownian Motion</p>
-  </div>
-  <i class="fa-solid fa-angle-right"></i>
-  </a>
+    </a>
+    <a class="right-next"
+       href="geometric_brownian_motion.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">3. </span>Geometric Brownian Motion</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div>
-            </footer>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#definition">2.1. Definition</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#marginal-distributions">2.2. Marginal Distributions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#expectation-variance-and-covariance">2.2.1. Expectation,  Variance, and Covariance</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#marginal-distributions-in-python">2.2.2. Marginal Distributions in Python</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#probability-density-functions">2.2.3. Probability Density Functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#visualisation">2.2.3.1. Visualisation</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sampling">2.2.4. Sampling</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simulation">2.3. Simulation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simulating-and-visualising-paths">2.3.1. Simulating and Visualising Paths</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#long-time-behaviour">2.4. Long Time Behaviour</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#expectation-and-variance">2.4.1. Expectation and Variance</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">2.5. Visualisation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references-and-further-reading">2.6. References and Further Reading</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
             
           </div>
-          
-          
-          
-            <div class="bd-sidebar-secondary bd-toc">
-              
-<div class="toc-item">
-  
-<div class="tocsection onthispage">
-    <i class="fa-solid fa-list"></i> On this page
-</div>
-<nav id="bd-toc-nav" class="page-toc">
-    <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#definition">
-   2.1. Definition
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#marginal-distributions">
-   2.2. Marginal Distributions
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#expectation-variance-and-covariance">
-     2.2.1. Expectation,  Variance, and Covariance
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#marginal-distributions-in-python">
-     2.2.2. Marginal Distributions in Python
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#probability-density-functions">
-     2.2.3. Probability Density Functions
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#visualisation">
-       2.2.3.1. Visualisation
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#sampling">
-     2.2.4. Sampling
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#simulation">
-   2.3. Simulation
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#simulating-and-visualising-paths">
-     2.3.1. Simulating and Visualising Paths
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#long-time-behaviour">
-   2.4. Long Time Behaviour
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#expectation-and-variance">
-     2.4.1. Expectation and Variance
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id1">
-   2.5. Visualisation
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#references-and-further-reading">
-   2.6. References and Further Reading
-  </a>
- </li>
-</ul>
-
-</nav>
-</div>
-
-            </div>
-          
-          
-        </div>
-        <footer class="bd-footer-content">
-          <div class="bd-footer-content__inner">
+          <footer class="bd-footer-content">
             
 <div class="bd-footer-content__inner container">
   
@@ -1395,18 +1058,18 @@ By Dialid Santiago
   
   <div class="footer-item">
     
-<p class="copyright">
 
-    &copy; Copyright 2022-2024.<br>
-
-</p>
+  <p class="copyright">
+    
+      © Copyright 2022-2024.
+      <br/>
+    
+  </p>
 
   </div>
   
   <div class="footer-item">
-    <p class="last-updated">
-Last updated on None.<br>
-</p>
+    
   </div>
   
   <div class="footer-item">
@@ -1414,19 +1077,18 @@ Last updated on None.<br>
   </div>
   
 </div>
-          </div>
-        </footer>
+          </footer>
         
 
       </main>
     </div>
   </div>
-
   
-    
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=796348d33e8b1d947c94"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=796348d33e8b1d947c94"></script>
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
 
+  <footer class="bd-footer">
+  </footer>
   </body>
 </html>

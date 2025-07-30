@@ -1,10 +1,12 @@
 
 <!DOCTYPE html>
 
-<html lang="en">
+
+<html lang="en" data-content_root="./" >
+
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Constant Elasticity Variance Process &#8212; Understanding Quantitative Finance</title>
   
@@ -12,413 +14,164 @@
   
   <script data-cfasync="false">
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
-    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=796348d33e8b1d947c94" rel="stylesheet">
-<link href="_static/styles/bootstrap.css?digest=796348d33e8b1d947c94" rel="stylesheet">
-<link href="_static/styles/pydata-sphinx-theme.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
 
   
-  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=796348d33e8b1d947c94" rel="stylesheet">
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2">
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2">
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2">
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=4ec06e9971c5264fbd345897d5258098f11cc577" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=796348d33e8b1d947c94">
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=796348d33e8b1d947c94">
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="_static/doctools.js"></script>
-    <script src="_static/clipboard.min.js"></script>
-    <script src="_static/copybutton.js"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?digest=8bf782fb4ee92b3d3646425e50f299c4e1fd152d"></script>
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="_static/togglebutton.js"></script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="_static/design-tabs.js"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
-    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script src="_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'cev_process';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="docsearch:language" content="en">
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
   
   
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="180" data-default-mode="">
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
   
   
-  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <input type="checkbox" class="sidebar-toggle" name="__primary" id="__primary">
-  <label class="overlay overlay-primary" for="__primary"></label>
-
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
   
-  <input type="checkbox" class="sidebar-toggle" name="__secondary" id="__secondary">
-  <label class="overlay overlay-secondary" for="__secondary"></label>
-
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
   
   <div class="search-button__wrapper">
     <div class="search-button__overlay"></div>
     <div class="search-button__search-container">
-      
-<form class="bd-search d-flex align-items-center" action="search.html" method="get">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
   <i class="fa-solid fa-magnifying-glass"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form>
-    </div>
+</form></div>
   </div>
 
-  
-  <nav class="bd-header navbar navbar-expand-lg bd-navbar" id="navbar-main"><div class="bd-header__inner bd-page-width">
-  <label class="sidebar-toggle primary-toggle" for="__primary">
-      <span class="fa-solid fa-bars"></span>
-  </label>
-  <div id="navbar-start">
-    
-    
-  
-
-
-<a class="navbar-brand logo" href="intro.html">
-
-  
-  
-  
-  
-  
-  
-  
-
-  
-    <img src="_static/puzzle.jpeg" class="logo__image only-light" alt="Logo image">
-    <img src="_static/puzzle.jpeg" class="logo__image only-dark" alt="Logo image">
-  
-  
-</a>
-    
-  </div>
-
-  
-  <div class="col-lg-9 navbar-header-items">
-    <div id="navbar-center" class="mr-auto">
-      
-      <div class="navbar-center-item">
-        <nav class="navbar-nav">
-    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
-        Site Navigation
-    </p>
-    <ul id="navbar-main-elements" class="navbar-nav">
-        
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="brownian_motion.html">
-                        Brownian Motion
-                      </a>
-                    </li>
-                
-
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="brownian_motion_arithmetic.html">
-                        Arithmetic Brownian Motion
-                      </a>
-                    </li>
-                
-
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="geometric_brownian_motion.html">
-                        Geometric Brownian Motion
-                      </a>
-                    </li>
-                
-
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="vasicek.html">
-                        Vasicek Model/Process
-                      </a>
-                    </li>
-                
-
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="cir_process.html">
-                        Cox–Ingersoll–Ross process
-                      </a>
-                    </li>
-                
-            <div class="nav-item dropdown">
-                <button class="btn dropdown-toggle nav-item" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    More
-                </button>
-                <div class="dropdown-menu">
-                    
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="bessel_processes_part1.html">
-                        Bessel Processes Part I
-                      </a>
-                    </li>
-                
-
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="bessel_processes_part2.html">
-                        Bessel Processes Part II
-                      </a>
-                    </li>
-                
-
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="bessel_processes_part3.html">
-                        Bessel Processes Part III
-                      </a>
-                    </li>
-                
-
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="AOS.html">
-                        American Options Pricing using the Longstaff-Schwartz Algorithm
-                      </a>
-                    </li>
-                
-
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="malliavin_delta_gbm.html">
-                        Malliavin Greeks under Black-Scholes Dynamics
-                      </a>
-                    </li>
-                
-                </div>
-            </div>
-            
-    </ul>
-</nav>
-      </div>
-      
-    </div>
-
-    <div id="navbar-end">
-      
-        <div class="navbar-end-item navbar-persistent--container">
-          
-<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-toggle="tooltip">
-  <i class="fa-solid fa-magnifying-glass"></i>
-</button>
-        </div>
-      
-      
-      <div class="navbar-end-item">
-        <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-toggle="tooltip">
-    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
-    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
-    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
-</button>
-      </div>
-      
-      <div class="navbar-end-item">
-        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
-      </ul>
-      </div>
-      
-    </div>
-  </div>
-
-
-  
-  
-    <div class="navbar-persistent--mobile">
-<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-toggle="tooltip">
-  <i class="fa-solid fa-magnifying-glass"></i>
-</button>
-    </div>
-  
-
-  
-  <label class="sidebar-toggle secondary-toggle" for="__secondary">
-      <span class="fa-solid fa-outdent"></span>
-  </label>
-  
-
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
 </div>
-  </nav>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
   
 
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
       
+      
+      
+        
+      
       <div class="bd-sidebar-primary bd-sidebar">
         
+
   
   <div class="sidebar-header-items sidebar-primary__section">
     
     
-      <div class="sidebar-header-items__center">
-      
-      <div class="navbar-center-item">
-        <nav class="navbar-nav">
-    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
-        Site Navigation
-    </p>
-    <ul id="navbar-main-elements" class="navbar-nav">
-        
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="brownian_motion.html">
-                        Brownian Motion
-                      </a>
-                    </li>
-                
-
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="brownian_motion_arithmetic.html">
-                        Arithmetic Brownian Motion
-                      </a>
-                    </li>
-                
-
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="geometric_brownian_motion.html">
-                        Geometric Brownian Motion
-                      </a>
-                    </li>
-                
-
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="vasicek.html">
-                        Vasicek Model/Process
-                      </a>
-                    </li>
-                
-
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="cir_process.html">
-                        Cox–Ingersoll–Ross process
-                      </a>
-                    </li>
-                
-            <div class="nav-item dropdown">
-                <button class="btn dropdown-toggle nav-item" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    More
-                </button>
-                <div class="dropdown-menu">
-                    
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="bessel_processes_part1.html">
-                        Bessel Processes Part I
-                      </a>
-                    </li>
-                
-
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="bessel_processes_part2.html">
-                        Bessel Processes Part II
-                      </a>
-                    </li>
-                
-
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="bessel_processes_part3.html">
-                        Bessel Processes Part III
-                      </a>
-                    </li>
-                
-
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="AOS.html">
-                        American Options Pricing using the Longstaff-Schwartz Algorithm
-                      </a>
-                    </li>
-                
-
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="malliavin_delta_gbm.html">
-                        Malliavin Greeks under Black-Scholes Dynamics
-                      </a>
-                    </li>
-                
-                </div>
-            </div>
-            
-    </ul>
-</nav>
-      </div>
-      
-      </div>
     
-
-    
-    
-    <div class="sidebar-header-items__end">
-      
-      <div class="navbar-end-item">
-        <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-toggle="tooltip">
-    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
-    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
-    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
-</button>
-      </div>
-      
-      <div class="navbar-end-item">
-        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
-      </ul>
-      </div>
-      
-    </div>
     
   </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
 
   
-  <div class="sidebar-start-items sidebar-primary__section">
-    <div class="sidebar-start-items__item">
+    
   
-
 
 <a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/puzzle.jpeg" class="logo__image only-light" alt="Understanding Quantitative Finance - Home"/>
+    <script>document.write(`<img src="_static/puzzle.jpeg" class="logo__image only-dark" alt="Understanding Quantitative Finance - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
 
-  
-  
-  
-  
-  
-  
-  
-
-  
-    <img src="_static/puzzle.jpeg" class="logo__image only-light" alt="Logo image">
-    <img src="_static/puzzle.jpeg" class="logo__image only-dark" alt="Logo image">
-  
-  
-</a>
-    </div>
-    <div class="sidebar-start-items__item">
-<form class="bd-search d-flex align-items-center" action="search.html" method="get">
-  <i class="fa-solid fa-magnifying-glass"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
-  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form>
-    </div>
-    <div class="sidebar-start-items__item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
@@ -446,57 +199,146 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 
     </div>
-</nav>
+</nav></div>
     </div>
-  </div>
   
-
   
-  <div class="sidebar-end-items sidebar-primary__section">
-    <div class="sidebar-end-items__item">
-    </div>
+  <div class="sidebar-primary-items__end sidebar-primary__section">
   </div>
-
   
   <div id="rtd-footer-container"></div>
 
+
       </div>
-      <main id="main-content" class="bd-main">
+      
+      <main id="main-content" class="bd-main" role="main">
         
         
 
 <div class="sbt-scroll-pixel-helper"></div>
 
-        <div class="bd-content">
-          <div class="bd-article-container">
-            
-            <div class="bd-header-article">
-                
-
-
-
-<div class="col py-1 d-flex header-article-main">
-    <div class="header-article__left">
-        <label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" data-toggle="tooltip" data-placement="right" title="Toggle primary sidebar">
-            <span class="fa-solid fa-bars"></span>
-        </label>
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
     </div>
-    <div class="header-article__right">
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
 
 
-<div class="dropdown dropdown-launch-buttons">
-  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
-    <i class="fas fa-rocket"></i>
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
   </button>
   <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/quantgirluk/Understanding-Quantitative-Finance" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/quantgirluk/Understanding-Quantitative-Finance/issues/new?title=Issue%20on%20page%20%2Fcev_process.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
   </ul>
 </div>
 
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/cev_process.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
 <button onclick="toggleFullScreen()"
-  class="btn btn-sm"
-  data-toggle="tooltip"
-data-placement="bottom"
-title="Fullscreen mode"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
 >
   
 
@@ -508,92 +350,35 @@ title="Fullscreen mode"
 
 
 
-<div class="dropdown dropdown-repository-buttons">
-  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
-    <i class="fab fa-github"></i>
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
   </button>
-  <ul class="dropdown-menu">
-      <li><a href="https://github.com/quantgirluk/Understanding-Quantitative-Finance" target="_blank"
-   class="btn btn-sm dropdown-item"
-   data-toggle="tooltip"
-data-placement="left"
-title="Source repository"
->
-  
-
-<span class="btn__icon-container">
-  <i class="fab fa-github"></i>
-  </span>
-<span class="btn__text-container">repository</span>
-</a>
-</a>
-      
-      <li><a href="https://github.com/quantgirluk/Understanding-Quantitative-Finance/issues/new?title=Issue%20on%20page%20%2Fcev_process.html&body=Your%20issue%20content%20here." target="_blank"
-   class="btn btn-sm dropdown-item"
-   data-toggle="tooltip"
-data-placement="left"
-title="Open an issue"
->
-  
-
-<span class="btn__icon-container">
-  <i class="fas fa-lightbulb"></i>
-  </span>
-<span class="btn__text-container">open issue</span>
-</a>
-</a>
-      
-  </ul>
-</div>
+`);
+</script>
 
 
-
-<div class="dropdown dropdown-download-buttons">
-  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
-    <i class="fas fa-download"></i>
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
-  <ul class="dropdown-menu">
-      <li><a href="_sources/cev_process.ipynb" target="_blank"
-   class="btn btn-sm dropdown-item"
-   data-toggle="tooltip"
-data-placement="left"
-title="Download source file"
->
-  
-
-<span class="btn__icon-container">
-  <i class="fas fa-file"></i>
-  </span>
-<span class="btn__text-container">.ipynb</span>
-</a>
-</a>
-      
-      <li>
-<button onclick="printPdf(this)"
-  class="btn btn-sm dropdown-item"
-  data-toggle="tooltip"
-data-placement="left"
-title="Print to PDF"
->
-  
-
-<span class="btn__icon-container">
-  <i class="fas fa-file-pdf"></i>
-  </span>
-<span class="btn__text-container">.pdf</span>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
 </button>
-</a>
+</div></div>
       
-  </ul>
-</div>
-<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary" data-toggle="tooltip" data-placement="left" title="Toggle secondary sidebar">
-            <span class="fa-solid fa-list"></span>
-        </label>
     </div>
+  
 </div>
-            </div>
-            
-            
+</div>
+              
+              
 
 <div id="jb-print-docs-body" class="onlyprint">
     <h1>Constant Elasticity Variance Process</h1>
@@ -606,134 +391,52 @@ title="Print to PDF"
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#definition">
-   Definition
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#expectation-and-variance">
-   Expectation and Variance
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#python-implementation">
-     Python Implementation
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#marginal-distributions">
-   Marginal Distributions
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#marginal-distributions-in-python">
-     Marginal Distributions in Python
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#probability-density-functions">
-     Probability Density Functions
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#sampling">
-     Sampling
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#simulation">
-   Simulation
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#simulating-and-visualising-paths">
-     Simulating and Visualising Paths
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#long-time-behaviour">
-   Long Time Behaviour
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id1">
-     Expectation and Variance
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#what-about-delta-alpha-and-scale">
-     What about
-     <span class="math notranslate nohighlight">
-      \(\delta, \alpha\)
-     </span>
-     and
-     <span class="math notranslate nohighlight">
-      \(scale\)
-     </span>
-     ?
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#marginal">
-     Marginal
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#the-parameter-theta-determines-the-speed-of-convergence">
-       The parameter
-       <span class="math notranslate nohighlight">
-        \(\theta\)
-       </span>
-       determines the Speed of Convergence
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#the-parameter-sigma-determines-the-volatility-in-the-simulation">
-       The parameter
-       <span class="math notranslate nohighlight">
-        \(\sigma\)
-       </span>
-       determines the volatility in the simulation
-      </a>
-     </li>
-    </ul>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#visualisation">
-   Visualisation
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#references-and-further-reading">
-   References and Further Reading
-  </a>
- </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#definition">Definition</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#expectation-and-variance">Expectation and Variance</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#python-implementation">Python Implementation</a></li>
 </ul>
-
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#marginal-distributions">Marginal Distributions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#marginal-distributions-in-python">Marginal Distributions in Python</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#probability-density-functions">Probability Density Functions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sampling">Sampling</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simulation">Simulation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simulating-and-visualising-paths">Simulating and Visualising Paths</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#long-time-behaviour">Long Time Behaviour</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Expectation and Variance</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-about-delta-alpha-and-scale">What about <span class="math notranslate nohighlight">\(\delta, \alpha\)</span> and <span class="math notranslate nohighlight">\(scale\)</span>?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#marginal">Marginal</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#the-parameter-theta-determines-the-speed-of-convergence">The parameter <span class="math notranslate nohighlight">\(\theta\)</span> determines the Speed of Convergence</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#the-parameter-sigma-determines-the-volatility-in-the-simulation">The parameter <span class="math notranslate nohighlight">\(\sigma\)</span> determines the volatility in the simulation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualisation">Visualisation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references-and-further-reading">References and Further Reading</a></li>
+</ul>
             </nav>
         </div>
     </div>
 </div>
 
-            <article class="bd-article" role="main">
               
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
   <section class="tex2jax_ignore mathjax_ignore" id="constant-elasticity-variance-process">
-<h1>Constant Elasticity Variance Process<a class="headerlink" href="#constant-elasticity-variance-process" title="Permalink to this heading">#</a></h1>
+<h1>Constant Elasticity Variance Process<a class="headerlink" href="#constant-elasticity-variance-process" title="Link to this heading">#</a></h1>
 <p>The purpose of this notebook is to provide an illustration of the <a class="reference external" href="https://en.wikipedia.org/wiki/Constant_elasticity_of_variance_model">Constant Elasticity Variance Process</a> and some of its main properties.</p>
 <section id="definition">
-<h2>Definition<a class="headerlink" href="#definition" title="Permalink to this heading">#</a></h2>
+<h2>Definition<a class="headerlink" href="#definition" title="Link to this heading">#</a></h2>
 <p>The Constant Elasticity Variance (CEV) process can be used to describe the dynamics of forward prices via a stochastic process which can be defined by the following Stochastic Differential Equation (SDE)</p>
-<div class="amsmath math notranslate nohighlight" id="equation-8daa6ed8-94b0-4d14-91f9-e6c601cb8e76">
-<span class="eqno">()<a class="headerlink" href="#equation-8daa6ed8-94b0-4d14-91f9-e6c601cb8e76" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-6e96f323-b9d7-4660-a9da-e175f15e80f2">
+<span class="eqno">()<a class="headerlink" href="#equation-6e96f323-b9d7-4660-a9da-e175f15e80f2" title="Permalink to this equation">#</a></span>\[\begin{equation}
 dX_t = \mu X_t dt + \sigma X_t^{\gamma} dW_t, \quad t &gt;0,
 \end{equation}\]</div>
 <p>with initial condition  <span class="math notranslate nohighlight">\(X_0 =x_0\in\mathbb{R}\)</span>, and where <span class="math notranslate nohighlight">\(W_t\)</span> is a standard Brownian motion, and the three parameters are constants:</p>
@@ -743,18 +446,18 @@ dX_t = \mu X_t dt + \sigma X_t^{\gamma} dW_t, \quad t &gt;0,
 <li><p><span class="math notranslate nohighlight">\(\gamma\)</span> : elasticity parameter</p></li>
 </ul>
 <p>Another parameterisation is given by</p>
-<div class="amsmath math notranslate nohighlight" id="equation-d4ba91ba-da81-4d6b-bc03-84b28a63e8f3">
-<span class="eqno">()<a class="headerlink" href="#equation-d4ba91ba-da81-4d6b-bc03-84b28a63e8f3" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-8a799aee-f361-4bff-83b8-928eaa792575">
+<span class="eqno">()<a class="headerlink" href="#equation-8a799aee-f361-4bff-83b8-928eaa792575" title="Permalink to this equation">#</a></span>\[\begin{equation}
 dX_t = \mu X_t dt + \sigma X_t^{\gamma + 1} dW_t, \quad t &gt;0,
 \end{equation}\]</div>
 <p>so we can write</p>
-<div class="amsmath math notranslate nohighlight" id="equation-d18e1a0b-dc5e-4c15-b585-ff0f4feba89b">
-<span class="eqno">()<a class="headerlink" href="#equation-d18e1a0b-dc5e-4c15-b585-ff0f4feba89b" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-5fdf94fe-9fa1-43c3-b00c-566fa6194f76">
+<span class="eqno">()<a class="headerlink" href="#equation-5fdf94fe-9fa1-43c3-b00c-566fa6194f76" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \frac{dX_t}{X_t}= \mu  dt + \sigma X_t^{\gamma} dW_t, \quad t &gt;0,
 \end{equation}\]</div>
 </section>
 <section id="expectation-and-variance">
-<h2>Expectation and Variance<a class="headerlink" href="#expectation-and-variance" title="Permalink to this heading">#</a></h2>
+<h2>Expectation and Variance<a class="headerlink" href="#expectation-and-variance" title="Link to this heading">#</a></h2>
 <p>For each <span class="math notranslate nohighlight">\(t&gt;0\)</span>, the conditional marginal <span class="math notranslate nohighlight">\(X_t|X_0\)</span> from a CIR process satisfy</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{equation*}
@@ -775,8 +478,8 @@ X_te^{\theta t} &amp;= x_0 +\int_0^t X_s \theta e^{\theta s}ds + \int_0^t e^{\th
 &amp; = x_0 + \mu(e^{\theta t} - 1) + \int_0^t e^{\theta s}\sigma \sqrt{X_s} dW_s.
 \end{align*}\]</div>
 <p>Thus</p>
-<div class="amsmath math notranslate nohighlight" id="equation-cb6689d4-16a2-46eb-94b6-8fcba115809f">
-<span class="eqno">()<a class="headerlink" href="#equation-cb6689d4-16a2-46eb-94b6-8fcba115809f" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-fbdc828a-fcfc-4514-a11d-baad2a280634">
+<span class="eqno">()<a class="headerlink" href="#equation-fbdc828a-fcfc-4514-a11d-baad2a280634" title="Permalink to this equation">#</a></span>\[\begin{equation}
 X_t = x_0e^{-\theta t} +  \mu(1- e^{-\theta t})  + \sigma \int_0^t e^{-\theta (t-s)}  \sqrt{X_s} dW_s.
 \end{equation}\]</div>
 <div class="admonition note">
@@ -822,7 +525,7 @@ However, this expression allows us to calculate the conditional expectation and 
 <p>📝 The second term in the last expression is equal to the variance of the marginal from a  Vasicek process multiplied by <span class="math notranslate nohighlight">\(\mu\)</span>.</p>
 </div>
 <section id="python-implementation">
-<h3>Python Implementation<a class="headerlink" href="#python-implementation" title="Permalink to this heading">#</a></h3>
+<h3>Python Implementation<a class="headerlink" href="#python-implementation" title="Link to this heading">#</a></h3>
 <p>For given <span class="math notranslate nohighlight">\(x_0, \theta&gt;0, \mu, \sigma&gt;0\)</span> and <span class="math notranslate nohighlight">\(t&gt;0\)</span> we can implement the above formulas for the expectation, and variance, as follows.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -854,10 +557,10 @@ Var[X_t] = 0.266113
 </section>
 </section>
 <section id="marginal-distributions">
-<h2>Marginal Distributions<a class="headerlink" href="#marginal-distributions" title="Permalink to this heading">#</a></h2>
+<h2>Marginal Distributions<a class="headerlink" href="#marginal-distributions" title="Link to this heading">#</a></h2>
 <p>The marginal distribution <span class="math notranslate nohighlight">\(X_t | x_0\)</span> , simply denoted by <span class="math notranslate nohighlight">\(X_t\)</span>, has probability density function</p>
-<div class="amsmath math notranslate nohighlight" id="equation-435ca171-ee38-4f1c-aae4-f9f12006f1f9">
-<span class="eqno">()<a class="headerlink" href="#equation-435ca171-ee38-4f1c-aae4-f9f12006f1f9" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-79e42f05-4990-41c6-8d53-4f7e12014ed6">
+<span class="eqno">()<a class="headerlink" href="#equation-79e42f05-4990-41c6-8d53-4f7e12014ed6" title="Permalink to this equation">#</a></span>\[\begin{equation}
 f(x, t; \theta, \mu, \sigma, x_0) =  \dfrac{e^{\theta t}}{2 c(t)}   \left(\dfrac{x e^{\theta t}}{x_0}\right)^{\frac{\nu}{2}}   \exp\left(- \dfrac{x_0 + xe^{\theta t}}{2c(t)}\right) I_{\nu} \left( \dfrac{1}{c(t)}  \sqrt{x_0 x e^{\theta t}}\right) \mathbb{1}_{\{x&gt;0\}},
 \end{equation}\]</div>
 <p>where where <span class="math notranslate nohighlight">\(I_{\nu}\)</span> is the <a class="reference external" href="https://mathworld.wolfram.com/ModifiedBesselFunctionoftheFirstKind.html">modified Bessel function</a>, and</p>
@@ -885,21 +588,21 @@ g(y) &amp; = c(t) e^{-\theta t } f(yc(t)e^{-\theta t}  ) \\
 \alpha = \dfrac{x_0}{c(t)}.
 \end{equation*}\]</div>
 <p>That is, <span class="math notranslate nohighlight">\(Y_t\)</span> follows a <a class="reference external" href="https://en.wikipedia.org/wiki/Noncentral_chi-squared_distribution">non-central Chi-squared</a> distribution</p>
-<div class="amsmath math notranslate nohighlight" id="equation-0d710a31-255a-4dc9-8c54-d6ec5f4cefce">
-<span class="eqno">()<a class="headerlink" href="#equation-0d710a31-255a-4dc9-8c54-d6ec5f4cefce" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-dc5ddd96-de97-4604-8952-556349224c19">
+<span class="eqno">()<a class="headerlink" href="#equation-dc5ddd96-de97-4604-8952-556349224c19" title="Permalink to this equation">#</a></span>\[\begin{equation}
 Y_t = X_t \dfrac{e^{\theta t}}{c(t)} \sim \chi^2(\delta, \alpha).
 \end{equation}\]</div>
 <p>So, <span class="math notranslate nohighlight">\(X_t\)</span> follows a non-central Chi-square distribution (with  <span class="math notranslate nohighlight">\(\delta\)</span> degrees of freedom,  non-centrality parameter equal to <span class="math notranslate nohighlight">\(\alpha\)</span>)  scaled by <span class="math notranslate nohighlight">\(scale = c(t)e^{-\theta t}\)</span>.  Note that we can write these quantities  in terms of the SDE parameters initial condition as follows:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-0c2cba46-6ef0-4dcb-b8d7-ad4f56e148d7">
-<span class="eqno">()<a class="headerlink" href="#equation-0c2cba46-6ef0-4dcb-b8d7-ad4f56e148d7" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-1113956d-f23c-4464-bd24-160437412503">
+<span class="eqno">()<a class="headerlink" href="#equation-1113956d-f23c-4464-bd24-160437412503" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \delta = \dfrac{4 \theta \mu}{\sigma^2},
 \end{equation}\]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-c81ea65f-229e-449a-bf0c-da49a92ecb73">
-<span class="eqno">()<a class="headerlink" href="#equation-c81ea65f-229e-449a-bf0c-da49a92ecb73" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-8b190e29-b08a-48db-8415-4795c893c6f1">
+<span class="eqno">()<a class="headerlink" href="#equation-8b190e29-b08a-48db-8415-4795c893c6f1" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \alpha = \dfrac{4 \theta }{\sigma^2 }\dfrac{x_0}{(e^{\theta t} - 1)},
 \end{equation}\]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-13caa5e0-4344-49c1-a630-b731d8d7cf76">
-<span class="eqno">()<a class="headerlink" href="#equation-13caa5e0-4344-49c1-a630-b731d8d7cf76" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-c2ffdc8c-4918-41a6-994b-d9e674384fc9">
+<span class="eqno">()<a class="headerlink" href="#equation-c2ffdc8c-4918-41a6-994b-d9e674384fc9" title="Permalink to this equation">#</a></span>\[\begin{equation}
 scale = \dfrac{\sigma^2}{4 \theta} (1 -e^{-\theta t}).
 \end{equation}\]</div>
 <div class="admonition note">
@@ -911,7 +614,7 @@ scale = \dfrac{\sigma^2}{4 \theta} (1 -e^{-\theta t}).
 </ul>
 </div>
 <section id="marginal-distributions-in-python">
-<h3>Marginal Distributions in Python<a class="headerlink" href="#marginal-distributions-in-python" title="Permalink to this heading">#</a></h3>
+<h3>Marginal Distributions in Python<a class="headerlink" href="#marginal-distributions-in-python" title="Link to this heading">#</a></h3>
 <p>We can implement the marginal distributions in <code class="docutils literal notranslate"><span class="pre">Python</span></code> by using equations (5.9) to (5.12) which tells us that <span class="math notranslate nohighlight">\(X_t\)</span> follows a scaled non-central chi-squared distribution. One way to do this is by using the object  <code class="docutils literal notranslate"><span class="pre">ncx2</span></code>  from the library <code class="docutils literal notranslate"><span class="pre">scipy.stats</span></code>.  The next cell shows how to create <span class="math notranslate nohighlight">\(X_1\)</span> using this method.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -937,14 +640,8 @@ scale = \dfrac{\sigma^2}{4 \theta} (1 -e^{-\theta t}).
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">from</span><span class="w"> </span><span class="nn">scipy.stats</span><span class="w"> </span><span class="kn">import</span> <span class="n">ncx2</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span> 
-<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">x0</span> <span class="o">=</span> <span class="mf">2.0</span> 
-
-<span class="ne">ModuleNotFoundError</span>: No module named &#39;scipy&#39;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2.632120558828558
+0.2661132293025628
 </pre></div>
 </div>
 </div>
@@ -979,14 +676,14 @@ scale = \dfrac{\sigma^2}{4 \theta} (1 -e^{-\theta t}).
 <p>Hereafter, we will use the latter method to create marginal distributions from the CIR process.</p>
 </section>
 <section id="probability-density-functions">
-<h3>Probability Density Functions<a class="headerlink" href="#probability-density-functions" title="Permalink to this heading">#</a></h3>
+<h3>Probability Density Functions<a class="headerlink" href="#probability-density-functions" title="Link to this heading">#</a></h3>
 <p>The probability density function (pdf) of the marginal distribution <span class="math notranslate nohighlight">\(X_t\)</span> given <span class="math notranslate nohighlight">\(x_0&gt;0\)</span>, is given by equation (5.7)</p>
 <p>Let’s take a look at the density function of <span class="math notranslate nohighlight">\(X_1\)</span> for different values of <span class="math notranslate nohighlight">\(\theta\)</span>, <span class="math notranslate nohighlight">\(\mu\)</span>, and <span class="math notranslate nohighlight">\(\sigma\)</span>.</p>
 <div class="cell tag_hide-input docutils container">
-<details class="hide above-input">
+<details class="admonition hide above-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell source</span>
-<span class="expanded">Hide code cell source</span>
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
@@ -996,10 +693,10 @@ scale = \dfrac{\sigma^2}{4 \theta} (1 -e^{-\theta t}).
 </details>
 </div>
 <div class="cell tag_hide-input docutils container">
-<details class="hide above-input">
+<details class="admonition hide above-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell source</span>
-<span class="expanded">Hide code cell source</span>
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s2">&quot;seaborn-v0_8-whitegrid&quot;</span><span class="p">)</span>
@@ -1013,10 +710,10 @@ scale = \dfrac{\sigma^2}{4 \theta} (1 -e^{-\theta t}).
 <p>First we consider the process
 <code class="docutils literal notranslate"><span class="pre">CIRProcess(theta=1.5,</span> <span class="pre">mu=1.0,</span> <span class="pre">sigma=1.0,</span> <span class="pre">initial=2.0)</span></code> and plot the marginal density of <span class="math notranslate nohighlight">\(X_1\)</span>. Note how the mean is still far from the long term mean <span class="math notranslate nohighlight">\(\mu\)</span>.</p>
 <div class="cell tag_hide-input docutils container">
-<details class="hide above-input">
+<details class="admonition hide above-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell source</span>
-<span class="expanded">Hide code cell source</span>
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">process</span> <span class="o">=</span> <span class="n">CIRProcess</span><span class="p">(</span><span class="n">theta</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">initial</span><span class="o">=</span><span class="mf">2.0</span><span class="p">)</span>
@@ -1032,7 +729,8 @@ scale = \dfrac{\sigma^2}{4 \theta} (1 -e^{-\theta t}).
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/f194a7e7fafabc89462074226026cda4ab3f1afd5b6b43dc696ac63417351144.png" src="_images/f194a7e7fafabc89462074226026cda4ab3f1afd5b6b43dc696ac63417351144.png" />
+<a class="reference internal image-reference" href="_images/d3ededc747ca38d3311571cd3915037d9f10abe34bc28ab3fab2b5931e2b25d5.png"><img alt="_images/d3ededc747ca38d3311571cd3915037d9f10abe34bc28ab3fab2b5931e2b25d5.png" src="_images/d3ededc747ca38d3311571cd3915037d9f10abe34bc28ab3fab2b5931e2b25d5.png" style="width: 974px; height: 522px;" />
+</a>
 </div>
 </div>
 <p>Next we vary the value of the parameter <span class="math notranslate nohighlight">\(\theta\)</span> (the speed of reversion)  <code class="docutils literal notranslate"><span class="pre">CIRProcess(theta,</span> <span class="pre">mu=1.0,</span> <span class="pre">sigma=1.0,</span> <span class="pre">initial=2.0)</span></code> and plot the corresponding densities of <span class="math notranslate nohighlight">\(X_1\)</span>.</p>
@@ -1045,10 +743,10 @@ scale = \dfrac{\sigma^2}{4 \theta} (1 -e^{-\theta t}).
 <li><p>The scale decreases.</p></li>
 </ul>
 <div class="cell tag_hide-input docutils container">
-<details class="hide above-input">
+<details class="admonition hide above-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell source</span>
-<span class="expanded">Hide code cell source</span>
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
@@ -1068,7 +766,8 @@ scale = \dfrac{\sigma^2}{4 \theta} (1 -e^{-\theta t}).
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/65c6ccb83d88937a75fcaf3f017a693a8627b10a5726176ddd90f94d3b37dd10.png" src="_images/65c6ccb83d88937a75fcaf3f017a693a8627b10a5726176ddd90f94d3b37dd10.png" />
+<a class="reference internal image-reference" href="_images/d26a7695d5ea745bc0e08c3708eb8b3d5cf71c237e3b4eda00c91df356adef54.png"><img alt="_images/d26a7695d5ea745bc0e08c3708eb8b3d5cf71c237e3b4eda00c91df356adef54.png" src="_images/d26a7695d5ea745bc0e08c3708eb8b3d5cf71c237e3b4eda00c91df356adef54.png" style="width: 1439px; height: 559px;" />
+</a>
 </div>
 </div>
 <p>Next we vary the value of the parameter <span class="math notranslate nohighlight">\(\mu\)</span> (the long term mean) in  a <code class="docutils literal notranslate"><span class="pre">CIRProcess(theta=1.5,</span> <span class="pre">mu=mu,</span> <span class="pre">sigma=1.0,</span> <span class="pre">initial=2.0)</span></code> and again plot the densities corresponding to <span class="math notranslate nohighlight">\(X_1\)</span>.</p>
@@ -1079,10 +778,10 @@ scale = \dfrac{\sigma^2}{4 \theta} (1 -e^{-\theta t}).
 <li><p>The degrees of freedom increase, and the density becomes more symmetric</p></li>
 </ul>
 <div class="cell tag_hide-input docutils container">
-<details class="hide above-input">
+<details class="admonition hide above-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell source</span>
-<span class="expanded">Hide code cell source</span>
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
@@ -1103,7 +802,14 @@ scale = \dfrac{\sigma^2}{4 \theta} (1 -e^{-\theta t}).
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/8060360f6ba5828938105af3c4c8ab38d46ebe2e9df3ddc7c069276ad1e8e934.png" src="_images/8060360f6ba5828938105af3c4c8ab38d46ebe2e9df3ddc7c069276ad1e8e934.png" />
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;&gt;:10: SyntaxWarning: invalid escape sequence &#39;\m&#39;
+&lt;&gt;:10: SyntaxWarning: invalid escape sequence &#39;\m&#39;
+/var/folders/8_/ln4xq0tn2_9dclcldppw87f00000gn/T/ipykernel_28292/1082102693.py:10: SyntaxWarning: invalid escape sequence &#39;\m&#39;
+  alpha=0.75, label=f&#39;$\mu$={mu:.2f}&#39;)
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/84288e9a9d821c09a810b6990190b2ce30a1d21aca506c76795c3b63bc4f9aab.png"><img alt="_images/84288e9a9d821c09a810b6990190b2ce30a1d21aca506c76795c3b63bc4f9aab.png" src="_images/84288e9a9d821c09a810b6990190b2ce30a1d21aca506c76795c3b63bc4f9aab.png" style="width: 1439px; height: 559px;" />
+</a>
 </div>
 </div>
 <p>Next we vary the value of the parameter <span class="math notranslate nohighlight">\(\sigma\)</span> (the volatility) in  <code class="docutils literal notranslate"><span class="pre">CIRProcess(theta=1.5,</span> <span class="pre">mu=1.0,</span> <span class="pre">sigma=sigma,</span> <span class="pre">initial=2.0)</span></code> and again plot the densities of <span class="math notranslate nohighlight">\(X_1\)</span>.</p>
@@ -1115,10 +821,10 @@ scale = \dfrac{\sigma^2}{4 \theta} (1 -e^{-\theta t}).
 <li><p>The non-centrality parameter decreases and the scale increases</p></li>
 </ul>
 <div class="cell tag_hide-input docutils container">
-<details class="hide above-input">
+<details class="admonition hide above-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell source</span>
-<span class="expanded">Hide code cell source</span>
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
@@ -1139,7 +845,14 @@ scale = \dfrac{\sigma^2}{4 \theta} (1 -e^{-\theta t}).
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/1a41e2d7a3d726e2f13224364553d40c46c2cb188e2d514bfc55087306644b6c.png" src="_images/1a41e2d7a3d726e2f13224364553d40c46c2cb188e2d514bfc55087306644b6c.png" />
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;&gt;:10: SyntaxWarning: invalid escape sequence &#39;\s&#39;
+&lt;&gt;:10: SyntaxWarning: invalid escape sequence &#39;\s&#39;
+/var/folders/8_/ln4xq0tn2_9dclcldppw87f00000gn/T/ipykernel_28292/690459534.py:10: SyntaxWarning: invalid escape sequence &#39;\s&#39;
+  alpha=0.75, label=f&#39;$\sigma$={sigma:.2f}&#39;)
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/4b2c801ce68b746c9b812ea2b25d2292e8bcec17c9449cfa9f2fee4761c691c1.png"><img alt="_images/4b2c801ce68b746c9b812ea2b25d2292e8bcec17c9449cfa9f2fee4761c691c1.png" src="_images/4b2c801ce68b746c9b812ea2b25d2292e8bcec17c9449cfa9f2fee4761c691c1.png" style="width: 1439px; height: 559px;" />
+</a>
 </div>
 </div>
 <p>Finally, we will keep all parameters fixed as <code class="docutils literal notranslate"><span class="pre">CIRProces(theta=1.5,</span> <span class="pre">mu=1.0,</span> <span class="pre">sigma=1.0,</span> <span class="pre">initial=2.0)</span></code> and plot the densities of <span class="math notranslate nohighlight">\(X_t\)</span> for a range of <span class="math notranslate nohighlight">\(t\)</span> values.</p>
@@ -1152,10 +865,10 @@ scale = \dfrac{\sigma^2}{4 \theta} (1 -e^{-\theta t}).
 <li><p>The scale converges to a constant</p></li>
 </ul>
 <div class="cell tag_hide-input docutils container">
-<details class="hide above-input">
+<details class="admonition hide above-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell source</span>
-<span class="expanded">Hide code cell source</span>
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">process</span> <span class="o">=</span> <span class="n">CIRProcess</span><span class="p">(</span><span class="n">theta</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">initial</span><span class="o">=</span><span class="mf">2.0</span><span class="p">)</span>
@@ -1175,12 +888,13 @@ scale = \dfrac{\sigma^2}{4 \theta} (1 -e^{-\theta t}).
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/66c5915bc1e9f1d79455b09bcf5432db4427e60b78aca251592c7531347c9127.png" src="_images/66c5915bc1e9f1d79455b09bcf5432db4427e60b78aca251592c7531347c9127.png" />
+<a class="reference internal image-reference" href="_images/2d77f1873dd74a695ce03ee76ce50fa69b4b2f5b42a1df0056908b4a86b561a5.png"><img alt="_images/2d77f1873dd74a695ce03ee76ce50fa69b4b2f5b42a1df0056908b4a86b561a5.png" src="_images/2d77f1873dd74a695ce03ee76ce50fa69b4b2f5b42a1df0056908b4a86b561a5.png" style="width: 1439px; height: 559px;" />
+</a>
 </div>
 </div>
 </section>
 <section id="sampling">
-<h3>Sampling<a class="headerlink" href="#sampling" title="Permalink to this heading">#</a></h3>
+<h3>Sampling<a class="headerlink" href="#sampling" title="Link to this heading">#</a></h3>
 <p>Now, let’s see how to get a random sample from <span class="math notranslate nohighlight">\(X_t\)</span> for any  <span class="math notranslate nohighlight">\(t&gt;0\)</span>.</p>
 <p>The next cell shows how to get a sample of size 5 from <span class="math notranslate nohighlight">\(X_1\)</span>.</p>
 <div class="cell docutils container">
@@ -1194,7 +908,7 @@ scale = \dfrac{\sigma^2}{4 \theta} (1 -e^{-\theta t}).
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([5.3698625 , 6.10048599, 7.4370113 , 7.20332363, 6.4392991 ])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([7.71616751, 6.66125549, 6.35204976, 7.33537781, 6.88269232])
 </pre></div>
 </div>
 </div>
@@ -1208,7 +922,7 @@ scale = \dfrac{\sigma^2}{4 \theta} (1 -e^{-\theta t}).
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([11.40026252,  8.54885104,  9.37029522, 12.31838833,  9.39123132])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 8.13105733, 10.52495869, 10.028046  ,  9.58587797, 11.50627108])
 </pre></div>
 </div>
 </div>
@@ -1216,7 +930,7 @@ scale = \dfrac{\sigma^2}{4 \theta} (1 -e^{-\theta t}).
 </section>
 </section>
 <section id="simulation">
-<h2>Simulation<a class="headerlink" href="#simulation" title="Permalink to this heading">#</a></h2>
+<h2>Simulation<a class="headerlink" href="#simulation" title="Link to this heading">#</a></h2>
 <p>In order to simulate paths from a stochastic process, we need to set a discrete partition over an interval for the simulation to take place.</p>
 <p>For simplicity, we are going to consider an equidistant partition of size <span class="math notranslate nohighlight">\(n\)</span> over <span class="math notranslate nohighlight">\([0,T]\)</span>, i.e.:</p>
 <div class="amsmath math notranslate nohighlight">
@@ -1225,7 +939,7 @@ t_i = \frac{i}{n-1} T \qquad  \hbox{for } i = 0, \cdots, n-1.
 \end{equation*}\]</div>
 <p>Then, the goal is to simulate a path of the form <span class="math notranslate nohighlight">\(\{ X_{t_i} , i=0,\cdots, n-1\}\)</span>. We will use Euler-Maruyama approximation.</p>
 <section id="simulating-and-visualising-paths">
-<h3>Simulating and Visualising Paths<a class="headerlink" href="#simulating-and-visualising-paths" title="Permalink to this heading">#</a></h3>
+<h3>Simulating and Visualising Paths<a class="headerlink" href="#simulating-and-visualising-paths" title="Link to this heading">#</a></h3>
 <p>We can simulate several paths from a Vasicek process and visualise them we can use the method <code class="docutils literal notranslate"><span class="pre">plot</span></code> from the <code class="docutils literal notranslate"><span class="pre">aleatory</span></code> library.</p>
 <p>Let’s simulate 10 paths over the interval <span class="math notranslate nohighlight">\([0,1]\)</span> using a partition of 100 points.</p>
 <div class="tip admonition">
@@ -1243,7 +957,8 @@ t_i = \frac{i}{n-1} T \qquad  \hbox{for } i = 0, \cdots, n-1.
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/dc4b3c5f33230cce41f0415ff4a65a650ba27b0560976b45f54a10d797ffe5a6.png" src="_images/dc4b3c5f33230cce41f0415ff4a65a650ba27b0560976b45f54a10d797ffe5a6.png" />
+<a class="reference internal image-reference" href="_images/d77592812add4052cc9d08f911f4da3cdafde47df49aba9ada178af85d2e985c.png"><img alt="_images/d77592812add4052cc9d08f911f4da3cdafde47df49aba9ada178af85d2e985c.png" src="_images/d77592812add4052cc9d08f911f4da3cdafde47df49aba9ada178af85d2e985c.png" style="width: 982px; height: 538px;" />
+</a>
 </div>
 </div>
 <div class="admonition note">
@@ -1252,10 +967,10 @@ t_i = \frac{i}{n-1} T \qquad  \hbox{for } i = 0, \cdots, n-1.
 </div>
 <p>Similarly, we can define the process over the interval <span class="math notranslate nohighlight">\([0, 5]\)</span> and simulate 50 paths with a partition of size 100.</p>
 <div class="cell tag_hide-input docutils container">
-<details class="hide above-input">
+<details class="admonition hide above-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell source</span>
-<span class="expanded">Hide code cell source</span>
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">process</span> <span class="o">=</span> <span class="n">CIRProcess</span><span class="p">(</span><span class="n">theta</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="mf">10.0</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">initial</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="mf">5.0</span><span class="p">)</span>
@@ -1266,15 +981,16 @@ t_i = \frac{i}{n-1} T \qquad  \hbox{for } i = 0, \cdots, n-1.
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/ffbbd7c708e0ed7af9c7881496d665fc69f8f9275c43661dc757ef50eb7defd0.png" src="_images/ffbbd7c708e0ed7af9c7881496d665fc69f8f9275c43661dc757ef50eb7defd0.png" />
+<a class="reference internal image-reference" href="_images/f41ca7b368832e3774acf75730f06d5b008469c9c0ab66682e692ee647456b5e.png"><img alt="_images/f41ca7b368832e3774acf75730f06d5b008469c9c0ab66682e692ee647456b5e.png" src="_images/f41ca7b368832e3774acf75730f06d5b008469c9c0ab66682e692ee647456b5e.png" style="width: 990px; height: 538px;" />
+</a>
 </div>
 </div>
 </section>
 </section>
 <section id="long-time-behaviour">
-<h2>Long Time Behaviour<a class="headerlink" href="#long-time-behaviour" title="Permalink to this heading">#</a></h2>
+<h2>Long Time Behaviour<a class="headerlink" href="#long-time-behaviour" title="Link to this heading">#</a></h2>
 <section id="id1">
-<h3>Expectation and Variance<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h3>
+<h3>Expectation and Variance<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{equation*}
 \lim_{t\rightarrow\infty}  \mathbf{E} [X_t ]  = \lim_{t\rightarrow\infty} \left[ x_0e^{-\theta t} +  \mu(1- e^{-\theta t}) \right] = \mu.
@@ -1287,10 +1003,10 @@ t_i = \frac{i}{n-1} T \qquad  \hbox{for } i = 0, \cdots, n-1.
 <p>Next, we illustrate the convergence of both the mean and the variance as <span class="math notranslate nohighlight">\(t\)</span> grows. Note that the speed of convergence is determined by the parameter <span class="math notranslate nohighlight">\(\theta\)</span>.
 First, we consider a process with <span class="math notranslate nohighlight">\(\theta = 0.10\)</span>.</p>
 <div class="cell tag_hide-input docutils container">
-<details class="hide above-input">
+<details class="admonition hide above-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell source</span>
-<span class="expanded">Hide code cell source</span>
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">draw_mean_variance</span><span class="p">(</span><span class="n">x0</span><span class="p">,</span> <span class="n">theta</span><span class="p">,</span> <span class="n">mu</span><span class="p">,</span> <span class="n">sigma</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="mi">100</span><span class="p">):</span>
@@ -1317,12 +1033,24 @@ First, we consider a process with <span class="math notranslate nohighlight">\(\
 </div>
 </div>
 </details>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;&gt;:19: SyntaxWarning: invalid escape sequence &#39;\m&#39;
+&lt;&gt;:19: SyntaxWarning: invalid escape sequence &#39;\s&#39;
+&lt;&gt;:19: SyntaxWarning: invalid escape sequence &#39;\m&#39;
+&lt;&gt;:19: SyntaxWarning: invalid escape sequence &#39;\s&#39;
+/var/folders/8_/ln4xq0tn2_9dclcldppw87f00000gn/T/ipykernel_28292/1981867478.py:19: SyntaxWarning: invalid escape sequence &#39;\m&#39;
+  &#39;Expectation and Variance of $X_t$ with &#39; f&#39;$x_0$={x0:.2f}, $\\theta$={theta:.2f}, $\mu$={mu:.2f}, $\sigma$={sigma:.2f}&#39;, size=12)
+/var/folders/8_/ln4xq0tn2_9dclcldppw87f00000gn/T/ipykernel_28292/1981867478.py:19: SyntaxWarning: invalid escape sequence &#39;\s&#39;
+  &#39;Expectation and Variance of $X_t$ with &#39; f&#39;$x_0$={x0:.2f}, $\\theta$={theta:.2f}, $\mu$={mu:.2f}, $\sigma$={sigma:.2f}&#39;, size=12)
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell tag_hide-input docutils container">
-<details class="hide above-input">
+<details class="admonition hide above-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell source</span>
-<span class="expanded">Hide code cell source</span>
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">draw_mean_variance</span><span class="p">(</span><span class="n">theta</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="mf">5.0</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">x0</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
@@ -1331,16 +1059,17 @@ First, we consider a process with <span class="math notranslate nohighlight">\(\
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/cdd8ffa092878a26518e016dc6c8298e50629398e996df84d1811ef0fef8d4b4.png" src="_images/cdd8ffa092878a26518e016dc6c8298e50629398e996df84d1811ef0fef8d4b4.png" />
+<a class="reference internal image-reference" href="_images/7ebfb993a61c1055856fefa7edf6c35fb001439b4fd0c919ab528166bb5c228e.png"><img alt="_images/7ebfb993a61c1055856fefa7edf6c35fb001439b4fd0c919ab528166bb5c228e.png" src="_images/7ebfb993a61c1055856fefa7edf6c35fb001439b4fd0c919ab528166bb5c228e.png" style="width: 741px; height: 404px;" />
+</a>
 </div>
 </div>
 <p>Now, we chage the speed parameter to be <span class="math notranslate nohighlight">\(\theta = 1\)</span> (i.e. 10 times bigger than before) and plot both the expectation and the variance over the same time interval.
 Clearly, convergence is achieved much faster. Besides, the limit variance is different.</p>
 <div class="cell tag_hide-input docutils container">
-<details class="hide above-input">
+<details class="admonition hide above-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell source</span>
-<span class="expanded">Hide code cell source</span>
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">draw_mean_variance</span><span class="p">(</span><span class="n">theta</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="mf">5.0</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">x0</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
@@ -1349,29 +1078,30 @@ Clearly, convergence is achieved much faster. Besides, the limit variance is dif
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/49b9343dddf97fafd365c8598895f74d85665d1dda7af4adb267f13e67fe6aa8.png" src="_images/49b9343dddf97fafd365c8598895f74d85665d1dda7af4adb267f13e67fe6aa8.png" />
+<a class="reference internal image-reference" href="_images/143d3ae51aefa49ae56bbbbbd5cdacad32b73c47945922aae02a2a74f5bcf9e7.png"><img alt="_images/143d3ae51aefa49ae56bbbbbd5cdacad32b73c47945922aae02a2a74f5bcf9e7.png" src="_images/143d3ae51aefa49ae56bbbbbd5cdacad32b73c47945922aae02a2a74f5bcf9e7.png" style="width: 741px; height: 404px;" />
+</a>
 </div>
 </div>
 </section>
 <section id="what-about-delta-alpha-and-scale">
-<h3>What about <span class="math notranslate nohighlight">\(\delta, \alpha\)</span> and <span class="math notranslate nohighlight">\(scale\)</span>?<a class="headerlink" href="#what-about-delta-alpha-and-scale" title="Permalink to this heading">#</a></h3>
-<div class="amsmath math notranslate nohighlight" id="equation-4193010f-98e3-45af-958d-b931ac38a047">
-<span class="eqno">()<a class="headerlink" href="#equation-4193010f-98e3-45af-958d-b931ac38a047" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<h3>What about <span class="math notranslate nohighlight">\(\delta, \alpha\)</span> and <span class="math notranslate nohighlight">\(scale\)</span>?<a class="headerlink" href="#what-about-delta-alpha-and-scale" title="Link to this heading">#</a></h3>
+<div class="amsmath math notranslate nohighlight" id="equation-57db6704-b054-45da-9fdf-29915fac8982">
+<span class="eqno">()<a class="headerlink" href="#equation-57db6704-b054-45da-9fdf-29915fac8982" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \lim_{t\rightarrow\infty} \delta =  \lim_{t\rightarrow\infty} \dfrac{4 \theta \mu}{\sigma^2} = \dfrac{4 \theta \mu}{\sigma^2},
 \end{equation}\]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-68790a95-5b4e-4ce9-84bc-634da751d3bb">
-<span class="eqno">()<a class="headerlink" href="#equation-68790a95-5b4e-4ce9-84bc-634da751d3bb" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-81497a23-05f3-4766-8f9a-53cf8ea26f6c">
+<span class="eqno">()<a class="headerlink" href="#equation-81497a23-05f3-4766-8f9a-53cf8ea26f6c" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \lim_{t\rightarrow\infty} \alpha = \lim_{t\rightarrow\infty}\dfrac{4 \theta }{\sigma^2 }\dfrac{x_0}{(e^{\theta t} - 1)} = 0,
 \end{equation}\]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-850aa1e5-5ee0-4e33-b1c9-69a90b20cc17">
-<span class="eqno">()<a class="headerlink" href="#equation-850aa1e5-5ee0-4e33-b1c9-69a90b20cc17" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-9b02effd-d66b-4b69-b4f0-85325adc86e6">
+<span class="eqno">()<a class="headerlink" href="#equation-9b02effd-d66b-4b69-b4f0-85325adc86e6" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \lim_{t\rightarrow\infty} scale = \lim_{t\rightarrow\infty} \dfrac{\sigma^2}{4 \theta} (1 -e^{-\theta t}) =  \dfrac{\sigma^2}{4 \theta}.
 \end{equation}\]</div>
 <div class="cell tag_hide-input docutils container">
-<details class="hide above-input">
+<details class="admonition hide above-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell source</span>
-<span class="expanded">Hide code cell source</span>
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">draw_alpha_scale</span><span class="p">(</span><span class="n">x0</span><span class="p">,</span> <span class="n">theta</span><span class="p">,</span> <span class="n">mu</span><span class="p">,</span> <span class="n">sigma</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="mi">100</span><span class="p">):</span>
@@ -1395,6 +1125,18 @@ Clearly, convergence is achieved much faster. Besides, the limit variance is dif
 </div>
 </div>
 </details>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;&gt;:16: SyntaxWarning: invalid escape sequence &#39;\m&#39;
+&lt;&gt;:16: SyntaxWarning: invalid escape sequence &#39;\s&#39;
+&lt;&gt;:16: SyntaxWarning: invalid escape sequence &#39;\m&#39;
+&lt;&gt;:16: SyntaxWarning: invalid escape sequence &#39;\s&#39;
+/var/folders/8_/ln4xq0tn2_9dclcldppw87f00000gn/T/ipykernel_28292/1526680694.py:16: SyntaxWarning: invalid escape sequence &#39;\m&#39;
+  &#39;Degrees of Freedom and Scale Convergence for $X_t$ \n from a CIR process with &#39; f&#39;$x_0$={x0:.2f}, $\\theta$={theta:.2f}, $\mu$={mu:.2f}, $\sigma$={sigma:.2f}&#39;, size=12)
+/var/folders/8_/ln4xq0tn2_9dclcldppw87f00000gn/T/ipykernel_28292/1526680694.py:16: SyntaxWarning: invalid escape sequence &#39;\s&#39;
+  &#39;Degrees of Freedom and Scale Convergence for $X_t$ \n from a CIR process with &#39; f&#39;$x_0$={x0:.2f}, $\\theta$={theta:.2f}, $\mu$={mu:.2f}, $\sigma$={sigma:.2f}&#39;, size=12)
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1403,12 +1145,13 @@ Clearly, convergence is achieved much faster. Besides, the limit variance is dif
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/15b19f3b94f8328bd8f30aab3e3cec9322f092dace823d13886303b2fb13678a.png" src="_images/15b19f3b94f8328bd8f30aab3e3cec9322f092dace823d13886303b2fb13678a.png" />
+<a class="reference internal image-reference" href="_images/0005990fd68a9e85ccda84036fc052d036e069e41874760b5faa9158462ae1e0.png"><img alt="_images/0005990fd68a9e85ccda84036fc052d036e069e41874760b5faa9158462ae1e0.png" src="_images/0005990fd68a9e85ccda84036fc052d036e069e41874760b5faa9158462ae1e0.png" style="width: 745px; height: 404px;" />
+</a>
 </div>
 </div>
 </section>
 <section id="marginal">
-<h3>Marginal<a class="headerlink" href="#marginal" title="Permalink to this heading">#</a></h3>
+<h3>Marginal<a class="headerlink" href="#marginal" title="Link to this heading">#</a></h3>
 <p>Equations (5.7)-(5.10) together with (5.11)-(5.13) imply that distribution <span class="math notranslate nohighlight">\(X_t\)</span> given an initial point <span class="math notranslate nohighlight">\(x_0\)</span>, converges to</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{equation*}
@@ -1417,10 +1160,10 @@ X_{\infty}\dfrac{\sigma^2}{4\theta} \sim \chi^2\left(\dfrac{4\theta\mu}{\sigma^2
 <p>as <span class="math notranslate nohighlight">\(t\)</span> goes to infinity. Let’s make some simulations to illustrate this convergence.</p>
 <p>First, we simulate 1000 paths from <code class="docutils literal notranslate"><span class="pre">CIRProcess(theta=1.0,</span> <span class="pre">mu=10.0,</span> <span class="pre">sigma=2.0,</span> <span class="pre">initial=1.0,</span> <span class="pre">T=1.0)</span></code> over the interval <span class="math notranslate nohighlight">\([0,1]\)</span>. Here, we can see the the distribution of <span class="math notranslate nohighlight">\(X_1\)</span> has mean around 6.0. This means that the process has not reached convergence, since we have not arrived to the long term mean <span class="math notranslate nohighlight">\(\mu=10.0\)</span>.</p>
 <div class="cell tag_hide-input docutils container">
-<details class="hide above-input">
+<details class="admonition hide above-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell source</span>
-<span class="expanded">Hide code cell source</span>
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">process</span> <span class="o">=</span> <span class="n">CIRProcess</span><span class="p">(</span><span class="n">theta</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="mf">10.0</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">initial</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
@@ -1431,15 +1174,16 @@ X_{\infty}\dfrac{\sigma^2}{4\theta} \sim \chi^2\left(\dfrac{4\theta\mu}{\sigma^2
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/8cce977efecd6ac119ef51379d273d9c3b224a059bafe669ea5c5342a377b215.png" src="_images/8cce977efecd6ac119ef51379d273d9c3b224a059bafe669ea5c5342a377b215.png" />
+<a class="reference internal image-reference" href="_images/f9d16d30c24648b6db19d23094a46e08640b59c88d61f18b2efe55d98689eab3.png"><img alt="_images/f9d16d30c24648b6db19d23094a46e08640b59c88d61f18b2efe55d98689eab3.png" src="_images/f9d16d30c24648b6db19d23094a46e08640b59c88d61f18b2efe55d98689eab3.png" style="width: 990px; height: 578px;" />
+</a>
 </div>
 </div>
 <p>Now, we simulate 1000 paths from the same process <code class="docutils literal notranslate"><span class="pre">CIRProcess(theta=1.0,</span> <span class="pre">mu=10.0,</span> <span class="pre">sigma=2.0,</span> <span class="pre">initial=1.0,</span> <span class="pre">T=15)</span></code> but this time over the interval <span class="math notranslate nohighlight">\([0,15]\)</span>. In the picture, we can see the the distribution of <span class="math notranslate nohighlight">\(X_{15}\)</span> has mean equal to the long term mean <span class="math notranslate nohighlight">\(\mu=10\)</span>. The expectation has reached convergence!</p>
 <div class="cell tag_hide-input docutils container">
-<details class="hide above-input">
+<details class="admonition hide above-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell source</span>
-<span class="expanded">Hide code cell source</span>
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">process</span> <span class="o">=</span> <span class="n">CIRProcess</span><span class="p">(</span><span class="n">theta</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="mf">10.0</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">initial</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="mf">10.0</span><span class="p">)</span>
@@ -1450,11 +1194,12 @@ X_{\infty}\dfrac{\sigma^2}{4\theta} \sim \chi^2\left(\dfrac{4\theta\mu}{\sigma^2
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/b72d7de18fec799a6077b319415959842a2a16db747eb5b46dc5acdaab1f098a.png" src="_images/b72d7de18fec799a6077b319415959842a2a16db747eb5b46dc5acdaab1f098a.png" />
+<a class="reference internal image-reference" href="_images/888de0acb34c97ebd336deb784c373b1db603c1d07913bd956c09f0b8306a3f2.png"><img alt="_images/888de0acb34c97ebd336deb784c373b1db603c1d07913bd956c09f0b8306a3f2.png" src="_images/888de0acb34c97ebd336deb784c373b1db603c1d07913bd956c09f0b8306a3f2.png" style="width: 990px; height: 578px;" />
+</a>
 </div>
 </div>
 <section id="the-parameter-theta-determines-the-speed-of-convergence">
-<h4>The parameter <span class="math notranslate nohighlight">\(\theta\)</span> determines the Speed of Convergence<a class="headerlink" href="#the-parameter-theta-determines-the-speed-of-convergence" title="Permalink to this heading">#</a></h4>
+<h4>The parameter <span class="math notranslate nohighlight">\(\theta\)</span> determines the Speed of Convergence<a class="headerlink" href="#the-parameter-theta-determines-the-speed-of-convergence" title="Link to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">process</span> <span class="o">=</span> <span class="n">CIRProcess</span><span class="p">(</span><span class="n">theta</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="mf">10.0</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">initial</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
@@ -1464,7 +1209,8 @@ X_{\infty}\dfrac{\sigma^2}{4\theta} \sim \chi^2\left(\dfrac{4\theta\mu}{\sigma^2
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/683d1f23b7039105cd597880c14474c253b69a62975e3820988f2883cdd65dd7.png" src="_images/683d1f23b7039105cd597880c14474c253b69a62975e3820988f2883cdd65dd7.png" />
+<a class="reference internal image-reference" href="_images/6e4c92f9ba653a1a64fd6675b70a7101c030d03632ac912e049f32e8f6865353.png"><img alt="_images/6e4c92f9ba653a1a64fd6675b70a7101c030d03632ac912e049f32e8f6865353.png" src="_images/6e4c92f9ba653a1a64fd6675b70a7101c030d03632ac912e049f32e8f6865353.png" style="width: 1001px; height: 578px;" />
+</a>
 </div>
 </div>
 <div class="cell docutils container">
@@ -1476,12 +1222,13 @@ X_{\infty}\dfrac{\sigma^2}{4\theta} \sim \chi^2\left(\dfrac{4\theta\mu}{\sigma^2
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/c470d2b1ba9324e1acb052553a2f1a01964f3d7128e4a31820d426bfca82a08a.png" src="_images/c470d2b1ba9324e1acb052553a2f1a01964f3d7128e4a31820d426bfca82a08a.png" />
+<a class="reference internal image-reference" href="_images/0d42505d3830137a2bdd22d4aa033ca3c9568d467eb15bf23115ca67739c3354.png"><img alt="_images/0d42505d3830137a2bdd22d4aa033ca3c9568d467eb15bf23115ca67739c3354.png" src="_images/0d42505d3830137a2bdd22d4aa033ca3c9568d467eb15bf23115ca67739c3354.png" style="width: 1001px; height: 578px;" />
+</a>
 </div>
 </div>
 </section>
 <section id="the-parameter-sigma-determines-the-volatility-in-the-simulation">
-<h4>The parameter <span class="math notranslate nohighlight">\(\sigma\)</span> determines the volatility in the simulation<a class="headerlink" href="#the-parameter-sigma-determines-the-volatility-in-the-simulation" title="Permalink to this heading">#</a></h4>
+<h4>The parameter <span class="math notranslate nohighlight">\(\sigma\)</span> determines the volatility in the simulation<a class="headerlink" href="#the-parameter-sigma-determines-the-volatility-in-the-simulation" title="Link to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">process</span> <span class="o">=</span> <span class="n">CIRProcess</span><span class="p">(</span><span class="n">theta</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="mf">10.0</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">initial</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
@@ -1491,7 +1238,8 @@ X_{\infty}\dfrac{\sigma^2}{4\theta} \sim \chi^2\left(\dfrac{4\theta\mu}{\sigma^2
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/5a830cd7b2c600c09be0e4ff5bbccc0fd7cbd5170b4b62a11ac93086bf12ba7e.png" src="_images/5a830cd7b2c600c09be0e4ff5bbccc0fd7cbd5170b4b62a11ac93086bf12ba7e.png" />
+<a class="reference internal image-reference" href="_images/60fbc8a30afbaf4ba6dda069d1fa6d9e58ab66672b4d1577684399b0f439963c.png"><img alt="_images/60fbc8a30afbaf4ba6dda069d1fa6d9e58ab66672b4d1577684399b0f439963c.png" src="_images/60fbc8a30afbaf4ba6dda069d1fa6d9e58ab66672b4d1577684399b0f439963c.png" style="width: 986px; height: 578px;" />
+</a>
 </div>
 </div>
 <div class="cell docutils container">
@@ -1503,20 +1251,21 @@ X_{\infty}\dfrac{\sigma^2}{4\theta} \sim \chi^2\left(\dfrac{4\theta\mu}{\sigma^2
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/c84f29ebf78586a700b426445ee00487240f97cc15aca41246ca09ce41e05de6.png" src="_images/c84f29ebf78586a700b426445ee00487240f97cc15aca41246ca09ce41e05de6.png" />
+<a class="reference internal image-reference" href="_images/4de454c13ca8ca2cbcb8f202605b8523aeb6a3355843f08bd3b1a5c98681794f.png"><img alt="_images/4de454c13ca8ca2cbcb8f202605b8523aeb6a3355843f08bd3b1a5c98681794f.png" src="_images/4de454c13ca8ca2cbcb8f202605b8523aeb6a3355843f08bd3b1a5c98681794f.png" style="width: 1011px; height: 578px;" />
+</a>
 </div>
 </div>
 </section>
 </section>
 </section>
 <section id="visualisation">
-<h2>Visualisation<a class="headerlink" href="#visualisation" title="Permalink to this heading">#</a></h2>
+<h2>Visualisation<a class="headerlink" href="#visualisation" title="Link to this heading">#</a></h2>
 <p>To finish this note, let’s take a final look at a some simulations from the CIR process.</p>
 <div class="cell tag_hide-input docutils container">
-<details class="hide above-input">
+<details class="admonition hide above-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell source</span>
-<span class="expanded">Hide code cell source</span>
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">aleatory.processes</span><span class="w"> </span><span class="kn">import</span> <span class="n">CIRProcess</span>
@@ -1528,14 +1277,15 @@ X_{\infty}\dfrac{\sigma^2}{4\theta} \sim \chi^2\left(\dfrac{4\theta\mu}{\sigma^2
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/e7749ba0986dd9e2f404552fbd4f5eb80626e6c2bb8cb3d10d51c1a0c1dac54a.png" src="_images/e7749ba0986dd9e2f404552fbd4f5eb80626e6c2bb8cb3d10d51c1a0c1dac54a.png" />
+<a class="reference internal image-reference" href="_images/8763ac51ad67ea4fb4d5ca02e8bc89eb7a75a97f6391a5413aa76cfed6ec84ed.png"><img alt="_images/8763ac51ad67ea4fb4d5ca02e8bc89eb7a75a97f6391a5413aa76cfed6ec84ed.png" src="_images/8763ac51ad67ea4fb4d5ca02e8bc89eb7a75a97f6391a5413aa76cfed6ec84ed.png" style="width: 994px; height: 578px;" />
+</a>
 </div>
 </div>
 <div class="cell tag_hide-input docutils container">
-<details class="hide above-input">
+<details class="admonition hide above-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell source</span>
-<span class="expanded">Hide code cell source</span>
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">aleatory.processes</span><span class="w"> </span><span class="kn">import</span> <span class="n">Vasicek</span>
@@ -1547,14 +1297,15 @@ X_{\infty}\dfrac{\sigma^2}{4\theta} \sim \chi^2\left(\dfrac{4\theta\mu}{\sigma^2
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/5bd004310278ba07a4351d05d298d7ff9c291dd27c271411b90e9b7467b21b45.png" src="_images/5bd004310278ba07a4351d05d298d7ff9c291dd27c271411b90e9b7467b21b45.png" />
+<a class="reference internal image-reference" href="_images/1aaf8ad7646ccde39f9237b1545fa6ef24ef183440e30b3ca436a6a1979c3d25.png"><img alt="_images/1aaf8ad7646ccde39f9237b1545fa6ef24ef183440e30b3ca436a6a1979c3d25.png" src="_images/1aaf8ad7646ccde39f9237b1545fa6ef24ef183440e30b3ca436a6a1979c3d25.png" style="width: 982px; height: 578px;" />
+</a>
 </div>
 </div>
 <div class="cell tag_hide-input docutils container">
-<details class="hide above-input">
+<details class="admonition hide above-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell source</span>
-<span class="expanded">Hide code cell source</span>
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">aleatory.processes</span><span class="w"> </span><span class="kn">import</span> <span class="n">CIRProcess</span>
@@ -1583,12 +1334,27 @@ X_{\infty}\dfrac{\sigma^2}{4\theta} \sim \chi^2\left(\dfrac{4\theta\mu}{\sigma^2
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/26698e91da93582e3a74bcdceacaeb90f9974f197d55ad5eb7c45afccb73552b.png" src="_images/26698e91da93582e3a74bcdceacaeb90f9974f197d55ad5eb7c45afccb73552b.png" />
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;&gt;:9: SyntaxWarning: invalid escape sequence &#39;\m&#39;
+&lt;&gt;:15: SyntaxWarning: invalid escape sequence &#39;\m&#39;
+&lt;&gt;:20: SyntaxWarning: invalid escape sequence &#39;\m&#39;
+&lt;&gt;:9: SyntaxWarning: invalid escape sequence &#39;\m&#39;
+&lt;&gt;:15: SyntaxWarning: invalid escape sequence &#39;\m&#39;
+&lt;&gt;:20: SyntaxWarning: invalid escape sequence &#39;\m&#39;
+/var/folders/8_/ln4xq0tn2_9dclcldppw87f00000gn/T/ipykernel_28292/3538491118.py:9: SyntaxWarning: invalid escape sequence &#39;\m&#39;
+  plt.plot(ts, path[0], label= f&#39;$x_0$ = 20, $\mu$ = 5&#39;)
+/var/folders/8_/ln4xq0tn2_9dclcldppw87f00000gn/T/ipykernel_28292/3538491118.py:15: SyntaxWarning: invalid escape sequence &#39;\m&#39;
+  plt.plot(ts, path[0], label= f&#39;$x_0$ = {x0:.0f}, $\mu$ = 15&#39;)
+/var/folders/8_/ln4xq0tn2_9dclcldppw87f00000gn/T/ipykernel_28292/3538491118.py:20: SyntaxWarning: invalid escape sequence &#39;\m&#39;
+  plt.title(&#39;Three Paths from the CIR Model\n $dX_t = \\theta(\mu - X_t) dt + \sigma \sqrt{X_t} dW_t$\n with $\\theta = 1, \sigma = 0.5$&#39;)
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/29ef808e805d2023a7c33b8b914013d39ad9fd27921abe6d38e6a7acbb415f97.png"><img alt="_images/29ef808e805d2023a7c33b8b914013d39ad9fd27921abe6d38e6a7acbb415f97.png" src="_images/29ef808e805d2023a7c33b8b914013d39ad9fd27921abe6d38e6a7acbb415f97.png" style="width: 981px; height: 568px;" />
+</a>
 </div>
 </div>
 </section>
 <section id="references-and-further-reading">
-<h2>References and Further Reading<a class="headerlink" href="#references-and-further-reading" title="Permalink to this heading">#</a></h2>
+<h2>References and Further Reading<a class="headerlink" href="#references-and-further-reading" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>“Mathematical Methods for Financial Markets” by Monique Jeanblanc, Marc Yor, Marc Chesney; Springer Science &amp; Business Media, 13 Oct 2009</p></li>
 </ul>
@@ -1615,152 +1381,67 @@ X_{\infty}\dfrac{\sigma^2}{4\theta} \sim \chi^2\left(\dfrac{4\theta\mu}{\sigma^2
     </script>
     <script>kernelName = 'python3'</script>
 
-            </article>
-            
+                </article>
+              
 
-            
-            
-            <footer class="bd-footer-article">
-                <!-- Previous / next buttons -->
-<div class='prev-next-area'>
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
 </div>
-            </footer>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#definition">Definition</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#expectation-and-variance">Expectation and Variance</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#python-implementation">Python Implementation</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#marginal-distributions">Marginal Distributions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#marginal-distributions-in-python">Marginal Distributions in Python</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#probability-density-functions">Probability Density Functions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sampling">Sampling</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simulation">Simulation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simulating-and-visualising-paths">Simulating and Visualising Paths</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#long-time-behaviour">Long Time Behaviour</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Expectation and Variance</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-about-delta-alpha-and-scale">What about <span class="math notranslate nohighlight">\(\delta, \alpha\)</span> and <span class="math notranslate nohighlight">\(scale\)</span>?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#marginal">Marginal</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#the-parameter-theta-determines-the-speed-of-convergence">The parameter <span class="math notranslate nohighlight">\(\theta\)</span> determines the Speed of Convergence</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#the-parameter-sigma-determines-the-volatility-in-the-simulation">The parameter <span class="math notranslate nohighlight">\(\sigma\)</span> determines the volatility in the simulation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualisation">Visualisation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references-and-further-reading">References and Further Reading</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
             
           </div>
-          
-          
-          
-            <div class="bd-sidebar-secondary bd-toc">
-              
-<div class="toc-item">
-  
-<div class="tocsection onthispage">
-    <i class="fa-solid fa-list"></i> On this page
-</div>
-<nav id="bd-toc-nav" class="page-toc">
-    <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#definition">
-   Definition
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#expectation-and-variance">
-   Expectation and Variance
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#python-implementation">
-     Python Implementation
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#marginal-distributions">
-   Marginal Distributions
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#marginal-distributions-in-python">
-     Marginal Distributions in Python
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#probability-density-functions">
-     Probability Density Functions
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#sampling">
-     Sampling
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#simulation">
-   Simulation
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#simulating-and-visualising-paths">
-     Simulating and Visualising Paths
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#long-time-behaviour">
-   Long Time Behaviour
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id1">
-     Expectation and Variance
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#what-about-delta-alpha-and-scale">
-     What about
-     <span class="math notranslate nohighlight">
-      \(\delta, \alpha\)
-     </span>
-     and
-     <span class="math notranslate nohighlight">
-      \(scale\)
-     </span>
-     ?
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#marginal">
-     Marginal
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#the-parameter-theta-determines-the-speed-of-convergence">
-       The parameter
-       <span class="math notranslate nohighlight">
-        \(\theta\)
-       </span>
-       determines the Speed of Convergence
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#the-parameter-sigma-determines-the-volatility-in-the-simulation">
-       The parameter
-       <span class="math notranslate nohighlight">
-        \(\sigma\)
-       </span>
-       determines the volatility in the simulation
-      </a>
-     </li>
-    </ul>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#visualisation">
-   Visualisation
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#references-and-further-reading">
-   References and Further Reading
-  </a>
- </li>
-</ul>
-
-</nav>
-</div>
-
-            </div>
-          
-          
-        </div>
-        <footer class="bd-footer-content">
-          <div class="bd-footer-content__inner">
+          <footer class="bd-footer-content">
             
 <div class="bd-footer-content__inner container">
   
@@ -1774,18 +1455,18 @@ By Dialid Santiago
   
   <div class="footer-item">
     
-<p class="copyright">
 
-    &copy; Copyright 2022-2024.<br>
-
-</p>
+  <p class="copyright">
+    
+      © Copyright 2022-2024.
+      <br/>
+    
+  </p>
 
   </div>
   
   <div class="footer-item">
-    <p class="last-updated">
-Last updated on None.<br>
-</p>
+    
   </div>
   
   <div class="footer-item">
@@ -1793,19 +1474,18 @@ Last updated on None.<br>
   </div>
   
 </div>
-          </div>
-        </footer>
+          </footer>
         
 
       </main>
     </div>
   </div>
-
   
-    
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=796348d33e8b1d947c94"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=796348d33e8b1d947c94"></script>
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
 
+  <footer class="bd-footer">
+  </footer>
   </body>
 </html>
