@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -391,7 +391,11 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#definition">Definition</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#definition">Definition</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#special-cases">Special Cases</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#existence">Existence</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#expectation-and-variance">Expectation and Variance</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#python-implementation">Python Implementation</a></li>
 </ul>
@@ -432,11 +436,41 @@ document.write(`
   <section class="tex2jax_ignore mathjax_ignore" id="constant-elasticity-variance-process">
 <h1>Constant Elasticity Variance Process<a class="headerlink" href="#constant-elasticity-variance-process" title="Link to this heading">#</a></h1>
 <p>The purpose of this notebook is to provide an illustration of the <a class="reference external" href="https://en.wikipedia.org/wiki/Constant_elasticity_of_variance_model">Constant Elasticity Variance Process</a> and some of its main properties.</p>
+<p>Before diving into the theory, let’s start by loading the libraries</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">matplotlib</span></code></p></li>
+<li><p><a class="reference external" href="https://github.com/quantgirluk/aleatory"><code class="docutils literal notranslate"><span class="pre">aleatory</span></code></a></p></li>
+</ul>
+<p>together with the style sheet <a class="reference external" href="https://github.com/quantgirluk/matplotlib-stylesheets">Quant-Pastel Light</a>.</p>
+<p>These tools will help us to make insightful visualisations.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="n">mystyle</span> <span class="o">=</span> <span class="s2">&quot;https://raw.githubusercontent.com/quantgirluk/matplotlib-stylesheets/main/quant-pastel-light.mplstyle&quot;</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="n">mystyle</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s2">&quot;figure.figsize&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">aleatory.processes</span><span class="w"> </span><span class="kn">import</span> <span class="n">CEVProcess</span>
+
+<span class="n">process</span> <span class="o">=</span> <span class="n">CEVProcess</span><span class="p">()</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">process</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">7</span><span class="p">),</span> <span class="n">colormap</span><span class="o">=</span><span class="s2">&quot;Purples&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/e47597eaaebf32d349ee1a6a8d9397186ac0082f48c0eb94d30733d2ab70f83d.png" src="_images/e47597eaaebf32d349ee1a6a8d9397186ac0082f48c0eb94d30733d2ab70f83d.png" />
+</div>
+</div>
 <section id="definition">
 <h2>Definition<a class="headerlink" href="#definition" title="Link to this heading">#</a></h2>
 <p>The Constant Elasticity Variance (CEV) process can be used to describe the dynamics of forward prices via a stochastic process which can be defined by the following Stochastic Differential Equation (SDE)</p>
-<div class="amsmath math notranslate nohighlight" id="equation-6e96f323-b9d7-4660-a9da-e175f15e80f2">
-<span class="eqno">()<a class="headerlink" href="#equation-6e96f323-b9d7-4660-a9da-e175f15e80f2" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-bd47c7aa-96f4-48c4-80a1-1a5ee53e43fc">
+<span class="eqno">()<a class="headerlink" href="#equation-bd47c7aa-96f4-48c4-80a1-1a5ee53e43fc" title="Permalink to this equation">#</a></span>\[\begin{equation}
 dX_t = \mu X_t dt + \sigma X_t^{\gamma} dW_t, \quad t &gt;0,
 \end{equation}\]</div>
 <p>with initial condition  <span class="math notranslate nohighlight">\(X_0 =x_0\in\mathbb{R}\)</span>, and where <span class="math notranslate nohighlight">\(W_t\)</span> is a standard Brownian motion, and the three parameters are constants:</p>
@@ -446,15 +480,23 @@ dX_t = \mu X_t dt + \sigma X_t^{\gamma} dW_t, \quad t &gt;0,
 <li><p><span class="math notranslate nohighlight">\(\gamma\)</span> : elasticity parameter</p></li>
 </ul>
 <p>Another parameterisation is given by</p>
-<div class="amsmath math notranslate nohighlight" id="equation-8a799aee-f361-4bff-83b8-928eaa792575">
-<span class="eqno">()<a class="headerlink" href="#equation-8a799aee-f361-4bff-83b8-928eaa792575" title="Permalink to this equation">#</a></span>\[\begin{equation}
-dX_t = \mu X_t dt + \sigma X_t^{\gamma + 1} dW_t, \quad t &gt;0,
+<div class="amsmath math notranslate nohighlight" id="equation-c6bde465-3d3d-44f9-bc97-21d91ec7cbae">
+<span class="eqno">()<a class="headerlink" href="#equation-c6bde465-3d3d-44f9-bc97-21d91ec7cbae" title="Permalink to this equation">#</a></span>\[\begin{equation}
+dX_t = \mu X_t dt + \sigma X_t^{\gamma + 1} dW_t, \quad t &gt;0.
 \end{equation}\]</div>
-<p>so we can write</p>
-<div class="amsmath math notranslate nohighlight" id="equation-5fdf94fe-9fa1-43c3-b00c-566fa6194f76">
-<span class="eqno">()<a class="headerlink" href="#equation-5fdf94fe-9fa1-43c3-b00c-566fa6194f76" title="Permalink to this equation">#</a></span>\[\begin{equation}
-\frac{dX_t}{X_t}= \mu  dt + \sigma X_t^{\gamma} dW_t, \quad t &gt;0,
-\end{equation}\]</div>
+<section id="special-cases">
+<h3>Special Cases<a class="headerlink" href="#special-cases" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>If <span class="math notranslate nohighlight">\(\gamma=0\)</span>, then the CEV model reduces to a Geometric Brownian motion</p></li>
+<li><p>If <span class="math notranslate nohighlight">\(\gamma=-\frac{1}{2}\)</span>, then we have a particular case of the CIR process</p></li>
+</ul>
+</section>
+</section>
+<section id="existence">
+<h2>Existence<a class="headerlink" href="#existence" title="Link to this heading">#</a></h2>
+<p>If <span class="math notranslate nohighlight">\(\mu =0\)</span>, then we have</p>
+<div class="math notranslate nohighlight">
+\[ dX_t = \sigma X_t^{\gamma +1 } dW_t, \ \ \ \ t &gt;0.\]</div>
 </section>
 <section id="expectation-and-variance">
 <h2>Expectation and Variance<a class="headerlink" href="#expectation-and-variance" title="Link to this heading">#</a></h2>
@@ -478,8 +520,8 @@ X_te^{\theta t} &amp;= x_0 +\int_0^t X_s \theta e^{\theta s}ds + \int_0^t e^{\th
 &amp; = x_0 + \mu(e^{\theta t} - 1) + \int_0^t e^{\theta s}\sigma \sqrt{X_s} dW_s.
 \end{align*}\]</div>
 <p>Thus</p>
-<div class="amsmath math notranslate nohighlight" id="equation-fbdc828a-fcfc-4514-a11d-baad2a280634">
-<span class="eqno">()<a class="headerlink" href="#equation-fbdc828a-fcfc-4514-a11d-baad2a280634" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-f0e912a2-cd1a-4b78-bb78-c7e185b6668c">
+<span class="eqno">()<a class="headerlink" href="#equation-f0e912a2-cd1a-4b78-bb78-c7e185b6668c" title="Permalink to this equation">#</a></span>\[\begin{equation}
 X_t = x_0e^{-\theta t} +  \mu(1- e^{-\theta t})  + \sigma \int_0^t e^{-\theta (t-s)}  \sqrt{X_s} dW_s.
 \end{equation}\]</div>
 <div class="admonition note">
@@ -559,8 +601,8 @@ Var[X_t] = 0.266113
 <section id="marginal-distributions">
 <h2>Marginal Distributions<a class="headerlink" href="#marginal-distributions" title="Link to this heading">#</a></h2>
 <p>The marginal distribution <span class="math notranslate nohighlight">\(X_t | x_0\)</span> , simply denoted by <span class="math notranslate nohighlight">\(X_t\)</span>, has probability density function</p>
-<div class="amsmath math notranslate nohighlight" id="equation-79e42f05-4990-41c6-8d53-4f7e12014ed6">
-<span class="eqno">()<a class="headerlink" href="#equation-79e42f05-4990-41c6-8d53-4f7e12014ed6" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-8334f6cb-a73f-46dc-a793-d7c4e6404111">
+<span class="eqno">()<a class="headerlink" href="#equation-8334f6cb-a73f-46dc-a793-d7c4e6404111" title="Permalink to this equation">#</a></span>\[\begin{equation}
 f(x, t; \theta, \mu, \sigma, x_0) =  \dfrac{e^{\theta t}}{2 c(t)}   \left(\dfrac{x e^{\theta t}}{x_0}\right)^{\frac{\nu}{2}}   \exp\left(- \dfrac{x_0 + xe^{\theta t}}{2c(t)}\right) I_{\nu} \left( \dfrac{1}{c(t)}  \sqrt{x_0 x e^{\theta t}}\right) \mathbb{1}_{\{x&gt;0\}},
 \end{equation}\]</div>
 <p>where where <span class="math notranslate nohighlight">\(I_{\nu}\)</span> is the <a class="reference external" href="https://mathworld.wolfram.com/ModifiedBesselFunctionoftheFirstKind.html">modified Bessel function</a>, and</p>
@@ -588,21 +630,21 @@ g(y) &amp; = c(t) e^{-\theta t } f(yc(t)e^{-\theta t}  ) \\
 \alpha = \dfrac{x_0}{c(t)}.
 \end{equation*}\]</div>
 <p>That is, <span class="math notranslate nohighlight">\(Y_t\)</span> follows a <a class="reference external" href="https://en.wikipedia.org/wiki/Noncentral_chi-squared_distribution">non-central Chi-squared</a> distribution</p>
-<div class="amsmath math notranslate nohighlight" id="equation-dc5ddd96-de97-4604-8952-556349224c19">
-<span class="eqno">()<a class="headerlink" href="#equation-dc5ddd96-de97-4604-8952-556349224c19" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-9d64132c-b8cd-4108-bde8-7fe6a21e81a8">
+<span class="eqno">()<a class="headerlink" href="#equation-9d64132c-b8cd-4108-bde8-7fe6a21e81a8" title="Permalink to this equation">#</a></span>\[\begin{equation}
 Y_t = X_t \dfrac{e^{\theta t}}{c(t)} \sim \chi^2(\delta, \alpha).
 \end{equation}\]</div>
 <p>So, <span class="math notranslate nohighlight">\(X_t\)</span> follows a non-central Chi-square distribution (with  <span class="math notranslate nohighlight">\(\delta\)</span> degrees of freedom,  non-centrality parameter equal to <span class="math notranslate nohighlight">\(\alpha\)</span>)  scaled by <span class="math notranslate nohighlight">\(scale = c(t)e^{-\theta t}\)</span>.  Note that we can write these quantities  in terms of the SDE parameters initial condition as follows:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-1113956d-f23c-4464-bd24-160437412503">
-<span class="eqno">()<a class="headerlink" href="#equation-1113956d-f23c-4464-bd24-160437412503" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-9854a190-de9b-495f-aa77-c1f8857639bc">
+<span class="eqno">()<a class="headerlink" href="#equation-9854a190-de9b-495f-aa77-c1f8857639bc" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \delta = \dfrac{4 \theta \mu}{\sigma^2},
 \end{equation}\]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-8b190e29-b08a-48db-8415-4795c893c6f1">
-<span class="eqno">()<a class="headerlink" href="#equation-8b190e29-b08a-48db-8415-4795c893c6f1" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-c301cbde-7429-4f5c-8d87-6e43ee16f045">
+<span class="eqno">()<a class="headerlink" href="#equation-c301cbde-7429-4f5c-8d87-6e43ee16f045" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \alpha = \dfrac{4 \theta }{\sigma^2 }\dfrac{x_0}{(e^{\theta t} - 1)},
 \end{equation}\]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-c2ffdc8c-4918-41a6-994b-d9e674384fc9">
-<span class="eqno">()<a class="headerlink" href="#equation-c2ffdc8c-4918-41a6-994b-d9e674384fc9" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-aa9152b7-e0b6-47d9-b45e-7be3c42b0acf">
+<span class="eqno">()<a class="headerlink" href="#equation-aa9152b7-e0b6-47d9-b45e-7be3c42b0acf" title="Permalink to this equation">#</a></span>\[\begin{equation}
 scale = \dfrac{\sigma^2}{4 \theta} (1 -e^{-\theta t}).
 \end{equation}\]</div>
 <div class="admonition note">
@@ -729,7 +771,7 @@ scale = \dfrac{\sigma^2}{4 \theta} (1 -e^{-\theta t}).
 </div>
 </details>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/d3ededc747ca38d3311571cd3915037d9f10abe34bc28ab3fab2b5931e2b25d5.png"><img alt="_images/d3ededc747ca38d3311571cd3915037d9f10abe34bc28ab3fab2b5931e2b25d5.png" src="_images/d3ededc747ca38d3311571cd3915037d9f10abe34bc28ab3fab2b5931e2b25d5.png" style="width: 974px; height: 522px;" />
+<a class="reference internal image-reference" href="_images/4b3bdb8af3bcad26e7e73968e488b573d2e60db2910021cdea2e8ed61c31e265.png"><img alt="_images/4b3bdb8af3bcad26e7e73968e488b573d2e60db2910021cdea2e8ed61c31e265.png" src="_images/4b3bdb8af3bcad26e7e73968e488b573d2e60db2910021cdea2e8ed61c31e265.png" style="width: 1945px; height: 1038px;" />
 </a>
 </div>
 </div>
@@ -766,7 +808,7 @@ scale = \dfrac{\sigma^2}{4 \theta} (1 -e^{-\theta t}).
 </div>
 </details>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/d26a7695d5ea745bc0e08c3708eb8b3d5cf71c237e3b4eda00c91df356adef54.png"><img alt="_images/d26a7695d5ea745bc0e08c3708eb8b3d5cf71c237e3b4eda00c91df356adef54.png" src="_images/d26a7695d5ea745bc0e08c3708eb8b3d5cf71c237e3b4eda00c91df356adef54.png" style="width: 1439px; height: 559px;" />
+<a class="reference internal image-reference" href="_images/cc074c9b42d8ad3f28eefae668002926c5ca69d2c41859b33bed505cf279d349.png"><img alt="_images/cc074c9b42d8ad3f28eefae668002926c5ca69d2c41859b33bed505cf279d349.png" src="_images/cc074c9b42d8ad3f28eefae668002926c5ca69d2c41859b33bed505cf279d349.png" style="width: 2875px; height: 1118px;" />
 </a>
 </div>
 </div>
@@ -804,11 +846,11 @@ scale = \dfrac{\sigma^2}{4 \theta} (1 -e^{-\theta t}).
 <div class="cell_output docutils container">
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;&gt;:10: SyntaxWarning: invalid escape sequence &#39;\m&#39;
 &lt;&gt;:10: SyntaxWarning: invalid escape sequence &#39;\m&#39;
-/var/folders/8_/ln4xq0tn2_9dclcldppw87f00000gn/T/ipykernel_28292/1082102693.py:10: SyntaxWarning: invalid escape sequence &#39;\m&#39;
+/var/folders/8_/ln4xq0tn2_9dclcldppw87f00000gn/T/ipykernel_33732/1082102693.py:10: SyntaxWarning: invalid escape sequence &#39;\m&#39;
   alpha=0.75, label=f&#39;$\mu$={mu:.2f}&#39;)
 </pre></div>
 </div>
-<a class="reference internal image-reference" href="_images/84288e9a9d821c09a810b6990190b2ce30a1d21aca506c76795c3b63bc4f9aab.png"><img alt="_images/84288e9a9d821c09a810b6990190b2ce30a1d21aca506c76795c3b63bc4f9aab.png" src="_images/84288e9a9d821c09a810b6990190b2ce30a1d21aca506c76795c3b63bc4f9aab.png" style="width: 1439px; height: 559px;" />
+<a class="reference internal image-reference" href="_images/5c08e00bb655dac41b6dd425e751d942a8eda6ae6624c3c1d2396c498f6e9c47.png"><img alt="_images/5c08e00bb655dac41b6dd425e751d942a8eda6ae6624c3c1d2396c498f6e9c47.png" src="_images/5c08e00bb655dac41b6dd425e751d942a8eda6ae6624c3c1d2396c498f6e9c47.png" style="width: 2875px; height: 1118px;" />
 </a>
 </div>
 </div>
@@ -847,11 +889,11 @@ scale = \dfrac{\sigma^2}{4 \theta} (1 -e^{-\theta t}).
 <div class="cell_output docutils container">
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;&gt;:10: SyntaxWarning: invalid escape sequence &#39;\s&#39;
 &lt;&gt;:10: SyntaxWarning: invalid escape sequence &#39;\s&#39;
-/var/folders/8_/ln4xq0tn2_9dclcldppw87f00000gn/T/ipykernel_28292/690459534.py:10: SyntaxWarning: invalid escape sequence &#39;\s&#39;
+/var/folders/8_/ln4xq0tn2_9dclcldppw87f00000gn/T/ipykernel_33732/690459534.py:10: SyntaxWarning: invalid escape sequence &#39;\s&#39;
   alpha=0.75, label=f&#39;$\sigma$={sigma:.2f}&#39;)
 </pre></div>
 </div>
-<a class="reference internal image-reference" href="_images/4b2c801ce68b746c9b812ea2b25d2292e8bcec17c9449cfa9f2fee4761c691c1.png"><img alt="_images/4b2c801ce68b746c9b812ea2b25d2292e8bcec17c9449cfa9f2fee4761c691c1.png" src="_images/4b2c801ce68b746c9b812ea2b25d2292e8bcec17c9449cfa9f2fee4761c691c1.png" style="width: 1439px; height: 559px;" />
+<a class="reference internal image-reference" href="_images/03c540da653d5013125f889df774b84f8ad46baacefbd42c9f833e1fa2a95013.png"><img alt="_images/03c540da653d5013125f889df774b84f8ad46baacefbd42c9f833e1fa2a95013.png" src="_images/03c540da653d5013125f889df774b84f8ad46baacefbd42c9f833e1fa2a95013.png" style="width: 2875px; height: 1118px;" />
 </a>
 </div>
 </div>
@@ -888,7 +930,7 @@ scale = \dfrac{\sigma^2}{4 \theta} (1 -e^{-\theta t}).
 </div>
 </details>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/2d77f1873dd74a695ce03ee76ce50fa69b4b2f5b42a1df0056908b4a86b561a5.png"><img alt="_images/2d77f1873dd74a695ce03ee76ce50fa69b4b2f5b42a1df0056908b4a86b561a5.png" src="_images/2d77f1873dd74a695ce03ee76ce50fa69b4b2f5b42a1df0056908b4a86b561a5.png" style="width: 1439px; height: 559px;" />
+<a class="reference internal image-reference" href="_images/d5c2951b1df8e628472b8e522d553f1aa8c4b340346f600d77fd3a161633885e.png"><img alt="_images/d5c2951b1df8e628472b8e522d553f1aa8c4b340346f600d77fd3a161633885e.png" src="_images/d5c2951b1df8e628472b8e522d553f1aa8c4b340346f600d77fd3a161633885e.png" style="width: 2875px; height: 1118px;" />
 </a>
 </div>
 </div>
@@ -908,7 +950,7 @@ scale = \dfrac{\sigma^2}{4 \theta} (1 -e^{-\theta t}).
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([7.71616751, 6.66125549, 6.35204976, 7.33537781, 6.88269232])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([7.60793854, 5.81767356, 5.97180915, 6.23454922, 7.26082375])
 </pre></div>
 </div>
 </div>
@@ -922,7 +964,7 @@ scale = \dfrac{\sigma^2}{4 \theta} (1 -e^{-\theta t}).
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 8.13105733, 10.52495869, 10.028046  ,  9.58587797, 11.50627108])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 9.53299692,  8.89220414, 11.05863607, 10.46411649,  8.40619404])
 </pre></div>
 </div>
 </div>
@@ -957,7 +999,7 @@ t_i = \frac{i}{n-1} T \qquad  \hbox{for } i = 0, \cdots, n-1.
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/d77592812add4052cc9d08f911f4da3cdafde47df49aba9ada178af85d2e985c.png"><img alt="_images/d77592812add4052cc9d08f911f4da3cdafde47df49aba9ada178af85d2e985c.png" src="_images/d77592812add4052cc9d08f911f4da3cdafde47df49aba9ada178af85d2e985c.png" style="width: 982px; height: 538px;" />
+<a class="reference internal image-reference" href="_images/0055acfcea140e04f823af994b710e9b2e805e36841f9e34920f9b740a2f6229.png"><img alt="_images/0055acfcea140e04f823af994b710e9b2e805e36841f9e34920f9b740a2f6229.png" src="_images/0055acfcea140e04f823af994b710e9b2e805e36841f9e34920f9b740a2f6229.png" style="width: 1962px; height: 1075px;" />
 </a>
 </div>
 </div>
@@ -981,7 +1023,7 @@ t_i = \frac{i}{n-1} T \qquad  \hbox{for } i = 0, \cdots, n-1.
 </div>
 </details>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/f41ca7b368832e3774acf75730f06d5b008469c9c0ab66682e692ee647456b5e.png"><img alt="_images/f41ca7b368832e3774acf75730f06d5b008469c9c0ab66682e692ee647456b5e.png" src="_images/f41ca7b368832e3774acf75730f06d5b008469c9c0ab66682e692ee647456b5e.png" style="width: 990px; height: 538px;" />
+<a class="reference internal image-reference" href="_images/f1f2fee0a5c05faf8b6135edd7da92a1356ad35c1e7e6eb3ae285d6d743d1940.png"><img alt="_images/f1f2fee0a5c05faf8b6135edd7da92a1356ad35c1e7e6eb3ae285d6d743d1940.png" src="_images/f1f2fee0a5c05faf8b6135edd7da92a1356ad35c1e7e6eb3ae285d6d743d1940.png" style="width: 1976px; height: 1075px;" />
 </a>
 </div>
 </div>
@@ -1038,9 +1080,9 @@ First, we consider a process with <span class="math notranslate nohighlight">\(\
 &lt;&gt;:19: SyntaxWarning: invalid escape sequence &#39;\s&#39;
 &lt;&gt;:19: SyntaxWarning: invalid escape sequence &#39;\m&#39;
 &lt;&gt;:19: SyntaxWarning: invalid escape sequence &#39;\s&#39;
-/var/folders/8_/ln4xq0tn2_9dclcldppw87f00000gn/T/ipykernel_28292/1981867478.py:19: SyntaxWarning: invalid escape sequence &#39;\m&#39;
+/var/folders/8_/ln4xq0tn2_9dclcldppw87f00000gn/T/ipykernel_33732/1981867478.py:19: SyntaxWarning: invalid escape sequence &#39;\m&#39;
   &#39;Expectation and Variance of $X_t$ with &#39; f&#39;$x_0$={x0:.2f}, $\\theta$={theta:.2f}, $\mu$={mu:.2f}, $\sigma$={sigma:.2f}&#39;, size=12)
-/var/folders/8_/ln4xq0tn2_9dclcldppw87f00000gn/T/ipykernel_28292/1981867478.py:19: SyntaxWarning: invalid escape sequence &#39;\s&#39;
+/var/folders/8_/ln4xq0tn2_9dclcldppw87f00000gn/T/ipykernel_33732/1981867478.py:19: SyntaxWarning: invalid escape sequence &#39;\s&#39;
   &#39;Expectation and Variance of $X_t$ with &#39; f&#39;$x_0$={x0:.2f}, $\\theta$={theta:.2f}, $\mu$={mu:.2f}, $\sigma$={sigma:.2f}&#39;, size=12)
 </pre></div>
 </div>
@@ -1059,7 +1101,7 @@ First, we consider a process with <span class="math notranslate nohighlight">\(\
 </div>
 </details>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/7ebfb993a61c1055856fefa7edf6c35fb001439b4fd0c919ab528166bb5c228e.png"><img alt="_images/7ebfb993a61c1055856fefa7edf6c35fb001439b4fd0c919ab528166bb5c228e.png" src="_images/7ebfb993a61c1055856fefa7edf6c35fb001439b4fd0c919ab528166bb5c228e.png" style="width: 741px; height: 404px;" />
+<a class="reference internal image-reference" href="_images/7e5aad3a77068cddcec9794f271bd1f8d97714d3863d751c0cf77f21021605cc.png"><img alt="_images/7e5aad3a77068cddcec9794f271bd1f8d97714d3863d751c0cf77f21021605cc.png" src="_images/7e5aad3a77068cddcec9794f271bd1f8d97714d3863d751c0cf77f21021605cc.png" style="width: 1480px; height: 806px;" />
 </a>
 </div>
 </div>
@@ -1078,23 +1120,23 @@ Clearly, convergence is achieved much faster. Besides, the limit variance is dif
 </div>
 </details>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/143d3ae51aefa49ae56bbbbbd5cdacad32b73c47945922aae02a2a74f5bcf9e7.png"><img alt="_images/143d3ae51aefa49ae56bbbbbd5cdacad32b73c47945922aae02a2a74f5bcf9e7.png" src="_images/143d3ae51aefa49ae56bbbbbd5cdacad32b73c47945922aae02a2a74f5bcf9e7.png" style="width: 741px; height: 404px;" />
+<a class="reference internal image-reference" href="_images/ea6f7d690bf7bb4cff608b991da91a2adb59d71f6e47b6c4db9ea97d00b956c7.png"><img alt="_images/ea6f7d690bf7bb4cff608b991da91a2adb59d71f6e47b6c4db9ea97d00b956c7.png" src="_images/ea6f7d690bf7bb4cff608b991da91a2adb59d71f6e47b6c4db9ea97d00b956c7.png" style="width: 1480px; height: 806px;" />
 </a>
 </div>
 </div>
 </section>
 <section id="what-about-delta-alpha-and-scale">
 <h3>What about <span class="math notranslate nohighlight">\(\delta, \alpha\)</span> and <span class="math notranslate nohighlight">\(scale\)</span>?<a class="headerlink" href="#what-about-delta-alpha-and-scale" title="Link to this heading">#</a></h3>
-<div class="amsmath math notranslate nohighlight" id="equation-57db6704-b054-45da-9fdf-29915fac8982">
-<span class="eqno">()<a class="headerlink" href="#equation-57db6704-b054-45da-9fdf-29915fac8982" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-02a97d90-ba71-4e9f-a3c1-e4102382f23f">
+<span class="eqno">()<a class="headerlink" href="#equation-02a97d90-ba71-4e9f-a3c1-e4102382f23f" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \lim_{t\rightarrow\infty} \delta =  \lim_{t\rightarrow\infty} \dfrac{4 \theta \mu}{\sigma^2} = \dfrac{4 \theta \mu}{\sigma^2},
 \end{equation}\]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-81497a23-05f3-4766-8f9a-53cf8ea26f6c">
-<span class="eqno">()<a class="headerlink" href="#equation-81497a23-05f3-4766-8f9a-53cf8ea26f6c" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-558dd48f-d2f1-4aed-8a89-83fb502a57dd">
+<span class="eqno">()<a class="headerlink" href="#equation-558dd48f-d2f1-4aed-8a89-83fb502a57dd" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \lim_{t\rightarrow\infty} \alpha = \lim_{t\rightarrow\infty}\dfrac{4 \theta }{\sigma^2 }\dfrac{x_0}{(e^{\theta t} - 1)} = 0,
 \end{equation}\]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-9b02effd-d66b-4b69-b4f0-85325adc86e6">
-<span class="eqno">()<a class="headerlink" href="#equation-9b02effd-d66b-4b69-b4f0-85325adc86e6" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-bb693c44-0189-4997-983d-b14690fe4ef4">
+<span class="eqno">()<a class="headerlink" href="#equation-bb693c44-0189-4997-983d-b14690fe4ef4" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \lim_{t\rightarrow\infty} scale = \lim_{t\rightarrow\infty} \dfrac{\sigma^2}{4 \theta} (1 -e^{-\theta t}) =  \dfrac{\sigma^2}{4 \theta}.
 \end{equation}\]</div>
 <div class="cell tag_hide-input docutils container">
@@ -1130,9 +1172,9 @@ Clearly, convergence is achieved much faster. Besides, the limit variance is dif
 &lt;&gt;:16: SyntaxWarning: invalid escape sequence &#39;\s&#39;
 &lt;&gt;:16: SyntaxWarning: invalid escape sequence &#39;\m&#39;
 &lt;&gt;:16: SyntaxWarning: invalid escape sequence &#39;\s&#39;
-/var/folders/8_/ln4xq0tn2_9dclcldppw87f00000gn/T/ipykernel_28292/1526680694.py:16: SyntaxWarning: invalid escape sequence &#39;\m&#39;
+/var/folders/8_/ln4xq0tn2_9dclcldppw87f00000gn/T/ipykernel_33732/1526680694.py:16: SyntaxWarning: invalid escape sequence &#39;\m&#39;
   &#39;Degrees of Freedom and Scale Convergence for $X_t$ \n from a CIR process with &#39; f&#39;$x_0$={x0:.2f}, $\\theta$={theta:.2f}, $\mu$={mu:.2f}, $\sigma$={sigma:.2f}&#39;, size=12)
-/var/folders/8_/ln4xq0tn2_9dclcldppw87f00000gn/T/ipykernel_28292/1526680694.py:16: SyntaxWarning: invalid escape sequence &#39;\s&#39;
+/var/folders/8_/ln4xq0tn2_9dclcldppw87f00000gn/T/ipykernel_33732/1526680694.py:16: SyntaxWarning: invalid escape sequence &#39;\s&#39;
   &#39;Degrees of Freedom and Scale Convergence for $X_t$ \n from a CIR process with &#39; f&#39;$x_0$={x0:.2f}, $\\theta$={theta:.2f}, $\mu$={mu:.2f}, $\sigma$={sigma:.2f}&#39;, size=12)
 </pre></div>
 </div>
@@ -1145,7 +1187,7 @@ Clearly, convergence is achieved much faster. Besides, the limit variance is dif
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/0005990fd68a9e85ccda84036fc052d036e069e41874760b5faa9158462ae1e0.png"><img alt="_images/0005990fd68a9e85ccda84036fc052d036e069e41874760b5faa9158462ae1e0.png" src="_images/0005990fd68a9e85ccda84036fc052d036e069e41874760b5faa9158462ae1e0.png" style="width: 745px; height: 404px;" />
+<a class="reference internal image-reference" href="_images/19f6f36a15479563da0811ed8f96084e009e606ea8890f7dce55b657744e9d30.png"><img alt="_images/19f6f36a15479563da0811ed8f96084e009e606ea8890f7dce55b657744e9d30.png" src="_images/19f6f36a15479563da0811ed8f96084e009e606ea8890f7dce55b657744e9d30.png" style="width: 1486px; height: 806px;" />
 </a>
 </div>
 </div>
@@ -1174,7 +1216,7 @@ X_{\infty}\dfrac{\sigma^2}{4\theta} \sim \chi^2\left(\dfrac{4\theta\mu}{\sigma^2
 </div>
 </details>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/f9d16d30c24648b6db19d23094a46e08640b59c88d61f18b2efe55d98689eab3.png"><img alt="_images/f9d16d30c24648b6db19d23094a46e08640b59c88d61f18b2efe55d98689eab3.png" src="_images/f9d16d30c24648b6db19d23094a46e08640b59c88d61f18b2efe55d98689eab3.png" style="width: 990px; height: 578px;" />
+<a class="reference internal image-reference" href="_images/e697f9618c594086c17df171c1e5395909a46283b936ef55648d4c0095544bd9.png"><img alt="_images/e697f9618c594086c17df171c1e5395909a46283b936ef55648d4c0095544bd9.png" src="_images/e697f9618c594086c17df171c1e5395909a46283b936ef55648d4c0095544bd9.png" style="width: 1976px; height: 1154px;" />
 </a>
 </div>
 </div>
@@ -1194,7 +1236,7 @@ X_{\infty}\dfrac{\sigma^2}{4\theta} \sim \chi^2\left(\dfrac{4\theta\mu}{\sigma^2
 </div>
 </details>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/888de0acb34c97ebd336deb784c373b1db603c1d07913bd956c09f0b8306a3f2.png"><img alt="_images/888de0acb34c97ebd336deb784c373b1db603c1d07913bd956c09f0b8306a3f2.png" src="_images/888de0acb34c97ebd336deb784c373b1db603c1d07913bd956c09f0b8306a3f2.png" style="width: 990px; height: 578px;" />
+<a class="reference internal image-reference" href="_images/d046828dfa96b7c1d5c0da68a702d97bbae9d2f9bbd79e6251d6d61cf4b76e9b.png"><img alt="_images/d046828dfa96b7c1d5c0da68a702d97bbae9d2f9bbd79e6251d6d61cf4b76e9b.png" src="_images/d046828dfa96b7c1d5c0da68a702d97bbae9d2f9bbd79e6251d6d61cf4b76e9b.png" style="width: 1991px; height: 1154px;" />
 </a>
 </div>
 </div>
@@ -1209,7 +1251,7 @@ X_{\infty}\dfrac{\sigma^2}{4\theta} \sim \chi^2\left(\dfrac{4\theta\mu}{\sigma^2
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/6e4c92f9ba653a1a64fd6675b70a7101c030d03632ac912e049f32e8f6865353.png"><img alt="_images/6e4c92f9ba653a1a64fd6675b70a7101c030d03632ac912e049f32e8f6865353.png" src="_images/6e4c92f9ba653a1a64fd6675b70a7101c030d03632ac912e049f32e8f6865353.png" style="width: 1001px; height: 578px;" />
+<a class="reference internal image-reference" href="_images/292b91a42de33a14a31c90341e6d4cf2c458510abfd29c0d397b5c3f5a33715a.png"><img alt="_images/292b91a42de33a14a31c90341e6d4cf2c458510abfd29c0d397b5c3f5a33715a.png" src="_images/292b91a42de33a14a31c90341e6d4cf2c458510abfd29c0d397b5c3f5a33715a.png" style="width: 2014px; height: 1154px;" />
 </a>
 </div>
 </div>
@@ -1222,7 +1264,7 @@ X_{\infty}\dfrac{\sigma^2}{4\theta} \sim \chi^2\left(\dfrac{4\theta\mu}{\sigma^2
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/0d42505d3830137a2bdd22d4aa033ca3c9568d467eb15bf23115ca67739c3354.png"><img alt="_images/0d42505d3830137a2bdd22d4aa033ca3c9568d467eb15bf23115ca67739c3354.png" src="_images/0d42505d3830137a2bdd22d4aa033ca3c9568d467eb15bf23115ca67739c3354.png" style="width: 1001px; height: 578px;" />
+<a class="reference internal image-reference" href="_images/c6133283d1f09fcda5ac6d5ab3122fc52e40b6da88237dc7fe67b8c11fbbd58b.png"><img alt="_images/c6133283d1f09fcda5ac6d5ab3122fc52e40b6da88237dc7fe67b8c11fbbd58b.png" src="_images/c6133283d1f09fcda5ac6d5ab3122fc52e40b6da88237dc7fe67b8c11fbbd58b.png" style="width: 1976px; height: 1154px;" />
 </a>
 </div>
 </div>
@@ -1238,7 +1280,7 @@ X_{\infty}\dfrac{\sigma^2}{4\theta} \sim \chi^2\left(\dfrac{4\theta\mu}{\sigma^2
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/60fbc8a30afbaf4ba6dda069d1fa6d9e58ab66672b4d1577684399b0f439963c.png"><img alt="_images/60fbc8a30afbaf4ba6dda069d1fa6d9e58ab66672b4d1577684399b0f439963c.png" src="_images/60fbc8a30afbaf4ba6dda069d1fa6d9e58ab66672b4d1577684399b0f439963c.png" style="width: 986px; height: 578px;" />
+<a class="reference internal image-reference" href="_images/601e72fe1c44d00a7ff9825dbbf1e6e3ac7058f318acb08049e2a3fc94318db2.png"><img alt="_images/601e72fe1c44d00a7ff9825dbbf1e6e3ac7058f318acb08049e2a3fc94318db2.png" src="_images/601e72fe1c44d00a7ff9825dbbf1e6e3ac7058f318acb08049e2a3fc94318db2.png" style="width: 1962px; height: 1154px;" />
 </a>
 </div>
 </div>
@@ -1251,7 +1293,7 @@ X_{\infty}\dfrac{\sigma^2}{4\theta} \sim \chi^2\left(\dfrac{4\theta\mu}{\sigma^2
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/4de454c13ca8ca2cbcb8f202605b8523aeb6a3355843f08bd3b1a5c98681794f.png"><img alt="_images/4de454c13ca8ca2cbcb8f202605b8523aeb6a3355843f08bd3b1a5c98681794f.png" src="_images/4de454c13ca8ca2cbcb8f202605b8523aeb6a3355843f08bd3b1a5c98681794f.png" style="width: 1011px; height: 578px;" />
+<a class="reference internal image-reference" href="_images/efa91593a586e5e317d33c7dd36e082f890b77d123089362ab762eca1a7ae00d.png"><img alt="_images/efa91593a586e5e317d33c7dd36e082f890b77d123089362ab762eca1a7ae00d.png" src="_images/efa91593a586e5e317d33c7dd36e082f890b77d123089362ab762eca1a7ae00d.png" style="width: 1997px; height: 1154px;" />
 </a>
 </div>
 </div>
@@ -1277,7 +1319,7 @@ X_{\infty}\dfrac{\sigma^2}{4\theta} \sim \chi^2\left(\dfrac{4\theta\mu}{\sigma^2
 </div>
 </details>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/8763ac51ad67ea4fb4d5ca02e8bc89eb7a75a97f6391a5413aa76cfed6ec84ed.png"><img alt="_images/8763ac51ad67ea4fb4d5ca02e8bc89eb7a75a97f6391a5413aa76cfed6ec84ed.png" src="_images/8763ac51ad67ea4fb4d5ca02e8bc89eb7a75a97f6391a5413aa76cfed6ec84ed.png" style="width: 994px; height: 578px;" />
+<a class="reference internal image-reference" href="_images/9182846ead9de173fad988cf7a7960cdac7c1a9801a73388a747e704553f1503.png"><img alt="_images/9182846ead9de173fad988cf7a7960cdac7c1a9801a73388a747e704553f1503.png" src="_images/9182846ead9de173fad988cf7a7960cdac7c1a9801a73388a747e704553f1503.png" style="width: 1985px; height: 1154px;" />
 </a>
 </div>
 </div>
@@ -1297,7 +1339,7 @@ X_{\infty}\dfrac{\sigma^2}{4\theta} \sim \chi^2\left(\dfrac{4\theta\mu}{\sigma^2
 </div>
 </details>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/1aaf8ad7646ccde39f9237b1545fa6ef24ef183440e30b3ca436a6a1979c3d25.png"><img alt="_images/1aaf8ad7646ccde39f9237b1545fa6ef24ef183440e30b3ca436a6a1979c3d25.png" src="_images/1aaf8ad7646ccde39f9237b1545fa6ef24ef183440e30b3ca436a6a1979c3d25.png" style="width: 982px; height: 578px;" />
+<a class="reference internal image-reference" href="_images/689ad4a84690857e24cc1531c1af49dc8207118e35361743e6e9825a1e87bcad.png"><img alt="_images/689ad4a84690857e24cc1531c1af49dc8207118e35361743e6e9825a1e87bcad.png" src="_images/689ad4a84690857e24cc1531c1af49dc8207118e35361743e6e9825a1e87bcad.png" style="width: 1976px; height: 1154px;" />
 </a>
 </div>
 </div>
@@ -1340,15 +1382,15 @@ X_{\infty}\dfrac{\sigma^2}{4\theta} \sim \chi^2\left(\dfrac{4\theta\mu}{\sigma^2
 &lt;&gt;:9: SyntaxWarning: invalid escape sequence &#39;\m&#39;
 &lt;&gt;:15: SyntaxWarning: invalid escape sequence &#39;\m&#39;
 &lt;&gt;:20: SyntaxWarning: invalid escape sequence &#39;\m&#39;
-/var/folders/8_/ln4xq0tn2_9dclcldppw87f00000gn/T/ipykernel_28292/3538491118.py:9: SyntaxWarning: invalid escape sequence &#39;\m&#39;
+/var/folders/8_/ln4xq0tn2_9dclcldppw87f00000gn/T/ipykernel_33732/3538491118.py:9: SyntaxWarning: invalid escape sequence &#39;\m&#39;
   plt.plot(ts, path[0], label= f&#39;$x_0$ = 20, $\mu$ = 5&#39;)
-/var/folders/8_/ln4xq0tn2_9dclcldppw87f00000gn/T/ipykernel_28292/3538491118.py:15: SyntaxWarning: invalid escape sequence &#39;\m&#39;
+/var/folders/8_/ln4xq0tn2_9dclcldppw87f00000gn/T/ipykernel_33732/3538491118.py:15: SyntaxWarning: invalid escape sequence &#39;\m&#39;
   plt.plot(ts, path[0], label= f&#39;$x_0$ = {x0:.0f}, $\mu$ = 15&#39;)
-/var/folders/8_/ln4xq0tn2_9dclcldppw87f00000gn/T/ipykernel_28292/3538491118.py:20: SyntaxWarning: invalid escape sequence &#39;\m&#39;
+/var/folders/8_/ln4xq0tn2_9dclcldppw87f00000gn/T/ipykernel_33732/3538491118.py:20: SyntaxWarning: invalid escape sequence &#39;\m&#39;
   plt.title(&#39;Three Paths from the CIR Model\n $dX_t = \\theta(\mu - X_t) dt + \sigma \sqrt{X_t} dW_t$\n with $\\theta = 1, \sigma = 0.5$&#39;)
 </pre></div>
 </div>
-<a class="reference internal image-reference" href="_images/29ef808e805d2023a7c33b8b914013d39ad9fd27921abe6d38e6a7acbb415f97.png"><img alt="_images/29ef808e805d2023a7c33b8b914013d39ad9fd27921abe6d38e6a7acbb415f97.png" src="_images/29ef808e805d2023a7c33b8b914013d39ad9fd27921abe6d38e6a7acbb415f97.png" style="width: 981px; height: 568px;" />
+<a class="reference internal image-reference" href="_images/38f4791a3a64d44a6324cc0957ff0a2114fd3207a8f61f01abe610b6d10eff40.png"><img alt="_images/38f4791a3a64d44a6324cc0957ff0a2114fd3207a8f61f01abe610b6d10eff40.png" src="_images/38f4791a3a64d44a6324cc0957ff0a2114fd3207a8f61f01abe610b6d10eff40.png" style="width: 1958px; height: 1112px;" />
 </a>
 </div>
 </div>
@@ -1407,7 +1449,11 @@ X_{\infty}\dfrac{\sigma^2}{4\theta} \sim \chi^2\left(\dfrac{4\theta\mu}{\sigma^2
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#definition">Definition</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#definition">Definition</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#special-cases">Special Cases</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#existence">Existence</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#expectation-and-variance">Expectation and Variance</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#python-implementation">Python Implementation</a></li>
 </ul>

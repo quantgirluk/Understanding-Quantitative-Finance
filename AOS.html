@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -416,7 +416,7 @@ document.write(`
 <h1>American Options Pricing using the Longstaff-Schwartz Algorithm<a class="headerlink" href="#american-options-pricing-using-the-longstaff-schwartz-algorithm" title="Link to this heading">#</a></h1>
 <p>This notebook is part of the materials that I used in my industry expert Lecture at KCL. You can find the slides and further details here:</p>
 <ul class="simple">
-<li><p><a class="reference external" href="https://quantgirl.blog/expert-lecture-at-kcl-2024/">Expert Lecture at KCL 2024</a></p></li>
+<li><p><a class="reference external" href="https://dialidsantiago.com/blog/lecture-kcl-2024/">Expert Lecture at KCL 2024</a></p></li>
 </ul>
 <p>In this notebook, we are going to illustrate the <a class="reference external" href="https://people.math.ethz.ch/~hjfurrer/teaching/LongstaffSchwartzAmericanOptionsLeastSquareMonteCarlo.pdf">Longstaff-Schwartz Algorithm</a> to price American options.</p>
 <div class="cell docutils container">
@@ -425,8 +425,6 @@ document.write(`
 <span class="kn">from</span><span class="w"> </span><span class="nn">ipywidgets</span><span class="w"> </span><span class="kn">import</span> <span class="n">interact</span><span class="p">,</span> <span class="n">IntSlider</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">aleatory.processes</span><span class="w"> </span><span class="kn">import</span> <span class="n">GBM</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">aleatory.utils.plotters</span><span class="w"> </span><span class="kn">import</span> <span class="n">draw_paths</span>
-
-<span class="o">%</span><span class="k">config</span> InlineBackend.figure_format =&#39;retina&#39;
 
 <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 <span class="n">my_style</span> <span class="o">=</span> <span class="s2">&quot;https://raw.githubusercontent.com/quantgirluk/matplotlib-stylesheets/main/quant-pastel-light.mplstyle&quot;</span>
@@ -489,8 +487,7 @@ This means that <span class="math notranslate nohighlight">\(X\)</span> satisfie
 </div>
 </details>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/79fa5e1888aa68acdc9ebe940f0ac42716e8e1a4686f5770c9f7bdb1b198cdf3.png"><img alt="_images/79fa5e1888aa68acdc9ebe940f0ac42716e8e1a4686f5770c9f7bdb1b198cdf3.png" src="_images/79fa5e1888aa68acdc9ebe940f0ac42716e8e1a4686f5770c9f7bdb1b198cdf3.png" style="width: 991px; height: 614px;" />
-</a>
+<img alt="_images/da3d132af7e5aedb90f8671c12e06771e03c509576bc9571f46198002c71f540.png" src="_images/da3d132af7e5aedb90f8671c12e06771e03c509576bc9571f46198002c71f540.png" />
 </div>
 </div>
 </section>
@@ -537,8 +534,7 @@ This means that <span class="math notranslate nohighlight">\(X\)</span> satisfie
 </div>
 </details>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/e2a667f26b8a18ba5b923f2f092429812921db31b10ed00dbe3af507c1c43594.png"><img alt="_images/e2a667f26b8a18ba5b923f2f092429812921db31b10ed00dbe3af507c1c43594.png" src="_images/e2a667f26b8a18ba5b923f2f092429812921db31b10ed00dbe3af507c1c43594.png" style="width: 977px; height: 620px;" />
-</a>
+<img alt="_images/5fd18f2d67cb64e5b9a16e9d4313c9725c2314a3cd064b64f4e205bda58d5a8f.png" src="_images/5fd18f2d67cb64e5b9a16e9d4313c9725c2314a3cd064b64f4e205bda58d5a8f.png" />
 </div>
 </div>
 <p>Let’s take a look at a couple of paths to have a cleaner picture</p>
@@ -560,14 +556,10 @@ This means that <span class="math notranslate nohighlight">\(X\)</span> satisfie
 </div>
 </details>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/9f4ab8ebd452dedad521c484a1160c1805b016e03c03670432777e0bc16cd003.png"><img alt="_images/9f4ab8ebd452dedad521c484a1160c1805b016e03c03670432777e0bc16cd003.png" src="_images/9f4ab8ebd452dedad521c484a1160c1805b016e03c03670432777e0bc16cd003.png" style="width: 977px; height: 620px;" />
-</a>
-<a class="reference internal image-reference" href="_images/dba142d89c4a543f3f0d6e3a3de04cc924c25b2879edc5ca81cb749cf1b6c4f6.png"><img alt="_images/dba142d89c4a543f3f0d6e3a3de04cc924c25b2879edc5ca81cb749cf1b6c4f6.png" src="_images/dba142d89c4a543f3f0d6e3a3de04cc924c25b2879edc5ca81cb749cf1b6c4f6.png" style="width: 984px; height: 620px;" />
-</a>
-<a class="reference internal image-reference" href="_images/c7797ad708c56dfb8d0a42a097cf38af1e1bd756acaefcfd186f97a6d67a7c6f.png"><img alt="_images/c7797ad708c56dfb8d0a42a097cf38af1e1bd756acaefcfd186f97a6d67a7c6f.png" src="_images/c7797ad708c56dfb8d0a42a097cf38af1e1bd756acaefcfd186f97a6d67a7c6f.png" style="width: 977px; height: 620px;" />
-</a>
-<a class="reference internal image-reference" href="_images/9a8dfb1aca2598cf12c6ecb6ecdc673c223cfbb02cc05c77f565c5d2e177982e.png"><img alt="_images/9a8dfb1aca2598cf12c6ecb6ecdc673c223cfbb02cc05c77f565c5d2e177982e.png" src="_images/9a8dfb1aca2598cf12c6ecb6ecdc673c223cfbb02cc05c77f565c5d2e177982e.png" style="width: 977px; height: 620px;" />
-</a>
+<img alt="_images/8728c6b26777bf173477c487fb3474e9e99b8ef8f94c80a1e099151891bca11d.png" src="_images/8728c6b26777bf173477c487fb3474e9e99b8ef8f94c80a1e099151891bca11d.png" />
+<img alt="_images/9f7277c296e5b04533c4493b44edb4000db756fd4178cc29492af2542fd88178.png" src="_images/9f7277c296e5b04533c4493b44edb4000db756fd4178cc29492af2542fd88178.png" />
+<img alt="_images/b515b35a630fe71b14615ca8c29b132606fc72ff41056a275b5eb27b1203bbf1.png" src="_images/b515b35a630fe71b14615ca8c29b132606fc72ff41056a275b5eb27b1203bbf1.png" />
+<img alt="_images/bd074334dabc4de1090ea19f03e305219a97a2fbca808564eb4b5c1b56b12ffb.png" src="_images/bd074334dabc4de1090ea19f03e305219a97a2fbca808564eb4b5c1b56b12ffb.png" />
 </div>
 </div>
 <p>Next, we implement the payoff/exercise function and plot it.</p>
@@ -597,8 +589,7 @@ This means that <span class="math notranslate nohighlight">\(X\)</span> satisfie
 </div>
 </details>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/4347d5158b19d7e3bfebd196a5af9d75d6db69da42d10d781651f0349d8d22d2.png"><img alt="_images/4347d5158b19d7e3bfebd196a5af9d75d6db69da42d10d781651f0349d8d22d2.png" src="_images/4347d5158b19d7e3bfebd196a5af9d75d6db69da42d10d781651f0349d8d22d2.png" style="width: 996px; height: 639px;" />
-</a>
+<img alt="_images/42f3b898f3b24d69194478d32b2633739fc1295c950cd21d13ccdfef7801421b.png" src="_images/42f3b898f3b24d69194478d32b2633739fc1295c950cd21d13ccdfef7801421b.png" />
 </div>
 </div>
 <ul class="simple">
@@ -656,8 +647,7 @@ This means that <span class="math notranslate nohighlight">\(X\)</span> satisfie
 </div>
 </details>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/27a1141144c6a98df6e3b59aeaa4690508eb259e4be7a79c548a66958ff731e0.png"><img alt="_images/27a1141144c6a98df6e3b59aeaa4690508eb259e4be7a79c548a66958ff731e0.png" src="_images/27a1141144c6a98df6e3b59aeaa4690508eb259e4be7a79c548a66958ff731e0.png" style="width: 996px; height: 639px;" />
-</a>
+<img alt="_images/a6d2c91db7996fe1399a45ec88535da73436b79567030c86d112e26ad36164eb.png" src="_images/a6d2c91db7996fe1399a45ec88535da73436b79567030c86d112e26ad36164eb.png" />
 </div>
 </div>
 <p>So, the idea of the Longstaff-Schwartz Algorithm is to use the least-squares method to fit a polynomial function to the pairs</p>
@@ -666,8 +656,8 @@ This means that <span class="math notranslate nohighlight">\(X\)</span> satisfie
 			(X(t_{n-1}, \omega), V(t_{n-1}, t_{n}, \omega)),
 \end{equation*}\]</div>
 <p>and then use such polynomial to approximate the continuation value as follows:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-6dec39eb-6ae8-4dfd-b5c8-c71349fdc1a7">
-<span class="eqno">(1)<a class="headerlink" href="#equation-6dec39eb-6ae8-4dfd-b5c8-c71349fdc1a7" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-09ffa12a-b304-4e41-936e-f96b90fce6cd">
+<span class="eqno">(1)<a class="headerlink" href="#equation-09ffa12a-b304-4e41-936e-f96b90fce6cd" title="Permalink to this equation">#</a></span>\[\begin{equation}
 		   C(t_{n-1}) \approx \sum_{j=0}^{\infty} \hat{\alpha}_{ij} L_{j}(X(t_i)).
 \end{equation}\]</div>
 <p>There are two choices to make here:</p>
@@ -694,10 +684,9 @@ This means that <span class="math notranslate nohighlight">\(X\)</span> satisfie
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/9c257466e72a2bf0158ebac2c9724591f3220c651317acdfa9f14d5941f1ee53.png"><img alt="_images/9c257466e72a2bf0158ebac2c9724591f3220c651317acdfa9f14d5941f1ee53.png" src="_images/9c257466e72a2bf0158ebac2c9724591f3220c651317acdfa9f14d5941f1ee53.png" style="width: 996px; height: 640px;" />
-</a>
+<img alt="_images/82a83c17a0d498254db2b5ff96f6d438116be2ed8f0f835a4536ea62822e3b9e.png" src="_images/82a83c17a0d498254db2b5ff96f6d438116be2ed8f0f835a4536ea62822e3b9e.png" />
 <div class="output text_latex math notranslate nohighlight">
-\[x \mapsto \text{-83.53414218}\,{L}_{0}(\text{-0.19370202} + \text{0.47048365}x) + \text{373.54225119}\,{L}_{1}(\text{-0.19370202} + \text{0.47048365}x) - \text{624.21802629}\,{L}_{2}(\text{-0.19370202} + \text{0.47048365}x) + \text{462.48209868}\,{L}_{3}(\text{-0.19370202} + \text{0.47048365}x) - \text{127.57282171}\,{L}_{4}(\text{-0.19370202} + \text{0.47048365}x)\]</div>
+\[x \mapsto \text{-72.0039422}\,{L}_{0}(\text{-0.20814699} + \text{0.53893759}x) + \text{324.95651596}\,{L}_{1}(\text{-0.20814699} + \text{0.53893759}x) - \text{548.38982769}\,{L}_{2}(\text{-0.20814699} + \text{0.53893759}x) + \text{411.06812834}\,{L}_{3}(\text{-0.20814699} + \text{0.53893759}x) - \text{114.91902495}\,{L}_{4}(\text{-0.20814699} + \text{0.53893759}x)\]</div>
 </div>
 </div>
 <p>We can try other choices!</p>
@@ -728,8 +717,7 @@ This means that <span class="math notranslate nohighlight">\(X\)</span> satisfie
 </div>
 </details>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/e8ce566f4d110e7bc680e1676e28e46a1e2e0d600bd6217769f2d0c0c75692fe.png"><img alt="_images/e8ce566f4d110e7bc680e1676e28e46a1e2e0d600bd6217769f2d0c0c75692fe.png" src="_images/e8ce566f4d110e7bc680e1676e28e46a1e2e0d600bd6217769f2d0c0c75692fe.png" style="width: 996px; height: 621px;" />
-</a>
+<img alt="_images/0af13f70f086f0d9f5beea00d96d0dea48c41367981ae011c5a38d490ff72153.png" src="_images/0af13f70f086f0d9f5beea00d96d0dea48c41367981ae011c5a38d490ff72153.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -740,7 +728,7 @@ This means that <span class="math notranslate nohighlight">\(X\)</span> satisfie
 </div>
 <div class="cell_output docutils container">
 <div class="output text_latex math notranslate nohighlight">
-\[x \mapsto \text{0.18210981}\,{H}_{0}(\text{-1.38740404} + \text{0.94096731}x) - \text{0.25138997}\,{H}_{1}(\text{-1.38740404} + \text{0.94096731}x) + \text{0.10274182}\,{H}_{2}(\text{-1.38740404} + \text{0.94096731}x) - \text{0.03438249}\,{H}_{3}(\text{-1.38740404} + \text{0.94096731}x)\]</div>
+\[x \mapsto \text{0.19621563}\,{H}_{0}(\text{-1.41629397} + \text{1.07787517}x) - \text{0.20852891}\,{H}_{1}(\text{-1.41629397} + \text{1.07787517}x) + \text{0.09598413}\,{H}_{2}(\text{-1.41629397} + \text{1.07787517}x) - \text{0.01421194}\,{H}_{3}(\text{-1.41629397} + \text{1.07787517}x)\]</div>
 </div>
 </div>
 <div class="cell docutils container">
@@ -751,7 +739,7 @@ This means that <span class="math notranslate nohighlight">\(X\)</span> satisfie
 </div>
 <div class="cell_output docutils container">
 <div class="output text_latex math notranslate nohighlight">
-\[x \mapsto \text{4309.1417695}\,{L}_{0}(\text{-0.19370202} + \text{0.47048365}x) - \text{25851.26610113}\,{L}_{1}(\text{-0.19370202} + \text{0.47048365}x) + \text{63955.23453637}\,{L}_{2}(\text{-0.19370202} + \text{0.47048365}x) - \text{83279.15302363}\,{L}_{3}(\text{-0.19370202} + \text{0.47048365}x) + \text{59954.60892482}\,{L}_{4}(\text{-0.19370202} + \text{0.47048365}x) - \text{22487.5405583}\,{L}_{5}(\text{-0.19370202} + \text{0.47048365}x) + \text{3399.62180508}\,{L}_{6}(\text{-0.19370202} + \text{0.47048365}x)\]</div>
+\[x \mapsto \text{13538.61763174}\,{L}_{0}(\text{-0.20814699} + \text{0.53893759}x) - \text{87580.05154852}\,{L}_{1}(\text{-0.20814699} + \text{0.53893759}x) + \text{236064.67908959}\,{L}_{2}(\text{-0.20814699} + \text{0.53893759}x) - \text{339339.60705511}\,{L}_{3}(\text{-0.20814699} + \text{0.53893759}x) + \text{274357.45130707}\,{L}_{4}(\text{-0.20814699} + \text{0.53893759}x) - \text{118283.8459286}\,{L}_{5}(\text{-0.20814699} + \text{0.53893759}x) + \text{21243.46468638}\,{L}_{6}(\text{-0.20814699} + \text{0.53893759}x)\]</div>
 </div>
 </div>
 <div class="cell docutils container">
@@ -762,7 +750,7 @@ This means that <span class="math notranslate nohighlight">\(X\)</span> satisfie
 </div>
 <div class="cell_output docutils container">
 <div class="output text_latex math notranslate nohighlight">
-\[x \mapsto \text{0.17498833}\,{T}_{0}(\text{-1.38740404} + \text{0.94096731}x) - \text{0.29212067}\,{T}_{1}(\text{-1.38740404} + \text{0.94096731}x) + \text{0.18005457}\,{T}_{2}(\text{-1.38740404} + \text{0.94096731}x) - \text{0.06385472}\,{T}_{3}(\text{-1.38740404} + \text{0.94096731}x) - \text{0.02133011}\,{T}_{4}(\text{-1.38740404} + \text{0.94096731}x) + \text{0.02496374}\,{T}_{5}(\text{-1.38740404} + \text{0.94096731}x) - \text{0.01073737}\,{T}_{6}(\text{-1.38740404} + \text{0.94096731}x) - \text{0.01026989}\,{T}_{7}(\text{-1.38740404} + \text{0.94096731}x) + \text{0.01828493}\,{T}_{8}(\text{-1.38740404} + \text{0.94096731}x)\]</div>
+\[x \mapsto \text{0.19717715}\,{T}_{0}(\text{-1.41629397} + \text{1.07787517}x) - \text{0.3277285}\,{T}_{1}(\text{-1.41629397} + \text{1.07787517}x) + \text{0.17749301}\,{T}_{2}(\text{-1.41629397} + \text{1.07787517}x) - \text{0.03836841}\,{T}_{3}(\text{-1.41629397} + \text{1.07787517}x) - \text{0.02118346}\,{T}_{4}(\text{-1.41629397} + \text{1.07787517}x) + \text{0.01598434}\,{T}_{5}(\text{-1.41629397} + \text{1.07787517}x) + \text{0.00959145}\,{T}_{6}(\text{-1.41629397} + \text{1.07787517}x) - \text{0.01669953}\,{T}_{7}(\text{-1.41629397} + \text{1.07787517}x) + \text{0.00162817}\,{T}_{8}(\text{-1.41629397} + \text{1.07787517}x)\]</div>
 </div>
 </div>
 <p>Once we have made these choices, we can proceed to approximate the Continuation Value.</p>
@@ -802,10 +790,9 @@ This means that <span class="math notranslate nohighlight">\(X\)</span> satisfie
 </div>
 </details>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/c68b08eac48c2349ea5257af5765d70995d7b7aa5fef64d1346bdc7d700c12c7.png"><img alt="_images/c68b08eac48c2349ea5257af5765d70995d7b7aa5fef64d1346bdc7d700c12c7.png" src="_images/c68b08eac48c2349ea5257af5765d70995d7b7aa5fef64d1346bdc7d700c12c7.png" style="width: 1150px; height: 584px;" />
-</a>
+<img alt="_images/ef2a36e38f53532e4b711f941a7f7f0e6d5123f26429bfbb1da7b03e02072787.png" src="_images/ef2a36e38f53532e4b711f941a7f7f0e6d5123f26429bfbb1da7b03e02072787.png" />
 <div class="output text_latex math notranslate nohighlight">
-\[x \mapsto \text{-0.02337383} - \text{0.09019005}\,\left(\text{-1.38740404} + \text{0.94096731}x\right) + \text{0.41096728}\,\left(\text{-1.38740404} + \text{0.94096731}x\right)^{2} - \text{0.27505993}\,\left(\text{-1.38740404} + \text{0.94096731}x\right)^{3}\]</div>
+\[x \mapsto \text{0.00424737} - \text{0.24651459}\,\left(\text{-1.41629397} + \text{1.07787517}x\right) + \text{0.38393653}\,\left(\text{-1.41629397} + \text{1.07787517}x\right)^{2} - \text{0.11369548}\,\left(\text{-1.41629397} + \text{1.07787517}x\right)^{3}\]</div>
 </div>
 </div>
 <p>Using only ITM points.</p>
@@ -863,10 +850,9 @@ This means that <span class="math notranslate nohighlight">\(X\)</span> satisfie
 </div>
 </details>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/586dadd33489ba9bb1035d05503d8a7e3aaef02926dcc0516ba96f89a6ca7736.png"><img alt="_images/586dadd33489ba9bb1035d05503d8a7e3aaef02926dcc0516ba96f89a6ca7736.png" src="_images/586dadd33489ba9bb1035d05503d8a7e3aaef02926dcc0516ba96f89a6ca7736.png" style="width: 1161px; height: 671px;" />
-</a>
+<img alt="_images/a238190f847dfd5524ed0963ecce9273ae44972ce95c8126273bc307263ba2a7.png" src="_images/a238190f847dfd5524ed0963ecce9273ae44972ce95c8126273bc307263ba2a7.png" />
 <div class="output text_latex math notranslate nohighlight">
-\[x \mapsto \text{0.3597825} - \text{0.35289147}\,\left(\text{-2.19899293} + \text{2.91223901}x\right) - \text{0.02596771}\,\left(\text{-2.19899293} + \text{2.91223901}x\right)^{2} + \text{0.02251661}\,\left(\text{-2.19899293} + \text{2.91223901}x\right)^{3}\]</div>
+\[x \mapsto \text{0.35935627} - \text{0.33597257}\,\left(\text{-2.08659676} + \text{2.81343412}x\right) + \text{0.00637541}\,\left(\text{-2.08659676} + \text{2.81343412}x\right)^{2} - \text{0.00999328}\,\left(\text{-2.08659676} + \text{2.81343412}x\right)^{3}\]</div>
 </div>
 </div>
 <div class="cell tag_hide-input docutils container">
@@ -944,16 +930,11 @@ This means that <span class="math notranslate nohighlight">\(X\)</span> satisfie
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/ad522d784697d3f0ae686c357dbb4f36f0e82a8c46f804ca747c89aa2e2f6228.png"><img alt="_images/ad522d784697d3f0ae686c357dbb4f36f0e82a8c46f804ca747c89aa2e2f6228.png" src="_images/ad522d784697d3f0ae686c357dbb4f36f0e82a8c46f804ca747c89aa2e2f6228.png" style="width: 992px; height: 620px;" />
-</a>
-<a class="reference internal image-reference" href="_images/a1b70c90a320fadea14ef39054b4f17dbe5baa70e51dd1f21ef685de6a87d0bc.png"><img alt="_images/a1b70c90a320fadea14ef39054b4f17dbe5baa70e51dd1f21ef685de6a87d0bc.png" src="_images/a1b70c90a320fadea14ef39054b4f17dbe5baa70e51dd1f21ef685de6a87d0bc.png" style="width: 995px; height: 620px;" />
-</a>
-<a class="reference internal image-reference" href="_images/b458dbc241d91b13943a34b26243555e818cdf81c3c5dd5e6270f67aff8409ba.png"><img alt="_images/b458dbc241d91b13943a34b26243555e818cdf81c3c5dd5e6270f67aff8409ba.png" src="_images/b458dbc241d91b13943a34b26243555e818cdf81c3c5dd5e6270f67aff8409ba.png" style="width: 1002px; height: 620px;" />
-</a>
-<a class="reference internal image-reference" href="_images/9d5ed2b25fdffa8073280c03da1e28b7614bf4a70f050ea2e9d1620663e13f88.png"><img alt="_images/9d5ed2b25fdffa8073280c03da1e28b7614bf4a70f050ea2e9d1620663e13f88.png" src="_images/9d5ed2b25fdffa8073280c03da1e28b7614bf4a70f050ea2e9d1620663e13f88.png" style="width: 1006px; height: 620px;" />
-</a>
-<a class="reference internal image-reference" href="_images/37279318312938503065a0f3eef4d0ba1d4f27b7de606f6ce76182af749e9a46.png"><img alt="_images/37279318312938503065a0f3eef4d0ba1d4f27b7de606f6ce76182af749e9a46.png" src="_images/37279318312938503065a0f3eef4d0ba1d4f27b7de606f6ce76182af749e9a46.png" style="width: 995px; height: 620px;" />
-</a>
+<img alt="_images/8261df6b7be591b2998d6dcc9bcac66c7c48d2753287a0b3e21461f28aa9d3e5.png" src="_images/8261df6b7be591b2998d6dcc9bcac66c7c48d2753287a0b3e21461f28aa9d3e5.png" />
+<img alt="_images/a6a4f391b5b5d73d62fd645a004e4b843968ba490272838122c65c4330dd5a62.png" src="_images/a6a4f391b5b5d73d62fd645a004e4b843968ba490272838122c65c4330dd5a62.png" />
+<img alt="_images/77061748f1fcf2d3255264242e00fb6df18c62a7716fb06569adcd90e1cfec91.png" src="_images/77061748f1fcf2d3255264242e00fb6df18c62a7716fb06569adcd90e1cfec91.png" />
+<img alt="_images/279e4777cd1e8a0d10b2915d4831a9f0fd8996395b79e59fe85fd55f3453019e.png" src="_images/279e4777cd1e8a0d10b2915d4831a9f0fd8996395b79e59fe85fd55f3453019e.png" />
+<img alt="_images/e3b7b7edff716a3ab6014c51ead0cff5cb75a3ec541740680e7ac1e86ef0dcf5.png" src="_images/e3b7b7edff716a3ab6014c51ead0cff5cb75a3ec541740680e7ac1e86ef0dcf5.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -990,8 +971,7 @@ This means that <span class="math notranslate nohighlight">\(X\)</span> satisfie
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/cc55c36b38706d919fa580c0f393f2c1fe71ff0d38e7bd1b2271dca6ee8fc196.png"><img alt="_images/cc55c36b38706d919fa580c0f393f2c1fe71ff0d38e7bd1b2271dca6ee8fc196.png" src="_images/cc55c36b38706d919fa580c0f393f2c1fe71ff0d38e7bd1b2271dca6ee8fc196.png" style="width: 996px; height: 638px;" />
-</a>
+<img alt="_images/370403a9fa27be02ac34518040d4b877a94ee52dc0fb6873c45eb31fe5bb8494.png" src="_images/370403a9fa27be02ac34518040d4b877a94ee52dc0fb6873c45eb31fe5bb8494.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1027,8 +1007,7 @@ This means that <span class="math notranslate nohighlight">\(X\)</span> satisfie
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/1747b13522fd1a160a1c1c28130437a13f112b8c9a7aa37bb0daedbfece16a0c.png"><img alt="_images/1747b13522fd1a160a1c1c28130437a13f112b8c9a7aa37bb0daedbfece16a0c.png" src="_images/1747b13522fd1a160a1c1c28130437a13f112b8c9a7aa37bb0daedbfece16a0c.png" style="width: 996px; height: 638px;" />
-</a>
+<img alt="_images/2fc99f0d54657194d1da982136763f7f5fad9b8542d72913a6eb2d81db08ec81.png" src="_images/2fc99f0d54657194d1da982136763f7f5fad9b8542d72913a6eb2d81db08ec81.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1051,8 +1030,7 @@ This means that <span class="math notranslate nohighlight">\(X\)</span> satisfie
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/a244cd2418c10a26eac4265798c0216f5643e450372f352e1c27b347a509f254.png"><img alt="_images/a244cd2418c10a26eac4265798c0216f5643e450372f352e1c27b347a509f254.png" src="_images/a244cd2418c10a26eac4265798c0216f5643e450372f352e1c27b347a509f254.png" style="width: 996px; height: 638px;" />
-</a>
+<img alt="_images/69d4d88cd1ab52d06c02c782625a7e2c06fce95c0bb7295d159cb65e23037896.png" src="_images/69d4d88cd1ab52d06c02c782625a7e2c06fce95c0bb7295d159cb65e23037896.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1073,8 +1051,8 @@ This means that <span class="math notranslate nohighlight">\(X\)</span> satisfie
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.200409
-0.172859
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.219508
+0.213419
 </pre></div>
 </div>
 </div>
@@ -1091,16 +1069,16 @@ This means that <span class="math notranslate nohighlight">\(X\)</span> satisfie
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "local-venv"
+            mode: "python"
         },
         kernelOptions: {
-            name: "local-venv",
+            name: "python3",
             path: "./."
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'local-venv'</script>
+    <script>kernelName = 'python3'</script>
 
                 </article>
               
