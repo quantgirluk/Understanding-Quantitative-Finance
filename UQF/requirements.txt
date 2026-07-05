@@ -2,5 +2,5 @@ jupyter-book
 matplotlib
 numpy
 scipy
-aleatory
+aleatory >= 1.2.3
 ipywidgets
