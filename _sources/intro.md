@@ -33,6 +33,20 @@ Connect with me via:
 
 ```
 
+For citation purposes, please use the following BibTeX entry:
+
+```{code-block} bibtex
+@misc{Santiago2024,
+  author = {Santiago, Dialid},
+  title = {Understanding Quantitative Finance},
+  year = {2024},
+  publisher = {GitHub},
+  journal = {GitHub repository},
+  howpublished = {\url{https://quantgirluk.github.io/Understanding-Quantitative-Finance/intro.html}}    
+}
+```
+
+
 Thanks for visiting ✨
 
 [![Visitors](https://api.visitorbadge.io/api/visitors?path=https%3A%2F%2Fquantgirluk.github.io%2FUnderstanding-Quantitative-Finance%2Fintro.html&labelColor=%23d9e3f0&countColor=%23f47373)](https://visitorbadge.io/status?path=https%3A%2F%2Fquantgirluk.github.io%2FUnderstanding-Quantitative-Finance%2Fintro.html)
