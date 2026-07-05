@@ -1,0 +1,1516 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>9. Gaussian Processes &#8212; Understanding Quantitative Finance</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'gaussian_process';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="American Options Pricing using the Longstaff-Schwartz Algorithm" href="AOS.html" />
+    <link rel="prev" title="8. Bessel Processes Part III" href="bessel_processes_part3.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/puzzle.jpeg" class="logo__image only-light" alt="Understanding Quantitative Finance - Home"/>
+    <script>document.write(`<img src="_static/puzzle.jpeg" class="logo__image only-dark" alt="Understanding Quantitative Finance - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Welcome
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Stochastic Processes</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="brownian_motion.html">1. Brownian Motion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="brownian_motion_arithmetic.html">2. Arithmetic Brownian Motion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="geometric_brownian_motion.html">3. Geometric Brownian Motion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vasicek.html">4. Vasicek Model/Process</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cir_process.html">5. Cox–Ingersoll–Ross process</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bessel_processes_part1.html">6. Bessel Processes Part I</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bessel_processes_part2.html">7. Bessel Processes Part II</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bessel_processes_part3.html">8. Bessel Processes Part III</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">9. Gaussian Processes</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Other Topics</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="AOS.html">American Options Pricing using the Longstaff-Schwartz Algorithm</a></li>
+<li class="toctree-l1"><a class="reference internal" href="malliavin_delta_gbm.html">Malliavin Greeks under Black-Scholes Dynamics</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/quantgirluk/Understanding-Quantitative-Finance" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/quantgirluk/Understanding-Quantitative-Finance/issues/new?title=Issue%20on%20page%20%2Fgaussian_process.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/gaussian_process.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Gaussian Processes</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">9.1. Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#definition">9.2. Definition</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#marginal-distributions">9.2.1. Marginal Distributions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">9.2.2. Examples</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#counterexamples">9.2.3. Counterexamples</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simulation">9.3. Simulation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#covariance-functions-kernels">9.4. Covariance Functions/Kernels</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#common-covariance-functions-and-their-corresponding-gaussian-processes">9.5. Common Covariance Functions and their corresponding Gaussian Processes</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#constant-kernel">9.5.1. 1. Constant Kernel</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#linear-kernel">9.5.2. 2. Linear Kernel</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#white-noise-kernel">9.5.3. 3. White Noise Kernel</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#squared-exponential-rbf-kernel">9.5.4. 4. Squared Exponential (RBF) Kernel</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ornsteinuhlenbeck-kernel">9.5.5. 5. Ornstein–Uhlenbeck Kernel</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#matern-kernel">9.5.6. 6. Matérn Kernel</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#periodic-kernel">9.5.7. 7. Periodic Kernel</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rational-quadratic-kernel">9.5.8. 8. Rational Quadratic Kernel</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#combining-kernels">9.6. Combining Kernels</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#addition">9.6.1. Addition</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multiplication">9.6.2. Multiplication</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example">9.6.3. Example</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-the-kernel-tells-us-about-the-process">9.7. What the Kernel tells us about the Process</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#smoothness">9.7.1. Smoothness</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#variability">9.7.2. Variability</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#periodicity">9.7.3. Periodicity</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mean-reversion">9.7.4. Mean Reversion</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#stationarity">9.7.5. Stationarity</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#isotropy">9.7.6. Isotropy</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="gaussian-processes">
+<h1><span class="section-number">9. </span>Gaussian Processes<a class="headerlink" href="#gaussian-processes" title="Link to this heading">#</a></h1>
+<p>The purpose of this notebook is to provide an introduction to Gaussian Processes (GPs) and its main properties.</p>
+<p>Before diving into the theory, let’s start by loading the libraries</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">matplotlib</span></code></p></li>
+<li><p><a class="reference external" href="https://github.com/quantgirluk/aleatory"><code class="docutils literal notranslate"><span class="pre">aleatory</span></code></a></p></li>
+</ul>
+<p>together with the style sheet <a class="reference external" href="https://github.com/quantgirluk/matplotlib-stylesheets">Quant-Pastel Light</a>.</p>
+<p>These tools will help us to make insightful visualisations.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="n">mystyle</span> <span class="o">=</span> <span class="s2">&quot;https://raw.githubusercontent.com/quantgirluk/matplotlib-stylesheets/main/quant-pastel-light.mplstyle&quot;</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="n">mystyle</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s2">&quot;figure.figsize&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="o">%</span><span class="k">config</span> InlineBackend.figure_format=&#39;retina&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<section id="introduction">
+<h2><span class="section-number">9.1. </span>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h2>
+<p>In probability theory and statistics, a Gaussian process is a stochastic process, such that every finite collection of those random variables has a <strong>multivariate normal distribution</strong>. The distribution of a Gaussian process is the joint distribution of all those (infinitely many) random variables, and as such, it is a distribution over functions with a continuous domain, e.g. time or space.</p>
+<p>The concept of Gaussian processes is named after <a class="reference external" href="https://en.wikipedia.org/wiki/Carl_Friedrich_Gauss">Carl Friedrich Gauss</a> because it is based on the notion of the Gaussian distribution (normal distribution). Gaussian processes can be seen as an infinite-dimensional generalization of multivariate normal distributions.</p>
+<p>Gaussian Processes (GPs) are one of the most elegant ideas in probabilistic modelling:  instead of learning <em>parameters</em>, we learn a <strong>distribution over functions</strong>. They are widely used in:</p>
+<ul class="simple">
+<li><p>Regression</p></li>
+<li><p>Bayesian Optimisation</p></li>
+<li><p>Spatial Modelling</p></li>
+<li><p>Uncertainty Quantification</p></li>
+</ul>
+</section>
+<section id="definition">
+<h2><span class="section-number">9.2. </span>Definition<a class="headerlink" href="#definition" title="Link to this heading">#</a></h2>
+<p>A Gaussian Process (GP) is a stochastic process <span class="math notranslate nohighlight">\(X = \{X_t : t \in \mathcal{T}\}\)</span> where <span class="math notranslate nohighlight">\(\mathcal{T} \subseteq \mathbb{R}^d\)</span>, such that for every finite set of indices <span class="math notranslate nohighlight">\(\{t_1, \cdots, t_n\}\)</span> in the index set <span class="math notranslate nohighlight">\(\mathcal{T}\)</span>, the random vector</p>
+<div class="math notranslate nohighlight">
+\[X_{t_1, \cdots, t_n} = (X_{t_1}, \cdots, X_{t_n})^{T}\]</div>
+<p>has a  multivariate Gaussian distribution,  with mean and covariance given by</p>
+<div class="math notranslate nohighlight">
+\[m (t_i) = E[X_{t_i}], \qquad K(t_i, t_j) = Cov(X_{t_i}, X_{t_j}).\]</div>
+<p>That is</p>
+<div class="math notranslate nohighlight">
+\[X_{t_1, \cdots, t_n} \sim \mathcal{N}(m, K)\]</div>
+<p>A Gaussian Process (GP) is then fully specified by two functions, namely</p>
+<ul class="simple">
+<li><p>a Mean function <span class="math notranslate nohighlight">\(m(t) = E[X_t]\)</span></p></li>
+<li><p>a Covariance function <span class="math notranslate nohighlight">\(k(t, s)=  E[(X_s- E[X_s])(X_t- E[X_t])]\)</span></p></li>
+</ul>
+<p>where the covariance function must be symmetric, and positive semi-definite, i.e. for any finite <span class="math notranslate nohighlight">\(\{t_i\}\)</span> and <span class="math notranslate nohighlight">\(\{c_i\} \subset \mathbb{R}\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\sum_{i, j} c_i, c_j k(t_i, t_j) \geq 0.\]</div>
+<p>Hereafter we are gong to use the notation <span class="math notranslate nohighlight">\(X \sim \mathcal{GP}(m, k)\)</span>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ul class="simple">
+<li><p>The covariance function <span class="math notranslate nohighlight">\(k(t, s)\)</span> is often called <em>kernel</em> function</p></li>
+<li><p>A GP is called <em>centered</em> if <span class="math notranslate nohighlight">\(m(t) = 0\)</span> for all <span class="math notranslate nohighlight">\(t \in \mathcal{T}\)</span></p></li>
+</ul>
+</div>
+<p><strong>Theorem.</strong> A stochastic process <span class="math notranslate nohighlight">\(X = \{X_t : t \in \mathcal{T}\}\)</span> is a Gaussian process if and only if every finite linear combination of its values is a Gaussian random variable.</p>
+<p>The linear combination characterisation is very useful in practice because:</p>
+<ul class="simple">
+<li><p>It reduces checking joint Gaussianity to checking scalar random variables</p></li>
+<li><p>It makes closure properties immediate: sums, differences, and integrals of GP-distributed processes are again Gaussian</p></li>
+<li><p>It directly motivates the kernel/covariance structure as the object controlling the variance of every possible projection <span class="math notranslate nohighlight">\(c^{T} X\)</span></p></li>
+</ul>
+<section id="marginal-distributions">
+<h3><span class="section-number">9.2.1. </span>Marginal Distributions<a class="headerlink" href="#marginal-distributions" title="Link to this heading">#</a></h3>
+<p>By definition, the marginal distributions of a Gaussian process are Gaussian. That is, for any <span class="math notranslate nohighlight">\(t \in \mathcal{T}\)</span>, the random variable <span class="math notranslate nohighlight">\(X_t\)</span> is Gaussian with mean <span class="math notranslate nohighlight">\(m(t)\)</span> and variance <span class="math notranslate nohighlight">\(k(t, t)\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[X_t \sim \mathcal{N}(m(t), k(t, t)).\]</div>
+</section>
+<section id="examples">
+<h3><span class="section-number">9.2.2. </span>Examples<a class="headerlink" href="#examples" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>A Brownian motion <span class="math notranslate nohighlight">\(W = \{W_t : t\geq 0\}\)</span> is a centered GP with covariance function</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[k(s, t) = \min\{s, t\}\]</div>
+<ol class="arabic simple" start="2">
+<li><p>An Orstein-Uhlenbeck process <span class="math notranslate nohighlight">\(X = X(\theta, \sigma)\)</span>, starting at <span class="math notranslate nohighlight">\(X_0=x_0\)</span>, is a centered GP with covariance function</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[k(s,t) = e^{-(s+t)} \cdot \dfrac{e^{2\min(s, t)}-1}{2}\]</div>
+<ol class="arabic simple" start="3">
+<li><p>A Brownian Bridge <span class="math notranslate nohighlight">\(B= {B_t : t\in [0,1]}\)</span> is a centered GP with covariance function</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[k(s,t) = \min(s,t) - st\]</div>
+</section>
+<section id="counterexamples">
+<h3><span class="section-number">9.2.3. </span>Counterexamples<a class="headerlink" href="#counterexamples" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>A Geometric Browanian motion is not a Gaussian process as its marginal distributions are log-normal, not Gaussian.</p></li>
+<li><p>A CIR process is not a Gaussian process as its marginal distributions are scaled Chi-square,  not Gaussian.</p></li>
+<li><p>A Bessel process is not a Gaussian process as its marginal distributions are non-central chi, not Gaussian.</p></li>
+</ol>
+</section>
+</section>
+<section id="simulation">
+<h2><span class="section-number">9.3. </span>Simulation<a class="headerlink" href="#simulation" title="Link to this heading">#</a></h2>
+<p>In order to simulate paths from a Gaussian process <span class="math notranslate nohighlight">\(X \sim \mathcal{GP}(m, k)\)</span>, we need to set a discrete partition over an interval for the simulation to take place.</p>
+<p>For simplicity, we are going to consider an equidistant partition of size <span class="math notranslate nohighlight">\(n\)</span> over <span class="math notranslate nohighlight">\([0,T]\)</span>, i.e.:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+t_i = \frac{i}{n-1} T \qquad  \hbox{for } i = 0, \cdots, n-1.
+\end{equation*}\]</div>
+<p>By definition, the joint distribution of</p>
+<div class="math notranslate nohighlight">
+\[X_{t_1, \cdots, t_n} = (X_{t_1}, \cdots, X_{t_n})^{T}\]</div>
+<p>is multivariate Gaussian. Therefore, we can get a path by sampling from a multivariate normal distribution with mean vector <span class="math notranslate nohighlight">\(\mu = [m(t_1), \cdots, m(t_n)]\)</span> and covariance matrix</p>
+<div class="math notranslate nohighlight">
+\[K = [k(t_i, t_j)],  \ \ \ \ \ \ i,j = 0, \cdots, n-1.\]</div>
+<p>To do this, we will use the <code class="docutils literal notranslate"><span class="pre">multivariate_normal</span></code> function from the <code class="docutils literal notranslate"><span class="pre">numpy.random</span></code> module.</p>
+<p>As an example let’s simulate paths from a <strong>Brownian motion</strong>.  First, we construct the partition, using <code class="docutils literal notranslate"><span class="pre">np.linspace</span></code>, and define the covariance function.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="n">T</span> <span class="o">=</span> <span class="mf">1.0</span>  <span class="c1"># End point of the interval to simulate [O,T]</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">100</span>  <span class="c1"># Number of points in the partition</span>
+<span class="n">times</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>  <span class="c1"># Partition</span>
+
+<span class="c1"># Covariance Function (Kernel) for Brownian Motion</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">brownian_cov</span><span class="p">(</span><span class="n">t</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">minimum</span><span class="o">.</span><span class="n">outer</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Then, we simply sample from the multivariate normal distribution with mean vector of zeros and covariance matrix given by the Brownian motion covariance function.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">numpy.random</span><span class="w"> </span><span class="kn">import</span> <span class="n">multivariate_normal</span>
+<span class="n">N</span> <span class="o">=</span> <span class="mi">5</span>  <span class="c1"># Number of sample paths to simulate</span>
+<span class="n">samples</span> <span class="o">=</span> <span class="n">multivariate_normal</span><span class="p">(</span><span class="n">mean</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n</span><span class="p">),</span> <span class="n">cov</span><span class="o">=</span><span class="n">brownian_cov</span><span class="p">(</span><span class="n">times</span><span class="p">),</span> <span class="n">size</span><span class="o">=</span><span class="n">N</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Finally, we plot the simulated paths</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">sample</span> <span class="ow">in</span> <span class="n">samples</span><span class="p">:</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">times</span><span class="p">,</span> <span class="n">sample</span><span class="p">,</span> <span class="s2">&quot;o-&quot;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Brownian Motion Sample Paths&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/f3bdbebc6e2e218d6a9780ad41f231d72d15edd3efff4b20e9ece62ea65a5a1c.png"><img alt="_images/f3bdbebc6e2e218d6a9780ad41f231d72d15edd3efff4b20e9ece62ea65a5a1c.png" src="_images/f3bdbebc6e2e218d6a9780ad41f231d72d15edd3efff4b20e9ece62ea65a5a1c.png" style="width: 755px; height: 371px;" />
+</a>
+</div>
+</div>
+<p>Putting these steps together we get the following snippet</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Snippet to generate multiple sample paths from a Gaussian Process (Brownian Motion) and plot them</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">numpy.random</span><span class="w"> </span><span class="kn">import</span> <span class="n">multivariate_normal</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+
+<span class="n">T</span> <span class="o">=</span> <span class="mf">1.0</span>  <span class="c1"># End point of the interval to simulate [O,T]</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">100</span>  <span class="c1"># Number of points in the partition</span>
+<span class="n">times</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>  <span class="c1"># Partition</span>
+
+
+<span class="c1"># Covariance Function (Kernel) for Brownian Motion</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">covariance_function</span><span class="p">(</span><span class="n">t</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">minimum</span><span class="o">.</span><span class="n">outer</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span>
+
+<span class="n">N</span> <span class="o">=</span> <span class="mi">5</span> <span class="c1"># Number of sample paths to generate</span>
+<span class="n">samples</span> <span class="o">=</span> <span class="n">multivariate_normal</span><span class="p">(</span><span class="n">mean</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n</span><span class="p">),</span> <span class="n">cov</span><span class="o">=</span><span class="n">covariance_function</span><span class="p">(</span><span class="n">times</span><span class="p">),</span> <span class="n">size</span><span class="o">=</span><span class="n">N</span><span class="p">)</span> <span class="c1"># Sample paths </span>
+
+<span class="k">for</span> <span class="n">sample</span> <span class="ow">in</span> <span class="n">samples</span><span class="p">:</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">times</span><span class="p">,</span> <span class="n">sample</span><span class="p">,</span> <span class="s2">&quot;o-&quot;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Five Brownian Motion Paths&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/d3ba79a5ab6026366e182d1e903a13619f990b6be8d5315a3576adc3230e9ebc.png"><img alt="_images/d3ba79a5ab6026366e182d1e903a13619f990b6be8d5315a3576adc3230e9ebc.png" src="_images/d3ba79a5ab6026366e182d1e903a13619f990b6be8d5315a3576adc3230e9ebc.png" style="width: 744px; height: 371px;" />
+</a>
+</div>
+</div>
+<p>Similarly, we can simulate paths from an Orstein-Uhlenbeck process and a Brownian Bridge.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Covariance Function (Kernel) for Ornstein-Uhlenbeck Process</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">ou_cov</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">theta</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mf">1.0</span><span class="p">):</span>
+    <span class="n">s</span><span class="p">,</span> <span class="n">t_</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="p">(</span><span class="n">sigma</span><span class="o">**</span><span class="mi">2</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">theta</span><span class="p">))</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="n">s</span> <span class="o">+</span> <span class="n">t_</span><span class="p">))</span> <span class="o">*</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">minimum</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">t_</span><span class="p">))</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
+    <span class="k">return</span> <span class="n">res</span>
+
+<span class="c1"># Covariance Function (Kernel) for Brownian Bridge</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">bridge_cov</span><span class="p">(</span><span class="n">t</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">minimum</span><span class="o">.</span><span class="n">outer</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">outer</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sample</span> <span class="o">=</span> <span class="n">multivariate_normal</span><span class="p">(</span><span class="n">mean</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n</span><span class="p">),</span> <span class="n">cov</span><span class="o">=</span><span class="n">ou_cov</span><span class="p">(</span><span class="n">times</span><span class="p">),</span> <span class="n">size</span><span class="o">=</span><span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">times</span><span class="p">,</span> <span class="n">sample</span><span class="p">,</span> <span class="s2">&quot;o-&quot;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Orstein-Uhlenbeck&quot;</span><span class="p">)</span>
+<span class="n">sample</span> <span class="o">=</span> <span class="n">multivariate_normal</span><span class="p">(</span><span class="n">mean</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n</span><span class="p">),</span> <span class="n">cov</span><span class="o">=</span><span class="n">bridge_cov</span><span class="p">(</span><span class="n">times</span><span class="p">),</span> <span class="n">size</span><span class="o">=</span><span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">times</span><span class="p">,</span> <span class="n">sample</span><span class="p">,</span> <span class="s2">&quot;o-&quot;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Brownian Bridge&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;OU and Brownian Bridge Paths&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/560e1e4510f8ded0eb11e89d78df4b57f57dcefe1ba679ac22aae2a1b48d10ac.png"><img alt="_images/560e1e4510f8ded0eb11e89d78df4b57f57dcefe1ba679ac22aae2a1b48d10ac.png" src="_images/560e1e4510f8ded0eb11e89d78df4b57f57dcefe1ba679ac22aae2a1b48d10ac.png" style="width: 755px; height: 371px;" />
+</a>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">T</span> <span class="o">=</span> <span class="mf">1.0</span>  <span class="c1"># End point of the interval to simulate [O,T]</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">100</span>  <span class="c1"># Number of points in the partition</span>
+<span class="n">times</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>  <span class="c1"># Partition</span>
+<span class="n">N</span> <span class="o">=</span> <span class="mi">5</span>  <span class="c1"># Number of sample paths to simulate</span>
+
+<span class="n">kernels</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">(</span><span class="s2">&quot;Brownian Motion&quot;</span><span class="p">,</span> <span class="n">brownian_cov</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">&quot;Ornstein–Uhlenbeck&quot;</span><span class="p">,</span> <span class="n">ou_cov</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">&quot;Brownian Bridge&quot;</span><span class="p">,</span> <span class="n">bridge_cov</span><span class="p">),</span>
+<span class="p">]</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+
+<span class="k">for</span> <span class="n">ax</span><span class="p">,</span> <span class="p">(</span><span class="n">title</span><span class="p">,</span> <span class="n">cov_fn</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">axs</span><span class="p">,</span> <span class="n">kernels</span><span class="p">):</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_prop_cycle</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">cycler</span><span class="p">(</span><span class="s2">&quot;color&quot;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;#0079ff&#39;</span><span class="p">,</span>  <span class="s1">&#39;#00dfa2&#39;</span><span class="p">,</span> <span class="s1">&#39;#f266ab&#39;</span><span class="p">,</span> <span class="s1">&#39;#ffb400&#39;</span><span class="p">,</span> <span class="s2">&quot;#9bdaef&quot;</span><span class="p">]))</span>
+    <span class="n">K</span> <span class="o">=</span> <span class="n">cov_fn</span><span class="p">(</span><span class="n">times</span><span class="p">)</span>
+    <span class="n">samples</span> <span class="o">=</span> <span class="n">multivariate_normal</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">times</span><span class="p">)),</span> <span class="n">K</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">N</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">samples</span><span class="p">:</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">times</span><span class="p">,</span> <span class="n">s</span><span class="p">)</span>
+
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/d54ca38cd9f922c877463066d6b268b936e747dcc1cb2d9b7beb6f357734bb53.png"><img alt="_images/d54ca38cd9f922c877463066d6b268b936e747dcc1cb2d9b7beb6f357734bb53.png" src="_images/d54ca38cd9f922c877463066d6b268b936e747dcc1cb2d9b7beb6f357734bb53.png" style="width: 1189px; height: 390px;" />
+</a>
+</div>
+</div>
+</section>
+<section id="covariance-functions-kernels">
+<h2><span class="section-number">9.4. </span>Covariance Functions/Kernels<a class="headerlink" href="#covariance-functions-kernels" title="Link to this heading">#</a></h2>
+<p>In practice, the mean function is often taken to be zero (since any process can be centered), so the <strong>covariance function (kernel)</strong> fully characterizes the behaviour of the process.</p>
+<p>Let <span class="math notranslate nohighlight">\( X = {X(t) : t \in \mathcal{T}} \)</span> be a stochastic process. Its covariance function is given by</p>
+<div class="math notranslate nohighlight">
+\[
+k(s,t) := \mathrm{Cov}(X(s), X(t)) = \mathbb{E}[X(s)X(t)].
+\]</div>
+<p>One can visualize this function in two ways:</p>
+<ul class="simple">
+<li><p>as a matrix, where the <span class="math notranslate nohighlight">\((i,j)\)</span>-th entry is <span class="math notranslate nohighlight">\(k(t_i, t_j)\)</span> for a given partition <span class="math notranslate nohighlight">\(\{t_1, \cdots, t_n\}\)</span> of the interval <span class="math notranslate nohighlight">\([0,T]\)</span></p></li>
+<li><p>as a function of two variables, where the value of the function at <span class="math notranslate nohighlight">\((s,t)\)</span> is <span class="math notranslate nohighlight">\(k(s,t)\)</span>.</p></li>
+</ul>
+<p>Let’s visualize the covariance functions of the three processes we have simulated above.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib.pylab</span><span class="w"> </span><span class="kn">import</span> <span class="n">f</span>
+
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">ax</span><span class="p">,</span> <span class="p">(</span><span class="n">title</span><span class="p">,</span> <span class="n">cov_fn</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">axs</span><span class="p">,</span> <span class="n">kernels</span><span class="p">):</span>
+    <span class="n">K</span> <span class="o">=</span> <span class="n">cov_fn</span><span class="p">(</span><span class="n">times</span><span class="p">)</span>
+    <span class="n">im</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">K</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;coolwarm&quot;</span><span class="p">,</span> <span class="n">extent</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">fraction</span><span class="o">=</span><span class="mf">0.046</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">top</span><span class="o">=</span><span class="mf">0.95</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s2">&quot;Covariance Functions of Different Gaussian Processes (as Matrices)&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mf">0.9</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/05efd17b9ff5f3e8f8fb00dc211e452b5d843358d4b64f30141032cab7c8fd5c.png"><img alt="_images/05efd17b9ff5f3e8f8fb00dc211e452b5d843358d4b64f30141032cab7c8fd5c.png" src="_images/05efd17b9ff5f3e8f8fb00dc211e452b5d843358d4b64f30141032cab7c8fd5c.png" style="width: 889px; height: 316px;" />
+</a>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">ax</span><span class="p">,</span> <span class="p">(</span><span class="n">title</span><span class="p">,</span> <span class="n">cov_fn</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">axs</span><span class="p">,</span> <span class="n">kernels</span><span class="p">):</span>
+    <span class="n">K</span> <span class="o">=</span> <span class="n">cov_fn</span><span class="p">(</span><span class="n">times</span><span class="p">)</span>
+    <span class="n">im</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">K</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="s1">&#39;lower&#39;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;coolwarm&quot;</span><span class="p">,</span> <span class="n">extent</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">T</span><span class="p">])</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">fraction</span><span class="o">=</span><span class="mf">0.046</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">top</span><span class="o">=</span><span class="mf">0.95</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s2">&quot;Covariance Functions of Different Gaussian Processes&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mf">0.9</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/6ba62d7cec4fed0d7ba37901c63324c1b49b4b2e9d5d2230d8828f117d0e0c10.png"><img alt="_images/6ba62d7cec4fed0d7ba37901c63324c1b49b4b2e9d5d2230d8828f117d0e0c10.png" src="_images/6ba62d7cec4fed0d7ba37901c63324c1b49b4b2e9d5d2230d8828f117d0e0c10.png" style="width: 779px; height: 283px;" />
+</a>
+</div>
+</div>
+<p>Next, let’s put together the paths and covariance functions in a single visualization.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">T</span> <span class="o">=</span> <span class="mf">1.0</span>  <span class="c1"># End point of the interval to simulate [O,T]</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">200</span>  <span class="c1"># Number of points in the partition</span>
+<span class="n">times</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>  <span class="c1"># Partition</span>
+<span class="n">N</span> <span class="o">=</span> <span class="mi">3</span>  <span class="c1"># Number of sample paths to simulate</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+
+<span class="n">processes</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">(</span><span class="s2">&quot;Brownian Motion&quot;</span><span class="p">,</span> <span class="n">brownian_cov</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">&quot;Ornstein–Uhlenbeck&quot;</span><span class="p">,</span> <span class="n">ou_cov</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">&quot;Brownian Bridge&quot;</span><span class="p">,</span> <span class="n">bridge_cov</span><span class="p">),</span>
+<span class="p">]</span>
+
+<span class="k">for</span> <span class="n">ax</span><span class="p">,</span> <span class="p">(</span><span class="n">title</span><span class="p">,</span> <span class="n">cov_fn</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">processes</span><span class="p">):</span>
+    <span class="c1"># ax.set_prop_cycle(plt.cycler(</span>
+    <span class="c1">#     &quot;color&quot;, [&quot;#75dbfa&quot;,  &quot;#069c58&quot;, &#39;#f266ab&#39;, &#39;#7f7f7f&#39;, &#39;#bcbd22&#39;, &#39;#17becf&#39;]))</span>
+    <span class="n">K</span> <span class="o">=</span> <span class="n">cov_fn</span><span class="p">(</span><span class="n">times</span><span class="p">)</span>
+    <span class="n">samples</span> <span class="o">=</span> <span class="n">multivariate_normal</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">times</span><span class="p">)),</span> <span class="n">K</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">N</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">samples</span><span class="p">:</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">times</span><span class="p">,</span> <span class="n">s</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">ax</span><span class="p">,</span> <span class="p">(</span><span class="n">title</span><span class="p">,</span> <span class="n">cov_fn</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">processes</span><span class="p">):</span>
+    <span class="n">K</span> <span class="o">=</span> <span class="n">cov_fn</span><span class="p">(</span><span class="n">times</span><span class="p">)</span>
+    <span class="n">im</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">K</span><span class="p">,</span> <span class="n">extent</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">T</span><span class="p">),</span> <span class="n">origin</span><span class="o">=</span><span class="s2">&quot;lower&quot;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;coolwarm&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span> 
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Cov(s, t)&quot;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s2">&quot;Gaussian Processes Examples</span><span class="se">\n</span><span class="s2"> Sample Paths and Covariance Functions&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">hspace</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">(</span><span class="n">rect</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">0.975</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/2c1fe7b22ed878c1d93bab4ada3dc1189cc68f30d68df2144065fc146dac5831.png"><img alt="_images/2c1fe7b22ed878c1d93bab4ada3dc1189cc68f30d68df2144065fc146dac5831.png" src="_images/2c1fe7b22ed878c1d93bab4ada3dc1189cc68f30d68df2144065fc146dac5831.png" style="width: 1183px; height: 750px;" />
+</a>
+</div>
+</div>
+<p>Similarly, we can visualize other Gussian processes</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">aleatory.utils.kernels</span><span class="w"> </span><span class="kn">import</span> <span class="n">brownian_kernel</span><span class="p">,</span> <span class="n">matern_kernel</span><span class="p">,</span> <span class="n">periodic_kernel</span>
+
+
+<span class="n">T</span> <span class="o">=</span> <span class="mf">2.0</span>  <span class="c1"># End point of the interval to simulate [O,T]</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">200</span>  <span class="c1"># Number of points in the partition</span>
+<span class="n">times</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>  <span class="c1"># Partition</span>
+<span class="n">N</span> <span class="o">=</span> <span class="mi">10</span>  <span class="c1"># Number of sample paths to simulate</span>
+
+
+<span class="n">kernels</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">(</span><span class="s2">&quot;Brownian&quot;</span><span class="p">,</span> <span class="n">brownian_kernel</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">&quot;Matern&quot;</span><span class="p">,</span> <span class="n">matern_kernel</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">&quot;Periodic&quot;</span><span class="p">,</span> <span class="n">periodic_kernel</span><span class="p">)</span>
+<span class="p">]</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">ax</span><span class="p">,</span> <span class="p">(</span><span class="n">title</span><span class="p">,</span> <span class="n">cov_fn</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">kernels</span><span class="p">):</span>
+    <span class="c1"># ax.set_prop_cycle(plt.cycler(</span>
+    <span class="c1">#     &quot;color&quot;, [&quot;#75dbfa&quot;,  &quot;#069c58&quot;, &#39;#f266ab&#39;, &#39;#7f7f7f&#39;, &#39;#bcbd22&#39;, &#39;#17becf&#39;]))</span>
+    <span class="n">K</span> <span class="o">=</span> <span class="n">cov_fn</span><span class="p">(</span><span class="n">times</span><span class="p">)</span>
+    <span class="n">samples</span> <span class="o">=</span> <span class="n">multivariate_normal</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">times</span><span class="p">)),</span> <span class="n">K</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">N</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">samples</span><span class="p">:</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">times</span><span class="p">,</span> <span class="n">s</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">ax</span><span class="p">,</span> <span class="p">(</span><span class="n">title</span><span class="p">,</span> <span class="n">cov_fn</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">kernels</span><span class="p">):</span>
+    <span class="n">K</span> <span class="o">=</span> <span class="n">cov_fn</span><span class="p">(</span><span class="n">times</span><span class="p">)</span>
+    <span class="n">im</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">K</span><span class="p">,</span> <span class="n">extent</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">origin</span><span class="o">=</span><span class="s2">&quot;upper&quot;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;coolwarm&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;K(s, t)&quot;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span>
+    <span class="s2">&quot;Three Gaussian Processes</span><span class="se">\n</span><span class="s2"> Sample Paths and Covariance Functions&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">hspace</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/03b0a9cc53f4198685853f30de9c93286f27ed15c21d099bfe9eedf5394aee31.png"><img alt="_images/03b0a9cc53f4198685853f30de9c93286f27ed15c21d099bfe9eedf5394aee31.png" src="_images/03b0a9cc53f4198685853f30de9c93286f27ed15c21d099bfe9eedf5394aee31.png" style="width: 977px; height: 723px;" />
+</a>
+</div>
+</div>
+</section>
+<section id="common-covariance-functions-and-their-corresponding-gaussian-processes">
+<h2><span class="section-number">9.5. </span>Common Covariance Functions and their corresponding Gaussian Processes<a class="headerlink" href="#common-covariance-functions-and-their-corresponding-gaussian-processes" title="Link to this heading">#</a></h2>
+<p>Hereafter, let $<span class="math notranslate nohighlight">\( d = \|x - x'\| \)</span>$ denote the distance between inputs.</p>
+<section id="constant-kernel">
+<h3><span class="section-number">9.5.1. </span>1. Constant Kernel<a class="headerlink" href="#constant-kernel" title="Link to this heading">#</a></h3>
+<div class="math notranslate nohighlight">
+\[
+k(x,x') = C
+\]</div>
+<p><strong>Intuition</strong></p>
+<ul class="simple">
+<li><p>All points are perfectly correlated</p></li>
+<li><p>No dependence on distance</p></li>
+</ul>
+<p><strong>Typical path behaviour</strong></p>
+<ul class="simple">
+<li><p>Functions are constant but random in level</p></li>
+</ul>
+<p><strong>Interpretation</strong></p>
+<blockquote>
+<div><p>The function is flat but uncertain in magnitude.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">aleatory.processes</span><span class="w"> </span><span class="kn">import</span> <span class="n">GPConstant</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">GPConstant</span><span class="p">(</span><span class="n">sigma</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">plot_paths_and_kernel</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/9a88d2996383c15c6bcfc7405c33138368ac70183b75f5610bd5a1e43fb3f652.png"><img alt="_images/9a88d2996383c15c6bcfc7405c33138368ac70183b75f5610bd5a1e43fb3f652.png" src="_images/9a88d2996383c15c6bcfc7405c33138368ac70183b75f5610bd5a1e43fb3f652.png" style="width: 880px; height: 397px;" />
+</a>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/522f6282623e7ef586014b33aad1f08cc703f8cf261d3f631d1044348f320082.png"><img alt="_images/522f6282623e7ef586014b33aad1f08cc703f8cf261d3f631d1044348f320082.png" src="_images/522f6282623e7ef586014b33aad1f08cc703f8cf261d3f631d1044348f320082.png" style="width: 762px; height: 403px;" />
+</a>
+</div>
+</div>
+</section>
+<section id="linear-kernel">
+<h3><span class="section-number">9.5.2. </span>2. Linear Kernel<a class="headerlink" href="#linear-kernel" title="Link to this heading">#</a></h3>
+<div class="math notranslate nohighlight">
+\[
+k(x,x') = x^\top x'
+\]</div>
+<p><strong>Intuition</strong></p>
+<ul class="simple">
+<li><p>Correlation increases with alignment of inputs. Note that the kernel is not stationary, as it depends on the absolute values of the inputs, not just their difference.</p></li>
+</ul>
+<p><strong>Typical paths behaviour</strong></p>
+<ul class="simple">
+<li><p>Linear functions</p></li>
+</ul>
+<p><strong>Interpretation</strong></p>
+<blockquote>
+<div><p>Equivalent to Bayesian linear regression because the kernel is the inner product of the inputs.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">aleatory.processes</span><span class="w"> </span><span class="kn">import</span> <span class="n">GPLinear</span>
+
+<span class="n">p</span> <span class="o">=</span> <span class="n">GPLinear</span><span class="p">(</span><span class="n">sigma</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="mf">5.0</span><span class="p">)</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">plot_paths_and_kernel</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/5482c743cbd248c92362517cd89f7b0d5aa51821e1caf0cda2636e7696cd4e12.png"><img alt="_images/5482c743cbd248c92362517cd89f7b0d5aa51821e1caf0cda2636e7696cd4e12.png" src="_images/5482c743cbd248c92362517cd89f7b0d5aa51821e1caf0cda2636e7696cd4e12.png" style="width: 879px; height: 397px;" />
+</a>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/e314d861bbb3b1b9baf9d7924b589fac11704f9fc2c3a2e8dda70205477475c6.png"><img alt="_images/e314d861bbb3b1b9baf9d7924b589fac11704f9fc2c3a2e8dda70205477475c6.png" src="_images/e314d861bbb3b1b9baf9d7924b589fac11704f9fc2c3a2e8dda70205477475c6.png" style="width: 769px; height: 403px;" />
+</a>
+</div>
+</div>
+</section>
+<section id="white-noise-kernel">
+<h3><span class="section-number">9.5.3. </span>3. White Noise Kernel<a class="headerlink" href="#white-noise-kernel" title="Link to this heading">#</a></h3>
+<div class="math notranslate nohighlight">
+\[
+K(x,x') = \sigma^2 \delta_{x,x'}
+\]</div>
+<p><strong>Intuition</strong></p>
+<ul class="simple">
+<li><p>No correlation between different inputs</p></li>
+</ul>
+<p><strong>Typical paths behaviour</strong></p>
+<ul class="simple">
+<li><p>Unstructured noise, non-smooth functions</p></li>
+</ul>
+<p><strong>Interpretation</strong></p>
+<blockquote>
+<div><p>Pure randomness with no smoothness.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">aleatory.processes</span><span class="w"> </span><span class="kn">import</span> <span class="n">WhiteNoise</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">WhiteNoise</span><span class="p">(</span><span class="n">sigma</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">plot_paths_and_kernel</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/dc950c3f256262a8d90291586f2df98844cdcc6b67954e6f04f902f75393b89b.png"><img alt="_images/dc950c3f256262a8d90291586f2df98844cdcc6b67954e6f04f902f75393b89b.png" src="_images/dc950c3f256262a8d90291586f2df98844cdcc6b67954e6f04f902f75393b89b.png" style="width: 1167px; height: 397px;" />
+</a>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/ec854de067557c3c33c65d00d4a91c044e22873446e60d7d768c8a9b844ea165.png"><img alt="_images/ec854de067557c3c33c65d00d4a91c044e22873446e60d7d768c8a9b844ea165.png" src="_images/ec854de067557c3c33c65d00d4a91c044e22873446e60d7d768c8a9b844ea165.png" style="width: 762px; height: 403px;" />
+</a>
+</div>
+</div>
+</section>
+<section id="squared-exponential-rbf-kernel">
+<h3><span class="section-number">9.5.4. </span>4. Squared Exponential (RBF) Kernel<a class="headerlink" href="#squared-exponential-rbf-kernel" title="Link to this heading">#</a></h3>
+<div class="math notranslate nohighlight">
+\[
+K(x,x') = \exp\left(-\frac{d^2}{2\ell^2}\right)
+\]</div>
+<p><strong>Intuition</strong></p>
+<ul class="simple">
+<li><p>Nearby points are strongly correlated</p></li>
+<li><p>Correlation decays smoothly with distance</p></li>
+</ul>
+<p><strong>Typical paths behaviour</strong></p>
+<ul class="simple">
+<li><p>Very smooth functions</p></li>
+</ul>
+<p><strong>Interpretation</strong></p>
+<blockquote>
+<div><p>Assumes the underlying function is extremely smooth.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">aleatory.processes</span><span class="w"> </span><span class="kn">import</span> <span class="n">GPSquaredExponential</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">GPSquaredExponential</span><span class="p">(</span><span class="n">sigma</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">length_scale</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">plot_paths_and_kernel</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/42465e506653067167f83da655df694036b00cf4cd6855c52391ce2d1381922d.png"><img alt="_images/42465e506653067167f83da655df694036b00cf4cd6855c52391ce2d1381922d.png" src="_images/42465e506653067167f83da655df694036b00cf4cd6855c52391ce2d1381922d.png" style="width: 1167px; height: 397px;" />
+</a>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/1944b1dbaca143870bdbc1161b4337487efb82b128ca12e4dcb38db7271ceadf.png"><img alt="_images/1944b1dbaca143870bdbc1161b4337487efb82b128ca12e4dcb38db7271ceadf.png" src="_images/1944b1dbaca143870bdbc1161b4337487efb82b128ca12e4dcb38db7271ceadf.png" style="width: 759px; height: 403px;" />
+</a>
+</div>
+</div>
+</section>
+<section id="ornsteinuhlenbeck-kernel">
+<h3><span class="section-number">9.5.5. </span>5. Ornstein–Uhlenbeck Kernel<a class="headerlink" href="#ornsteinuhlenbeck-kernel" title="Link to this heading">#</a></h3>
+<div class="math notranslate nohighlight">
+\[K(x, x') = \frac{\sigma^2 }{ 2\theta}e^{-\theta (x+x')} (e^{2\theta \min\{x,x'\}}-1),\]</div>
+<p><strong>Intuition</strong></p>
+<ul class="simple">
+<li><p>Correlation decays exponentially with distance</p></li>
+</ul>
+<p><strong>Typical paths behaviour</strong></p>
+<ul class="simple">
+<li><p>Continuous but rough paths showing mean-reverting behaviour</p></li>
+</ul>
+<p><strong>Interpretation</strong></p>
+<blockquote>
+<div><p>Captures mean-reverting behaviour.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">aleatory.processes</span><span class="w"> </span><span class="kn">import</span> <span class="n">OUProcess</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">OUProcess</span><span class="p">(</span><span class="n">sigma</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">theta</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="mf">2.0</span><span class="p">)</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">plot_paths_and_kernel</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/07a24570e33f2d3743fc923611eb37a516360f9dd6d4b4301c355647f123b5db.png"><img alt="_images/07a24570e33f2d3743fc923611eb37a516360f9dd6d4b4301c355647f123b5db.png" src="_images/07a24570e33f2d3743fc923611eb37a516360f9dd6d4b4301c355647f123b5db.png" style="width: 1168px; height: 397px;" />
+</a>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span><span class="n">p</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/624356aab4be471979ab3cc8502f10fb1e54aa9df9545ad546ad418c892c5d40.png"><img alt="_images/624356aab4be471979ab3cc8502f10fb1e54aa9df9545ad546ad418c892c5d40.png" src="_images/624356aab4be471979ab3cc8502f10fb1e54aa9df9545ad546ad418c892c5d40.png" style="width: 759px; height: 403px;" />
+</a>
+</div>
+</div>
+</section>
+<section id="matern-kernel">
+<h3><span class="section-number">9.5.6. </span>6. Matérn Kernel<a class="headerlink" href="#matern-kernel" title="Link to this heading">#</a></h3>
+<div class="math notranslate nohighlight">
+\[
+K(x,x') =
+\frac{2^{1-\nu}}{\Gamma(\nu)}
+\left(\frac{\sqrt{2\nu}d}{\ell}\right)^\nu
+K_\nu\left(\frac{\sqrt{2\nu}d}{\ell}\right)
+\]</div>
+<p><strong>Intuition</strong></p>
+<ul class="simple">
+<li><p>Generalisation of RBF kernel</p></li>
+<li><p>Smoothness is controlled by the parameter $<span class="math notranslate nohighlight">\( \nu \)</span>$</p></li>
+</ul>
+<p><strong>Special cases</strong></p>
+<ul class="simple">
+<li><p>If <span class="math notranslate nohighlight">\( \nu = 1/2 \)</span> → Ornstein–Uhlenbeck kernel</p></li>
+<li><p>If <span class="math notranslate nohighlight">\( \nu \to \infty \)</span> → Squared exponential kernel</p></li>
+</ul>
+<p><strong>Typical paths behaviour</strong></p>
+<ul class="simple">
+<li><p>Tunable smoothness</p></li>
+</ul>
+<p><strong>Interpretation</strong></p>
+<blockquote>
+<div><p>Provides flexible control over roughness of functions</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">aleatory.processes</span><span class="w"> </span><span class="kn">import</span> <span class="n">GPMatern</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">GPMatern</span><span class="p">(</span><span class="n">sigma</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">length_scale</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">nu</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">plot_paths_and_kernel</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/b9affd1af4a73ae37ea46037e406de07f5c807e22e227a4c36ad7536cc6c6624.png"><img alt="_images/b9affd1af4a73ae37ea46037e406de07f5c807e22e227a4c36ad7536cc6c6624.png" src="_images/b9affd1af4a73ae37ea46037e406de07f5c807e22e227a4c36ad7536cc6c6624.png" style="width: 1168px; height: 397px;" />
+</a>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/3cda76a70d1157f690faea986b3ca6373c1a717dc6e57dc396bb87a2486c4877.png"><img alt="_images/3cda76a70d1157f690faea986b3ca6373c1a717dc6e57dc396bb87a2486c4877.png" src="_images/3cda76a70d1157f690faea986b3ca6373c1a717dc6e57dc396bb87a2486c4877.png" style="width: 759px; height: 403px;" />
+</a>
+</div>
+</div>
+</section>
+<section id="periodic-kernel">
+<h3><span class="section-number">9.5.7. </span>7. Periodic Kernel<a class="headerlink" href="#periodic-kernel" title="Link to this heading">#</a></h3>
+<div class="math notranslate nohighlight">
+\[
+K(x,x') = \exp\left(-\frac{2}{\ell^2}\sin^2\left(\frac{d}{2}\right)\right)
+\]</div>
+<p><strong>Intuition</strong></p>
+<ul class="simple">
+<li><p>Similarity, repeats periodically</p></li>
+</ul>
+<p><strong>Typical behaviour</strong></p>
+<ul class="simple">
+<li><p>Smooth periodic functions</p></li>
+<li><p>Periodicity is controlled by the parameter <span class="math notranslate nohighlight">\(p\)</span></p></li>
+</ul>
+<p><strong>Interpretation</strong></p>
+<blockquote>
+<div><p>Captures seasonality or cyclic behaviour.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">aleatory.processes</span><span class="w"> </span><span class="kn">import</span> <span class="n">GPPeriodic</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">GPPeriodic</span><span class="p">(</span><span class="n">T</span><span class="o">=</span><span class="mf">3.0</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">length_scale</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">period</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">plot_paths_and_kernel</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/e54c92cedff9c5516c6fe87a20e549617f3d65f576519e93c63225c52604e9d8.png"><img alt="_images/e54c92cedff9c5516c6fe87a20e549617f3d65f576519e93c63225c52604e9d8.png" src="_images/e54c92cedff9c5516c6fe87a20e549617f3d65f576519e93c63225c52604e9d8.png" style="width: 1167px; height: 397px;" />
+</a>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/3633ffaaad3a4821155e078feb3fda8842039a907144600c8af1d409ab7e6ef9.png"><img alt="_images/3633ffaaad3a4821155e078feb3fda8842039a907144600c8af1d409ab7e6ef9.png" src="_images/3633ffaaad3a4821155e078feb3fda8842039a907144600c8af1d409ab7e6ef9.png" style="width: 759px; height: 403px;" />
+</a>
+</div>
+</div>
+</section>
+<section id="rational-quadratic-kernel">
+<h3><span class="section-number">9.5.8. </span>8. Rational Quadratic Kernel<a class="headerlink" href="#rational-quadratic-kernel" title="Link to this heading">#</a></h3>
+<div class="math notranslate nohighlight">
+\[
+K(x,x') = (1 + d^2)^{-\alpha}, \quad \alpha \geq 0
+\]</div>
+<p><strong>Intuition</strong></p>
+<ul class="simple">
+<li><p>Mixture of multiple length scales</p></li>
+</ul>
+<p><strong>Typical behaviour</strong></p>
+<ul class="simple">
+<li><p>Functions with both short-term and long-term variation</p></li>
+</ul>
+<p><strong>Interpretation</strong></p>
+<blockquote>
+<div><p>Models multi-scale phenomena.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">aleatory.processes</span><span class="w"> </span><span class="kn">import</span> <span class="n">GPRationalQuadratic</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">GPRationalQuadratic</span><span class="p">(</span><span class="n">T</span><span class="o">=</span><span class="mf">3.0</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">length_scale</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">plot_paths_and_kernel</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/b8f0b9268d1a247f4d30ccd94596bd0431fae455e554a08b78cd52958f8041ae.png"><img alt="_images/b8f0b9268d1a247f4d30ccd94596bd0431fae455e554a08b78cd52958f8041ae.png" src="_images/b8f0b9268d1a247f4d30ccd94596bd0431fae455e554a08b78cd52958f8041ae.png" style="width: 1168px; height: 397px;" />
+</a>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/51fcb81dd6fdd023a21a9ab5dca7c27c67ae8a76b8def272f86dfe6b3574975c.png"><img alt="_images/51fcb81dd6fdd023a21a9ab5dca7c27c67ae8a76b8def272f86dfe6b3574975c.png" src="_images/51fcb81dd6fdd023a21a9ab5dca7c27c67ae8a76b8def272f86dfe6b3574975c.png" style="width: 759px; height: 403px;" />
+</a>
+</div>
+</div>
+</section>
+</section>
+<section id="combining-kernels">
+<h2><span class="section-number">9.6. </span>Combining Kernels<a class="headerlink" href="#combining-kernels" title="Link to this heading">#</a></h2>
+<p>Covariance functions can be combined to model more complex behaviour.</p>
+<section id="addition">
+<h3><span class="section-number">9.6.1. </span>Addition<a class="headerlink" href="#addition" title="Link to this heading">#</a></h3>
+<div class="math notranslate nohighlight">
+\[
+K = K_1 + K_2
+\]</div>
+<ul class="simple">
+<li><p>Represents the sum of independent effects</p></li>
+</ul>
+</section>
+<section id="multiplication">
+<h3><span class="section-number">9.6.2. </span>Multiplication<a class="headerlink" href="#multiplication" title="Link to this heading">#</a></h3>
+<div class="math notranslate nohighlight">
+\[
+K = K_1 \cdot K_2
+\]</div>
+<ul class="simple">
+<li><p>Represents interaction between structures</p></li>
+</ul>
+</section>
+<section id="example">
+<h3><span class="section-number">9.6.3. </span>Example<a class="headerlink" href="#example" title="Link to this heading">#</a></h3>
+<div class="math notranslate nohighlight">
+\[
+K = K_{\text{RBF}} + K_{\text{Periodic}}
+\]</div>
+<ul class="simple">
+<li><p>Smooth trend + seasonal pattern</p></li>
+</ul>
+</section>
+</section>
+<section id="what-the-kernel-tells-us-about-the-process">
+<h2><span class="section-number">9.7. </span>What the Kernel tells us about the Process<a class="headerlink" href="#what-the-kernel-tells-us-about-the-process" title="Link to this heading">#</a></h2>
+<p>Several structural properties of a Gaussian Proccess <span class="math notranslate nohighlight">\(X\)</span> are encoded in its kernel <span class="math notranslate nohighlight">\(k\)</span>, in particular:</p>
+<section id="smoothness">
+<h3><span class="section-number">9.7.1. </span>Smoothness<a class="headerlink" href="#smoothness" title="Link to this heading">#</a></h3>
+<p><strong>Definition:</strong> Smoothness refers to the regularity of sample paths, which can be formalized via mean-square differentiability. A process <span class="math notranslate nohighlight">\(X\)</span> is said to be <span class="math notranslate nohighlight">\(m\)</span>-times mean-square differentiable at <span class="math notranslate nohighlight">\(t\)</span> if the derivatives</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{\partial^m}{\partial t^m} X(t)
+\]</div>
+<p>exist in <span class="math notranslate nohighlight">\(L^2\)</span> space. This holds if and only if the covariance function <span class="math notranslate nohighlight">\(k(s,t)\)</span> is <span class="math notranslate nohighlight">\(2m\)</span>-times continuously differentiable in a neighbourhood of <span class="math notranslate nohighlight">\(s = t\)</span>.</p>
+<p><strong>Intuition:</strong> The local behaviour of <span class="math notranslate nohighlight">\(k(s,t)\)</span> near the diagonal <span class="math notranslate nohighlight">\(s = t\)</span> determines how rapidly correlations decay between nearby points. If <span class="math notranslate nohighlight">\(k\)</span> is very smooth around the diagonal, nearby values of the process are strongly constrained to vary gradually, leading to smooth sample paths. Conversely, lack of regularity in <span class="math notranslate nohighlight">\(k\)</span> induces rough or highly oscillatory paths.</p>
+<p><strong>Examples:</strong></p>
+<ul class="simple">
+<li><p>The squared exponential (RBF) kernel is infinitely differentiable, hence induces sample paths that are almost surely smooth (indeed, <span class="math notranslate nohighlight">\(C^\infty\)</span>).</p></li>
+<li><p>The Matérn class <span class="math notranslate nohighlight">\(k_\nu\)</span> yields sample paths that are <span class="math notranslate nohighlight">\(\lfloor \nu \rfloor\)</span>-times mean-square differentiable; in particular, <span class="math notranslate nohighlight">\(\nu = \tfrac{1}{2}\)</span> corresponds to non-differentiable paths.</p></li>
+<li><p>The covariance <span class="math notranslate nohighlight">\(k(s,t) = \min(s,t)\)</span> (Brownian motion) produces paths that are continuous but nowhere differentiable.</p></li>
+</ul>
+<p>This is a fundamental property in applications, as it allows practitioners to encode prior beliefs about the smoothness of the underlying function being modeled.</p>
+</section>
+<section id="variability">
+<h3><span class="section-number">9.7.2. </span>Variability<a class="headerlink" href="#variability" title="Link to this heading">#</a></h3>
+<p><strong>Definition:</strong> Variability is determined by the pointwise variance of the process, given by</p>
+<div class="math notranslate nohighlight">
+\[
+\mathrm{Var}(X(t)) = k(t,t).
+\]</div>
+<p>More generally, the covariance function controls the full second-order structure, including how variance is distributed across the index set and how joint fluctuations occur.</p>
+<p><strong>Intuition:</strong> The magnitude of <span class="math notranslate nohighlight">\(k(t,t)\)</span> sets the scale of fluctuations at each point, while the off-diagonal terms <span class="math notranslate nohighlight">\(k(s,t)\)</span> determine how these fluctuations co-vary. Larger values of <span class="math notranslate nohighlight">\(k(t,t)\)</span> correspond to greater dispersion of the process around its mean.</p>
+<p><strong>Examples:</strong></p>
+<ul class="simple">
+<li><p>A kernel of the form <span class="math notranslate nohighlight">\(k(s,t) = \sigma^2 \tilde{k}(s,t)\)</span> scales the entire process, with <span class="math notranslate nohighlight">\(\sigma^2\)</span> directly controlling the marginal variance.</p></li>
+<li><p>In heteroscedastic constructions, one may use <span class="math notranslate nohighlight">\(k(s,t) = \sigma(s)\sigma(t)\tilde{k}(s,t)\)</span>, inducing location-dependent variability.</p></li>
+<li><p>For Brownian motion, <span class="math notranslate nohighlight">\(k(t,t) = t\)</span>, so the variance grows linearly in time.</p></li>
+</ul>
+</section>
+<section id="periodicity">
+<h3><span class="section-number">9.7.3. </span>Periodicity<a class="headerlink" href="#periodicity" title="Link to this heading">#</a></h3>
+<p><strong>Definition:</strong> A covariance function <span class="math notranslate nohighlight">\(k\)</span> is periodic with period <span class="math notranslate nohighlight">\(T &gt; 0\)</span> if</p>
+<div class="math notranslate nohighlight">
+\[
+k(s + T, t + T) = k(s,t) \quad \text{for all } s,t \in \mathcal{T}.
+\]</div>
+<p>Equivalently, in the stationary case, periodicity can be expressed as <span class="math notranslate nohighlight">\(k(\tau) = k(\tau + T)\)</span> where <span class="math notranslate nohighlight">\(\tau = s - t\)</span>.</p>
+<p><strong>Intuition:</strong> The covariance structure repeats itself at regular intervals, implying that the dependence between points is invariant under shifts by multiples of the period. This enforces a repeating pattern in the correlation structure of the process.</p>
+<p><strong>Examples:</strong></p>
+<ul class="simple">
+<li><p>A standard periodic kernel is</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+k(s,t) = \sigma^2 \exp\left(-\frac{2\sin^2\big(\pi (s-t)/T\big)}{\ell^2}\right),
+\]</div>
+<p>which enforces exact periodicity with period <span class="math notranslate nohighlight">\(T\)</span>.</p>
+<ul class="simple">
+<li><p>Trigonometric covariance functions, such as <span class="math notranslate nohighlight">\(k(\tau) = \cos(2\pi \tau / T)\)</span>, generate perfectly periodic structure.</p></li>
+<li><p>Sums/products of periodic and non-periodic kernels allow periodic behaviour with slowly varying amplitudes.</p></li>
+</ul>
+</section>
+<section id="mean-reversion">
+<h3><span class="section-number">9.7.4. </span>Mean Reversion<a class="headerlink" href="#mean-reversion" title="Link to this heading">#</a></h3>
+<p><strong>Definition:</strong> Mean reversion can be formalized through the decay of covariance over time. A process exhibits mean-reverting behaviour if, for fixed <span class="math notranslate nohighlight">\(s\)</span>,</p>
+<div class="math notranslate nohighlight">
+\[
+\lim_{|t - s| \to \infty} k(s,t) = 0,
+\]</div>
+<p>and the decay occurs at a rate that enforces a characteristic timescale of dependence.</p>
+<p><strong>Intuition:</strong> As the temporal separation increases, the influence of past values on future values diminishes, causing the process to “forget” deviations from the mean and revert toward it. The rate of decay determines how quickly this reversion occurs.</p>
+<p><strong>Examples:</strong></p>
+<ul class="simple">
+<li><p>The exponential kernel</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+k(s,t) = \sigma^2 e^{-\lambda |t-s|}
+\]</div>
+<p>corresponds to the covariance of the Ornstein–Uhlenbeck process, a canonical mean-reverting model.</p>
+<ul class="simple">
+<li><p>More generally, Matérn kernels with finite length scale exhibit mean-reverting behaviour through exponential-type decay.</p></li>
+<li><p>In contrast, kernels with slow (e.g., polynomial) decay encode long memory and weaker mean reversion.</p></li>
+</ul>
+</section>
+<section id="stationarity">
+<h3><span class="section-number">9.7.5. </span>Stationarity<a class="headerlink" href="#stationarity" title="Link to this heading">#</a></h3>
+<p><strong>Definition:</strong> A process <span class="math notranslate nohighlight">\(X\)</span> is (weakly) stationary if its covariance function satisfies</p>
+<div class="math notranslate nohighlight">
+\[
+k(s,t) = k(s - t) \quad \text{for all } s,t \in \mathcal{T},
+\]</div>
+<p>i.e., it depends only on the lag <span class="math notranslate nohighlight">\(\tau = s - t\)</span>, and the mean is constant.</p>
+<p><strong>Intuition:</strong> The statistical structure of the process is invariant under translations of the index set. There is no distinguished location in <span class="math notranslate nohighlight">\(\mathcal{T}\)</span>; only relative separation matters.</p>
+<p><strong>Examples:</strong></p>
+<ul class="simple">
+<li><p>The squared exponential and Matérn kernels are stationary since they depend only on <span class="math notranslate nohighlight">\(s-t\)</span>.</p></li>
+<li><p>A kernel like <span class="math notranslate nohighlight">\(k(s,t) = \min(s,t)\)</span> is non-stationary, as it depends on absolute time.</p></li>
+<li><p>Adding a non-constant variance term (e.g., <span class="math notranslate nohighlight">\(k(s,t) = s t\)</span>) breaks stationarity.</p></li>
+</ul>
+</section>
+<section id="isotropy">
+<h3><span class="section-number">9.7.6. </span>Isotropy<a class="headerlink" href="#isotropy" title="Link to this heading">#</a></h3>
+<p><strong>Definition:</strong> When <span class="math notranslate nohighlight">\(\mathcal{T} \subset \mathbb{R}^d\)</span>, a covariance function is isotropic if there exists a function <span class="math notranslate nohighlight">\(\psi : [0,\infty) \to \mathbb{R}\)</span> such that</p>
+<div class="math notranslate nohighlight">
+\[
+k(s,t) = \psi(|s - t|),
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(|\cdot|\)</span> is the Euclidean norm.</p>
+<p><strong>Intuition:</strong> The dependence between two points depends only on the distance between them, not on the direction. The process exhibits rotational invariance in its covariance structure.</p>
+<p><strong>Examples:</strong></p>
+<ul class="simple">
+<li><p>The radial basis function kernel <span class="math notranslate nohighlight">\(k(s,t) = \sigma^2 \exp(-|s-t|^2 / (2\ell^2))\)</span> is isotropic.</p></li>
+<li><p>Anisotropic kernels take the form <span class="math notranslate nohighlight">\(k(s,t) = \exp\big(-(s-t)^\top \Lambda^{-1} (s-t)\big)\)</span>, where <span class="math notranslate nohighlight">\(\Lambda\)</span> introduces direction-dependent scaling.</p></li>
+<li><p>In spatial statistics, isotropic kernels assume uniform behaviour in all directions, while anisotropic ones capture directional effects such as prevailing winds or geological structure.</p></li>
+</ul>
+<p>These examples illustrate how specific functional forms of the covariance function translate directly into qualitative properties of the stochastic process.</p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="bessel_processes_part3.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">8. </span>Bessel Processes Part III</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="AOS.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">American Options Pricing using the Longstaff-Schwartz Algorithm</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">9.1. Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#definition">9.2. Definition</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#marginal-distributions">9.2.1. Marginal Distributions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">9.2.2. Examples</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#counterexamples">9.2.3. Counterexamples</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simulation">9.3. Simulation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#covariance-functions-kernels">9.4. Covariance Functions/Kernels</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#common-covariance-functions-and-their-corresponding-gaussian-processes">9.5. Common Covariance Functions and their corresponding Gaussian Processes</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#constant-kernel">9.5.1. 1. Constant Kernel</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#linear-kernel">9.5.2. 2. Linear Kernel</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#white-noise-kernel">9.5.3. 3. White Noise Kernel</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#squared-exponential-rbf-kernel">9.5.4. 4. Squared Exponential (RBF) Kernel</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ornsteinuhlenbeck-kernel">9.5.5. 5. Ornstein–Uhlenbeck Kernel</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#matern-kernel">9.5.6. 6. Matérn Kernel</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#periodic-kernel">9.5.7. 7. Periodic Kernel</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rational-quadratic-kernel">9.5.8. 8. Rational Quadratic Kernel</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#combining-kernels">9.6. Combining Kernels</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#addition">9.6.1. Addition</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multiplication">9.6.2. Multiplication</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example">9.6.3. Example</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-the-kernel-tells-us-about-the-process">9.7. What the Kernel tells us about the Process</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#smoothness">9.7.1. Smoothness</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#variability">9.7.2. Variability</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#periodicity">9.7.3. Periodicity</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mean-reversion">9.7.4. Mean Reversion</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#stationarity">9.7.5. Stationarity</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#isotropy">9.7.6. Isotropy</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Dialid Santiago
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2022-2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

@@ -191,6 +191,7 @@
 <li class="toctree-l1"><a class="reference internal" href="bessel_processes_part1.html">6. Bessel Processes Part I</a></li>
 <li class="toctree-l1"><a class="reference internal" href="bessel_processes_part2.html">7. Bessel Processes Part II</a></li>
 <li class="toctree-l1"><a class="reference internal" href="bessel_processes_part3.html">8. Bessel Processes Part III</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gaussian_process.html">9. Gaussian Processes</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Other Topics</span></p>
 <ul class="nav bd-sidenav">
@@ -465,7 +466,7 @@ document.write(`
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/c3fa715d6c4da311267b9f5a85928cfada739dcd7f4ef333b46a45b1c0e295f9.png" src="_images/c3fa715d6c4da311267b9f5a85928cfada739dcd7f4ef333b46a45b1c0e295f9.png" />
+<img alt="_images/fa5b5b3ffd06abe570f40ef65a63589c79dc7ff66a0a13e226ab12d2becccd23.png" src="_images/fa5b5b3ffd06abe570f40ef65a63589c79dc7ff66a0a13e226ab12d2becccd23.png" />
 </div>
 </div>
 <section id="definition">
@@ -481,8 +482,8 @@ document.write(`
 <section id="marginal-distributions">
 <h2><span class="section-number">1.2. </span>Marginal Distributions<a class="headerlink" href="#marginal-distributions" title="Link to this heading">#</a></h2>
 <p>Point (2) in the Brownian motion definition implies that for each <span class="math notranslate nohighlight">\(t&gt;0\)</span>, the one dimensional marginal distribution <span class="math notranslate nohighlight">\(W_t\)</span> is normally distributed with expectation zero, and variance equals <span class="math notranslate nohighlight">\(t\)</span>, i.e.:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-58988c62-8a7d-4d2d-8d38-ca24b4c941c8">
-<span class="eqno">(1.1)<a class="headerlink" href="#equation-58988c62-8a7d-4d2d-8d38-ca24b4c941c8" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-4deda8ec-e8ef-4f10-beda-4cb96fedd15a">
+<span class="eqno">(1.1)<a class="headerlink" href="#equation-4deda8ec-e8ef-4f10-beda-4cb96fedd15a" title="Permalink to this equation">#</a></span>\[\begin{equation}
 W_t \sim \mathcal{N}(0,t), \qquad \forall t&gt;0.
 \end{equation}\]</div>
 <section id="expectation-variance-and-covariance">
@@ -560,8 +561,8 @@ f(x, t) = \dfrac{1}{\sqrt{2 \pi t}}\exp\left\{ -\dfrac{x^2}{2t}\right\}, \qquad 
 <section id="fokker-planck-equation">
 <h4><span class="section-number">1.2.4.1. </span>Fokker-Planck Equation<a class="headerlink" href="#fokker-planck-equation" title="Link to this heading">#</a></h4>
 <p>The pdf satisfies the Fokker-Planck equation</p>
-<div class="amsmath math notranslate nohighlight" id="equation-80240201-2d4d-46bd-8d0a-ef714b3fe697">
-<span class="eqno">(1.2)<a class="headerlink" href="#equation-80240201-2d4d-46bd-8d0a-ef714b3fe697" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-5506a4ea-b3e8-4129-8dc7-04a251218a38">
+<span class="eqno">(1.2)<a class="headerlink" href="#equation-5506a4ea-b3e8-4129-8dc7-04a251218a38" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \dfrac{\partial}{\partial t}f(x,t)= \dfrac{1}{2}\dfrac{\partial}{\partial x^2}f(x,t).
 \end{equation}\]</div>
 </section>
@@ -583,7 +584,7 @@ f(x, t) = \dfrac{1}{\sqrt{2 \pi t}}\exp\left\{ -\dfrac{x^2}{2t}\right\}, \qquad 
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/f1d977c19b2dfa0b10a5ddade976f46378f7c4cce515c1fbe9886307782e2ec8.png" src="_images/f1d977c19b2dfa0b10a5ddade976f46378f7c4cce515c1fbe9886307782e2ec8.png" />
+<img alt="_images/f949ad28e576a55aa0340a6ae23815d0246581ea19ddaff43c1188b4e0eb47b3.png" src="_images/f949ad28e576a55aa0340a6ae23815d0246581ea19ddaff43c1188b4e0eb47b3.png" />
 </div>
 </div>
 <p>Next, let’s take a look at the pdfs for different marginal distributions <span class="math notranslate nohighlight">\(W_t\)</span>.</p>
@@ -608,7 +609,7 @@ f(x, t) = \dfrac{1}{\sqrt{2 \pi t}}\exp\left\{ -\dfrac{x^2}{2t}\right\}, \qquad 
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/889063a772fb251884bf06ba3cd0c6913b737438f6413192980e9ae0d0e073cc.png" src="_images/889063a772fb251884bf06ba3cd0c6913b737438f6413192980e9ae0d0e073cc.png" />
+<img alt="_images/9994a3e754c6c2b69232b42284bd4e7cae6a69bc2732a93114fe9ab10f59421b.png" src="_images/9994a3e754c6c2b69232b42284bd4e7cae6a69bc2732a93114fe9ab10f59421b.png" />
 </div>
 </div>
 <p>In this chart, we clearly see the characteristic symmetric bell-shaped curves of the normal/Gaussian distribution.
@@ -634,7 +635,7 @@ Moreover, we can make the following observations:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 1.13786917, -1.57733504,  0.62848399, -0.65588033,  0.79473261])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-1.2381154 ,  0.48251085, -0.86619211, -0.00444666,  1.50547328])
 </pre></div>
 </div>
 </div>
@@ -648,7 +649,7 @@ Moreover, we can make the following observations:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-2.21106162,  2.15914102,  4.17859119, -0.76553467, -1.93547376])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 1.55946711, -1.11685924, -0.70670166, -1.15348188,  2.54626445])
 </pre></div>
 </div>
 </div>
@@ -740,7 +741,7 @@ W_{t_3} = (W_{t_3} - W_{t_2}) + W_{t_2}  &amp; \sim N\left(0,\frac{T}{n-1}\right
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/d5364171e043bcadc5a9873cc0ac823943d447a4339681397da1b71961f0ef37.png" src="_images/d5364171e043bcadc5a9873cc0ac823943d447a4339681397da1b71961f0ef37.png" />
+<img alt="_images/cb0995c1520853596dbb91b31e7adff20b92558339c88a55ecf314f50c3643af.png" src="_images/cb0995c1520853596dbb91b31e7adff20b92558339c88a55ecf314f50c3643af.png" />
 </div>
 </div>
 <div class="admonition note">
@@ -766,7 +767,7 @@ W_{t_3} = (W_{t_3} - W_{t_2}) + W_{t_2}  &amp; \sim N\left(0,\frac{T}{n-1}\right
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/f76267e8f7921782f6cbb64b89cd1fa5e96f1e58f9c397b877697f723ef306aa.png" src="_images/f76267e8f7921782f6cbb64b89cd1fa5e96f1e58f9c397b877697f723ef306aa.png" />
+<img alt="_images/89ca94c912e390b212535db0fb7ffe1bbc629b26e852426c82be068aed341405.png" src="_images/89ca94c912e390b212535db0fb7ffe1bbc629b26e852426c82be068aed341405.png" />
 </div>
 </div>
 <p>Similarly, we can define the Brownian Motion over the interval <span class="math notranslate nohighlight">\([0, 10]\)</span> and simulate 50 paths with a partition of size 100.</p>
@@ -779,7 +780,7 @@ W_{t_3} = (W_{t_3} - W_{t_2}) + W_{t_2}  &amp; \sim N\left(0,\frac{T}{n-1}\right
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/26ca280448d43924f147b5b9d2de5ee12a463f9f85c018eb981a0e0c383a1025.png" src="_images/26ca280448d43924f147b5b9d2de5ee12a463f9f85c018eb981a0e0c383a1025.png" />
+<img alt="_images/2b193d3796b238fb249e7d8453c8413b3cfe007216308b701fd4104e38b7a33e.png" src="_images/2b193d3796b238fb249e7d8453c8413b3cfe007216308b701fd4104e38b7a33e.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -790,7 +791,7 @@ W_{t_3} = (W_{t_3} - W_{t_2}) + W_{t_2}  &amp; \sim N\left(0,\frac{T}{n-1}\right
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/c906d6ee7a05646842c39c01fc0f159e08b3ceb635ee71617c24c9bdf3ebc3c7.png" src="_images/c906d6ee7a05646842c39c01fc0f159e08b3ceb635ee71617c24c9bdf3ebc3c7.png" />
+<img alt="_images/592b0294bfb641be4615ddc73036d75aa2a8dc15fc410cb0b1b8a5dea9562f32.png" src="_images/592b0294bfb641be4615ddc73036d75aa2a8dc15fc410cb0b1b8a5dea9562f32.png" />
 </div>
 </div>
 </section>
@@ -832,7 +833,7 @@ W_{t_3} = (W_{t_3} - W_{t_2}) + W_{t_2}  &amp; \sim N\left(0,\frac{T}{n-1}\right
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/781cb51838279e101b0ba0df561e2a614d9650c3c60c1df62045c0af513604f0.png" src="_images/781cb51838279e101b0ba0df561e2a614d9650c3c60c1df62045c0af513604f0.png" />
+<img alt="_images/fa10b27af7bef57c32d27770ccda3a3e3fe9a6154d5273a7585c61badfa8d845.png" src="_images/fa10b27af7bef57c32d27770ccda3a3e3fe9a6154d5273a7585c61badfa8d845.png" />
 </div>
 </div>
 <p>We can zoom-in to see the what was happening when <span class="math notranslate nohighlight">\(t\)</span> was not that big e.g. over the interval <span class="math notranslate nohighlight">\([0,5]\)</span></p>
@@ -855,7 +856,7 @@ W_{t_3} = (W_{t_3} - W_{t_2}) + W_{t_2}  &amp; \sim N\left(0,\frac{T}{n-1}\right
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/a4952d5ffb08069e5616acc4b3dbb21eb15eedfa00ea33b8c53caa01eea043e7.png" src="_images/a4952d5ffb08069e5616acc4b3dbb21eb15eedfa00ea33b8c53caa01eea043e7.png" />
+<img alt="_images/de0a75741a09a1bf36fb43666e5e474afbe24d1d80aacda180e641314cb8fbd7.png" src="_images/de0a75741a09a1bf36fb43666e5e474afbe24d1d80aacda180e641314cb8fbd7.png" />
 </div>
 </div>
 <p>We can see that the ratio <span class="math notranslate nohighlight">\(\frac{W_t}{t}\)</span> is definitely going towards zero but not quite there yet at <span class="math notranslate nohighlight">\(t=5\)</span>.</p>
@@ -879,7 +880,7 @@ W_{t_3} = (W_{t_3} - W_{t_2}) + W_{t_2}  &amp; \sim N\left(0,\frac{T}{n-1}\right
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/a510cc0467dc3d772720606550298f9dca7f7ae30bc28052434e7f85025563c2.png" src="_images/a510cc0467dc3d772720606550298f9dca7f7ae30bc28052434e7f85025563c2.png" />
+<img alt="_images/d3b9f10aff183017e9f6d58c8446b69dab249cf015c2ae8dc841c35978698cff.png" src="_images/d3b9f10aff183017e9f6d58c8446b69dab249cf015c2ae8dc841c35978698cff.png" />
 </div>
 </div>
 <p>Here we can see that the ratio is much closer to zero (around <span class="math notranslate nohighlight">\(\pm 0.1\)</span>) than before!
@@ -920,7 +921,7 @@ Of course, we are still not quite there yet, but convergence is definitely happe
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/618f7d33343854fa060635e7097b21bc2fed86fa3620ba96e6e7ce4d24576c84.png" src="_images/618f7d33343854fa060635e7097b21bc2fed86fa3620ba96e6e7ce4d24576c84.png" />
+<img alt="_images/ff2d640c7848ab527d85c6c557f48f3f2e8b061ac074c7668297ed9655625ce4.png" src="_images/ff2d640c7848ab527d85c6c557f48f3f2e8b061ac074c7668297ed9655625ce4.png" />
 </div>
 </div>
 <p>You can find the proof here: <a class="reference external" href="https://en.wikipedia.org/wiki/Reflection_principle_(Wiener_process)">Reflection Principle (Wiener process)- Wiki</a>.</p>
@@ -939,7 +940,7 @@ Of course, we are still not quite there yet, but convergence is definitely happe
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/5915f464acfec488c8b395a08aedf612596ca3fe0b1157038455173545b1025b.png" src="_images/5915f464acfec488c8b395a08aedf612596ca3fe0b1157038455173545b1025b.png" />
+<img alt="_images/f48e6e8a06965ab3affeb72b2bfc4cdd5260113538ffc1174dbb34688ada5b97.png" src="_images/f48e6e8a06965ab3affeb72b2bfc4cdd5260113538ffc1174dbb34688ada5b97.png" />
 </div>
 </div>
 </section>
