@@ -17,6 +17,7 @@ parts:
   - file: bessel_processes_part1
   - file: bessel_processes_part2
   - file: bessel_processes_part3
+  - file: gaussian_process
 
 - caption: Other Topics
   chapters:
