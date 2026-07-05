@@ -14,7 +14,9 @@ Part I. Stochastic Processes
 4. [Vasicek Model/Process](https://quantgirluk.github.io/Understanding-Quantitative-Finance/vasicek.html)
 5. [Cox–Ingersoll–Ross process](https://quantgirluk.github.io/Understanding-Quantitative-Finance/cir_process.html)
 6. [Bessel Processes Part I](https://quantgirluk.github.io/Understanding-Quantitative-Finance/bessel_processes_part1.html)
-
+7.  [Bessel Processes Part II](https://quantgirluk.github.io/Understanding-Quantitative-Finance/bessel_processes_part2.html)
+8.  [Bessel Processes Part III](https://quantgirluk.github.io/Understanding-Quantitative-Finance/bessel_processes_part3.html)
+9.  [Gaussian Processes](https://quantgirluk.github.io/Understanding-Quantitative-Finance/gaussian_process.html)
 
 ```{note}
 
