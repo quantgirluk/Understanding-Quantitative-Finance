@@ -442,6 +442,51 @@ document.write(`
   <section class="tex2jax_ignore mathjax_ignore" id="gaussian-processes">
 <h1><span class="section-number">9. </span>Gaussian Processes<a class="headerlink" href="#gaussian-processes" title="Link to this heading">#</a></h1>
 <p>The purpose of this notebook is to provide an introduction to Gaussian Processes (GPs) and its main properties.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">aleatory.utils.kernels</span><span class="w"> </span><span class="kn">import</span> <span class="n">brownian_kernel</span><span class="p">,</span> <span class="n">matern_kernel</span><span class="p">,</span> <span class="n">periodic_kernel</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+
+<span class="n">T</span> <span class="o">=</span> <span class="mf">2.0</span>  <span class="c1"># End point of the interval to simulate [O,T]</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">200</span>  <span class="c1"># Number of points in the partition</span>
+<span class="n">times</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>  <span class="c1"># Partition</span>
+<span class="n">N</span> <span class="o">=</span> <span class="mi">10</span>  <span class="c1"># Number of sample paths to simulate</span>
+
+<span class="n">kernels</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">(</span><span class="s2">&quot;Brownian&quot;</span><span class="p">,</span> <span class="n">brownian_kernel</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">&quot;Matern&quot;</span><span class="p">,</span> <span class="n">matern_kernel</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">&quot;Periodic&quot;</span><span class="p">,</span> <span class="n">periodic_kernel</span><span class="p">),</span>
+<span class="p">]</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">ax</span><span class="p">,</span> <span class="p">(</span><span class="n">title</span><span class="p">,</span> <span class="n">cov_fn</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">kernels</span><span class="p">):</span>
+    <span class="n">K</span> <span class="o">=</span> <span class="n">cov_fn</span><span class="p">(</span><span class="n">times</span><span class="p">)</span>
+    <span class="n">samples</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">multivariate_normal</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">times</span><span class="p">)),</span> <span class="n">K</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">N</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">samples</span><span class="p">:</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">times</span><span class="p">,</span> <span class="n">s</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">ax</span><span class="p">,</span> <span class="p">(</span><span class="n">title</span><span class="p">,</span> <span class="n">cov_fn</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">kernels</span><span class="p">):</span>
+    <span class="n">K</span> <span class="o">=</span> <span class="n">cov_fn</span><span class="p">(</span><span class="n">times</span><span class="p">)</span>
+    <span class="n">im</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">K</span><span class="p">,</span> <span class="n">extent</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">origin</span><span class="o">=</span><span class="s2">&quot;upper&quot;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;coolwarm&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;K(s, t)&quot;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s2">&quot;Three Gaussian Processes</span><span class="se">\n</span><span class="s2"> Sample Paths and Covariance Functions&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">hspace</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/659420f136e2fbc52406d4ed15b8200a80f90982ddfe5f97774c374e1b872bd4.png" src="_images/659420f136e2fbc52406d4ed15b8200a80f90982ddfe5f97774c374e1b872bd4.png" />
+</div>
+</div>
 <p>Before diving into the theory, let’s start by loading the libraries</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">matplotlib</span></code></p></li>
@@ -449,7 +494,12 @@ document.write(`
 </ul>
 <p>together with the style sheet <a class="reference external" href="https://github.com/quantgirluk/matplotlib-stylesheets">Quant-Pastel Light</a>.</p>
 <p>These tools will help us to make insightful visualisations.</p>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
+<details class="admonition hide above-input">
+<summary aria-label="Toggle hidden content">
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
@@ -461,6 +511,7 @@ document.write(`
 </pre></div>
 </div>
 </div>
+</details>
 </div>
 <section id="introduction">
 <h2><span class="section-number">9.1. </span>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h2>
@@ -592,7 +643,7 @@ t_i = \frac{i}{n-1} T \qquad  \hbox{for } i = 0, \cdots, n-1.
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/fc3921b3967d11713b4f8e58e2ae0fa75e84c1aa93a4eb5d40a3ef8c46167894.png"><img alt="_images/fc3921b3967d11713b4f8e58e2ae0fa75e84c1aa93a4eb5d40a3ef8c46167894.png" src="_images/fc3921b3967d11713b4f8e58e2ae0fa75e84c1aa93a4eb5d40a3ef8c46167894.png" style="width: 755px; height: 371px;" />
+<a class="reference internal image-reference" href="_images/9d8bafa1d6029ffc8629966502e8dc92d2df5449aae0b886df5b399c9d3bb3a4.png"><img alt="_images/9d8bafa1d6029ffc8629966502e8dc92d2df5449aae0b886df5b399c9d3bb3a4.png" src="_images/9d8bafa1d6029ffc8629966502e8dc92d2df5449aae0b886df5b399c9d3bb3a4.png" style="width: 755px; height: 371px;" />
 </a>
 </div>
 </div>
@@ -618,13 +669,13 @@ t_i = \frac{i}{n-1} T \qquad  \hbox{for } i = 0, \cdots, n-1.
 
 <span class="k">for</span> <span class="n">sample</span> <span class="ow">in</span> <span class="n">samples</span><span class="p">:</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">times</span><span class="p">,</span> <span class="n">sample</span><span class="p">,</span> <span class="s2">&quot;o-&quot;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Five Brownian Motion Paths&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Brownian Motion Sample Paths&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/0c4952949b4d21735065ca3795ee7404de581be17d7ad811e2a2867182421fa0.png"><img alt="_images/0c4952949b4d21735065ca3795ee7404de581be17d7ad811e2a2867182421fa0.png" src="_images/0c4952949b4d21735065ca3795ee7404de581be17d7ad811e2a2867182421fa0.png" style="width: 762px; height: 371px;" />
+<a class="reference internal image-reference" href="_images/95c25cccb75fb800b9171c84d1c6831de6e110af1a17e80eccf85874a8df3194.png"><img alt="_images/95c25cccb75fb800b9171c84d1c6831de6e110af1a17e80eccf85874a8df3194.png" src="_images/95c25cccb75fb800b9171c84d1c6831de6e110af1a17e80eccf85874a8df3194.png" style="width: 755px; height: 371px;" />
 </a>
 </div>
 </div>
@@ -658,7 +709,7 @@ t_i = \frac{i}{n-1} T \qquad  \hbox{for } i = 0, \cdots, n-1.
 </div>
 </details>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/453b6798afc1701c2d9e775727994a5cef6ca50d645ccfb6ee766e64c305e151.png"><img alt="_images/453b6798afc1701c2d9e775727994a5cef6ca50d645ccfb6ee766e64c305e151.png" src="_images/453b6798afc1701c2d9e775727994a5cef6ca50d645ccfb6ee766e64c305e151.png" style="width: 755px; height: 371px;" />
+<a class="reference internal image-reference" href="_images/44cabc48324017e7073e3af6cf3ed4101e66a8883adf72aec1a1917ce576065a.png"><img alt="_images/44cabc48324017e7073e3af6cf3ed4101e66a8883adf72aec1a1917ce576065a.png" src="_images/44cabc48324017e7073e3af6cf3ed4101e66a8883adf72aec1a1917ce576065a.png" style="width: 755px; height: 371px;" />
 </a>
 </div>
 </div>
@@ -699,7 +750,7 @@ t_i = \frac{i}{n-1} T \qquad  \hbox{for } i = 0, \cdots, n-1.
 </div>
 </details>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/34e475504c2d5ccb12dc924097721cc30afee04595d7f39f45af5eb35dae08db.png"><img alt="_images/34e475504c2d5ccb12dc924097721cc30afee04595d7f39f45af5eb35dae08db.png" src="_images/34e475504c2d5ccb12dc924097721cc30afee04595d7f39f45af5eb35dae08db.png" style="width: 1189px; height: 390px;" />
+<a class="reference internal image-reference" href="_images/c88f23401aab5588c8b2fb00954f5aee150aa87f7756d0d0ca03938eb05657f1.png"><img alt="_images/c88f23401aab5588c8b2fb00954f5aee150aa87f7756d0d0ca03938eb05657f1.png" src="_images/c88f23401aab5588c8b2fb00954f5aee150aa87f7756d0d0ca03938eb05657f1.png" style="width: 1189px; height: 390px;" />
 </a>
 </div>
 </div>
@@ -821,7 +872,7 @@ k(s,t) := \mathrm{Cov}(X(s), X(t)) = \mathbb{E}[X(s)X(t)].
 </div>
 </details>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/daec05a7862cc5e86093d84144646bf7b588b0cb6c739dcd3076eec9fd2b6a81.png"><img alt="_images/daec05a7862cc5e86093d84144646bf7b588b0cb6c739dcd3076eec9fd2b6a81.png" src="_images/daec05a7862cc5e86093d84144646bf7b588b0cb6c739dcd3076eec9fd2b6a81.png" style="width: 1183px; height: 750px;" />
+<a class="reference internal image-reference" href="_images/1716e6afcfb697ee6295677a00733f7f95e011eb1d79b6ce242e88e064860705.png"><img alt="_images/1716e6afcfb697ee6295677a00733f7f95e011eb1d79b6ce242e88e064860705.png" src="_images/1716e6afcfb697ee6295677a00733f7f95e011eb1d79b6ce242e88e064860705.png" style="width: 1183px; height: 750px;" />
 </a>
 </div>
 </div>
@@ -835,12 +886,10 @@ k(s,t) := \mathrm{Cov}(X(s), X(t)) = \mathbb{E}[X(s)X(t)].
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">aleatory.utils.kernels</span><span class="w"> </span><span class="kn">import</span> <span class="n">brownian_kernel</span><span class="p">,</span> <span class="n">matern_kernel</span><span class="p">,</span> <span class="n">periodic_kernel</span>
 
-
 <span class="n">T</span> <span class="o">=</span> <span class="mf">2.0</span>  <span class="c1"># End point of the interval to simulate [O,T]</span>
 <span class="n">n</span> <span class="o">=</span> <span class="mi">200</span>  <span class="c1"># Number of points in the partition</span>
 <span class="n">times</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>  <span class="c1"># Partition</span>
 <span class="n">N</span> <span class="o">=</span> <span class="mi">10</span>  <span class="c1"># Number of sample paths to simulate</span>
-
 
 <span class="n">kernels</span> <span class="o">=</span> <span class="p">[</span>
     <span class="p">(</span><span class="s2">&quot;Brownian&quot;</span><span class="p">,</span> <span class="n">brownian_kernel</span><span class="p">),</span>
@@ -851,8 +900,6 @@ k(s,t) := \mathrm{Cov}(X(s), X(t)) = \mathbb{E}[X(s)X(t)].
 <span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
 <span class="k">for</span> <span class="n">ax</span><span class="p">,</span> <span class="p">(</span><span class="n">title</span><span class="p">,</span> <span class="n">cov_fn</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">kernels</span><span class="p">):</span>
-    <span class="c1"># ax.set_prop_cycle(plt.cycler(</span>
-    <span class="c1">#     &quot;color&quot;, [&quot;#75dbfa&quot;,  &quot;#069c58&quot;, &#39;#f266ab&#39;, &#39;#7f7f7f&#39;, &#39;#bcbd22&#39;, &#39;#17becf&#39;]))</span>
     <span class="n">K</span> <span class="o">=</span> <span class="n">cov_fn</span><span class="p">(</span><span class="n">times</span><span class="p">)</span>
     <span class="n">samples</span> <span class="o">=</span> <span class="n">multivariate_normal</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">times</span><span class="p">)),</span> <span class="n">K</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">N</span><span class="p">)</span>
 
@@ -877,12 +924,17 @@ k(s,t) := \mathrm{Cov}(X(s), X(t)) = \mathbb{E}[X(s)X(t)].
 </div>
 </details>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/0ad184cadaac50d162ccff38b32187c8094e771d8d3541ea149d9db2199ac778.png"><img alt="_images/0ad184cadaac50d162ccff38b32187c8094e771d8d3541ea149d9db2199ac778.png" src="_images/0ad184cadaac50d162ccff38b32187c8094e771d8d3541ea149d9db2199ac778.png" style="width: 977px; height: 723px;" />
+<a class="reference internal image-reference" href="_images/4c7cc6d1474ef3889aa8f1338cdf91933ba62b33f911af82b989ab0777f64434.png"><img alt="_images/4c7cc6d1474ef3889aa8f1338cdf91933ba62b33f911af82b989ab0777f64434.png" src="_images/4c7cc6d1474ef3889aa8f1338cdf91933ba62b33f911af82b989ab0777f64434.png" style="width: 977px; height: 723px;" />
 </a>
 </div>
 </div>
 <p>Last but not least, we can visualize the covariance functions using a 3D surface plot, where the x and y axes represent the time points and the z axis represents the covariance values.</p>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
+<details class="admonition hide above-input">
+<summary aria-label="Toggle hidden content">
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">aleatory.processes</span><span class="w"> </span><span class="kn">import</span> <span class="n">GPMatern</span>
 <span class="n">p</span> <span class="o">=</span> <span class="n">GPMatern</span><span class="p">(</span><span class="n">length_scale</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">nu</span><span class="o">=</span><span class="mf">1.5</span><span class="p">)</span>
@@ -890,6 +942,7 @@ k(s,t) := \mathrm{Cov}(X(s), X(t)) = \mathbb{E}[X(s)X(t)].
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
 <a class="reference internal image-reference" href="_images/b63bed392f389dcb28950bd4dd398f792809db968c363330e82c98a35ecfd8ee.png"><img alt="_images/b63bed392f389dcb28950bd4dd398f792809db968c363330e82c98a35ecfd8ee.png" src="_images/b63bed392f389dcb28950bd4dd398f792809db968c363330e82c98a35ecfd8ee.png" style="width: 496px; height: 502px;" />
 </a>
@@ -898,12 +951,11 @@ k(s,t) := \mathrm{Cov}(X(s), X(t)) = \mathbb{E}[X(s)X(t)].
 </section>
 <section id="common-covariance-functions-and-their-corresponding-gaussian-processes">
 <h2><span class="section-number">9.5. </span>Common Covariance Functions and their corresponding Gaussian Processes<a class="headerlink" href="#common-covariance-functions-and-their-corresponding-gaussian-processes" title="Link to this heading">#</a></h2>
-<p>Hereafter, let $<span class="math notranslate nohighlight">\( d = \|x - x'\| \)</span>$ denote the distance between inputs.</p>
 <section id="constant-kernel">
 <h3><span class="section-number">9.5.1. </span>1. Constant Kernel<a class="headerlink" href="#constant-kernel" title="Link to this heading">#</a></h3>
 <div class="math notranslate nohighlight">
 \[
-k(x,x') = C
+k(t,s) = \sigma^2
 \]</div>
 <p><strong>Intuition</strong></p>
 <ul class="simple">
@@ -916,7 +968,7 @@ k(x,x') = C
 </ul>
 <p><strong>Interpretation</strong></p>
 <blockquote>
-<div><p>The function is flat but uncertain in magnitude.</p>
+<div><p>The paths are flat but uncertain in magnitude.</p>
 </div></blockquote>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -927,7 +979,7 @@ k(x,x') = C
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/ed53222728938704031a9f14c965c6daa660de9299938dde31b528eabf082ac5.png"><img alt="_images/ed53222728938704031a9f14c965c6daa660de9299938dde31b528eabf082ac5.png" src="_images/ed53222728938704031a9f14c965c6daa660de9299938dde31b528eabf082ac5.png" style="width: 880px; height: 397px;" />
+<a class="reference internal image-reference" href="_images/a1e661bc4f0e4f49ae0d739e2b681250791b6a88a3e3f36a10321b3bfd7c0b39.png"><img alt="_images/a1e661bc4f0e4f49ae0d739e2b681250791b6a88a3e3f36a10321b3bfd7c0b39.png" src="_images/a1e661bc4f0e4f49ae0d739e2b681250791b6a88a3e3f36a10321b3bfd7c0b39.png" style="width: 880px; height: 397px;" />
 </a>
 </div>
 </div>
@@ -938,7 +990,7 @@ k(x,x') = C
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/94a9080cb3e3e19676955eaaed5c250db8fbb2b7b34a0d8a1ffb6c5698df42af.png"><img alt="_images/94a9080cb3e3e19676955eaaed5c250db8fbb2b7b34a0d8a1ffb6c5698df42af.png" src="_images/94a9080cb3e3e19676955eaaed5c250db8fbb2b7b34a0d8a1ffb6c5698df42af.png" style="width: 759px; height: 403px;" />
+<a class="reference internal image-reference" href="_images/d5b5aad2f62a090377c5a0592809763d769476eb4117640c295832c78ad1591f.png"><img alt="_images/d5b5aad2f62a090377c5a0592809763d769476eb4117640c295832c78ad1591f.png" src="_images/d5b5aad2f62a090377c5a0592809763d769476eb4117640c295832c78ad1591f.png" style="width: 759px; height: 403px;" />
 </a>
 </div>
 </div>
@@ -947,7 +999,7 @@ k(x,x') = C
 <h3><span class="section-number">9.5.2. </span>2. Linear Kernel<a class="headerlink" href="#linear-kernel" title="Link to this heading">#</a></h3>
 <div class="math notranslate nohighlight">
 \[
-k(x,x') = x^\top x'
+k(t,s) = \sigma_b + \sigma^2 (t-c)(s-c)
 \]</div>
 <p><strong>Intuition</strong></p>
 <ul class="simple">
@@ -965,13 +1017,13 @@ k(x,x') = x^\top x'
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">aleatory.processes</span><span class="w"> </span><span class="kn">import</span> <span class="n">GPLinear</span>
 
-<span class="n">p</span> <span class="o">=</span> <span class="n">GPLinear</span><span class="p">(</span><span class="n">sigma</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="mf">5.0</span><span class="p">)</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">GPLinear</span><span class="p">(</span><span class="n">sigma</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
 <span class="n">fig</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">plot_paths_and_kernel</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/991cfac7f8ea78a79837eeefcf987dfbaef41577e75c83117ae9d45226e20c2a.png"><img alt="_images/991cfac7f8ea78a79837eeefcf987dfbaef41577e75c83117ae9d45226e20c2a.png" src="_images/991cfac7f8ea78a79837eeefcf987dfbaef41577e75c83117ae9d45226e20c2a.png" style="width: 878px; height: 397px;" />
+<a class="reference internal image-reference" href="_images/72e55ed045e0debaf33f934a06e3c0a48a276757d658b86e46e9248a22bb1a18.png"><img alt="_images/72e55ed045e0debaf33f934a06e3c0a48a276757d658b86e46e9248a22bb1a18.png" src="_images/72e55ed045e0debaf33f934a06e3c0a48a276757d658b86e46e9248a22bb1a18.png" style="width: 880px; height: 397px;" />
 </a>
 </div>
 </div>
@@ -982,7 +1034,7 @@ k(x,x') = x^\top x'
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/6339768132dd40b2ff9ceeb318afc30d31b9eadae76fb603577f576034f694c7.png"><img alt="_images/6339768132dd40b2ff9ceeb318afc30d31b9eadae76fb603577f576034f694c7.png" src="_images/6339768132dd40b2ff9ceeb318afc30d31b9eadae76fb603577f576034f694c7.png" style="width: 766px; height: 403px;" />
+<a class="reference internal image-reference" href="_images/b74edf95e328d6dce2875e90dba0eb37bbeb30372c2650d88bc9fe889f38c5ac.png"><img alt="_images/b74edf95e328d6dce2875e90dba0eb37bbeb30372c2650d88bc9fe889f38c5ac.png" src="_images/b74edf95e328d6dce2875e90dba0eb37bbeb30372c2650d88bc9fe889f38c5ac.png" style="width: 759px; height: 403px;" />
 </a>
 </div>
 </div>
@@ -991,7 +1043,7 @@ k(x,x') = x^\top x'
 <h3><span class="section-number">9.5.3. </span>3. White Noise Kernel<a class="headerlink" href="#white-noise-kernel" title="Link to this heading">#</a></h3>
 <div class="math notranslate nohighlight">
 \[
-K(x,x') = \sigma^2 \delta_{x,x'}
+K(t, s) = \sigma^2 \delta_{t,s}
 \]</div>
 <p><strong>Intuition</strong></p>
 <ul class="simple">
@@ -1014,7 +1066,7 @@ K(x,x') = \sigma^2 \delta_{x,x'}
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/3f7ab08dd525672ea8e8fffa7e86929492f605c2c112746398cb61c7e914c19c.png"><img alt="_images/3f7ab08dd525672ea8e8fffa7e86929492f605c2c112746398cb61c7e914c19c.png" src="_images/3f7ab08dd525672ea8e8fffa7e86929492f605c2c112746398cb61c7e914c19c.png" style="width: 1167px; height: 397px;" />
+<a class="reference internal image-reference" href="_images/f6be8dd91662d1a915fd58266a35c7f50ef7ffa2dc5894c046a27a00cd8c4384.png"><img alt="_images/f6be8dd91662d1a915fd58266a35c7f50ef7ffa2dc5894c046a27a00cd8c4384.png" src="_images/f6be8dd91662d1a915fd58266a35c7f50ef7ffa2dc5894c046a27a00cd8c4384.png" style="width: 1167px; height: 397px;" />
 </a>
 </div>
 </div>
@@ -1025,7 +1077,7 @@ K(x,x') = \sigma^2 \delta_{x,x'}
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/42c67202668fe63ac3c6172b95a49f1a18574675e0a2b445e767162a9eb603b8.png"><img alt="_images/42c67202668fe63ac3c6172b95a49f1a18574675e0a2b445e767162a9eb603b8.png" src="_images/42c67202668fe63ac3c6172b95a49f1a18574675e0a2b445e767162a9eb603b8.png" style="width: 762px; height: 403px;" />
+<a class="reference internal image-reference" href="_images/32aaa3419a6a153ca2b2bcde0c2c2c8152ce4772fb807170c94de6f346b53067.png"><img alt="_images/32aaa3419a6a153ca2b2bcde0c2c2c8152ce4772fb807170c94de6f346b53067.png" src="_images/32aaa3419a6a153ca2b2bcde0c2c2c8152ce4772fb807170c94de6f346b53067.png" style="width: 762px; height: 403px;" />
 </a>
 </div>
 </div>
@@ -1034,7 +1086,7 @@ K(x,x') = \sigma^2 \delta_{x,x'}
 <h3><span class="section-number">9.5.4. </span>4. Squared Exponential (RBF) Kernel<a class="headerlink" href="#squared-exponential-rbf-kernel" title="Link to this heading">#</a></h3>
 <div class="math notranslate nohighlight">
 \[
-K(x,x') = \exp\left(-\frac{d^2}{2\ell^2}\right)
+K(t, s) = \sigma^2 \exp\left(-\frac{(|t - s|)^2}{2\ell^2}\right)
 \]</div>
 <p><strong>Intuition</strong></p>
 <ul class="simple">
@@ -1058,7 +1110,7 @@ K(x,x') = \exp\left(-\frac{d^2}{2\ell^2}\right)
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/5115f68088c13fb260ce16f4b7f8d1081ddc8ca1da9eecd59bf7a4caa9208f60.png"><img alt="_images/5115f68088c13fb260ce16f4b7f8d1081ddc8ca1da9eecd59bf7a4caa9208f60.png" src="_images/5115f68088c13fb260ce16f4b7f8d1081ddc8ca1da9eecd59bf7a4caa9208f60.png" style="width: 1167px; height: 397px;" />
+<a class="reference internal image-reference" href="_images/c6b50a297e21cc80f4cb863c24767a5a06afb2c55bbd42c004aeaaf5245c8471.png"><img alt="_images/c6b50a297e21cc80f4cb863c24767a5a06afb2c55bbd42c004aeaaf5245c8471.png" src="_images/c6b50a297e21cc80f4cb863c24767a5a06afb2c55bbd42c004aeaaf5245c8471.png" style="width: 1167px; height: 397px;" />
 </a>
 </div>
 </div>
@@ -1069,7 +1121,7 @@ K(x,x') = \exp\left(-\frac{d^2}{2\ell^2}\right)
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/537e63edf480eb84748976190b846572600be23e186e77f4a446ea2f946382f2.png"><img alt="_images/537e63edf480eb84748976190b846572600be23e186e77f4a446ea2f946382f2.png" src="_images/537e63edf480eb84748976190b846572600be23e186e77f4a446ea2f946382f2.png" style="width: 759px; height: 403px;" />
+<a class="reference internal image-reference" href="_images/42074e057db91bd020a72f60cb98793eb878ffa5aeaf68475f1ee60f6cb47b57.png"><img alt="_images/42074e057db91bd020a72f60cb98793eb878ffa5aeaf68475f1ee60f6cb47b57.png" src="_images/42074e057db91bd020a72f60cb98793eb878ffa5aeaf68475f1ee60f6cb47b57.png" style="width: 759px; height: 403px;" />
 </a>
 </div>
 </div>
@@ -1077,7 +1129,7 @@ K(x,x') = \exp\left(-\frac{d^2}{2\ell^2}\right)
 <section id="ornsteinuhlenbeck-kernel">
 <h3><span class="section-number">9.5.5. </span>5. Ornstein–Uhlenbeck Kernel<a class="headerlink" href="#ornsteinuhlenbeck-kernel" title="Link to this heading">#</a></h3>
 <div class="math notranslate nohighlight">
-\[K(x, x') = \frac{\sigma^2 }{ 2\theta}e^{-\theta (x+x')} (e^{2\theta \min\{x,x'\}}-1),\]</div>
+\[K(t, s) = \frac{\sigma^2 }{ 2\theta}e^{-\theta (t+s)} (e^{2\theta \min\{t,s\}}-1),\]</div>
 <p><strong>Intuition</strong></p>
 <ul class="simple">
 <li><p>Correlation decays exponentially with distance</p></li>
@@ -1099,7 +1151,7 @@ K(x,x') = \exp\left(-\frac{d^2}{2\ell^2}\right)
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/718a949c8d040771b8dbac6bf2f0770d44cc96c49eb955c6ad30410ec89a7915.png"><img alt="_images/718a949c8d040771b8dbac6bf2f0770d44cc96c49eb955c6ad30410ec89a7915.png" src="_images/718a949c8d040771b8dbac6bf2f0770d44cc96c49eb955c6ad30410ec89a7915.png" style="width: 1168px; height: 397px;" />
+<a class="reference internal image-reference" href="_images/b042e71d39e2165c92fa81dbe0fdeee15d88536236a6ec47097db4c32591a360.png"><img alt="_images/b042e71d39e2165c92fa81dbe0fdeee15d88536236a6ec47097db4c32591a360.png" src="_images/b042e71d39e2165c92fa81dbe0fdeee15d88536236a6ec47097db4c32591a360.png" style="width: 1168px; height: 397px;" />
 </a>
 </div>
 </div>
@@ -1110,7 +1162,7 @@ K(x,x') = \exp\left(-\frac{d^2}{2\ell^2}\right)
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/d1caeddeca2ff06c3a827736166eec8b1a55cdb74553b265346c2a5c381fb7b1.png"><img alt="_images/d1caeddeca2ff06c3a827736166eec8b1a55cdb74553b265346c2a5c381fb7b1.png" src="_images/d1caeddeca2ff06c3a827736166eec8b1a55cdb74553b265346c2a5c381fb7b1.png" style="width: 759px; height: 403px;" />
+<a class="reference internal image-reference" href="_images/5b99d68d0e30c4537b0e259b5d7b904df552ad97b4e9145edfee8f6516e01340.png"><img alt="_images/5b99d68d0e30c4537b0e259b5d7b904df552ad97b4e9145edfee8f6516e01340.png" src="_images/5b99d68d0e30c4537b0e259b5d7b904df552ad97b4e9145edfee8f6516e01340.png" style="width: 759px; height: 403px;" />
 </a>
 </div>
 </div>
@@ -1119,10 +1171,10 @@ K(x,x') = \exp\left(-\frac{d^2}{2\ell^2}\right)
 <h3><span class="section-number">9.5.6. </span>6. Matérn Kernel<a class="headerlink" href="#matern-kernel" title="Link to this heading">#</a></h3>
 <div class="math notranslate nohighlight">
 \[
-K(x,x') =
+K(t, s) = \sigma^2
 \frac{2^{1-\nu}}{\Gamma(\nu)}
-\left(\frac{\sqrt{2\nu}d}{\ell}\right)^\nu
-K_\nu\left(\frac{\sqrt{2\nu}d}{\ell}\right)
+\left(\frac{\sqrt{2\nu}|t-s|}{\ell}\right)^\nu
+K_\nu\left(\frac{\sqrt{2\nu}|t-s|}{\ell}\right)
 \]</div>
 <p><strong>Intuition</strong></p>
 <ul class="simple">
@@ -1151,7 +1203,7 @@ K_\nu\left(\frac{\sqrt{2\nu}d}{\ell}\right)
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/c61bdb4818f3c1448257c05fd3931045083e1260cf8d8547b6281a35d856f95f.png"><img alt="_images/c61bdb4818f3c1448257c05fd3931045083e1260cf8d8547b6281a35d856f95f.png" src="_images/c61bdb4818f3c1448257c05fd3931045083e1260cf8d8547b6281a35d856f95f.png" style="width: 1167px; height: 397px;" />
+<a class="reference internal image-reference" href="_images/ebf6ec2fcd80051ec90649bf9b1a832ece9900cc3baf56ad7e20af76ce5d4c78.png"><img alt="_images/ebf6ec2fcd80051ec90649bf9b1a832ece9900cc3baf56ad7e20af76ce5d4c78.png" src="_images/ebf6ec2fcd80051ec90649bf9b1a832ece9900cc3baf56ad7e20af76ce5d4c78.png" style="width: 1167px; height: 397px;" />
 </a>
 </div>
 </div>
@@ -1162,7 +1214,7 @@ K_\nu\left(\frac{\sqrt{2\nu}d}{\ell}\right)
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/b8c0762dd09fe4f2e0dc4c834e3449df93ebd5d33aef3dd43f8c2daae3be4253.png"><img alt="_images/b8c0762dd09fe4f2e0dc4c834e3449df93ebd5d33aef3dd43f8c2daae3be4253.png" src="_images/b8c0762dd09fe4f2e0dc4c834e3449df93ebd5d33aef3dd43f8c2daae3be4253.png" style="width: 759px; height: 403px;" />
+<a class="reference internal image-reference" href="_images/da8dc84d10e2fceb175de30003726a2a71fa98facc80f1b370034ecec0596644.png"><img alt="_images/da8dc84d10e2fceb175de30003726a2a71fa98facc80f1b370034ecec0596644.png" src="_images/da8dc84d10e2fceb175de30003726a2a71fa98facc80f1b370034ecec0596644.png" style="width: 759px; height: 403px;" />
 </a>
 </div>
 </div>
@@ -1171,7 +1223,7 @@ K_\nu\left(\frac{\sqrt{2\nu}d}{\ell}\right)
 <h3><span class="section-number">9.5.7. </span>7. Periodic Kernel<a class="headerlink" href="#periodic-kernel" title="Link to this heading">#</a></h3>
 <div class="math notranslate nohighlight">
 \[
-K(x,x') = \exp\left(-\frac{2}{\ell^2}\sin^2\left(\frac{d}{2}\right)\right)
+K(t, s) = \sigma^2 \exp\left(-\frac{2}{\ell^2}\sin^2\left(\frac{\pi |t-s|}{p}\right)\right)
 \]</div>
 <p><strong>Intuition</strong></p>
 <ul class="simple">
@@ -1195,7 +1247,7 @@ K(x,x') = \exp\left(-\frac{2}{\ell^2}\sin^2\left(\frac{d}{2}\right)\right)
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/7a8d4fe008a9e9c84e961901c9b62f8b188ac7002a4bb27917e550c8edbbe945.png"><img alt="_images/7a8d4fe008a9e9c84e961901c9b62f8b188ac7002a4bb27917e550c8edbbe945.png" src="_images/7a8d4fe008a9e9c84e961901c9b62f8b188ac7002a4bb27917e550c8edbbe945.png" style="width: 1168px; height: 397px;" />
+<a class="reference internal image-reference" href="_images/c46638056aa5743d1c0141efd1f17b200da02472c5e82257b6c8f52646dda566.png"><img alt="_images/c46638056aa5743d1c0141efd1f17b200da02472c5e82257b6c8f52646dda566.png" src="_images/c46638056aa5743d1c0141efd1f17b200da02472c5e82257b6c8f52646dda566.png" style="width: 1168px; height: 397px;" />
 </a>
 </div>
 </div>
@@ -1206,7 +1258,7 @@ K(x,x') = \exp\left(-\frac{2}{\ell^2}\sin^2\left(\frac{d}{2}\right)\right)
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/399ea80a78d4750cf0cda9ab3fb41db9a4a7f7872453aa90927d05cfb17d077c.png"><img alt="_images/399ea80a78d4750cf0cda9ab3fb41db9a4a7f7872453aa90927d05cfb17d077c.png" src="_images/399ea80a78d4750cf0cda9ab3fb41db9a4a7f7872453aa90927d05cfb17d077c.png" style="width: 759px; height: 403px;" />
+<a class="reference internal image-reference" href="_images/e096fa190cbf3773699102f289b814fc5c43e4d9ce749e795ff77868b14a979c.png"><img alt="_images/e096fa190cbf3773699102f289b814fc5c43e4d9ce749e795ff77868b14a979c.png" src="_images/e096fa190cbf3773699102f289b814fc5c43e4d9ce749e795ff77868b14a979c.png" style="width: 759px; height: 403px;" />
 </a>
 </div>
 </div>
@@ -1215,7 +1267,7 @@ K(x,x') = \exp\left(-\frac{2}{\ell^2}\sin^2\left(\frac{d}{2}\right)\right)
 <h3><span class="section-number">9.5.8. </span>8. Rational Quadratic Kernel<a class="headerlink" href="#rational-quadratic-kernel" title="Link to this heading">#</a></h3>
 <div class="math notranslate nohighlight">
 \[
-K(x,x') = (1 + d^2)^{-\alpha}, \quad \alpha \geq 0
+K(t, s) = \sigma^2 \left(1 + \frac{|t-s|^2}{2\alpha \ell^2}\right)^{-\alpha}, \quad \alpha \geq 0
 \]</div>
 <p><strong>Intuition</strong></p>
 <ul class="simple">
@@ -1238,7 +1290,7 @@ K(x,x') = (1 + d^2)^{-\alpha}, \quad \alpha \geq 0
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/139f30edd32b45c21d78856f337e2558c68e0a9ef596829b5b40133b5f181c44.png"><img alt="_images/139f30edd32b45c21d78856f337e2558c68e0a9ef596829b5b40133b5f181c44.png" src="_images/139f30edd32b45c21d78856f337e2558c68e0a9ef596829b5b40133b5f181c44.png" style="width: 1168px; height: 397px;" />
+<a class="reference internal image-reference" href="_images/921eb2a33a4e6d316a67b1a4ef3a181d34541e8a8418e239fff9dbd4da47e04d.png"><img alt="_images/921eb2a33a4e6d316a67b1a4ef3a181d34541e8a8418e239fff9dbd4da47e04d.png" src="_images/921eb2a33a4e6d316a67b1a4ef3a181d34541e8a8418e239fff9dbd4da47e04d.png" style="width: 1167px; height: 397px;" />
 </a>
 </div>
 </div>
@@ -1249,7 +1301,7 @@ K(x,x') = (1 + d^2)^{-\alpha}, \quad \alpha \geq 0
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/db67d1bcc9f3d64bba4d5dfd4c9f7b2e470f382bbf36b059c235598623e6f950.png"><img alt="_images/db67d1bcc9f3d64bba4d5dfd4c9f7b2e470f382bbf36b059c235598623e6f950.png" src="_images/db67d1bcc9f3d64bba4d5dfd4c9f7b2e470f382bbf36b059c235598623e6f950.png" style="width: 759px; height: 403px;" />
+<a class="reference internal image-reference" href="_images/c243d67937434032fd5ee56988e30ca6dee4cb2c4155c0383699f3597f554a35.png"><img alt="_images/c243d67937434032fd5ee56988e30ca6dee4cb2c4155c0383699f3597f554a35.png" src="_images/c243d67937434032fd5ee56988e30ca6dee4cb2c4155c0383699f3597f554a35.png" style="width: 759px; height: 403px;" />
 </a>
 </div>
 </div>
@@ -1299,13 +1351,13 @@ K = K_{\text{RBF}} + K_{\text{Periodic}}
 \[
 \frac{\partial^m}{\partial t^m} X(t)
 \]</div>
-<p>exist in <span class="math notranslate nohighlight">\(L^2\)</span> space. This holds if and only if the covariance function <span class="math notranslate nohighlight">\(k(s,t)\)</span> is <span class="math notranslate nohighlight">\(2m\)</span>-times continuously differentiable in a neighbourhood of <span class="math notranslate nohighlight">\(s = t\)</span>.</p>
-<p><strong>Intuition:</strong> The local behaviour of <span class="math notranslate nohighlight">\(k(s,t)\)</span> near the diagonal <span class="math notranslate nohighlight">\(s = t\)</span> determines how rapidly correlations decay between nearby points. If <span class="math notranslate nohighlight">\(k\)</span> is very smooth around the diagonal, nearby values of the process are strongly constrained to vary gradually, leading to smooth sample paths. Conversely, lack of regularity in <span class="math notranslate nohighlight">\(k\)</span> induces rough or highly oscillatory paths.</p>
+<p>exist in <span class="math notranslate nohighlight">\(L^2\)</span> space. This holds if and only if the covariance function <span class="math notranslate nohighlight">\(k(t, s)\)</span> is <span class="math notranslate nohighlight">\(2m\)</span>-times continuously differentiable in a neighbourhood of <span class="math notranslate nohighlight">\(s = t\)</span>.</p>
+<p><strong>Intuition:</strong> The local behaviour of <span class="math notranslate nohighlight">\(k(t,s)\)</span> near the diagonal <span class="math notranslate nohighlight">\(t = s\)</span> determines how rapidly correlations decay between nearby points. If <span class="math notranslate nohighlight">\(k\)</span> is very smooth around the diagonal, nearby values of the process are strongly constrained to vary gradually, leading to smooth sample paths. Conversely, lack of regularity in <span class="math notranslate nohighlight">\(k\)</span> induces rough or highly oscillatory paths.</p>
 <p><strong>Examples:</strong></p>
 <ul class="simple">
 <li><p>The squared exponential (RBF) kernel is infinitely differentiable, hence induces sample paths that are almost surely smooth (indeed, <span class="math notranslate nohighlight">\(C^\infty\)</span>).</p></li>
 <li><p>The Matérn class <span class="math notranslate nohighlight">\(k_\nu\)</span> yields sample paths that are <span class="math notranslate nohighlight">\(\lfloor \nu \rfloor\)</span>-times mean-square differentiable; in particular, <span class="math notranslate nohighlight">\(\nu = \tfrac{1}{2}\)</span> corresponds to non-differentiable paths.</p></li>
-<li><p>The covariance <span class="math notranslate nohighlight">\(k(s,t) = \min(s,t)\)</span> (Brownian motion) produces paths that are continuous but nowhere differentiable.</p></li>
+<li><p>The covariance <span class="math notranslate nohighlight">\(k(t,s) = \min(t,s)\)</span> (Brownian motion) produces paths that are continuous but nowhere differentiable.</p></li>
 </ul>
 <p>This is a fundamental property in applications, as it allows practitioners to encode prior beliefs about the smoothness of the underlying function being modeled.</p>
 </section>
@@ -1317,11 +1369,11 @@ K = K_{\text{RBF}} + K_{\text{Periodic}}
 \mathrm{Var}(X(t)) = k(t,t).
 \]</div>
 <p>More generally, the covariance function controls the full second-order structure, including how variance is distributed across the index set and how joint fluctuations occur.</p>
-<p><strong>Intuition:</strong> The magnitude of <span class="math notranslate nohighlight">\(k(t,t)\)</span> sets the scale of fluctuations at each point, while the off-diagonal terms <span class="math notranslate nohighlight">\(k(s,t)\)</span> determine how these fluctuations co-vary. Larger values of <span class="math notranslate nohighlight">\(k(t,t)\)</span> correspond to greater dispersion of the process around its mean.</p>
+<p><strong>Intuition:</strong> The magnitude of <span class="math notranslate nohighlight">\(k(t,t)\)</span> sets the scale of fluctuations at each point, while the off-diagonal terms <span class="math notranslate nohighlight">\(k(t,s)\)</span> determine how these fluctuations co-vary. Larger values of <span class="math notranslate nohighlight">\(k(t,t)\)</span> correspond to greater dispersion of the process around its mean.</p>
 <p><strong>Examples:</strong></p>
 <ul class="simple">
-<li><p>A kernel of the form <span class="math notranslate nohighlight">\(k(s,t) = \sigma^2 \tilde{k}(s,t)\)</span> scales the entire process, with <span class="math notranslate nohighlight">\(\sigma^2\)</span> directly controlling the marginal variance.</p></li>
-<li><p>In heteroscedastic constructions, one may use <span class="math notranslate nohighlight">\(k(s,t) = \sigma(s)\sigma(t)\tilde{k}(s,t)\)</span>, inducing location-dependent variability.</p></li>
+<li><p>A kernel of the form <span class="math notranslate nohighlight">\(k(t, s) = \sigma^2 \tilde{k}(t,s)\)</span> scales the entire process, with <span class="math notranslate nohighlight">\(\sigma^2\)</span> directly controlling the marginal variance.</p></li>
+<li><p>In heteroscedastic constructions, one may use <span class="math notranslate nohighlight">\(k(t,s) = \sigma(t)\sigma(s)\tilde{k}(t,s)\)</span>, inducing location-dependent variability.</p></li>
 <li><p>For Brownian motion, <span class="math notranslate nohighlight">\(k(t,t) = t\)</span>, so the variance grows linearly in time.</p></li>
 </ul>
 </section>
@@ -1330,9 +1382,9 @@ K = K_{\text{RBF}} + K_{\text{Periodic}}
 <p><strong>Definition:</strong> A covariance function <span class="math notranslate nohighlight">\(k\)</span> is periodic with period <span class="math notranslate nohighlight">\(T &gt; 0\)</span> if</p>
 <div class="math notranslate nohighlight">
 \[
-k(s + T, t + T) = k(s,t) \quad \text{for all } s,t \in \mathcal{T}.
+k(t + T, s + T) = k(t,s) \quad \text{for all } t,s \in \mathcal{T}.
 \]</div>
-<p>Equivalently, in the stationary case, periodicity can be expressed as <span class="math notranslate nohighlight">\(k(\tau) = k(\tau + T)\)</span> where <span class="math notranslate nohighlight">\(\tau = s - t\)</span>.</p>
+<p>Equivalently, in the stationary case, periodicity can be expressed as <span class="math notranslate nohighlight">\(k(\tau) = k(\tau + T)\)</span> where <span class="math notranslate nohighlight">\(\tau = t - s\)</span>.</p>
 <p><strong>Intuition:</strong> The covariance structure repeats itself at regular intervals, implying that the dependence between points is invariant under shifts by multiples of the period. This enforces a repeating pattern in the correlation structure of the process.</p>
 <p><strong>Examples:</strong></p>
 <ul class="simple">
@@ -1340,7 +1392,7 @@ k(s + T, t + T) = k(s,t) \quad \text{for all } s,t \in \mathcal{T}.
 </ul>
 <div class="math notranslate nohighlight">
 \[
-k(s,t) = \sigma^2 \exp\left(-\frac{2\sin^2\big(\pi (s-t)/T\big)}{\ell^2}\right),
+k(t,s) = \sigma^2 \exp\left(-\frac{2\sin^2\big(\pi (t-s)/T\big)}{\ell^2}\right),
 \]</div>
 <p>which enforces exact periodicity with period <span class="math notranslate nohighlight">\(T\)</span>.</p>
 <ul class="simple">
@@ -1353,7 +1405,7 @@ k(s,t) = \sigma^2 \exp\left(-\frac{2\sin^2\big(\pi (s-t)/T\big)}{\ell^2}\right),
 <p><strong>Definition:</strong> Mean reversion can be formalized through the decay of covariance over time. A process exhibits mean-reverting behaviour if, for fixed <span class="math notranslate nohighlight">\(s\)</span>,</p>
 <div class="math notranslate nohighlight">
 \[
-\lim_{|t - s| \to \infty} k(s,t) = 0,
+\lim_{|t - s| \to \infty} k(t,s) = 0,
 \]</div>
 <p>and the decay occurs at a rate that enforces a characteristic timescale of dependence.</p>
 <p><strong>Intuition:</strong> As the temporal separation increases, the influence of past values on future values diminishes, causing the process to “forget” deviations from the mean and revert toward it. The rate of decay determines how quickly this reversion occurs.</p>
@@ -1363,7 +1415,7 @@ k(s,t) = \sigma^2 \exp\left(-\frac{2\sin^2\big(\pi (s-t)/T\big)}{\ell^2}\right),
 </ul>
 <div class="math notranslate nohighlight">
 \[
-k(s,t) = \sigma^2 e^{-\lambda |t-s|}
+k(t,s) = \sigma^2 e^{-\lambda |t-s|}
 \]</div>
 <p>corresponds to the covariance of the Ornstein–Uhlenbeck process, a canonical mean-reverting model.</p>
 <ul class="simple">
@@ -1376,15 +1428,15 @@ k(s,t) = \sigma^2 e^{-\lambda |t-s|}
 <p><strong>Definition:</strong> A process <span class="math notranslate nohighlight">\(X\)</span> is (weakly) stationary if its covariance function satisfies</p>
 <div class="math notranslate nohighlight">
 \[
-k(s,t) = k(s - t) \quad \text{for all } s,t \in \mathcal{T},
+k(t,s) = k(t - s) \quad \text{for all } t,s \in \mathcal{T},
 \]</div>
-<p>i.e., it depends only on the lag <span class="math notranslate nohighlight">\(\tau = s - t\)</span>, and the mean is constant.</p>
+<p>i.e., it depends only on the lag <span class="math notranslate nohighlight">\(\tau = t - s\)</span>, and the mean is constant.</p>
 <p><strong>Intuition:</strong> The statistical structure of the process is invariant under translations of the index set. There is no distinguished location in <span class="math notranslate nohighlight">\(\mathcal{T}\)</span>; only relative separation matters.</p>
 <p><strong>Examples:</strong></p>
 <ul class="simple">
-<li><p>The squared exponential and Matérn kernels are stationary since they depend only on <span class="math notranslate nohighlight">\(s-t\)</span>.</p></li>
-<li><p>A kernel like <span class="math notranslate nohighlight">\(k(s,t) = \min(s,t)\)</span> is non-stationary, as it depends on absolute time.</p></li>
-<li><p>Adding a non-constant variance term (e.g., <span class="math notranslate nohighlight">\(k(s,t) = s t\)</span>) breaks stationarity.</p></li>
+<li><p>The squared exponential and Matérn kernels are stationary since they depend only on <span class="math notranslate nohighlight">\(t-s\)</span>.</p></li>
+<li><p>A kernel like <span class="math notranslate nohighlight">\(k(t,s) = \min(t,s)\)</span> is non-stationary, as it depends on absolute time.</p></li>
+<li><p>Adding a non-constant variance term (e.g., <span class="math notranslate nohighlight">\(k(t,s) = t s\)</span>) breaks stationarity.</p></li>
 </ul>
 </section>
 <section id="isotropy">
@@ -1392,14 +1444,14 @@ k(s,t) = k(s - t) \quad \text{for all } s,t \in \mathcal{T},
 <p><strong>Definition:</strong> When <span class="math notranslate nohighlight">\(\mathcal{T} \subset \mathbb{R}^d\)</span>, a covariance function is isotropic if there exists a function <span class="math notranslate nohighlight">\(\psi : [0,\infty) \to \mathbb{R}\)</span> such that</p>
 <div class="math notranslate nohighlight">
 \[
-k(s,t) = \psi(|s - t|),
+k(t,s) = \psi(|t - s|),
 \]</div>
 <p>where <span class="math notranslate nohighlight">\(|\cdot|\)</span> is the Euclidean norm.</p>
 <p><strong>Intuition:</strong> The dependence between two points depends only on the distance between them, not on the direction. The process exhibits rotational invariance in its covariance structure.</p>
 <p><strong>Examples:</strong></p>
 <ul class="simple">
-<li><p>The radial basis function kernel <span class="math notranslate nohighlight">\(k(s,t) = \sigma^2 \exp(-|s-t|^2 / (2\ell^2))\)</span> is isotropic.</p></li>
-<li><p>Anisotropic kernels take the form <span class="math notranslate nohighlight">\(k(s,t) = \exp\big(-(s-t)^\top \Lambda^{-1} (s-t)\big)\)</span>, where <span class="math notranslate nohighlight">\(\Lambda\)</span> introduces direction-dependent scaling.</p></li>
+<li><p>The radial basis function kernel <span class="math notranslate nohighlight">\(k(t,s) = \sigma^2 \exp(-|t-s|^2 / (2\ell^2))\)</span> is isotropic.</p></li>
+<li><p>Anisotropic kernels take the form <span class="math notranslate nohighlight">\(k(t,s) = \exp\big(-(t-s)^\top \Lambda^{-1} (t-s)\big)\)</span>, where <span class="math notranslate nohighlight">\(\Lambda\)</span> introduces direction-dependent scaling.</p></li>
 <li><p>In spatial statistics, isotropic kernels assume uniform behaviour in all directions, while anisotropic ones capture directional effects such as prevailing winds or geological structure.</p></li>
 </ul>
 <p>These examples illustrate how specific functional forms of the covariance function translate directly into qualitative properties of the stochastic process.</p>
