@@ -442,49 +442,9 @@ document.write(`
   <section class="tex2jax_ignore mathjax_ignore" id="gaussian-processes">
 <h1><span class="section-number">9. </span>Gaussian Processes<a class="headerlink" href="#gaussian-processes" title="Link to this heading">#</a></h1>
 <p>The purpose of this notebook is to provide an introduction to Gaussian Processes (GPs) and its main properties.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">aleatory.utils.kernels</span><span class="w"> </span><span class="kn">import</span> <span class="n">brownian_kernel</span><span class="p">,</span> <span class="n">matern_kernel</span><span class="p">,</span> <span class="n">periodic_kernel</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
-
-<span class="n">T</span> <span class="o">=</span> <span class="mf">2.0</span>  <span class="c1"># End point of the interval to simulate [O,T]</span>
-<span class="n">n</span> <span class="o">=</span> <span class="mi">200</span>  <span class="c1"># Number of points in the partition</span>
-<span class="n">times</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>  <span class="c1"># Partition</span>
-<span class="n">N</span> <span class="o">=</span> <span class="mi">10</span>  <span class="c1"># Number of sample paths to simulate</span>
-
-<span class="n">kernels</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="p">(</span><span class="s2">&quot;Brownian&quot;</span><span class="p">,</span> <span class="n">brownian_kernel</span><span class="p">),</span>
-    <span class="p">(</span><span class="s2">&quot;Matern&quot;</span><span class="p">,</span> <span class="n">matern_kernel</span><span class="p">),</span>
-    <span class="p">(</span><span class="s2">&quot;Periodic&quot;</span><span class="p">,</span> <span class="n">periodic_kernel</span><span class="p">),</span>
-<span class="p">]</span>
-
-<span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-
-<span class="k">for</span> <span class="n">ax</span><span class="p">,</span> <span class="p">(</span><span class="n">title</span><span class="p">,</span> <span class="n">cov_fn</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">kernels</span><span class="p">):</span>
-    <span class="n">K</span> <span class="o">=</span> <span class="n">cov_fn</span><span class="p">(</span><span class="n">times</span><span class="p">)</span>
-    <span class="n">samples</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">multivariate_normal</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">times</span><span class="p">)),</span> <span class="n">K</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">N</span><span class="p">)</span>
-
-    <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">samples</span><span class="p">:</span>
-        <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">times</span><span class="p">,</span> <span class="n">s</span><span class="p">)</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
-
-<span class="k">for</span> <span class="n">ax</span><span class="p">,</span> <span class="p">(</span><span class="n">title</span><span class="p">,</span> <span class="n">cov_fn</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">kernels</span><span class="p">):</span>
-    <span class="n">K</span> <span class="o">=</span> <span class="n">cov_fn</span><span class="p">(</span><span class="n">times</span><span class="p">)</span>
-    <span class="n">im</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">K</span><span class="p">,</span> <span class="n">extent</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">origin</span><span class="o">=</span><span class="s2">&quot;upper&quot;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;coolwarm&quot;</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;K(s, t)&quot;</span><span class="p">)</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s2">&quot;Three Gaussian Processes</span><span class="se">\n</span><span class="s2"> Sample Paths and Covariance Functions&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">hspace</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
+<div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<img alt="_images/659420f136e2fbc52406d4ed15b8200a80f90982ddfe5f97774c374e1b872bd4.png" src="_images/659420f136e2fbc52406d4ed15b8200a80f90982ddfe5f97774c374e1b872bd4.png" />
+<img alt="_images/fd27efb134dc1cc77773dbb96aa8a9af51e9b5ec45eac06299213084cd073674.png" src="_images/fd27efb134dc1cc77773dbb96aa8a9af51e9b5ec45eac06299213084cd073674.png" />
 </div>
 </div>
 <p>Before diving into the theory, let’s start by loading the libraries</p>
@@ -636,14 +596,14 @@ t_i = \frac{i}{n-1} T \qquad  \hbox{for } i = 0, \cdots, n-1.
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">sample</span> <span class="ow">in</span> <span class="n">samples</span><span class="p">:</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">times</span><span class="p">,</span> <span class="n">sample</span><span class="p">,</span> <span class="s2">&quot;o-&quot;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">times</span><span class="p">,</span> <span class="n">sample</span><span class="p">,</span> <span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Brownian Motion Sample Paths&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/9d8bafa1d6029ffc8629966502e8dc92d2df5449aae0b886df5b399c9d3bb3a4.png"><img alt="_images/9d8bafa1d6029ffc8629966502e8dc92d2df5449aae0b886df5b399c9d3bb3a4.png" src="_images/9d8bafa1d6029ffc8629966502e8dc92d2df5449aae0b886df5b399c9d3bb3a4.png" style="width: 755px; height: 371px;" />
+<a class="reference internal image-reference" href="_images/898f021257706d1373ec06515010158f24c373bd6519d9068ab5dcef985bfa78.png"><img alt="_images/898f021257706d1373ec06515010158f24c373bd6519d9068ab5dcef985bfa78.png" src="_images/898f021257706d1373ec06515010158f24c373bd6519d9068ab5dcef985bfa78.png" style="width: 755px; height: 371px;" />
 </a>
 </div>
 </div>
@@ -668,14 +628,14 @@ t_i = \frac{i}{n-1} T \qquad  \hbox{for } i = 0, \cdots, n-1.
 <span class="n">samples</span> <span class="o">=</span> <span class="n">multivariate_normal</span><span class="p">(</span><span class="n">mean</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n</span><span class="p">),</span> <span class="n">cov</span><span class="o">=</span><span class="n">covariance_function</span><span class="p">(</span><span class="n">times</span><span class="p">),</span> <span class="n">size</span><span class="o">=</span><span class="n">N</span><span class="p">)</span> <span class="c1"># Sample paths </span>
 
 <span class="k">for</span> <span class="n">sample</span> <span class="ow">in</span> <span class="n">samples</span><span class="p">:</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">times</span><span class="p">,</span> <span class="n">sample</span><span class="p">,</span> <span class="s2">&quot;o-&quot;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">times</span><span class="p">,</span> <span class="n">sample</span><span class="p">,</span> <span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Brownian Motion Sample Paths&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/95c25cccb75fb800b9171c84d1c6831de6e110af1a17e80eccf85874a8df3194.png"><img alt="_images/95c25cccb75fb800b9171c84d1c6831de6e110af1a17e80eccf85874a8df3194.png" src="_images/95c25cccb75fb800b9171c84d1c6831de6e110af1a17e80eccf85874a8df3194.png" style="width: 755px; height: 371px;" />
+<a class="reference internal image-reference" href="_images/06801ccd1ac96b6d6166b4bb081d245c179ceab384491629ad2410e4083d25bf.png"><img alt="_images/06801ccd1ac96b6d6166b4bb081d245c179ceab384491629ad2410e4083d25bf.png" src="_images/06801ccd1ac96b6d6166b4bb081d245c179ceab384491629ad2410e4083d25bf.png" style="width: 755px; height: 371px;" />
 </a>
 </div>
 </div>
@@ -698,9 +658,9 @@ t_i = \frac{i}{n-1} T \qquad  \hbox{for } i = 0, \cdots, n-1.
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">minimum</span><span class="o">.</span><span class="n">outer</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">outer</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span>
 
 <span class="n">sample</span> <span class="o">=</span> <span class="n">multivariate_normal</span><span class="p">(</span><span class="n">mean</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n</span><span class="p">),</span> <span class="n">cov</span><span class="o">=</span><span class="n">ou_cov</span><span class="p">(</span><span class="n">times</span><span class="p">),</span> <span class="n">size</span><span class="o">=</span><span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">times</span><span class="p">,</span> <span class="n">sample</span><span class="p">,</span> <span class="s2">&quot;o-&quot;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Orstein-Uhlenbeck&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">times</span><span class="p">,</span> <span class="n">sample</span><span class="p">,</span> <span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Orstein-Uhlenbeck&quot;</span><span class="p">)</span>
 <span class="n">sample</span> <span class="o">=</span> <span class="n">multivariate_normal</span><span class="p">(</span><span class="n">mean</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n</span><span class="p">),</span> <span class="n">cov</span><span class="o">=</span><span class="n">bridge_cov</span><span class="p">(</span><span class="n">times</span><span class="p">),</span> <span class="n">size</span><span class="o">=</span><span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">times</span><span class="p">,</span> <span class="n">sample</span><span class="p">,</span> <span class="s2">&quot;o-&quot;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Brownian Bridge&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">times</span><span class="p">,</span> <span class="n">sample</span><span class="p">,</span> <span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Brownian Bridge&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;OU and Brownian Bridge Paths&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -709,10 +669,11 @@ t_i = \frac{i}{n-1} T \qquad  \hbox{for } i = 0, \cdots, n-1.
 </div>
 </details>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/44cabc48324017e7073e3af6cf3ed4101e66a8883adf72aec1a1917ce576065a.png"><img alt="_images/44cabc48324017e7073e3af6cf3ed4101e66a8883adf72aec1a1917ce576065a.png" src="_images/44cabc48324017e7073e3af6cf3ed4101e66a8883adf72aec1a1917ce576065a.png" style="width: 755px; height: 371px;" />
+<a class="reference internal image-reference" href="_images/3986e906be49a9770a4afdc7108aa63e59d39a4e19c90afe0ccad6edfdf33e71.png"><img alt="_images/3986e906be49a9770a4afdc7108aa63e59d39a4e19c90afe0ccad6edfdf33e71.png" src="_images/3986e906be49a9770a4afdc7108aa63e59d39a4e19c90afe0ccad6edfdf33e71.png" style="width: 744px; height: 371px;" />
 </a>
 </div>
 </div>
+<p>The following plot shows the simulated paths from a Brownian motion, an Orstein-Uhlenbeck process and a Brownian Bridge. It illustrates the different behaviours of these processes, which are all Gaussian processes but with different covariance structures.</p>
 <div class="cell tag_hide-input docutils container">
 <details class="admonition hide above-input">
 <summary aria-label="Toggle hidden content">
@@ -731,7 +692,7 @@ t_i = \frac{i}{n-1} T \qquad  \hbox{for } i = 0, \cdots, n-1.
     <span class="p">(</span><span class="s2">&quot;Brownian Bridge&quot;</span><span class="p">,</span> <span class="n">bridge_cov</span><span class="p">),</span>
 <span class="p">]</span>
 
-<span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
 
 <span class="k">for</span> <span class="n">ax</span><span class="p">,</span> <span class="p">(</span><span class="n">title</span><span class="p">,</span> <span class="n">cov_fn</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">axs</span><span class="p">,</span> <span class="n">kernels</span><span class="p">):</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">set_prop_cycle</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">cycler</span><span class="p">(</span><span class="s2">&quot;color&quot;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;#0079ff&#39;</span><span class="p">,</span>  <span class="s1">&#39;#00dfa2&#39;</span><span class="p">,</span> <span class="s1">&#39;#f266ab&#39;</span><span class="p">,</span> <span class="s1">&#39;#ffb400&#39;</span><span class="p">,</span> <span class="s2">&quot;#9bdaef&quot;</span><span class="p">]))</span>
@@ -750,7 +711,7 @@ t_i = \frac{i}{n-1} T \qquad  \hbox{for } i = 0, \cdots, n-1.
 </div>
 </details>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/c88f23401aab5588c8b2fb00954f5aee150aa87f7756d0d0ca03938eb05657f1.png"><img alt="_images/c88f23401aab5588c8b2fb00954f5aee150aa87f7756d0d0ca03938eb05657f1.png" src="_images/c88f23401aab5588c8b2fb00954f5aee150aa87f7756d0d0ca03938eb05657f1.png" style="width: 1189px; height: 390px;" />
+<a class="reference internal image-reference" href="_images/2996af7a08a71d894d32f6049fc239dec4dab3f8dcca8531016a3cf3740f5614.png"><img alt="_images/2996af7a08a71d894d32f6049fc239dec4dab3f8dcca8531016a3cf3740f5614.png" src="_images/2996af7a08a71d894d32f6049fc239dec4dab3f8dcca8531016a3cf3740f5614.png" style="width: 1189px; height: 290px;" />
 </a>
 </div>
 </div>
@@ -837,7 +798,7 @@ k(s,t) := \mathrm{Cov}(X(s), X(t)) = \mathbb{E}[X(s)X(t)].
 <span class="n">times</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>  <span class="c1"># Partition</span>
 <span class="n">N</span> <span class="o">=</span> <span class="mi">3</span>  <span class="c1"># Number of sample paths to simulate</span>
 
-<span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
 
 <span class="n">processes</span> <span class="o">=</span> <span class="p">[</span>
     <span class="p">(</span><span class="s2">&quot;Brownian Motion&quot;</span><span class="p">,</span> <span class="n">brownian_cov</span><span class="p">),</span>
@@ -872,7 +833,7 @@ k(s,t) := \mathrm{Cov}(X(s), X(t)) = \mathbb{E}[X(s)X(t)].
 </div>
 </details>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/1716e6afcfb697ee6295677a00733f7f95e011eb1d79b6ce242e88e064860705.png"><img alt="_images/1716e6afcfb697ee6295677a00733f7f95e011eb1d79b6ce242e88e064860705.png" src="_images/1716e6afcfb697ee6295677a00733f7f95e011eb1d79b6ce242e88e064860705.png" style="width: 1183px; height: 750px;" />
+<a class="reference internal image-reference" href="_images/4ddaf3f95ae636d8192e56a17844a3340be3c33708b88a72d5b7191994781b6d.png"><img alt="_images/4ddaf3f95ae636d8192e56a17844a3340be3c33708b88a72d5b7191994781b6d.png" src="_images/4ddaf3f95ae636d8192e56a17844a3340be3c33708b88a72d5b7191994781b6d.png" style="width: 1179px; height: 562px;" />
 </a>
 </div>
 </div>
@@ -897,7 +858,7 @@ k(s,t) := \mathrm{Cov}(X(s), X(t)) = \mathbb{E}[X(s)X(t)].
     <span class="p">(</span><span class="s2">&quot;Periodic&quot;</span><span class="p">,</span> <span class="n">periodic_kernel</span><span class="p">)</span>
 <span class="p">]</span>
 
-<span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
 <span class="k">for</span> <span class="n">ax</span><span class="p">,</span> <span class="p">(</span><span class="n">title</span><span class="p">,</span> <span class="n">cov_fn</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">kernels</span><span class="p">):</span>
     <span class="n">K</span> <span class="o">=</span> <span class="n">cov_fn</span><span class="p">(</span><span class="n">times</span><span class="p">)</span>
@@ -924,7 +885,7 @@ k(s,t) := \mathrm{Cov}(X(s), X(t)) = \mathbb{E}[X(s)X(t)].
 </div>
 </details>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/4c7cc6d1474ef3889aa8f1338cdf91933ba62b33f911af82b989ab0777f64434.png"><img alt="_images/4c7cc6d1474ef3889aa8f1338cdf91933ba62b33f911af82b989ab0777f64434.png" src="_images/4c7cc6d1474ef3889aa8f1338cdf91933ba62b33f911af82b989ab0777f64434.png" style="width: 977px; height: 723px;" />
+<a class="reference internal image-reference" href="_images/2053c5ad78192bdb5c6ae0351cec579ec52e20148eb91cda1d4e1c2a2e19d5ce.png"><img alt="_images/2053c5ad78192bdb5c6ae0351cec579ec52e20148eb91cda1d4e1c2a2e19d5ce.png" src="_images/2053c5ad78192bdb5c6ae0351cec579ec52e20148eb91cda1d4e1c2a2e19d5ce.png" style="width: 977px; height: 564px;" />
 </a>
 </div>
 </div>
@@ -979,7 +940,7 @@ k(t,s) = \sigma^2
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/a1e661bc4f0e4f49ae0d739e2b681250791b6a88a3e3f36a10321b3bfd7c0b39.png"><img alt="_images/a1e661bc4f0e4f49ae0d739e2b681250791b6a88a3e3f36a10321b3bfd7c0b39.png" src="_images/a1e661bc4f0e4f49ae0d739e2b681250791b6a88a3e3f36a10321b3bfd7c0b39.png" style="width: 880px; height: 397px;" />
+<a class="reference internal image-reference" href="_images/21a31f11018c2933184e0adcf299f3137e793b66c1206a8e7b0b21f2c898f1c8.png"><img alt="_images/21a31f11018c2933184e0adcf299f3137e793b66c1206a8e7b0b21f2c898f1c8.png" src="_images/21a31f11018c2933184e0adcf299f3137e793b66c1206a8e7b0b21f2c898f1c8.png" style="width: 890px; height: 396px;" />
 </a>
 </div>
 </div>
@@ -990,7 +951,7 @@ k(t,s) = \sigma^2
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/d5b5aad2f62a090377c5a0592809763d769476eb4117640c295832c78ad1591f.png"><img alt="_images/d5b5aad2f62a090377c5a0592809763d769476eb4117640c295832c78ad1591f.png" src="_images/d5b5aad2f62a090377c5a0592809763d769476eb4117640c295832c78ad1591f.png" style="width: 759px; height: 403px;" />
+<a class="reference internal image-reference" href="_images/697f4616f773f9f2d3362b7b5d151ee800b442092e2dae9b1cc8d69d63a73d8e.png"><img alt="_images/697f4616f773f9f2d3362b7b5d151ee800b442092e2dae9b1cc8d69d63a73d8e.png" src="_images/697f4616f773f9f2d3362b7b5d151ee800b442092e2dae9b1cc8d69d63a73d8e.png" style="width: 759px; height: 403px;" />
 </a>
 </div>
 </div>
@@ -1023,7 +984,7 @@ k(t,s) = \sigma_b + \sigma^2 (t-c)(s-c)
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/72e55ed045e0debaf33f934a06e3c0a48a276757d658b86e46e9248a22bb1a18.png"><img alt="_images/72e55ed045e0debaf33f934a06e3c0a48a276757d658b86e46e9248a22bb1a18.png" src="_images/72e55ed045e0debaf33f934a06e3c0a48a276757d658b86e46e9248a22bb1a18.png" style="width: 880px; height: 397px;" />
+<a class="reference internal image-reference" href="_images/1b73c25d3a2cd6d41a75f0123d50a5dabef11d08116c74e8e6bf99408659eaf0.png"><img alt="_images/1b73c25d3a2cd6d41a75f0123d50a5dabef11d08116c74e8e6bf99408659eaf0.png" src="_images/1b73c25d3a2cd6d41a75f0123d50a5dabef11d08116c74e8e6bf99408659eaf0.png" style="width: 889px; height: 396px;" />
 </a>
 </div>
 </div>
@@ -1034,7 +995,7 @@ k(t,s) = \sigma_b + \sigma^2 (t-c)(s-c)
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/b74edf95e328d6dce2875e90dba0eb37bbeb30372c2650d88bc9fe889f38c5ac.png"><img alt="_images/b74edf95e328d6dce2875e90dba0eb37bbeb30372c2650d88bc9fe889f38c5ac.png" src="_images/b74edf95e328d6dce2875e90dba0eb37bbeb30372c2650d88bc9fe889f38c5ac.png" style="width: 759px; height: 403px;" />
+<a class="reference internal image-reference" href="_images/9fba31c6aa7603a9a58b0d2b7c3e8d278c13fa6cbfb38c6e3feeeab149039c7f.png"><img alt="_images/9fba31c6aa7603a9a58b0d2b7c3e8d278c13fa6cbfb38c6e3feeeab149039c7f.png" src="_images/9fba31c6aa7603a9a58b0d2b7c3e8d278c13fa6cbfb38c6e3feeeab149039c7f.png" style="width: 762px; height: 403px;" />
 </a>
 </div>
 </div>
@@ -1066,7 +1027,7 @@ K(t, s) = \sigma^2 \delta_{t,s}
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/f6be8dd91662d1a915fd58266a35c7f50ef7ffa2dc5894c046a27a00cd8c4384.png"><img alt="_images/f6be8dd91662d1a915fd58266a35c7f50ef7ffa2dc5894c046a27a00cd8c4384.png" src="_images/f6be8dd91662d1a915fd58266a35c7f50ef7ffa2dc5894c046a27a00cd8c4384.png" style="width: 1167px; height: 397px;" />
+<a class="reference internal image-reference" href="_images/f770ace7a43df705b68d79adcb41e6e5a5a8ac5b3e99821fefd5a9a9c376e941.png"><img alt="_images/f770ace7a43df705b68d79adcb41e6e5a5a8ac5b3e99821fefd5a9a9c376e941.png" src="_images/f770ace7a43df705b68d79adcb41e6e5a5a8ac5b3e99821fefd5a9a9c376e941.png" style="width: 1189px; height: 396px;" />
 </a>
 </div>
 </div>
@@ -1077,7 +1038,7 @@ K(t, s) = \sigma^2 \delta_{t,s}
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/32aaa3419a6a153ca2b2bcde0c2c2c8152ce4772fb807170c94de6f346b53067.png"><img alt="_images/32aaa3419a6a153ca2b2bcde0c2c2c8152ce4772fb807170c94de6f346b53067.png" src="_images/32aaa3419a6a153ca2b2bcde0c2c2c8152ce4772fb807170c94de6f346b53067.png" style="width: 762px; height: 403px;" />
+<a class="reference internal image-reference" href="_images/05a7921b9d71491a787553271b964d4838b50c86601eae84b7ba504ac664a4b4.png"><img alt="_images/05a7921b9d71491a787553271b964d4838b50c86601eae84b7ba504ac664a4b4.png" src="_images/05a7921b9d71491a787553271b964d4838b50c86601eae84b7ba504ac664a4b4.png" style="width: 759px; height: 403px;" />
 </a>
 </div>
 </div>
@@ -1110,7 +1071,7 @@ K(t, s) = \sigma^2 \exp\left(-\frac{(|t - s|)^2}{2\ell^2}\right)
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/c6b50a297e21cc80f4cb863c24767a5a06afb2c55bbd42c004aeaaf5245c8471.png"><img alt="_images/c6b50a297e21cc80f4cb863c24767a5a06afb2c55bbd42c004aeaaf5245c8471.png" src="_images/c6b50a297e21cc80f4cb863c24767a5a06afb2c55bbd42c004aeaaf5245c8471.png" style="width: 1167px; height: 397px;" />
+<a class="reference internal image-reference" href="_images/b33c416dfa92cf54798baf84427d754e2e21cd2bd8b62628e195a885ea79e185.png"><img alt="_images/b33c416dfa92cf54798baf84427d754e2e21cd2bd8b62628e195a885ea79e185.png" src="_images/b33c416dfa92cf54798baf84427d754e2e21cd2bd8b62628e195a885ea79e185.png" style="width: 1189px; height: 396px;" />
 </a>
 </div>
 </div>
@@ -1121,7 +1082,7 @@ K(t, s) = \sigma^2 \exp\left(-\frac{(|t - s|)^2}{2\ell^2}\right)
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/42074e057db91bd020a72f60cb98793eb878ffa5aeaf68475f1ee60f6cb47b57.png"><img alt="_images/42074e057db91bd020a72f60cb98793eb878ffa5aeaf68475f1ee60f6cb47b57.png" src="_images/42074e057db91bd020a72f60cb98793eb878ffa5aeaf68475f1ee60f6cb47b57.png" style="width: 759px; height: 403px;" />
+<a class="reference internal image-reference" href="_images/b51851f4c24d1394ddb3e263b0ad710994b918f4350fef9529de92a14d15c3db.png"><img alt="_images/b51851f4c24d1394ddb3e263b0ad710994b918f4350fef9529de92a14d15c3db.png" src="_images/b51851f4c24d1394ddb3e263b0ad710994b918f4350fef9529de92a14d15c3db.png" style="width: 759px; height: 403px;" />
 </a>
 </div>
 </div>
@@ -1146,23 +1107,23 @@ K(t, s) = \sigma^2 \exp\left(-\frac{(|t - s|)^2}{2\ell^2}\right)
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">aleatory.processes</span><span class="w"> </span><span class="kn">import</span> <span class="n">OUProcess</span>
 <span class="n">p</span> <span class="o">=</span> <span class="n">OUProcess</span><span class="p">(</span><span class="n">sigma</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">theta</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="mf">2.0</span><span class="p">)</span>
-<span class="n">fig</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">plot_paths_and_kernel</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">plot_paths_and_kernel</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/b042e71d39e2165c92fa81dbe0fdeee15d88536236a6ec47097db4c32591a360.png"><img alt="_images/b042e71d39e2165c92fa81dbe0fdeee15d88536236a6ec47097db4c32591a360.png" src="_images/b042e71d39e2165c92fa81dbe0fdeee15d88536236a6ec47097db4c32591a360.png" style="width: 1168px; height: 397px;" />
+<a class="reference internal image-reference" href="_images/f5b9d8d7f986616054c56955c716056e5582dc13123c04c535b92ddcdde2de7a.png"><img alt="_images/f5b9d8d7f986616054c56955c716056e5582dc13123c04c535b92ddcdde2de7a.png" src="_images/f5b9d8d7f986616054c56955c716056e5582dc13123c04c535b92ddcdde2de7a.png" style="width: 889px; height: 396px;" />
 </a>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span><span class="n">p</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span><span class="n">p</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/5b99d68d0e30c4537b0e259b5d7b904df552ad97b4e9145edfee8f6516e01340.png"><img alt="_images/5b99d68d0e30c4537b0e259b5d7b904df552ad97b4e9145edfee8f6516e01340.png" src="_images/5b99d68d0e30c4537b0e259b5d7b904df552ad97b4e9145edfee8f6516e01340.png" style="width: 759px; height: 403px;" />
+<a class="reference internal image-reference" href="_images/e6fdbe15237f68083cd9c7ee6365c271c8f37d574e318089b4798bf2480c620d.png"><img alt="_images/e6fdbe15237f68083cd9c7ee6365c271c8f37d574e318089b4798bf2480c620d.png" src="_images/e6fdbe15237f68083cd9c7ee6365c271c8f37d574e318089b4798bf2480c620d.png" style="width: 681px; height: 403px;" />
 </a>
 </div>
 </div>
@@ -1198,23 +1159,23 @@ K_\nu\left(\frac{\sqrt{2\nu}|t-s|}{\ell}\right)
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">aleatory.processes</span><span class="w"> </span><span class="kn">import</span> <span class="n">GPMatern</span>
 <span class="n">p</span> <span class="o">=</span> <span class="n">GPMatern</span><span class="p">(</span><span class="n">sigma</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">length_scale</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">nu</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
-<span class="n">fig</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">plot_paths_and_kernel</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">plot_paths_and_kernel</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/ebf6ec2fcd80051ec90649bf9b1a832ece9900cc3baf56ad7e20af76ce5d4c78.png"><img alt="_images/ebf6ec2fcd80051ec90649bf9b1a832ece9900cc3baf56ad7e20af76ce5d4c78.png" src="_images/ebf6ec2fcd80051ec90649bf9b1a832ece9900cc3baf56ad7e20af76ce5d4c78.png" style="width: 1167px; height: 397px;" />
+<a class="reference internal image-reference" href="_images/594265f37b2aacc69a9645dc8781ba739a9f84c22872084185fd6da753df2fc6.png"><img alt="_images/594265f37b2aacc69a9645dc8781ba739a9f84c22872084185fd6da753df2fc6.png" src="_images/594265f37b2aacc69a9645dc8781ba739a9f84c22872084185fd6da753df2fc6.png" style="width: 890px; height: 396px;" />
 </a>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/da8dc84d10e2fceb175de30003726a2a71fa98facc80f1b370034ecec0596644.png"><img alt="_images/da8dc84d10e2fceb175de30003726a2a71fa98facc80f1b370034ecec0596644.png" src="_images/da8dc84d10e2fceb175de30003726a2a71fa98facc80f1b370034ecec0596644.png" style="width: 759px; height: 403px;" />
+<a class="reference internal image-reference" href="_images/04470a1618b4f94162a6fe0c624f231811f7b99137eb6a0760e6944040c06afa.png"><img alt="_images/04470a1618b4f94162a6fe0c624f231811f7b99137eb6a0760e6944040c06afa.png" src="_images/04470a1618b4f94162a6fe0c624f231811f7b99137eb6a0760e6944040c06afa.png" style="width: 681px; height: 403px;" />
 </a>
 </div>
 </div>
@@ -1242,23 +1203,23 @@ K(t, s) = \sigma^2 \exp\left(-\frac{2}{\ell^2}\sin^2\left(\frac{\pi |t-s|}{p}\ri
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">aleatory.processes</span><span class="w"> </span><span class="kn">import</span> <span class="n">GPPeriodic</span>
 <span class="n">p</span> <span class="o">=</span> <span class="n">GPPeriodic</span><span class="p">(</span><span class="n">T</span><span class="o">=</span><span class="mf">3.0</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">length_scale</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">period</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
-<span class="n">fig</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">plot_paths_and_kernel</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">plot_paths_and_kernel</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/c46638056aa5743d1c0141efd1f17b200da02472c5e82257b6c8f52646dda566.png"><img alt="_images/c46638056aa5743d1c0141efd1f17b200da02472c5e82257b6c8f52646dda566.png" src="_images/c46638056aa5743d1c0141efd1f17b200da02472c5e82257b6c8f52646dda566.png" style="width: 1168px; height: 397px;" />
+<a class="reference internal image-reference" href="_images/f53f463f6e3e1533fa4e113a7b41c8ac5ca0d80f9a68b4da93a17a423f1183f7.png"><img alt="_images/f53f463f6e3e1533fa4e113a7b41c8ac5ca0d80f9a68b4da93a17a423f1183f7.png" src="_images/f53f463f6e3e1533fa4e113a7b41c8ac5ca0d80f9a68b4da93a17a423f1183f7.png" style="width: 890px; height: 396px;" />
 </a>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/e096fa190cbf3773699102f289b814fc5c43e4d9ce749e795ff77868b14a979c.png"><img alt="_images/e096fa190cbf3773699102f289b814fc5c43e4d9ce749e795ff77868b14a979c.png" src="_images/e096fa190cbf3773699102f289b814fc5c43e4d9ce749e795ff77868b14a979c.png" style="width: 759px; height: 403px;" />
+<a class="reference internal image-reference" href="_images/e55b4b851c8fbc97d06a1606dfb763a8a35c570006ea84422858c8234a6a3336.png"><img alt="_images/e55b4b851c8fbc97d06a1606dfb763a8a35c570006ea84422858c8234a6a3336.png" src="_images/e55b4b851c8fbc97d06a1606dfb763a8a35c570006ea84422858c8234a6a3336.png" style="width: 683px; height: 403px;" />
 </a>
 </div>
 </div>
@@ -1285,23 +1246,23 @@ K(t, s) = \sigma^2 \left(1 + \frac{|t-s|^2}{2\alpha \ell^2}\right)^{-\alpha}, \q
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">aleatory.processes</span><span class="w"> </span><span class="kn">import</span> <span class="n">GPRationalQuadratic</span>
 <span class="n">p</span> <span class="o">=</span> <span class="n">GPRationalQuadratic</span><span class="p">(</span><span class="n">T</span><span class="o">=</span><span class="mf">3.0</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">length_scale</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
-<span class="n">fig</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">plot_paths_and_kernel</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">plot_paths_and_kernel</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/921eb2a33a4e6d316a67b1a4ef3a181d34541e8a8418e239fff9dbd4da47e04d.png"><img alt="_images/921eb2a33a4e6d316a67b1a4ef3a181d34541e8a8418e239fff9dbd4da47e04d.png" src="_images/921eb2a33a4e6d316a67b1a4ef3a181d34541e8a8418e239fff9dbd4da47e04d.png" style="width: 1167px; height: 397px;" />
+<a class="reference internal image-reference" href="_images/0e3488fda1f8589abf1590701b07a78a3f599a62234c616fd716d4632aeca2a6.png"><img alt="_images/0e3488fda1f8589abf1590701b07a78a3f599a62234c616fd716d4632aeca2a6.png" src="_images/0e3488fda1f8589abf1590701b07a78a3f599a62234c616fd716d4632aeca2a6.png" style="width: 890px; height: 396px;" />
 </a>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/c243d67937434032fd5ee56988e30ca6dee4cb2c4155c0383699f3597f554a35.png"><img alt="_images/c243d67937434032fd5ee56988e30ca6dee4cb2c4155c0383699f3597f554a35.png" src="_images/c243d67937434032fd5ee56988e30ca6dee4cb2c4155c0383699f3597f554a35.png" style="width: 759px; height: 403px;" />
+<a class="reference internal image-reference" href="_images/959cfe5193bd655b2ddef6b5fabb87b148793d2eabe9af6bfe7c555fbc3a159b.png"><img alt="_images/959cfe5193bd655b2ddef6b5fabb87b148793d2eabe9af6bfe7c555fbc3a159b.png" src="_images/959cfe5193bd655b2ddef6b5fabb87b148793d2eabe9af6bfe7c555fbc3a159b.png" style="width: 681px; height: 403px;" />
 </a>
 </div>
 </div>
@@ -1355,11 +1316,35 @@ K = K_{\text{RBF}} + K_{\text{Periodic}}
 <p><strong>Intuition:</strong> The local behaviour of <span class="math notranslate nohighlight">\(k(t,s)\)</span> near the diagonal <span class="math notranslate nohighlight">\(t = s\)</span> determines how rapidly correlations decay between nearby points. If <span class="math notranslate nohighlight">\(k\)</span> is very smooth around the diagonal, nearby values of the process are strongly constrained to vary gradually, leading to smooth sample paths. Conversely, lack of regularity in <span class="math notranslate nohighlight">\(k\)</span> induces rough or highly oscillatory paths.</p>
 <p><strong>Examples:</strong></p>
 <ul class="simple">
+<li><p>The covariance <span class="math notranslate nohighlight">\(k(t,s) = \min(t,s)\)</span> (Brownian motion) produces paths that are continuous but nowhere differentiable.</p></li>
 <li><p>The squared exponential (RBF) kernel is infinitely differentiable, hence induces sample paths that are almost surely smooth (indeed, <span class="math notranslate nohighlight">\(C^\infty\)</span>).</p></li>
 <li><p>The Matérn class <span class="math notranslate nohighlight">\(k_\nu\)</span> yields sample paths that are <span class="math notranslate nohighlight">\(\lfloor \nu \rfloor\)</span>-times mean-square differentiable; in particular, <span class="math notranslate nohighlight">\(\nu = \tfrac{1}{2}\)</span> corresponds to non-differentiable paths.</p></li>
-<li><p>The covariance <span class="math notranslate nohighlight">\(k(t,s) = \min(t,s)\)</span> (Brownian motion) produces paths that are continuous but nowhere differentiable.</p></li>
 </ul>
 <p>This is a fundamental property in applications, as it allows practitioners to encode prior beliefs about the smoothness of the underlying function being modeled.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">aleatory.processes</span><span class="w"> </span><span class="kn">import</span> <span class="n">GPMatern</span>
+
+<span class="n">p</span> <span class="o">=</span> <span class="n">GPMatern</span><span class="p">(</span><span class="n">sigma</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">length_scale</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">nu</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="mf">5.0</span><span class="p">)</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">plot_paths_and_kernel</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;GnBu&quot;</span><span class="p">)</span>
+
+<span class="n">p</span> <span class="o">=</span> <span class="n">GPMatern</span><span class="p">(</span><span class="n">sigma</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">length_scale</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">nu</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="mf">5.0</span><span class="p">)</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">plot_paths_and_kernel</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;GnBu&quot;</span><span class="p">)</span>
+
+<span class="n">p</span> <span class="o">=</span> <span class="n">GPMatern</span><span class="p">(</span><span class="n">sigma</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">length_scale</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">nu</span><span class="o">=</span><span class="mf">2.5</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="mf">5.0</span><span class="p">)</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">plot_paths_and_kernel</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;GnBu&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/489cebf68b81b43030abb9706002b357018dd6910f3c93f820e72ac01a1f7758.png"><img alt="_images/489cebf68b81b43030abb9706002b357018dd6910f3c93f820e72ac01a1f7758.png" src="_images/489cebf68b81b43030abb9706002b357018dd6910f3c93f820e72ac01a1f7758.png" style="width: 890px; height: 396px;" />
+</a>
+<a class="reference internal image-reference" href="_images/62c96fccabfddbc15fe52b7f1e132abee39cf6b469a52a12c625815ea59b907d.png"><img alt="_images/62c96fccabfddbc15fe52b7f1e132abee39cf6b469a52a12c625815ea59b907d.png" src="_images/62c96fccabfddbc15fe52b7f1e132abee39cf6b469a52a12c625815ea59b907d.png" style="width: 890px; height: 396px;" />
+</a>
+<a class="reference internal image-reference" href="_images/e88b85111c2a734f86113d36ff0b768b2757dfb7576573d61211e750880c70a2.png"><img alt="_images/e88b85111c2a734f86113d36ff0b768b2757dfb7576573d61211e750880c70a2.png" src="_images/e88b85111c2a734f86113d36ff0b768b2757dfb7576573d61211e750880c70a2.png" style="width: 890px; height: 396px;" />
+</a>
+</div>
+</div>
 </section>
 <section id="variability">
 <h3><span class="section-number">9.7.2. </span>Variability<a class="headerlink" href="#variability" title="Link to this heading">#</a></h3>
@@ -1376,6 +1361,30 @@ K = K_{\text{RBF}} + K_{\text{Periodic}}
 <li><p>In heteroscedastic constructions, one may use <span class="math notranslate nohighlight">\(k(t,s) = \sigma(t)\sigma(s)\tilde{k}(t,s)\)</span>, inducing location-dependent variability.</p></li>
 <li><p>For Brownian motion, <span class="math notranslate nohighlight">\(k(t,t) = t\)</span>, so the variance grows linearly in time.</p></li>
 </ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">aleatory.processes</span><span class="w"> </span><span class="kn">import</span> <span class="n">GPLinear</span>
+
+<span class="n">p</span> <span class="o">=</span> <span class="n">GPLinear</span><span class="p">(</span><span class="n">sigma</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">sigma_b</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="mf">6.0</span><span class="p">)</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">plot_paths_and_kernel</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;GnBu&quot;</span><span class="p">)</span>
+
+<span class="n">p</span> <span class="o">=</span> <span class="n">GPLinear</span><span class="p">(</span><span class="n">sigma</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">sigma_b</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="mf">6.0</span><span class="p">)</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">plot_paths_and_kernel</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;GnBu&quot;</span><span class="p">)</span>
+
+<span class="n">p</span> <span class="o">=</span> <span class="n">GPLinear</span><span class="p">(</span><span class="n">sigma</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">sigma_b</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="mf">6.0</span><span class="p">)</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">plot_paths_and_kernel</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;GnBu&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/d4419dfd1d219840f71efe566ea4102647669ce083c0bfdd57affa63a2c4d8f3.png"><img alt="_images/d4419dfd1d219840f71efe566ea4102647669ce083c0bfdd57affa63a2c4d8f3.png" src="_images/d4419dfd1d219840f71efe566ea4102647669ce083c0bfdd57affa63a2c4d8f3.png" style="width: 890px; height: 396px;" />
+</a>
+<a class="reference internal image-reference" href="_images/b3d0f975ba82e05a87564250851aa656f61cf0db7cf2936edc13f79fa23377c4.png"><img alt="_images/b3d0f975ba82e05a87564250851aa656f61cf0db7cf2936edc13f79fa23377c4.png" src="_images/b3d0f975ba82e05a87564250851aa656f61cf0db7cf2936edc13f79fa23377c4.png" style="width: 890px; height: 396px;" />
+</a>
+<a class="reference internal image-reference" href="_images/5c351699408e234ed232993f62f1718434fcf3ab74493a1e914173fec99565b1.png"><img alt="_images/5c351699408e234ed232993f62f1718434fcf3ab74493a1e914173fec99565b1.png" src="_images/5c351699408e234ed232993f62f1718434fcf3ab74493a1e914173fec99565b1.png" style="width: 890px; height: 396px;" />
+</a>
+</div>
+</div>
 </section>
 <section id="periodicity">
 <h3><span class="section-number">9.7.3. </span>Periodicity<a class="headerlink" href="#periodicity" title="Link to this heading">#</a></h3>
@@ -1399,6 +1408,30 @@ k(t,s) = \sigma^2 \exp\left(-\frac{2\sin^2\big(\pi (t-s)/T\big)}{\ell^2}\right),
 <li><p>Trigonometric covariance functions, such as <span class="math notranslate nohighlight">\(k(\tau) = \cos(2\pi \tau / T)\)</span>, generate perfectly periodic structure.</p></li>
 <li><p>Sums/products of periodic and non-periodic kernels allow periodic behaviour with slowly varying amplitudes.</p></li>
 </ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">aleatory.processes</span><span class="w"> </span><span class="kn">import</span> <span class="n">GPPeriodic</span>
+
+<span class="n">p</span> <span class="o">=</span> <span class="n">GPPeriodic</span><span class="p">(</span><span class="n">sigma</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">length_scale</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">period</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="mf">5.0</span><span class="p">)</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">plot_paths_and_kernel</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;GnBu&quot;</span><span class="p">)</span>
+
+<span class="n">p</span> <span class="o">=</span> <span class="n">GPPeriodic</span><span class="p">(</span><span class="n">sigma</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">length_scale</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">period</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="mf">5.0</span><span class="p">)</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">plot_paths_and_kernel</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;GnBu&quot;</span><span class="p">)</span>
+
+<span class="n">p</span> <span class="o">=</span> <span class="n">GPPeriodic</span><span class="p">(</span><span class="n">sigma</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">length_scale</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">period</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="mf">5.0</span><span class="p">)</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">plot_paths_and_kernel</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;GnBu&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/b23079e52da3f8c7cb966db4886adde574ebea8bb100e21370557b48a85f6b59.png"><img alt="_images/b23079e52da3f8c7cb966db4886adde574ebea8bb100e21370557b48a85f6b59.png" src="_images/b23079e52da3f8c7cb966db4886adde574ebea8bb100e21370557b48a85f6b59.png" style="width: 890px; height: 396px;" />
+</a>
+<a class="reference internal image-reference" href="_images/66b15f0f0c1e5806783f9b2702aded0b9270de9ebac4d12766b63a086698b859.png"><img alt="_images/66b15f0f0c1e5806783f9b2702aded0b9270de9ebac4d12766b63a086698b859.png" src="_images/66b15f0f0c1e5806783f9b2702aded0b9270de9ebac4d12766b63a086698b859.png" style="width: 890px; height: 396px;" />
+</a>
+<a class="reference internal image-reference" href="_images/4a89568e363e7bacb3e837be205ae527f1a70567f635b127485403ace3d6beb8.png"><img alt="_images/4a89568e363e7bacb3e837be205ae527f1a70567f635b127485403ace3d6beb8.png" src="_images/4a89568e363e7bacb3e837be205ae527f1a70567f635b127485403ace3d6beb8.png" style="width: 890px; height: 396px;" />
+</a>
+</div>
+</div>
 </section>
 <section id="mean-reversion">
 <h3><span class="section-number">9.7.4. </span>Mean Reversion<a class="headerlink" href="#mean-reversion" title="Link to this heading">#</a></h3>
